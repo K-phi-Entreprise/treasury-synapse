@@ -1,0 +1,33 @@
+# Render Blueprint for Treasury Synapse.
+# New -> Blueprint -> this repo -> Apply. Render asks for ANTHROPIC_API_KEY at apply time (sync: false).
+services:
+  - type: web
+    name: treasury-synapse
+    runtime: node
+    region: frankfurt
+    plan: starter
+    branch: main
+    buildCommand: npm ci --omit=dev
+    preDeployCommand: npm run migrate && npm run import -- --if-empty data/seed/dump.json
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: synapse-db
+          property: connectionString
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ADMIN_TOKEN
+        generateValue: true
+      - key: IP_SALT
+        generateValue: true
+
+databases:
+  - name: synapse-db
+    region: frankfurt
+    plan: basic-256mb
+    postgresMajorVersion: "16"

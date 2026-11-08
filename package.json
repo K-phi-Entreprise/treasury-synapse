@@ -1,0 +1,18 @@
+{
+  "name": "treasury-synapse",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Treasury Synapse: a 3D map of treasury and finance professionals built from public sources. Postgres store, map server, crawler jobs.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.js",
+    "migrate": "node scripts/migrate.js",
+    "import": "node scripts/import.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}
