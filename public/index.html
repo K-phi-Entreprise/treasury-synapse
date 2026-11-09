@@ -818,7 +818,29 @@ let setFindValue=function(){};
     }},
     execute:function(input){const r=searchPeople(G,input);lastIds=r.ids;setHL(r.ids);renderChips(r.ids);return {total:r.total,showing:r.people.length,people:r.people,by_region:r.by_region,by_segment:r.by_segment}}
   }];
-  function copyFor(c){return c==='not_granted'?'Allow Claude for this page to use the chat.':c==='rate_limited'?'Too many questions at once. Try again in a minute.':c==='session_expired'?'Sign in again to keep asking.':c==='sampling_disabled'?'Claude is not available for this account.':'That did not work. Try asking again.'}
+  function copyFor(c){if(c==='daily_limit')return 'You have used today\'s questions. Come back tomorrow.';if(c==='global_limit')return 'The chat has reached its limit for today. Come back tomorrow.';if(c==='unavailable')return 'The chat is not available right now. Try again later.';if(c==='expired')return 'That question took too long. Ask it again.';return c==='not_granted'?'Allow Claude for this page to use the chat.':c==='rate_limited'?'Too many questions at once. Try again in a minute.':c==='session_expired'?'Sign in again to keep asking.':c==='sampling_disabled'?'Claude is not available for this account.':'That did not work. Try asking again.'}
+  /* history[0] holds the page's rules; the server has its own, so only the conversation goes up */
+  async function apiSample(history,opts){
+    const signal=opts&&opts.signal;
+    const msgs=history.slice(1).map(t=>({role:t.role,content:t.content}));
+    let token='';
+    for(let step=0;step<5;step++){
+      let r;
+      try{r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:msgs,token:token||undefined}),signal})}
+      catch(e){const er=new Error('stopped');er.code=e&&e.name==='AbortError'?'cancelled':'unavailable';throw er}
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok){const er=new Error(j.error||'');er.code=j.code||(r.status===400&&token?'expired':'unavailable');throw er}
+      token=j.token||token;
+      const blocks=Array.isArray(j.content)?j.content:[];
+      const uses=blocks.filter(b=>b.type==='tool_use');
+      const text=blocks.filter(b=>b.type==='text').map(b=>b.text).join('').trim();
+      if(j.stop_reason!=='tool_use'||!uses.length)return {text:text||'No answer came back. Try rephrasing.'};
+      if(text&&opts&&opts.onText)opts.onText({text:text});
+      msgs.push({role:'assistant',content:blocks});
+      msgs.push({role:'user',content:uses.map(u=>{let out;try{out=TOOLS[0].execute(u.input||{})}catch(e){out={error:String(e&&e.message||e)}}return {type:'tool_result',tool_use_id:u.id,content:JSON.stringify(out).slice(0,15000)}})});
+    }
+    return {text:'That search needed too many steps. Try a narrower question.'};
+  }
   async function ask(q){
     q=String(q||'').trim();
     if(!q||!sampleFn||busy)return;
@@ -853,8 +875,8 @@ let setFindValue=function(){};
   reopen.addEventListener('click',()=>{ans.hidden=false;reopen.hidden=true;setHL(lastIds);updateSugg()});
   aChips.addEventListener('click',e=>{const b=e.target.closest('.peer');if(b)select(+b.dataset.i,true)});
   (async function(){
-    sampleFn=null;if(!sampleFn)return;
-    try{const l=await sampleFn.limits();canTools=!!(l&&l.tools)}catch(e){canTools=false}
+    try{const st=await (await fetch('/api/ask/status',{cache:'no-store'})).json();if(!st.enabled)return}catch(e){return}
+    sampleFn=apiSample;canTools=true;
     askForm.hidden=false;updateSugg();
   })();
 })();

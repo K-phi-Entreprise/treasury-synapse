@@ -11,7 +11,7 @@ const app = express();
 const pool = process.env.DATABASE_URL ? makePool() : null;
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 const SALT = process.env.IP_SALT || ADMIN_TOKEN || 'synapse';
-const LIMITS = { connection: 10, submission: 10, ask: 20 };
+const LIMITS = { connection: 10, submission: 10 };
 
 app.set('trust proxy', true);
 app.use(compression());
@@ -143,6 +143,17 @@ app.post('/api/admin/submissions/:id', admin, async (req, res, next) => {
     }
     res.json({ ok: true });
   } catch (e) { next(e); }
+});
+
+/* ---------- chat (D2) ---------- */
+if (pool) require('./chat').mount(app, {
+  pool, ipHash,
+  apiKey: process.env.ANTHROPIC_API_KEY || '',
+  model: process.env.CHAT_MODEL || 'claude-haiku-5-5',
+  perVisitor: Number(process.env.CHAT_PER_VISITOR) || 20,
+  dailyCap: Number(process.env.CHAT_DAILY_CAP) || 1500,
+  secret: SALT + '|ask',
+  baseUrl: process.env.ANTHROPIC_BASE_URL || 'https://api.anthropic.com'
 });
 
 /* ---------- static ---------- */

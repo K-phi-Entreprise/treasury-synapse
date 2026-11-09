@@ -21,6 +21,12 @@ services:
           property: connectionString
       - key: ANTHROPIC_API_KEY
         sync: false
+      - key: CHAT_MODEL
+        value: claude-haiku-5-5
+      - key: CHAT_PER_VISITOR
+        value: "20"
+      - key: CHAT_DAILY_CAP
+        value: "1500"
       - key: ADMIN_TOKEN
         generateValue: true
       - key: IP_SALT
