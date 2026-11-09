@@ -88,7 +88,7 @@ test('a visitor declares a connection: pending, visible in the connections angle
 
 test('a removal request hides the card at once; approval deletes, rejection restores', async () => {
   const id = dump.people[50].id;
-  let r = await api('/api/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: 'removal', personId: id, payload: { reason: 'test' } }) });
+  let r = await api('/api/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: 'removal', personId: id, payload: { reason: 'test' }, email: 'someone@example.org' }) });
   assert.equal(r.body.status, 'pending');
   let g = (await api('/api/graph?since=2000-01-01T00:00:00Z')).body;
   assert.ok(!g.people.some(p => p.id === id) && g.hidden.includes(id), 'hidden immediately');

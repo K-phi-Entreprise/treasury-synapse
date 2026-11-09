@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Synapse Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080b17;--card:#0e1328;--line:rgba(150,165,230,.17);--fg:#e8ecff;--dim:#a8b1da;--faint:#7f8ac0;--ok:#8ef0b6;--no:#ff9db4;--ask:#f3b35c;--accent:#6ee7f0;
+  --display:'Bricolage Grotesque','Avenir Next','Segoe UI',system-ui,sans-serif;--body:'Instrument Sans','Segoe UI',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 var(--body)}
+main{max-width:860px;margin:0 auto;padding-block:24px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;justify-content:space-between;margin:0 0 18px}
+h1{margin:0;font:600 24px/1.2 var(--display);text-wrap:balance}
+.sub{color:var(--faint);font:400 12px/1.4 var(--mono)}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 18px}
+nav button{padding:7px 13px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--dim);font:500 13px/1.2 var(--body);cursor:pointer}
+nav button[aria-pressed=true]{color:var(--fg);border-color:var(--dim);background:rgba(255,255,255,.06)}
+nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-width:0}
+.top{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 6px}
+.tag{padding:1px 8px;border-radius:99px;border:1px solid var(--line);font:500 10.5px/1.6 var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:.04em}
+.tag.removal{color:var(--no);border-color:rgba(255,157,180,.4)}
+.tag.warn{color:var(--ask);border-color:rgba(243,179,92,.4)}
+.when{margin-left:auto;font:400 11.5px var(--mono);color:var(--faint)}
+.who{font:600 15px/1.3 var(--body)}
+.who small{display:block;font-weight:400;color:var(--dim);font-size:12.5px}
+.body{margin:8px 0 0;color:var(--dim);overflow-wrap:anywhere}
+.body .from{text-decoration:line-through;color:var(--faint)}
+.body .to{color:var(--fg)}
+.body a{color:var(--accent)}
+.act{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0;align-items:center}
+.act button{padding:7px 14px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--fg);font:500 13px var(--body);cursor:pointer}
+.act .ok{border-color:rgba(142,240,182,.45);color:var(--ok)}
+.act .no{border-color:rgba(255,157,180,.45);color:var(--no)}
+.act .ask{border-color:rgba(243,179,92,.45);color:var(--ask)}
+.act button[disabled]{opacity:.45;cursor:default}
+.act input{flex:1 1 200px;min-width:0;padding:7px 10px;border-radius:9px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--fg);font:400 13px var(--body)}
+.done{font:500 12px var(--mono);color:var(--faint)}
+.empty{padding:36px 16px;text-align:center;color:var(--faint);border:1px dashed var(--line);border-radius:14px}
+.gate{max-width:420px;margin:12vh auto 0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.gate label{display:block;color:var(--dim);margin:10px 0 6px}
+.gate input{width:100%;padding:10px 12px;border-radius:9px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--fg);font:400 14px var(--mono)}
+.gate button{margin-top:12px;width:100%;padding:10px;border:0;border-radius:10px;background:var(--accent);color:#05101a;font:600 14px var(--body);cursor:pointer}
+.err{color:var(--no);margin:10px 0 0}
+.bar{display:flex;gap:10px;align-items:center}
+.bar button{background:none;border:0;color:var(--faint);font:400 12px var(--mono);cursor:pointer;text-decoration:underline}
+</style>
+</head>
+<body>
+<main>
+  <section class="gate" id="gate" hidden>
+    <h1>Synapse review</h1>
+    <p class="sub">Paste the ADMIN_TOKEN from the Render service's Environment tab. It stays in this browser only.</p>
+    <form id="gate-f"><label for="tok">Admin token</label><input id="tok" type="password" autocomplete="current-password"><button type="submit">Open the queue</button><p class="err" id="gate-err" hidden></p></form>
+  </section>
+  <div id="app" hidden>
+    <header>
+      <h1>What is waiting for you</h1>
+      <div class="bar"><span class="sub" id="mailstate"></span><button type="button" id="refresh">Refresh</button><button type="button" id="logout">Forget token</button></div>
+    </header>
+    <nav id="tabs" aria-label="Queues"></nav>
+    <div class="list" id="list"></div>
+  </div>
+</main>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+  let token='';try{token=localStorage.getItem('synapse.admin')||''}catch(e){}
+  let data=null,tab='removal';
+  const TABS=[['removal','Removals'],['correction','Corrections'],['link','Links'],['connection','Connections'],['lead','Unreadable pages']];
+  const FIELD={headline:'Title and company',org:'Organisation',city:'City',region:'Region',knownFor:'Known for',other:'Something else'};
+  const CUR={headline:'person_headline',org:'person_org',city:'person_city',region:'person_region',knownFor:'person_known_for'};
+  const ago=t=>{if(!t)return '';const m=Math.round((Date.now()-Date.parse(t))/60000);return m<60?m+' min ago':m<1440?Math.round(m/60)+' h ago':Math.round(m/1440)+' d ago'};
+  async function call(path,body){
+    const r=await fetch(path,{method:body?'POST':'GET',headers:Object.assign({'x-admin-token':token},body?{'Content-Type':'application/json'}:{}),body:body?JSON.stringify(body):undefined,cache:'no-store'});
+    if(r.status===401){showGate('That token was not accepted.');throw new Error('unauthorised')}
+    const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||('HTTP '+r.status));return j;
+  }
+  function showGate(err){$('app').hidden=true;$('gate').hidden=false;$('gate-err').hidden=!err;$('gate-err').textContent=err||'';setTimeout(()=>$('tok').focus(),30)}
+  $('gate-f').addEventListener('submit',e=>{e.preventDefault();token=$('tok').value.trim();try{localStorage.setItem('synapse.admin',token)}catch(x){}load()});
+  $('logout').addEventListener('click',()=>{token='';try{localStorage.removeItem('synapse.admin')}catch(x){}showGate()});
+  $('refresh').addEventListener('click',()=>load());
+  function items(k){
+    if(!data)return [];
+    if(k==='connection')return data.connections;
+    if(k==='lead')return data.leads;
+    return data.submissions.filter(s=>s.kind===k);
+  }
+  function renderTabs(){
+    const nav=$('tabs');nav.textContent='';
+    TABS.forEach(([k,label])=>{const b=el('button','',label);b.type='button';b.setAttribute('aria-pressed',String(k===tab));b.appendChild(el('b','',String(items(k).length)));b.addEventListener('click',()=>{tab=k;render()});nav.appendChild(b)});
+  }
+  function actions(item,opts){
+    const row=el('div','act');
+    const note=el('input');note.placeholder=opts.notePh||'Note to the sender (optional, sent with Discuss)';
+    let value=null;
+    if(opts.editable){value=el('input');value.value=opts.editable;value.setAttribute('aria-label','Value to apply');row.appendChild(value)}
+    const mk=(cls,label,fn)=>{const b=el('button',cls,label);b.type='button';b.addEventListener('click',async()=>{row.querySelectorAll('button').forEach(x=>x.disabled=true);try{await fn(note.value.trim(),value&&value.value.trim());const d=el('span','done',label.replace(/^(\w+).*/,'$1')+' · done');row.replaceChildren(d);setTimeout(load,700)}catch(e){row.querySelectorAll('button').forEach(x=>x.disabled=false);alertRow(row,e)}});return b};
+    opts.buttons.forEach(([cls,label,fn])=>row.appendChild(mk(cls,label,fn)));
+    if(opts.note!==false)row.appendChild(note);
+    return row;
+  }
+  function alertRow(row,e){let m=row.querySelector('.err');if(!m){m=el('p','err');row.after(m)}m.textContent=String(e.message||e)}
+  function subItem(s){
+    const it=el('article','item');
+    const top=el('div','top');top.appendChild(el('span','tag'+(s.kind==='removal'?' removal':''),s.kind));
+    if(s.status==='discuss')top.appendChild(el('span','tag warn','in discussion'));
+    if(s.email)top.appendChild(el('span','tag'+(s.confirmed_at?'':' warn'),s.confirmed_at?'email confirmed':'email not confirmed'));
+    top.appendChild(el('span','when',ago(s.added_at)));it.appendChild(top);
+    const who=el('div','who',s.person_name||s.person_id);who.appendChild(el('small','',s.person_headline||''));it.appendChild(who);
+    const b=el('div','body');const p=s.payload||{};
+    if(s.kind==='correction'){
+      b.appendChild(el('div','',FIELD[p.field]||p.field));
+      if(p.field!=='other'){const now=s[CUR[p.field]]||'(empty)';const l=el('div');l.append(el('span','from',now),document.createTextNode('  →  '),el('span','to',p.value));b.appendChild(l)}
+      if(p.note)b.appendChild(el('div','','“'+p.note+'”'));
+    }else if(s.kind==='link'){const a=el('a','',p.url);a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';b.appendChild(a);if(p.note)b.appendChild(el('div','','“'+p.note+'”'))}
+    else{b.appendChild(el('div','',(p.self?'Sent by the person or on their behalf. ':'Sender did not say they are this person. ')+'Card hidden since '+ago(s.added_at)+'.'));if(p.reason)b.appendChild(el('div','','“'+p.reason+'”'))}
+    if(s.email)b.appendChild(el('div','',s.email));
+    if(s.decision_note)b.appendChild(el('div','','Your last note: '+s.decision_note));
+    it.appendChild(b);
+    const send=st=>(note,val)=>call('/api/admin/submissions/'+s.id,Object.assign({status:st,note},val!=null&&val!==''?{value:val}:{}));
+    const labels=s.kind==='removal'?[['ok','Approve · delete for good',send('approved')],['no','Reject · show again',send('rejected')],['ask','Discuss',send('discuss')]]
+      :s.kind==='link'?[['ok','Approve · queue for the crawler',send('approved')],['no','Reject',send('rejected')],['ask','Discuss',send('discuss')]]
+      :[['ok',p.field==='other'?'Approve (edit by hand)':'Approve · apply',send('approved')],['no','Reject',send('rejected')],['ask','Discuss',send('discuss')]];
+    it.appendChild(actions(s,{buttons:labels,editable:s.kind==='correction'&&p.field!=='other'&&p.field!=='region'?p.value:null}));
+    return it;
+  }
+  function connItem(c){
+    const it=el('article','item');const top=el('div','top');top.appendChild(el('span','tag','declared connection'));
+    if(c.same_sender>3)top.appendChild(el('span','tag warn',c.same_sender+' from the same sender'));
+    top.appendChild(el('span','when',ago(c.added_at)));it.appendChild(top);
+    const who=el('div','who',c.from_name+'  knows  '+c.to_name);who.appendChild(el('small','',(c.from_headline||'')+'  ·  '+(c.to_headline||'')));it.appendChild(who);
+    if(c.note)it.appendChild(el('div','body','“'+c.note+'”'));
+    const st=v=>()=>call('/api/admin/connections/'+encodeURIComponent(c.from_id)+'/'+encodeURIComponent(c.to_id),{status:v});
+    it.appendChild(actions(c,{buttons:[['ok','Confirm',st('confirmed')],['no','Reject',st('rejected')]],note:false}));
+    return it;
+  }
+  function leadItem(l){
+    const it=el('article','item');const top=el('div','top');top.appendChild(el('span','tag',l.reason||'unreadable'));top.appendChild(el('span','when',ago(l.added_at)));it.appendChild(top);
+    it.appendChild(el('div','who',l.person_name||l.person_id||'No person attached'));
+    const b=el('div','body');const a=el('a','',l.url);a.href=l.url;a.target='_blank';a.rel='noopener noreferrer';b.appendChild(a);if(l.snippet)b.appendChild(el('div','',l.snippet));it.appendChild(b);
+    const st=v=>()=>call('/api/admin/leads/'+encodeURIComponent(l.id),{status:v});
+    it.appendChild(actions(l,{buttons:[['ok','Read it · queue for the crawler',st('queued')],['','Done by hand',st('done')],['no','Dismiss',st('dismissed')]],note:false}));
+    return it;
+  }
+  function render(){
+    renderTabs();const list=$('list');list.textContent='';
+    const xs=items(tab);
+    if(!xs.length){list.appendChild(el('div','empty','Nothing waiting here.'));return}
+    xs.forEach(x=>list.appendChild(tab==='connection'?connItem(x):tab==='lead'?leadItem(x):subItem(x)));
+  }
+  async function load(){
+    if(!token){showGate();return}
+    try{data=await call('/api/admin/queue')}catch(e){if(e.message!=='unauthorised'){$('app').hidden=false;$('gate').hidden=true;$('list').textContent='';$('list').appendChild(el('p','err',String(e.message)))}return}
+    $('gate').hidden=true;$('app').hidden=false;
+    $('mailstate').textContent=data.mail?'email on':'email not configured';
+    if(!items(tab).length){const k=TABS.map(t=>t[0]).find(k=>items(k).length);if(k)tab=k}
+    render();
+  }
+  load();
+})();
+</script>
+</body>
+</html>

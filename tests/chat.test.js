@@ -10,6 +10,7 @@ const path = require('path');
 let mock, mockCalls = [], server, base, pool;
 
 test.before(async () => {
+  await require('./setup').ready();
   /* fake Messages API: first call asks for find_people, second turns the tool result into a sentence */
   mock = http.createServer((req, res) => {
     let body = '';

@@ -87,38 +87,100 @@ app.post('/api/connections', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+const mail = require('./mail');
+const PUBLIC_URL = (process.env.PUBLIC_URL || 'https://synapse.k-phi.com').replace(/\/$/, '');
+const REGIONS = ['United States', 'United Kingdom', 'France', 'DACH', 'Benelux', 'Nordics', 'Southern Europe', 'Asia-Pacific', 'Other', 'Unknown'];
+const FIELDS = { headline: 'headline', org: 'org', city: 'city', region: 'region', knownFor: 'known_for' };
+const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,190}\.[a-z]{2,24}$/i;
+const clip = (v, n) => String(v == null ? '' : v).slice(0, n);
+
+function cleanPayload(kind, p) {
+  p = p && typeof p === 'object' ? p : {};
+  if (kind === 'correction') {
+    const field = Object.prototype.hasOwnProperty.call(FIELDS, p.field) ? p.field : 'other';
+    const value = clip(p.value, 300).trim();
+    if (!value && field !== 'other') return null;
+    if (field === 'region' && !REGIONS.includes(value)) return null;
+    return { field, value, note: clip(p.note, 600) };
+  }
+  if (kind === 'link') {
+    let u; try { u = new URL(String(p.url || '')); } catch (e) { return null; }
+    if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
+    if (/(^|\.)linkedin\.com$/i.test(u.hostname)) return { refused: 'linkedin' };
+    return { url: u.toString().slice(0, 600), note: clip(p.note, 600) };
+  }
+  if (kind === 'removal') return { reason: clip(p.reason, 600), self: !!p.self };
+  return null;
+}
+
 app.post('/api/submissions', async (req, res, next) => {
   try {
     const kind = String(req.body.kind || '');
     if (!['correction', 'link', 'removal'].includes(kind)) return res.status(400).json({ error: 'unknown submission kind' });
-    if (!(await underQuota(req, 'submission'))) return res.status(429).json({ error: 'daily limit reached, try again tomorrow' });
     const personId = slug(req.body.personId) || null;
-    const payload = req.body.payload && typeof req.body.payload === 'object' ? req.body.payload : {};
-    const email = String(req.body.email || '').slice(0, 200);
+    if (!personId) return res.status(400).json({ error: 'which person is this about?' });
+    const payload = cleanPayload(kind, req.body.payload);
+    if (!payload) return res.status(400).json({ error: kind === 'link' ? 'a public web address is needed' : 'something is missing in the form' });
+    if (payload.refused) return res.status(400).json({ error: 'LinkedIn pages are not used on this map; please send another public page' });
+    const email = clip(req.body.email, 200).trim();
+    if (email && !EMAIL_RE.test(email)) return res.status(400).json({ error: 'that email address does not look right' });
+    if (kind === 'removal' && !email) return res.status(400).json({ error: 'an email is needed for a removal request, to confirm it and tell you the outcome' });
+    const person = await pool.query('select id, name from people where id = $1', [personId]);
+    if (!person.rows.length) return res.status(404).json({ error: 'unknown person' });
+    if (!(await underQuota(req, 'submission'))) return res.status(429).json({ error: 'daily limit reached, try again tomorrow' });
+    const token = email ? crypto.randomBytes(18).toString('base64url') : null;
     const r = await pool.query(
-      'insert into submissions (kind, person_id, payload, email, ip_hash) values ($1,$2,$3,$4,$5) returning id',
-      [kind, personId, JSON.stringify(payload), email, ipHash(req)]);
+      'insert into submissions (kind, person_id, payload, email, ip_hash, confirm_token) values ($1,$2,$3,$4,$5,$6) returning id',
+      [kind, personId, JSON.stringify(payload), email, ipHash(req), token]);
     /* a removal request hides the card at once; the owner decides on deletion */
-    if (kind === 'removal' && personId) {
+    if (kind === 'removal') {
       await pool.query(`update people set hidden = true, hidden_reason = 'removal requested, pending review', updated_at = now() where id = $1`, [personId]);
       cache.at = 0;
     }
-    res.json({ id: r.rows[0].id, status: 'pending' });
+    let mailed = false;
+    if (email) {
+      const what = kind === 'removal' ? 'remove ' + person.rows[0].name + ' from the map. The card is hidden now; deletion is final once the request is reviewed.'
+        : kind === 'link' ? 'add a public page to ' + person.rows[0].name + "'s card."
+        : 'correct ' + person.rows[0].name + "'s card.";
+      const m = await mail.send({ to: email, subject: 'Treasury Synapse: please confirm your request',
+        text: 'Hello,\n\nSomeone (hopefully you) asked to ' + what + '\n\nConfirm the request here:\n' + PUBLIC_URL + '/api/confirm/' + token +
+          '\n\nNothing else changes until it has been reviewed. If you did not send this, ignore this message.\n\nTreasury Synapse, by K-phi\n' });
+      mailed = m.sent;
+    }
+    res.json({ id: r.rows[0].id, status: 'pending', confirmation: email ? (mailed ? 'sent' : 'not sent') : 'none' });
   } catch (e) { next(e); }
 });
 
-/* ---------- admin review API (the review page comes with D3) ---------- */
+app.get('/api/confirm/:token', async (req, res, next) => {
+  try {
+    const r = await pool.query('update submissions set confirmed_at = coalesce(confirmed_at, now()) where confirm_token = $1 returning id', [String(req.params.token).slice(0, 64)]);
+    res.set('X-Robots-Tag', 'noindex').type('html').send('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Treasury Synapse</title>' +
+      '<body style="background:#080b17;color:#e8ecff;font:16px system-ui;padding:40px 20px;max-width:560px;margin:auto">' +
+      (r.rows.length ? '<h1 style="font-size:22px">Request confirmed</h1><p>Thank you. It will be reviewed, and you will hear back at this address.</p>'
+        : '<h1 style="font-size:22px">Link not recognised</h1><p>This confirmation link is not valid or has already been used.</p>') +
+      '<p><a style="color:#6ee7f0" href="/">Back to the map</a></p>');
+  } catch (e) { next(e); }
+});
+
+/* ---------- admin review API, used by /review ---------- */
 function admin(req, res, next) {
-  if (!ADMIN_TOKEN || req.get('x-admin-token') !== ADMIN_TOKEN) return res.status(401).json({ error: 'admin token required' });
+  const got = String(req.get('x-admin-token') || '');
+  const ok = ADMIN_TOKEN && got.length === ADMIN_TOKEN.length && crypto.timingSafeEqual(Buffer.from(got), Buffer.from(ADMIN_TOKEN));
+  if (!ok) return res.status(401).json({ error: 'admin token required' });
   next();
 }
 app.get('/api/admin/queue', admin, async (req, res, next) => {
   try {
     const [c, s, l] = await Promise.all([
-      pool.query("select * from connections where status = 'pending' order by added_at"),
-      pool.query("select * from submissions where status in ('pending','discuss') order by added_at"),
-      pool.query("select * from leads where status = 'pending' order by added_at")]);
-    res.json({ connections: c.rows, submissions: s.rows, leads: l.rows });
+      pool.query(`select c.*, pf.name as from_name, pf.headline as from_headline, pt.name as to_name, pt.headline as to_headline,
+          (select count(*)::int from connections x where x.ip_hash = c.ip_hash and x.ip_hash <> '') as same_sender
+        from connections c join people pf on pf.id = c.from_id join people pt on pt.id = c.to_id where c.status = 'pending' order by c.added_at`),
+      pool.query(`select s.id, s.kind, s.person_id, s.payload, s.email, s.status, s.decision_note, s.added_at, s.confirmed_at,
+          p.name as person_name, p.headline as person_headline, p.org as person_org, p.city as person_city, p.region as person_region, p.known_for as person_known_for
+        from submissions s left join people p on p.id = s.person_id where s.status in ('pending','discuss')
+        order by (s.kind = 'removal') desc, s.added_at`),
+      pool.query(`select l.*, p.name as person_name from leads l left join people p on p.id = l.person_id where l.status = 'pending' order by l.added_at desc nulls last`)]);
+    res.json({ connections: c.rows, submissions: s.rows, leads: l.rows, mail: mail.configured() });
   } catch (e) { next(e); }
 });
 app.post('/api/admin/connections/:from/:to', admin, async (req, res, next) => {
@@ -131,16 +193,50 @@ app.post('/api/admin/connections/:from/:to', admin, async (req, res, next) => {
   } catch (e) { next(e); }
 });
 app.post('/api/admin/submissions/:id', admin, async (req, res, next) => {
+  const client = await pool.connect();
   try {
     const status = String(req.body.status || '');
     if (!['approved', 'rejected', 'discuss'].includes(status)) return res.status(400).json({ error: 'bad status' });
-    const r = await pool.query('update submissions set status = $2, decision_note = $3, reviewed_at = now() where id = $1 returning *', [Number(req.params.id), status, String(req.body.note || '')]);
+    const note = clip(req.body.note, 1000);
+    await client.query('begin');
+    const r = await client.query("update submissions set status = $2, decision_note = $3, reviewed_at = now() where id = $1 and status in ('pending','discuss') returning *", [Number(req.params.id), status, note]);
     const sub = r.rows[0];
-    if (sub && sub.kind === 'removal' && sub.person_id) {
-      if (status === 'approved') await pool.query('delete from people where id = $1', [sub.person_id]);
-      if (status === 'rejected') await pool.query("update people set hidden = false, hidden_reason = '', updated_at = now() where id = $1", [sub.person_id]);
-      cache.at = 0;
+    if (!sub) { await client.query('rollback'); return res.status(404).json({ error: 'not in the queue' }); }
+    const p = sub.payload || {};
+    if (sub.kind === 'removal') {
+      if (status === 'approved') await client.query('delete from people where id = $1', [sub.person_id]);
+      if (status === 'rejected') await client.query("update people set hidden = false, hidden_reason = '', updated_at = now() where id = $1", [sub.person_id]);
     }
+    if (sub.kind === 'correction' && status === 'approved' && FIELDS[p.field]) {
+      const value = req.body.value != null ? clip(req.body.value, 300) : p.value; /* the reviewer may adjust the wording */
+      if (p.field === 'region' && !REGIONS.includes(value)) throw Object.assign(new Error('bad region'), { http: 400 });
+      await client.query(`update people set ${FIELDS[p.field]} = $2, updated_at = now() where id = $1`, [sub.person_id, value]);
+    }
+    if (sub.kind === 'link' && status === 'approved') {
+      /* the crawler reads queued leads and extracts what the page attests */
+      await client.query(`insert into leads (id, url, reason, person_id, snippet, status, added_at) values ($1,$2,'submitted by a visitor, approved',$3,$4,'queued',now())
+        on conflict (id) do update set status = 'queued'`, ['sub-' + sub.id, p.url, sub.person_id, clip(p.note, 600)]);
+    }
+    await client.query('commit');
+    cache.at = 0;
+    if (sub.email && (status !== 'discuss' || note)) {
+      const verdict = status === 'approved' ? (sub.kind === 'removal' ? 'The card has been deleted from the map.' : sub.kind === 'link' ? 'The page will be read by the next crawl and its facts added with their source.' : 'The card has been updated.')
+        : status === 'rejected' ? (sub.kind === 'removal' ? 'The request was not accepted and the card is visible again.' : 'The change was not accepted.') : 'A question about your request:';
+      await mail.send({ to: sub.email, subject: 'Treasury Synapse: your request', text: 'Hello,\n\n' + verdict + (note ? '\n\n' + note : '') + '\n\nTreasury Synapse, by K-phi\n' });
+    }
+    res.json({ ok: true });
+  } catch (e) {
+    await client.query('rollback').catch(() => {});
+    if (e.http) return res.status(e.http).json({ error: e.message });
+    next(e);
+  } finally { client.release(); }
+});
+app.post('/api/admin/leads/:id', admin, async (req, res, next) => {
+  try {
+    const status = String(req.body.status || '');
+    if (!['queued', 'dismissed', 'done'].includes(status)) return res.status(400).json({ error: 'bad status' });
+    const r = await pool.query('update leads set status = $2 where id = $1 returning id', [clip(req.params.id, 200), status]);
+    if (!r.rows.length) return res.status(404).json({ error: 'unknown lead' });
     res.json({ ok: true });
   } catch (e) { next(e); }
 });
@@ -158,6 +254,8 @@ if (pool) require('./chat').mount(app, {
 
 /* ---------- static ---------- */
 app.get(['/', '/index.html'], (req, res) => { res.set('Cache-Control', 'no-cache'); res.sendFile(path.join(__dirname, 'public', 'index.html')); });
+app.get(['/review', '/review/'], (req, res) => { res.set({ 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' }); res.sendFile(path.join(__dirname, 'public', 'review.html')); });
+app.get('/robots.txt', (req, res) => res.type('text/plain').send('User-agent: *\nAllow: /\nDisallow: /review\nDisallow: /api/\n'));
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1h' }));
 app.use((req, res) => res.status(404).json({ error: 'not found' }));
 app.use((err, req, res, next) => { console.error(err); res.status(500).json({ error: 'server error' }); }); // eslint-disable-line no-unused-vars

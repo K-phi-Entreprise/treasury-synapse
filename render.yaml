@@ -31,6 +31,38 @@ services:
         generateValue: true
       - key: IP_SALT
         generateValue: true
+      - key: PUBLIC_URL
+        value: https://synapse.k-phi.com
+      - key: RESEND_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+
+  # Daily digest of the review queue, 6:43 UTC
+  - type: cron
+    name: synapse-digest
+    runtime: node
+    region: frankfurt
+    plan: starter
+    branch: main
+    schedule: "43 6 * * *"
+    buildCommand: npm ci --omit=dev
+    startCommand: node scripts/digest.js
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: synapse-db
+          property: connectionString
+      - key: PUBLIC_URL
+        value: https://synapse.k-phi.com
+      - key: OWNER_EMAIL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
 
 databases:
   - name: synapse-db

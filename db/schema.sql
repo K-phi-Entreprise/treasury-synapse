@@ -165,3 +165,8 @@ create or replace view v_topics as
 
 create or replace view v_connections as
   select * from connections where status <> 'rejected';
+
+-- D3: email confirmation of submissions
+alter table submissions add column if not exists confirm_token text;
+alter table submissions add column if not exists confirmed_at timestamptz;
+create unique index if not exists submissions_confirm_token on submissions (confirm_token) where confirm_token is not null;

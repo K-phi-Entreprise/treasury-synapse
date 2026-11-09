@@ -1,0 +1,115 @@
+<style>
+.d-edit{display:block;margin:10px 0 0;padding:0;border:0;background:none;color:var(--fg-faint);font:400 11.5px/1.4 var(--font-mono);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.d-edit:hover{color:var(--fg)}
+@media (max-width:899px){.detail:not(.open) .d-edit{display:none}}
+.sbm-wrap{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center;background:rgba(4,6,14,.6);padding:0 max(16px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(16px,env(safe-area-inset-left,0px))}
+@media (min-width:700px){.sbm-wrap{align-items:center}}
+.sbm{width:100%;max-width:440px;max-height:calc(100dvh - 32px);overflow:auto;background:#0e1328;border:1px solid var(--line);border-radius:16px 16px 0 0;padding:18px 18px 20px;color:var(--fg);font-family:var(--font-body);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+@media (min-width:700px){.sbm{border-radius:16px}}
+.sbm h3{margin:0 28px 4px 0;font:600 17px/1.25 var(--font-display)}
+.sbm .who{margin:0 0 14px;padding-right:30px;color:var(--fg-dim);font-size:13px}
+.sbm .x{position:absolute;right:12px;top:12px}
+.sbm{position:relative}
+.sbm-tabs{display:flex;gap:6px;margin:0 0 14px;flex-wrap:wrap}
+.sbm-tabs button{padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-dim);font:500 12.5px/1.2 var(--font-body);cursor:pointer}
+.sbm-tabs button[aria-pressed=true]{color:var(--fg);border-color:var(--fg-dim);background:rgba(255,255,255,.06)}
+.sbm label{display:block;margin:0 0 10px;font-size:12.5px;color:var(--fg-dim)}
+.sbm label span{display:block;margin:0 0 4px}
+.sbm input[type=text],.sbm input[type=url],.sbm input[type=email],.sbm select,.sbm textarea{width:100%;box-sizing:border-box;padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--fg);font:400 14px/1.35 var(--font-body)}
+.sbm textarea{min-height:68px;resize:vertical}
+.sbm .check{display:flex;gap:8px;align-items:flex-start;color:var(--fg-dim)}
+.sbm .check input{margin-top:3px}
+.sbm .sbm-hint{margin:2px 0 12px;font:400 11.5px/1.45 var(--font-mono);color:var(--fg-faint)}
+.sbm .go{width:100%;margin-top:4px;padding:10px 14px;border-radius:10px;border:0;background:#6ee7f0;color:#05101a;font:600 14px/1 var(--font-body);cursor:pointer}
+.sbm .go[disabled]{opacity:.55;cursor:default}
+.sbm .msg{margin:10px 0 0;font-size:13px;line-height:1.45}
+.sbm .msg.err{color:#ff9db4}
+</style>
+<div class="sbm-wrap" id="sub-wrap" hidden>
+  <form class="sbm" id="sub" autocomplete="on" novalidate>
+    <div class="sbm-head">
+      <h3 id="sub-title">Suggest a change</h3>
+      <button class="close x" id="sub-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <p class="who" id="sub-who"></p>
+    <div class="sbm-tabs" role="group" aria-label="Kind of change">
+      <button type="button" data-k="correction" aria-pressed="true">Correct</button>
+      <button type="button" data-k="link" aria-pressed="false">Add a public link</button>
+      <button type="button" data-k="removal" aria-pressed="false">Remove</button>
+    </div>
+    <div data-p="correction">
+      <label><span>What is wrong</span>
+        <select id="sub-field">
+          <option value="headline">Title and company</option><option value="org">Organisation</option><option value="city">City</option>
+          <option value="region">Region</option><option value="knownFor">Known for</option><option value="other">Something else</option>
+        </select></label>
+      <label id="sub-value-l"><span>Correct value</span><input type="text" id="sub-value" maxlength="300"></label>
+      <label id="sub-region-l" hidden><span>Correct region</span><select id="sub-region"></select></label>
+      <label><span>Anything we should know</span><textarea id="sub-note-c" maxlength="600"></textarea></label>
+    </div>
+    <div data-p="link" hidden>
+      <label><span>Public page that names this person</span><input type="url" id="sub-url" placeholder="https://" maxlength="600"></label>
+      <p class="sbm-hint">An event agenda, podcast episode, article, company page or PDF. LinkedIn is not used on this map.</p>
+      <label><span>What it shows (optional)</span><textarea id="sub-note-l" maxlength="600"></textarea></label>
+    </div>
+    <div data-p="removal" hidden>
+      <p class="sbm-hint">The card is hidden as soon as you send this. It is deleted for good once the request has been reviewed, and you are told the outcome.</p>
+      <label><span>Reason (optional)</span><textarea id="sub-reason" maxlength="600"></textarea></label>
+      <label class="check"><input type="checkbox" id="sub-self"><span>I am this person, or I act on their behalf</span></label>
+    </div>
+    <label><span id="sub-email-t">Your email (optional, to hear the outcome)</span><input type="email" id="sub-email" maxlength="200" autocomplete="email"></label>
+    <p class="sbm-hint">Nothing changes on the map until a person has reviewed it. The email is used only for this request.</p>
+    <button class="go" id="sub-go" type="submit">Send for review</button>
+    <p class="msg" id="sub-msg" role="status" aria-live="polite"></p>
+  </form>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const wrap=$('sub-wrap'),form=$('sub'),msg=$('sub-msg'),go=$('sub-go');
+  let kind='correction',target=null;
+  ['United States','United Kingdom','France','DACH','Benelux','Nordics','Southern Europe','Asia-Pacific','Other','Unknown'].forEach(r=>{const o=document.createElement('option');o.value=o.textContent=r;$('sub-region').appendChild(o)});
+  function setKind(k){
+    kind=k;
+    form.querySelectorAll('.sbm-tabs button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)));
+    form.querySelectorAll('[data-p]').forEach(d=>{d.hidden=d.dataset.p!==k});
+    $('sub-email-t').textContent=k==='removal'?'Your email (needed to confirm the request)':'Your email (optional, to hear the outcome)';
+    go.textContent=k==='removal'?'Hide the card and send for review':'Send for review';
+    msg.textContent='';msg.className='msg';
+  }
+  function syncField(){const r=$('sub-field').value==='region';$('sub-region-l').hidden=!r;$('sub-value-l').hidden=r||$('sub-field').value==='other'}
+  $('sub-field').addEventListener('change',syncField);
+  form.querySelector('.sbm-tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(b)setKind(b.dataset.k)});
+  function open(){
+    target=window.synapseSelected&&window.synapseSelected();
+    if(!target)return;
+    $('sub-who').textContent=target.name+(target.headline?' · '+target.headline:'');
+    form.reset();setKind('correction');syncField();go.disabled=false;wrap.hidden=false;
+    setTimeout(()=>$('sub-field').focus(),30);
+  }
+  function close(){wrap.hidden=true;target=null}
+  $('d-edit').addEventListener('click',open);
+  $('sub-close').addEventListener('click',close);
+  wrap.addEventListener('click',e=>{if(e.target===wrap)close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!wrap.hidden)close()});
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();if(!target)return;
+    const email=$('sub-email').value.trim();
+    let payload;
+    if(kind==='correction'){const f=$('sub-field').value;payload={field:f,value:f==='region'?$('sub-region').value:$('sub-value').value.trim(),note:$('sub-note-c').value.trim()};
+      if(f!=='other'&&!payload.value){msg.className='msg err';msg.textContent='Write the correct value.';return}
+      if(f==='other'&&!payload.note){msg.className='msg err';msg.textContent='Tell us what is wrong.';return}}
+    else if(kind==='link'){payload={url:$('sub-url').value.trim(),note:$('sub-note-l').value.trim()};if(!/^https?:\/\//i.test(payload.url)){msg.className='msg err';msg.textContent='Paste the full web address, starting with https://';return}}
+    else{payload={reason:$('sub-reason').value.trim(),self:$('sub-self').checked};if(!email){msg.className='msg err';msg.textContent='An email is needed to confirm a removal.';return}}
+    go.disabled=true;msg.className='msg';msg.textContent='Sending…';
+    try{
+      const r=await fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({kind,personId:target.id,payload,email})});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok)throw new Error(j.error||'That did not go through. Try again.');
+      const conf=j.confirmation==='sent'?' Check your inbox to confirm it.':'';
+      if(kind==='removal'){msg.textContent='Received. The card is hidden now and the request will be reviewed.'+conf;setTimeout(()=>location.reload(),2600)}
+      else msg.textContent='Thank you. It will be reviewed before anything changes on the map.'+conf;
+    }catch(err){go.disabled=false;msg.className='msg err';msg.textContent=String(err.message||err)}
+  });
+})();
+</script>

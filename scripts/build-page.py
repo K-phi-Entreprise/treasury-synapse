@@ -60,6 +60,16 @@ rep("  async function ask(q){",
     return {text:'That search needed too many steps. Try a narrower question.'};
   }
   async function ask(q){""")
+# three.js served from this app, not a CDN
+rep('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js','/vendor/three.min.js')
+# read-only hook so the submission form knows who is selected
+rep('let sel=-1,hov=-1,nbr=null,hl=null;','let sel=-1,hov=-1,nbr=null,hl=null;\nwindow.synapseSelected=()=>(sel>=0&&G.nodes[sel]&&!G.nodes[sel].hub)?{id:G.nodes[sel].id,name:G.nodes[sel].name,headline:G.nodes[sel].headline}:null;')
+# D3: suggest-a-change entry on the person card, hidden on topic and system cards
+rep('        <div class="d-src" id="d-src"></div>\n        <button class="d-more" id="d-more" type="button" aria-expanded="false"></button>',
+    '        <div class="d-src" id="d-src"></div>\n        <button class="d-edit" id="d-edit" type="button">Suggest a correction, add a link, or ask for removal</button>\n        <button class="d-more" id="d-more" type="button" aria-expanded="false"></button>')
+rep("  if(n.hub){renderHubDetail(n);return}","  $('d-edit').hidden=!!n.hub;\n  if(n.hub){renderHubDetail(n);return}")
+import os
+extra=open(os.path.join(os.path.dirname(__file__),'page-extra.html'),encoding='utf-8').read()
 # standalone document: the artifact tool used to add the skeleton
 head='''<!doctype html>
 <html lang="en">
@@ -74,7 +84,7 @@ head='''<!doctype html>
 </head>
 <body>
 '''
-open('public/index.html','w',encoding='utf-8').write(head+src+'\n</body>\n</html>\n')
+open('public/index.html','w',encoding='utf-8').write(head+src+'\n'+extra+'\n</body>\n</html>\n')
 js=re.findall(r'<script>(.*?)</script>',src,re.S)[-1]
 open('/tmp/synapse-page.js','w').write(js)
 print('built public/index.html',len(src)//1024,'KB')
