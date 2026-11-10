@@ -15,7 +15,10 @@ async function digest(pool) {
     (select count(*)::int from people where added_at > now() - interval '1 day') new_people,
     (select count(*)::int from co_appearances where added_at > now() - interval '1 day') new_links,
     (select count(*)::int from people where deepened_at > now() - interval '1 day') deepened,
-    (select count(*)::int from people where not hidden) people`);
+    (select count(*)::int from people where not hidden) people,
+    (select count(*)::int from runs where data->>'mode' = 'render' and started_at > now() - interval '1 day') crawl_runs,
+    (select coalesce(sum((data->>'costUsd')::numeric), 0)::float from runs where data->>'mode' = 'render' and started_at > now() - interval '1 day') crawl_usd,
+    (select count(*)::int from runs where data->>'mode' = 'render' and started_at > now() - interval '1 day' and jsonb_array_length(coalesce(data->'errors', '[]')) > 0) crawl_errors`);
   const r = q.rows[0];
   const waiting = r.removals + r.corrections + r.links + r.discuss + r.connections + r.leads;
   const base = (process.env.PUBLIC_URL || 'https://synapse.k-phi.com').replace(/\/$/, '');
@@ -29,6 +32,7 @@ async function digest(pool) {
     r.leads ? '  ' + r.leads + ' page(s) the crawler could not read' : '',
     '',
     'Last 24 hours: ' + r.deepened + ' people deepened, ' + r.new_people + ' added, ' + r.new_links + ' new links. ' + r.people + ' people on the map.',
+    'Crawler: ' + r.crawl_runs + ' run(s), about ' + r.crawl_usd.toFixed(2) + ' USD' + (r.crawl_errors ? ', ' + r.crawl_errors + ' with errors' : '') + '.',
     '',
     'Review: ' + base + '/review'
   ].filter((l, i, a) => l !== '' || (a[i - 1] !== '' && i > 0));

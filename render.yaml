@@ -64,6 +64,39 @@ services:
       - key: MAIL_FROM
         sync: false
 
+  # Crawler on the K-phi API key: deepens 2 cards (or approved links) per run, stops at CRAWL_DAILY_USD a day
+  - type: cron
+    name: synapse-crawler
+    runtime: node
+    region: frankfurt
+    plan: starter
+    branch: main
+    schedule: "37 */2 * * *"
+    buildCommand: npm ci --omit=dev
+    startCommand: node scripts/crawl.js
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: synapse-db
+          property: connectionString
+      - key: ANTHROPIC_API_KEY
+        fromService:
+          type: web
+          name: treasury-synapse
+          envVarKey: ANTHROPIC_API_KEY
+      - key: CRAWL_MODEL
+        value: claude-sonnet-5-5
+      - key: CRAWL_TARGETS
+        value: "2"
+      - key: CRAWL_DAILY_USD
+        value: "4"
+      - key: CRAWL_PRICE_IN
+        value: "3"
+      - key: CRAWL_PRICE_OUT
+        value: "15"
+
 databases:
   - name: synapse-db
     region: frankfurt

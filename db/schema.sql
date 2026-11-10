@@ -178,3 +178,6 @@ alter table co_appearances add constraint co_appearances_check check ((a collate
 -- CSV import: declared connections arrive in batches the owner can confirm or reject at once
 alter table connections add column if not exists batch text;
 create index if not exists connections_batch on connections (batch) where batch is not null;
+
+-- Render crawler (D3 of the migration): consecutive deepen runs that added nothing; parked after two
+alter table people add column if not exists empty_runs integer not null default 0;
