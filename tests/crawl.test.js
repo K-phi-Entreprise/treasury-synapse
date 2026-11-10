@@ -184,3 +184,32 @@ test('the review page lists the crawler runs with what they kept and discarded',
     assert.ok(html.includes("['run','Crawler']") && html.includes('function runItem'));
   } finally { server.close(); await s.pool.end(); }
 });
+
+test('a private network lead becomes a card only from a fetched page that shows them, and the importer\'s line appears', async () => {
+  await only('adam-larson');
+  await pool.query("delete from runs where id = 'spent-today'");
+  await pool.query(`insert into network_leads (owner_id, first_name, last_name, company, position, priority) values
+    ('vincent-donnat','Anna','Treasury','Acme','Group Treasurer',3), ('vincent-donnat','Nobody','Found','Acme','Group Treasurer',2)`);
+  script = twoTurns({ notes: 'Speaker at the forum', new_people: [{ name: 'Anna Treasury', headline: 'Group Treasurer, Acme', org: 'Acme', region: 'France', segment: 'Corporate treasury', url: A }],
+    topics: [{ topic: 'Liquidity', url: A }], links: [{ name: 'Craig Jeffery', kind: 'panel', label: 'Session 12', url: A, same_session: true }] });
+  let r = await crawl(pool, cfg());
+  assert.equal(r.networkSearched, 1);
+  assert.equal(r.networkFound, 1);
+  const anna = (await pool.query("select * from people where id = 'anna-treasury'")).rows[0];
+  assert.ok(anna && anna.source === A && anna.region === 'France');
+  assert.equal((await pool.query("select 1 from person_topics where person_id = 'anna-treasury' and topic = 'Liquidity'")).rows.length, 1);
+  assert.equal((await pool.query("select 1 from co_appearances where a = 'anna-treasury' and b = 'craig-jeffery'")).rows.length, 1);
+  const c = (await pool.query("select status, public_consent_at from connections where from_id = 'vincent-donnat' and to_id = 'anna-treasury'")).rows[0];
+  assert.ok(c && c.status === 'pending' && c.public_consent_at);
+  assert.deepEqual((await pool.query("select status, person_id from network_leads where first_name = 'Anna'")).rows[0], { status: 'found', person_id: 'anna-treasury' });
+  /* nothing found: no card, the lead is closed */
+  script = twoTurns({ notes: 'nothing public' });
+  r = await crawl(pool, cfg());
+  assert.equal((await pool.query("select 1 from people where name = 'Nobody Found'")).rows.length, 0);
+  assert.equal((await pool.query("select status from network_leads where first_name = 'Nobody'")).rows[0].status, 'none');
+  assert.match(JSON.stringify(calls[calls.length - 1].body.messages[0]), /nothing is published about them/);
+  /* expired lists are deleted */
+  await pool.query("update network_leads set expires_at = now() - interval '1 day'");
+  await crawl(pool, cfg({ apiKey: '' }));
+  assert.equal((await pool.query('select count(*)::int n from network_leads')).rows[0].n, 0);
+});

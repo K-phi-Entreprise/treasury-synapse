@@ -47,6 +47,7 @@
       <p class="imp-sum" id="imp-sum"></p>
       <div class="imp-list" id="imp-list"></div>
       <label class="check" style="margin:0 0 10px"><input type="checkbox" id="imp-consent"><span>I agree to show these connections publicly on the map, as lines between my card and theirs. Each of them can ask for the line to be removed.</span></label>
+      <label class="check" id="imp-leads-l" style="margin:0 0 10px" hidden><input type="checkbox" id="imp-leads"><span>Also use my <b id="imp-leads-n"></b> other connections, privately, to look for public pages about them (talks, podcasts, company pages). Nothing is shown about them unless such a page is found; then they get a card from that page and the line to me appears. Only names, companies and titles are kept, never emails, and the list is deleted after 12 months.</span></label>
       <button class="go" id="imp-go" type="submit" disabled>Send for review</button>
     </div>
     <p class="msg" id="imp-msg" role="status" aria-live="polite"></p>
@@ -56,7 +57,7 @@
 (function(){
   const $=id=>document.getElementById(id);
   const wrap=$('imp-wrap'),msg=$('imp-msg'),btn=$('d-import');
-  let me=null,matches=[];
+  let me=null,matches=[],allConns=[];
   window.synapseOnDetail=id=>{const m=window.synapseMe&&window.synapseMe();btn.hidden=!(m&&id===m)};
   /* ---- Connections view: nobody's network is here until they add it, so say so and make it one tap ---- */
   const stageEl=document.getElementById('stage'),filtersEl=document.querySelector('.filters');
@@ -125,8 +126,9 @@
     const h=rows.findIndex(r=>r.some(c=>/^first name$/i.test(c.trim()))&&r.some(c=>/^last name$/i.test(c.trim())));
     if(h<0)return null;
     const head=rows[h].map(c=>c.trim().toLowerCase());
-    const fi=head.indexOf('first name'),li=head.indexOf('last name'),ci=head.indexOf('company');
-    return rows.slice(h+1).filter(r=>r.length>Math.max(fi,li)&&(r[fi]||r[li])).slice(0,30000).map(r=>({first:r[fi]||'',last:r[li]||'',company:ci>=0?(r[ci]||''):''}));
+    const fi=head.indexOf('first name'),li=head.indexOf('last name'),ci=head.indexOf('company'),pi=head.indexOf('position');
+    /* only these four columns are ever read: emails and profile URLs in the file are ignored */
+    return rows.slice(h+1).filter(r=>r.length>Math.max(fi,li)&&(r[fi]||r[li])).slice(0,30000).map(r=>({first:r[fi]||'',last:r[li]||'',company:ci>=0?(r[ci]||''):'',position:pi>=0?(r[pi]||''):''}));
   }
   function match(conns){
     const people=(window.synapsePeople&&window.synapsePeople())||[];
@@ -144,14 +146,14 @@
       const byOrg=cand.filter(p=>orgMatch(p.org,c.company));
       if(byOrg.length===1){pick=byOrg[0];how='name and company'}
       else if(cand.length===1){pick=cand[0];how=c.company&&cand[0].org&&!orgMatch(cand[0].org,c.company)?'name only, different company':'name'}
-      if(pick&&!out.has(pick.id))out.set(pick.id,{p:pick,how,company:c.company});
+      if(pick&&!out.has(pick.id))out.set(pick.id,{p:pick,how,company:c.company,c});
     }
     return [...out.values()];
   }
   function open(){
     const id=window.synapseMe&&window.synapseMe();if(!id)return;
     const p=((window.synapsePeople&&window.synapsePeople())||[]).find(x=>x.id===id);if(!p)return;
-    me=p;matches=[];$('imp-who').textContent='As '+p.name;$('imp-step1').hidden=false;$('imp-step2').hidden=true;msg.textContent='';msg.className='msg';$('imp-file').value='';$('imp-consent').checked=false;$('imp-go').disabled=true;wrap.hidden=false;
+    me=p;matches=[];$('imp-who').textContent='As '+p.name;$('imp-step1').hidden=false;$('imp-step2').hidden=true;msg.textContent='';msg.className='msg';$('imp-file').value='';$('imp-consent').checked=false;$('imp-leads').checked=false;$('imp-go').disabled=true;wrap.hidden=false;
   }
   function close(){wrap.hidden=true}
   async function take(file){
@@ -165,7 +167,9 @@
     }catch(err){msg.className='msg err';msg.textContent=String(err.message||err);return}
     const conns=readConnections(text);
     if(!conns){msg.className='msg err';msg.textContent='This does not look like LinkedIn’s Connections.csv (no First Name and Last Name columns).';return}
-    matches=match(conns);msg.textContent='';
+    matches=match(conns);allConns=conns;msg.textContent='';
+    const others=conns.length-matches.length;
+    $('imp-leads-l').hidden=others<=0;$('imp-leads-n').textContent=others.toLocaleString();
     $('imp-step1').hidden=true;$('imp-step2').hidden=false;
     $('imp-sum').textContent=matches.length?matches.length+' of your '+conns.length.toLocaleString()+' connections are on the map. Untick anyone you do not want to add.':'None of your '+conns.length.toLocaleString()+' connections are on the map yet.';
     $('imp-go').hidden=!matches.length;
@@ -194,11 +198,11 @@
     if(!ids.length){msg.className='msg err';msg.textContent='Tick at least one person.';return}
     $('imp-go').disabled=true;msg.className='msg';msg.textContent='Sending…';
     try{
-      const r=await fetch('/api/connections/import',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({from:me.id,to:ids,consent:true})});
+      const r=await fetch('/api/connections/import',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({from:me.id,to:ids,consent:true},$('imp-leads').checked?{leadsConsent:true,leads:allConns.filter(c=>!matches.some(m=>m.c===c)).map(c=>({first:c.first,last:c.last,company:c.company,position:c.position}))}:{}))});
       const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not go through. Try again.');
       imported=true;try{localStorage.setItem('synapse.imported','1')}catch(e){}
-      msg.textContent=j.added+' connection'+(j.added===1?'':'s')+' sent for review'+(j.existing?' ('+j.existing+' were already declared)':'')+'. They appear, faint, in the Connections view.';
-      setTimeout(()=>location.reload(),2800);
+      msg.textContent=j.added+' connection'+(j.added===1?'':'s')+' sent for review'+(j.existing?' ('+j.existing+' were already declared)':'')+'. They appear, faint, in the Connections view.'+(j.leadsKept?' '+j.leadsKept.toLocaleString()+' other connections kept privately for the crawler, '+j.leadsPriority.toLocaleString()+' with treasury or finance titles first.':'');
+      setTimeout(()=>location.reload(),j.leadsKept?6000:2800);
     }catch(err){$('imp-go').disabled=false;msg.className='msg err';msg.textContent=String(err.message||err)}
   });
 })();

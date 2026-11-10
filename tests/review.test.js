@@ -161,10 +161,21 @@ test('LinkedIn import: only known people, one batch, a daily limit, confirmable 
   const r2 = await imp({ from: 'vincent-donnat', to: ['jouni-kirjola'] });
   assert.equal(r2.body.added, 0, 'already declared');
   assert.equal((await imp({ from: 'vincent-donnat', to: ['adam-larson'] })).status, 429, 'third import of the day refused');
+  /* the private list for the crawler: kept only with the second agreement, treasury and finance titles first */
+  await pool.query("delete from quotas where kind = 'import'");
+  const leads = [{ first: 'Anna', last: 'Treasury', company: 'Acme', position: 'Group Treasurer' }, { first: 'Bob', last: 'Builder', company: 'Bricks', position: 'Site manager' }, { first: 'Cleo', last: 'Money', company: 'Big Co', position: 'Financial controller' }];
+  const n0 = await imp({ from: 'vincent-donnat', to: ['adam-larson'], leads });
+  assert.equal(n0.body.leadsKept, 0, 'nothing kept without the second agreement');
+  const n1 = await imp({ from: 'vincent-donnat', to: ['ernie-humphrey'], leads, leadsConsent: true });
+  assert.deepEqual([n1.body.leadsKept, n1.body.leadsPriority], [3, 2]);
+  const rows = (await pool.query("select first_name, priority, status, expires_at > now() + interval '11 months' as long from network_leads where owner_id = 'vincent-donnat' order by priority desc")).rows;
+  assert.deepEqual(rows.map(r => [r.first_name, r.priority, r.status, r.long]), [['Anna', 3, 'queued', true], ['Cleo', 1, 'queued', true], ['Bob', 0, 'queued', true]]);
+  assert.ok(!(await fetch(base + '/api/graph').then(r => r.text())).includes('Anna Treasury'), 'never on the map');
+  await pool.query("delete from network_leads");
   const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
   assert.ok(html.includes('id="d-import"') && html.includes("fetch('/api/connections/import'"));
   const imp2 = html.slice(html.indexOf('id="imp-wrap"'));
-  assert.ok(imp2.includes('body:JSON.stringify({from:me.id,to:ids,consent:true})') && !/FormData|file\.text\(\)\)\s*\}/.test(imp2), 'only the matched ids are sent, never the file');
+  assert.ok(imp2.includes('{from:me.id,to:ids,consent:true}') && imp2.includes('map(c=>({first:c.first,last:c.last,company:c.company,position:c.position}))') && !/FormData|file\.text\(\)\)\s*\}/.test(imp2), 'only the matched ids are sent, never the file');
 });
 
 test('catch-up import from /review: adds people, links and evidence, never undoes a review decision', async () => {

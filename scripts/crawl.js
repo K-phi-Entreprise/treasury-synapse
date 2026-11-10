@@ -75,6 +75,12 @@ async function pickTargets(pool, cfg) {
   const leads = await pool.query(`select l.*, p.name as person_name from leads l left join people p on p.id = l.person_id
     where l.status = 'queued' order by l.added_at nulls first limit $1`, [cfg.targets]);
   for (const l of leads.rows) out.push({ type: 'lead', lead: l, personId: l.person_id });
+  /* one slot per run for a private network lead (an importer's connection not yet on the map), treasury and finance titles first */
+  if (out.length < cfg.targets) {
+    const nl = await pool.query(`select n.*, o.name as owner_name from network_leads n join people o on o.id = n.owner_id
+      where n.status = 'queued' and n.priority > 0 and n.expires_at > now() order by n.priority desc, n.added_at limit 1`);
+    for (const l of nl.rows) out.push({ type: 'network', nlead: l, personId: null });
+  }
   if (out.length < cfg.targets) {
     const ppl = await pool.query(`select id from people where not hidden and not parked
       order by deepened_at nulls first, deepen_attempts, added_at limit $1`, [cfg.targets - out.length]);
@@ -136,6 +142,11 @@ function system(cfg) {
 
 function brief(card, target) {
   const lines = [];
+  if (target.type === 'network') {
+    const l = target.nlead;
+    lines.push('Find public pages about ' + l.first_name + ' ' + l.last_name + (l.position ? ', ' + l.position : '') + (l.company ? ' at ' + l.company : '') + '. They are not on the map yet.');
+    lines.push('Only if a fetched page shows this same person in a public professional role (speaker, panelist, podcast guest or host, author, named officer, quoted with their role), report them in new_people with that page, plus any topics, systems and roles the page attests and any people of the same session in links. If you find nothing reliable, submit empty lists: nothing is published about them.');
+  }
   if (target.type === 'lead') {
     lines.push('A reviewer approved this page as a source: ' + target.lead.url + (target.lead.snippet ? ' (note: ' + str(target.lead.snippet, 300) + ')' : '') + '. Fetch it first and report what it attests.');
   }
@@ -188,6 +199,7 @@ function withCache(messages) {
 async function research(pool, cfg, target, stats) {
   const card = await cardFor(pool, target.personId);
   if (target.type === 'person' && !card) return { skipped: 'card gone' };
+  if (target.type === 'network') await pool.query('update network_leads set attempts = attempts + 1, searched_at = now() where id = $1', [target.nlead.id]);
   const fetched = new Map();   // normalized url -> url as fetched
   const failed = new Map();    // url -> error code
   const pending = new Map();   // server_tool_use id -> requested url
@@ -270,9 +282,40 @@ async function apply(pool, cfg, target, card, f, fetched, stats) {
   const client = await pool.connect();
   try {
     await client.query('begin');
-    const id = card && card.p.id;
+    let id = card && card.p.id;
     const domains = new Set();
     const used = u => { const h = host(u); if (h) domains.add(h); kept++; };
+    /* a private network lead becomes a card only from a fetched public page that shows them; then the importer's line appears */
+    if (target.type === 'network') {
+      const l = target.nlead, want = normName(l.first_name + ' ' + l.last_name);
+      const n = (Array.isArray(f.new_people) ? f.new_people : []).find(x => normName(x && x.name) === want);
+      const nurl = n && src(n.url);
+      const total = (await client.query('select count(*)::int n from people')).rows[0].n;
+      let pid = null;
+      if (n && nurl) {
+        const existing = (await client.query('select id from people where id = $1', [slug(n.name)])).rows[0];
+        const removedIds = new Set((await client.query("select person_id from submissions where kind = 'removal' and status = 'approved'")).rows.map(r => r.person_id));
+        if (existing) pid = existing.id;
+        else if (removedIds.has(slug(n.name))) reject(n.name, 'removed from the map at their request');
+        else if (total + stats.peopleAdded >= cfg.peopleCap) reject(n.name, 'people cap reached');
+        else {
+          pid = slug(n.name);
+          await client.query(`insert into people (id, name, headline, org, city, region, segment, seed, source, added_at, crawled_at, updated_at)
+            values ($1,$2,$3,$4,$5,$6,$7,false,$8,now(),now(),now())`, [pid, str(n.name, 120), str(n.headline, 200) || str(l.position, 200), str(n.org, 120) || str(l.company, 120), str(n.city, 80),
+            REGIONS.includes(n.region) ? n.region : 'Unknown', SEGMENTS.includes(n.segment) ? n.segment : 'Corporate treasury', nurl]);
+          stats.peopleAdded++; stats.newPeople.push(pid); used(nurl);
+        }
+      } else if (n) reject(n.name, 'source not fetched in this session');
+      if (pid) {
+        await client.query(`insert into connections (from_id, to_id, status, note, public_consent_at) values ($1,$2,'pending','LinkedIn connections import',now()) on conflict (from_id, to_id) do nothing`, [l.owner_id, pid]);
+        await client.query("update network_leads set status = 'found', person_id = $2 where id = $1", [l.id, pid]);
+        stats.networkFound = (stats.networkFound || 0) + 1;
+        id = pid;
+        f = Object.assign({}, f, { updates: [], new_people: (f.new_people || []).filter(x => normName(x && x.name) !== want) });
+      } else {
+        await client.query("update network_leads set status = 'none' where id = $1 and attempts >= 1", [l.id]);
+      }
+    }
     /* fields */
     if (id) {
       const locked = new Set((await client.query("select payload->>'field' f from submissions where person_id = $1 and kind = 'correction' and status = 'approved'", [id])).rows.map(r => r.f));
@@ -400,6 +443,7 @@ async function spentToday(pool) {
 async function crawl(pool, cfg = config(), opts = {}) {
   const startedAt = new Date();
   const id = startedAt.toISOString().slice(0, 16).replace(':', '-') + '-render';
+  await pool.query('delete from network_leads where expires_at < now()').catch(() => {});
   const stats = { mode: 'render', model: cfg.model, startedAt: startedAt.toISOString(), deepened: [], leadsRead: [], newPeople: [], peopleAdded: 0, edgesAdded: 0,
     evidenceAdded: 0, factsAdded: 0, rejected: 0, rejections: [], leadsAdded: 0, pagesRead: 0, searches: 0, calls: 0, costUsd: 0, errors: [], notes: '' };
   const spent = await spentToday(pool);
@@ -413,6 +457,7 @@ async function crawl(pool, cfg = config(), opts = {}) {
       try {
         const r = await research(pool, cfg, t, stats);
         if (t.type === 'lead') stats.leadsRead.push(t.lead.id);
+        if (t.type === 'network') stats.networkSearched = (stats.networkSearched || 0) + 1;
         if (t.personId) stats.deepened.push(t.personId);
         stats.rejections.push(...(r.rejected || []).slice(0, 8).map(x => (t.personId || 'lead') + ': ' + x.what + ' (' + x.reason + ')'));
       } catch (e) {

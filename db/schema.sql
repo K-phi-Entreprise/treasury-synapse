@@ -267,3 +267,23 @@ alter table connections add column if not exists public_consent_at timestamptz;
 -- A request may name the person to be introduced to, and the people in the requester's network who link to them
 alter table requests add column if not exists target_id text;
 alter table requests add column if not exists via_ids text[] not null default '{}';
+
+-- Private network leads: connections of an importer who are not on the map, kept (with the importer's agreement)
+-- only so the crawler can look for public pages about them. Never shown. Deleted after 12 months.
+create table if not exists network_leads (
+  id serial primary key,
+  owner_id text not null references people(id) on delete cascade,
+  first_name text not null,
+  last_name text not null,
+  company text not null default '',
+  position text not null default '',
+  priority integer not null default 0,
+  status text not null default 'queued' check (status in ('queued','found','none')),
+  person_id text references people(id) on delete set null,
+  attempts integer not null default 0,
+  searched_at timestamptz,
+  added_at timestamptz not null default now(),
+  expires_at timestamptz not null default now() + interval '12 months'
+);
+create unique index if not exists network_leads_unique on network_leads (owner_id, lower(first_name), lower(last_name), lower(company));
+create index if not exists network_leads_queue on network_leads (priority desc, added_at) where status = 'queued';

@@ -33,7 +33,9 @@ app.post('/api/admin/import', (req, res, next) => admin(req, res, next), express
     res.json({ ok: true, result: r });
   } catch (e) { next(e); }
 });
-app.use(express.json({ limit: '64kb' }));
+/* a LinkedIn import may carry a few thousand names for the private crawler list; everything else stays small */
+const jsonSmall = express.json({ limit: '64kb' }), jsonImport = express.json({ limit: '1mb' });
+app.use((req, res, next) => (req.path === '/api/connections/import' ? jsonImport : jsonSmall)(req, res, next));
 
 const ipHash = req => crypto.createHash('sha256').update(SALT + '|' + (req.ip || '')).digest('hex').slice(0, 32);
 const iso = v => (v ? new Date(v).toISOString() : '');
@@ -90,6 +92,11 @@ async function underQuota(req, kind) {
 }
 const slug = v => String(v || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 120);
 
+/* which private leads the crawler looks at first: treasury and finance titles */
+const STRONG = /treasur|tr[eé]sor|cash|liquidit|fp&a|fpa|cfo|chief financial|kyriba|tms|in-?house bank|working capital|finance director|directeur financier|daf\b/i;
+const MEDIUM = /financ|controll|contr[oô]leur|banking|payment|risk|accounting|comptab|consult|fx|forex|erp|sap\b|audit/i;
+function leadPriority(position, company) { const t = position + ' ' + company; return STRONG.test(t) ? 3 : MEDIUM.test(t) ? 1 : 0; }
+
 /* LinkedIn Connections.csv, matched in the visitor's browser: only ids of people already on the map arrive here. */
 app.post('/api/connections/import', async (req, res, next) => {
   try {
@@ -111,8 +118,21 @@ app.post('/api/connections/import', async (req, res, next) => {
         on conflict (from_id, to_id) do nothing returning 1`, [from, id, h, batch]);
       added += r.rowCount;
     }
+    /* connections not on the map: kept privately, only with a second agreement, for the crawler to look for public pages */
+    let kept = 0, priority = 0;
+    if (req.body.leadsConsent === true && Array.isArray(req.body.leads)) {
+      for (const l of req.body.leads.slice(0, 30000)) {
+        const first = clip(l && l.first, 80).trim(), last = clip(l && l.last, 80).trim();
+        if (!first || !last) continue;
+        const company = clip(l.company, 120).trim(), position = clip(l.position, 160).trim();
+        const p = leadPriority(position, company);
+        const r = await pool.query(`insert into network_leads (owner_id, first_name, last_name, company, position, priority) values ($1,$2,$3,$4,$5,$6) on conflict do nothing returning 1`,
+          [from, first, last, company, position, p]);
+        if (r.rowCount) { kept++; if (p > 0) priority++; }
+      }
+    }
     cache.at = 0;
-    res.json({ added, existing: to.filter(id => ok.has(id)).length - added, unknown: to.filter(id => !ok.has(id)).length, batch });
+    res.json({ added, existing: to.filter(id => ok.has(id)).length - added, unknown: to.filter(id => !ok.has(id)).length, batch, leadsKept: kept, leadsPriority: priority });
   } catch (e) { next(e); }
 });
 
