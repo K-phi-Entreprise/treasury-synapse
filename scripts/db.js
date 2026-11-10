@@ -6,7 +6,7 @@ function makePool() {
   const url = process.env.DATABASE_URL;
   if (!url) throw new Error('DATABASE_URL is not set');
   const ssl = /render\.com|sslmode=require/.test(url) ? { rejectUnauthorized: false } : false;
-  return new Pool({ connectionString: url, ssl, max: 8 });
+  return new Pool({ connectionString: url, ssl, max: 8, connectionTimeoutMillis: 10000 });
 }
 
 module.exports = { makePool };
