@@ -46,7 +46,8 @@ const COUNTRY = { Q30: ['United States', 'United States'], Q145: ['United Kingdo
   Q928: ['Philippines', 'Asia-Pacific'], Q881: ['Vietnam', 'Asia-Pacific'] };
 /* properties that only organisations carry; people, places and disambiguation pages are refused */
 const ORG_PROPS = ['P452', 'P1128', 'P159', 'P749', 'P355', 'P169', 'P1454', 'P414', 'P1278', 'P2139'];
-const NOT_ORG = new Set(['Q5', 'Q4167410', 'Q486972', 'Q515', 'Q6256', 'Q532', 'Q3957', 'Q1549591', 'Q13442814', 'Q482994', 'Q7397']);
+const NOT_ORG = new Set(['Q5', 'Q4167410', 'Q486972', 'Q515', 'Q6256', 'Q532', 'Q3957', 'Q1549591', 'Q13442814', 'Q482994', 'Q7397', 'Q101352', 'Q4167836', 'Q13406463', 'Q11424', 'Q7725634']);
+const VERSION = 2;   /* 2: the best-known organisation of that name wins (most Wikipedia articles), not the first hit */
 
 const ids = (claims, p) => ((claims && claims[p]) || []).map(c => c && c.mainsnak && c.mainsnak.datavalue && c.mainsnak.datavalue.value && c.mainsnak.datavalue.value.id).filter(Boolean);
 function employeesOf(claims) {
@@ -84,22 +85,27 @@ function client(fetchImpl = fetch, delayMs = 1100) {
     const s = await get({ action: 'wbsearchentities', search: name, language: 'en', uselang: 'en', type: 'item', limit: '7' });
     const cands = (s.search || []).filter(x => compKey(x.label) === key || (x.match && compKey(x.match.text) === key)).map(x => x.id);
     if (!cands.length) return null;
-    const j = await get({ action: 'wbgetentities', ids: cands.join('|'), props: 'claims|labels|descriptions', languages: 'en' });
+    const j = await get({ action: 'wbgetentities', ids: cands.join('|'), props: 'claims|labels|descriptions|sitelinks', languages: 'en' });
+    const ok = [];
     for (const id of cands) {
       const e = j.entities && j.entities[id]; if (!e || !e.claims) continue;
       if (ids(e.claims, 'P31').some(q => NOT_ORG.has(q))) continue;
       if (!ORG_PROPS.some(p => e.claims[p])) continue;
-      return { id, claims: e.claims, description: (e.descriptions && e.descriptions.en && e.descriptions.en.value) || '' };
+      ok.push({ id, claims: e.claims, description: (e.descriptions && e.descriptions.en && e.descriptions.en.value) || '', links: Object.keys(e.sitelinks || {}).length });
     }
-    return null;
+    /* a vendor's customer is more often the well-known one: most Wikipedia articles first */
+    ok.sort((a, b) => b.links - a.links);
+    return ok[0] || null;
   }
   return { get, find, labelsFor };
 }
 
 async function enrichOne(pool, wd, c) {
+  /* an earlier match is redone from scratch: what it set is cleared first */
+  if (c.wikidata) await pool.query("update companies set vertical = '', size = '', employees = null, country = '', region = 'Unknown', wikidata = '' where id = $1", [c.id]);
   const hit = await wd.find(c.name);
   if (!hit) {
-    await pool.query("update companies set enriched_at = now(), enrich_note = 'no matching organisation on Wikidata' where id = $1", [c.id]);
+    await pool.query("update companies set enriched_at = now(), enrich_v = $2, enrich_note = 'no matching organisation on Wikidata', updated_at = now() where id = $1", [c.id, VERSION]);
     return { id: c.id, matched: false };
   }
   const industries = await wd.labelsFor(ids(hit.claims, 'P452'));
@@ -112,19 +118,19 @@ async function enrichOne(pool, wd, c) {
   await pool.query(`update companies set wikidata = $2, vertical = case when vertical = '' then $3 else vertical end,
       employees = coalesce(employees, $4), size = case when size = '' then $5 else size end, country = case when country = '' then $6 else country end,
       region = case when region = 'Unknown' and $7 <> '' then $7 else region end, industry = case when industry = '' then $8 else industry end,
-      enriched_at = now(), enrich_note = '', updated_at = now() where id = $1`,
-  [c.id, hit.id, vertical, employees, sizeOf(employees), country, region, (industries[0] || '').slice(0, 80)]);
+      enriched_at = now(), enrich_v = $9, enrich_note = '', updated_at = now() where id = $1`,
+  [c.id, hit.id, vertical, employees, sizeOf(employees), country, region, (industries[0] || '').slice(0, 80), VERSION]);
   return { id: c.id, matched: true, wikidata: hit.id, vertical, employees, country };
 }
 
 /* companies never looked up first, those with the most facts first; misses are retried after 60 days */
 async function enrichBatch(pool, { limit = 8, wd = client() } = {}) {
-  const rows = (await pool.query(`select c.id, c.name, c.industry from companies c where not c.hidden and (c.enriched_at is null or (c.wikidata = '' and c.enriched_at < now() - interval '60 days'))
-    order by c.enriched_at nulls first, (select count(*) from installs i where i.company_id = c.id) desc, c.added_at limit $1`, [limit])).rows;
+  const rows = (await pool.query(`select c.id, c.name, c.industry, c.wikidata from companies c where not c.hidden and (c.enriched_at is null or c.enrich_v < $2 or (c.wikidata = '' and c.enriched_at < now() - interval '60 days'))
+    order by c.enriched_at nulls first, (select count(*) from installs i where i.company_id = c.id) desc, c.added_at limit $1`, [limit, VERSION])).rows;
   const out = { looked: 0, matched: 0, slow: false };
   for (const c of rows) {
     try { const r = await enrichOne(pool, wd, c); out.looked++; if (r.matched) out.matched++; }
-    catch (e) { if (e.slow) { out.slow = true; break; } await pool.query("update companies set enriched_at = now(), enrich_note = $2 where id = $1", [c.id, String(e.message).slice(0, 200)]); }
+    catch (e) { if (e.slow) { out.slow = true; break; } await pool.query("update companies set enriched_at = now(), enrich_v = $3, enrich_note = $2 where id = $1", [c.id, String(e.message).slice(0, 200), VERSION]); }
   }
   return out;
 }

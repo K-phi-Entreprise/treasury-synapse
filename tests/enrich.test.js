@@ -11,17 +11,18 @@ test.after(async () => { await pool.end(); });
 
 const claim = id => ({ mainsnak: { datavalue: { value: { id } } } });
 const ENT = {
-  Q801: { labels: { en: { value: 'Barilla' } }, descriptions: { en: { value: 'Italian food company' } }, claims: {
+  Q801: { labels: { en: { value: 'Barilla' } }, sitelinks: { enwiki: {}, itwiki: {}, frwiki: {} }, descriptions: { en: { value: 'Italian food company' } }, claims: {
     P31: [claim('Q4830453')], P452: [claim('Q2095')], P17: [claim('Q38')],
     P1128: [{ rank: 'normal', mainsnak: { datavalue: { value: { amount: '+8000' } } }, qualifiers: { P585: [{ datavalue: { value: { time: '+2019-01-01T00:00:00Z' } } }] } },
       { rank: 'normal', mainsnak: { datavalue: { value: { amount: '+8700' } } }, qualifiers: { P585: [{ datavalue: { value: { time: '+2023-01-01T00:00:00Z' } } }] } }] } },
+  Q78: { labels: { en: { value: 'Barilla' } }, sitelinks: { itwiki: {} }, claims: { P31: [claim('Q4830453')], P159: [claim('Q1')], P17: [claim('Q30')] } },
   Q9: { labels: { en: { value: 'Elis' } }, claims: { P31: [claim('Q5')], P27: [claim('Q142')] } },
   Q2095: { labels: { en: { value: 'food industry' } } }, Q4830453: { labels: { en: { value: 'business' } } }, Q38: { labels: { en: { value: 'Italy' } } }
 };
 const fake = calls => async url => {
   const q = Object.fromEntries(new URL(url).searchParams); calls.push(q);
   let body;
-  if (q.action === 'wbsearchentities') body = { search: q.search === 'Barilla' ? [{ id: 'Q801', label: 'Barilla' }, { id: 'Q77', label: 'Barilla Center' }] : q.search === 'Elis' ? [{ id: 'Q9', label: 'Elis' }] : [] };
+  if (q.action === 'wbsearchentities') body = { search: q.search === 'Barilla' ? [{ id: 'Q78', label: 'Barilla' }, { id: 'Q801', label: 'Barilla' }, { id: 'Q77', label: 'Barilla Center' }] : q.search === 'Elis' ? [{ id: 'Q9', label: 'Elis' }] : [] };
   else body = { entities: Object.fromEntries(q.ids.split('|').filter(id => ENT[id]).map(id => [id, ENT[id]])) };
   return { ok: true, status: 200, text: async () => JSON.stringify(body) };
 };
@@ -33,8 +34,8 @@ test('verticals, size bands and the latest head count', () => {
   assert.strictEqual(employeesOf(ENT.Q801.claims), 8700);
 });
 
-test('a company gets its vertical, size, country and region from its Wikidata item; a person of the same name is refused', async () => {
-  await pool.query("update companies set enriched_at = now() where id not in ('barilla', 'elis')");
+test('a company gets its vertical, size, country and region from the best-known Wikidata item of that name; a person of the same name is refused', async () => {
+  await pool.query("update companies set enriched_at = now(), enrich_v = 2 where id not in ('barilla', 'elis')");
   await pool.query("update companies set enriched_at = null, wikidata = '', vertical = '', size = '', employees = null, country = '', region = 'Unknown' where id in ('barilla', 'elis')");
   const calls = [];
   const r = await enrichBatch(pool, { limit: 5, wd: client(fake(calls), 0) });
@@ -49,7 +50,7 @@ test('a company gets its vertical, size, country and region from its Wikidata it
 });
 
 test('a "slow down" from Wikidata stops the batch without marking companies', async () => {
-  await pool.query("update companies set enriched_at = null where id = 'swile'");
+  await pool.query("update companies set enriched_at = null, enrich_v = 0 where id = 'swile'");
   const r = await enrichBatch(pool, { limit: 3, wd: client(async () => ({ ok: false, status: 429, text: async () => 'You are making too many requests' }), 0) });
   assert.strictEqual(r.slow, true);
   assert.strictEqual((await pool.query("select enriched_at from companies where id = 'swile'")).rows[0].enriched_at, null);

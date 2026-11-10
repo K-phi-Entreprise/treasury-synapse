@@ -352,3 +352,4 @@ alter table companies add column if not exists size text not null default '';
 alter table companies add column if not exists country text not null default '';
 alter table companies add column if not exists enriched_at timestamptz;
 alter table companies add column if not exists enrich_note text not null default '';
+alter table companies add column if not exists enrich_v integer not null default 0;
