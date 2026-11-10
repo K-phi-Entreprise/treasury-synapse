@@ -87,7 +87,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
   const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
   let token='';try{token=localStorage.getItem('synapse.admin')||''}catch(e){}
   let data=null,tab='removal';
-  const TABS=[['removal','Removals'],['correction','Corrections'],['link','Links'],['connection','Connections'],['lead','Unreadable pages']];
+  const TABS=[['removal','Removals'],['correction','Corrections'],['link','Links'],['connection','Connections'],['lead','Unreadable pages'],['run','Crawler']];
   const FIELD={headline:'Title and company',org:'Organisation',city:'City',region:'Region',knownFor:'Known for',other:'Something else'};
   const CUR={headline:'person_headline',org:'person_org',city:'person_city',region:'person_region',knownFor:'person_known_for'};
   const ago=t=>{if(!t)return '';const m=Math.round((Date.now()-Date.parse(t))/60000);return m<60?m+' min ago':m<1440?Math.round(m/60)+' h ago':Math.round(m/1440)+' d ago'};
@@ -104,6 +104,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     if(!data)return [];
     if(k==='connection')return data.connections;
     if(k==='lead')return data.leads;
+    if(k==='run')return data.runs||[];
     return data.submissions.filter(s=>s.kind===k);
   }
   function renderTabs(){
@@ -169,18 +170,32 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     it.appendChild(actions(l,{buttons:[['ok','Read it · queue for the crawler',st('queued')],['','Done by hand',st('done')],['no','Dismiss',st('dismissed')]],note:false}));
     return it;
   }
+  function runItem(r){
+    const d=r.data||{};const it=el('article','item');const top=el('div','top');
+    top.appendChild(el('span','tag'+(d.errors&&d.errors.length?' warn':''),d.errors&&d.errors.length?'errors':'crawler run'));
+    top.appendChild(el('span','tag','about '+(Number(d.costUsd)||0).toFixed(2)+' USD'));
+    top.appendChild(el('span','when',ago(r.started_at)));it.appendChild(top);
+    const names=(d.deepened||[]).map(id=>(r.names&&r.names[id])||id);
+    it.appendChild(el('div','who',names.length?'Deepened '+names.join(', '):'Nothing deepened'));
+    const b=el('div','body');
+    b.appendChild(el('div','','Kept: '+(d.factsAdded||0)+' facts, '+(d.edgesAdded||0)+' new links, '+(d.evidenceAdded||0)+' new evidence, '+(d.peopleAdded||0)+' new people'+((d.newPeople||[]).length?' ('+d.newPeople.join(', ')+')':'')+'. Pages read '+(d.pagesRead||0)+', leads '+(d.leadsAdded||0)+'.'));
+    if(d.rejected)b.appendChild(el('div','','Discarded '+d.rejected+(d.rejections&&d.rejections.length?': '+d.rejections.slice(0,8).join('; '):'')));
+    (d.errors||[]).forEach(x=>b.appendChild(el('div','err',x)));
+    if(d.notes)b.appendChild(el('div','',d.notes));
+    it.appendChild(b);return it;
+  }
   function render(){
     renderTabs();const list=$('list');list.textContent='';
     const xs=items(tab);
     if(!xs.length){list.appendChild(el('div','empty','Nothing waiting here.'));return}
-    xs.forEach(x=>list.appendChild(tab==='connection'?connItem(x):tab==='lead'?leadItem(x):subItem(x)));
+    xs.forEach(x=>list.appendChild(tab==='connection'?connItem(x):tab==='lead'?leadItem(x):tab==='run'?runItem(x):subItem(x)));
   }
   async function load(){
     if(!token){showGate();return}
     try{data=await call('/api/admin/queue')}catch(e){if(e.message!=='unauthorised'){$('app').hidden=false;$('gate').hidden=true;$('list').textContent='';$('list').appendChild(el('p','err',String(e.message)))}return}
     $('gate').hidden=true;$('app').hidden=false;
     $('mailstate').textContent=data.mail?'email on':'email not configured';
-    if(!items(tab).length){const k=TABS.map(t=>t[0]).find(k=>items(k).length);if(k)tab=k}
+    if(!items(tab).length){const k=TABS.map(t=>t[0]).find(k=>k!=='run'&&items(k).length);if(k)tab=k}
     render();
   }
   const f=$('imp-file'),go=$('imp-go'),res=$('imp-res');

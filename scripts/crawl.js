@@ -16,7 +16,14 @@ const { makePool } = require('./db');
 
 const TOPICS = ['AI in finance', 'Payments', 'Treasury technology', 'Cash forecasting', 'Liquidity', 'FP&A & planning', 'Risk & compliance', 'Fraud',
   'Bank connectivity', 'Debt & funding', 'Working capital', 'ESG & sustainable finance', 'FX & hedging', 'Crypto & stablecoins', 'AR/AP',
-  'In-house banking', 'TMS selection', 'Consolidation', 'Cash pooling'];
+  'In-house banking', 'TMS selection', 'Consolidation', 'Commodities'];
+const MAX_TOPICS = 6;
+const PRAISE = /\b(leading|renowned|expert|visionary|world-class|thought leader|top|best|famous|influential)\b/i;
+/* roles are jobs held at an organisation, not appearances at an event */
+const NOT_A_ROLE = /\b(speaker|panell?ist|keynote|presenter|moderator|attendee|listing|alongside|described as|guest)\b/i;
+const EVENT_ORG = /\b(conference|summit|forum|congress|webinar|podcast|expo|days?)\b|\b20\d\d\b|°/i;
+/* systems are named products or platforms, not techniques */
+const GENERIC_SYSTEM = /^(rpa|ai|gen ?ai|erp|tms|excel|spreadsheets?|api|apis|automation|machine learning|ml|cloud|blockchain|bi|robotics)$/i;
 const KINDS = { podcast: 0.9, panel: 0.9, filing: 0.9, webinar: 0.8, executive: 0.7, article: 0.6, colleague: 0.5 };
 const ROLES = ['uses', 'sells', 'implements', 'integrates', 'evaluated'];
 const REGIONS = ['United States', 'United Kingdom', 'France', 'DACH', 'Benelux', 'Nordics', 'Southern Europe', 'Asia-Pacific', 'Other', 'Unknown'];
@@ -102,8 +109,8 @@ const SUBMIT = {
       updates: { type: 'array', description: 'Corrections to the card, only when a fetched page states the value and it is newer than the card.', items: { type: 'object', properties: {
         field: { type: 'string', enum: Object.keys(FIELDS) }, value: { type: 'string' }, url: { type: 'string' } }, required: ['field', 'value', 'url'] } },
       topics: { type: 'array', items: { type: 'object', properties: { topic: { type: 'string', enum: TOPICS }, url: { type: 'string' } }, required: ['topic', 'url'] } },
-      systems: { type: 'array', items: { type: 'object', properties: { name: { type: 'string' }, role: { type: 'string', enum: ROLES }, url: { type: 'string' }, date: { type: 'string' } }, required: ['name', 'role', 'url'] } },
-      roles: { type: 'array', description: 'Dated positions the page states.', items: { type: 'object', properties: { title: { type: 'string' }, org: { type: 'string' }, from: { type: 'string' }, to: { type: 'string' }, url: { type: 'string' } }, required: ['org', 'url'] } },
+      systems: { type: 'array', description: 'Named products or platforms (Kyriba, SAP S/4HANA, Anaplan), not techniques such as RPA or AI.', items: { type: 'object', properties: { name: { type: 'string' }, role: { type: 'string', enum: ROLES }, url: { type: 'string' }, date: { type: 'string' } }, required: ['name', 'role', 'url'] } },
+      roles: { type: 'array', description: 'Jobs held at an organisation, with the years the page states (YYYY, empty if not stated). Short title such as "Head of Treasury". Not speaking or hosting at an event.', items: { type: 'object', properties: { title: { type: 'string' }, org: { type: 'string' }, from: { type: 'string' }, to: { type: 'string' }, url: { type: 'string' } }, required: ['org', 'url'] } },
       links: { type: 'array', description: 'People who appeared with this person in the same session, episode, panel, webinar or leadership team on a fetched page. Not people who only appear elsewhere on the page.', items: { type: 'object', properties: {
         name: { type: 'string' }, person_id: { type: 'string', description: 'If you know the map id.' }, org: { type: 'string' },
         kind: { type: 'string', enum: Object.keys(KINDS) }, label: { type: 'string', description: 'Event or episode title, short.' }, date: { type: 'string', description: 'YYYY, YYYY-MM or YYYY-MM-DD.' },
@@ -121,7 +128,9 @@ function system(cfg) {
     'Goal: depth on this one person, not breadth. Find what they spoke about, which systems they use, sell, implement, integrate or evaluated, their dated roles, and who appeared with them in the same session. ' +
     'Method: search, then fetch the pages that look like primary sources (event agenda or speaker page, episode page, press release, filing, company leadership page). Sibling pages of a useful page (other years of the same event, other episodes of the same show) are often the best next fetch. Podcast RSS feeds and programme PDFs are often readable when agenda pages are not. ' +
     'Never use LinkedIn or profile-scraping sites. Never guess. A link needs the two people in the same session of the same page; a speaker list of a whole conference is not a link. Use the map ids you are given when the person is already on the map. ' +
-    'Topics must be one of: ' + TOPICS.join(', ') + '. ' +
+    'Topics must be one of: ' + TOPICS.join(', ') + ', at most ' + MAX_TOPICS + ' per person, only when a page shows them speaking, writing or quoted on it. ' +
+    'knownFor is one factual sentence of at most 160 characters with no praise words. When a newer dated page gives a different current title or organisation, update headline and org and add the role. ' +
+    'Write every field in English, whatever the language of the page. ' +
     'You have at most ' + cfg.searchesPerTarget + ' searches and ' + cfg.fetchesPerTarget + ' fetches. When done, call submit_findings once with everything the fetched pages support, then stop.';
 }
 
@@ -268,26 +277,31 @@ async function apply(pool, cfg, target, card, f, fetched, stats) {
     if (id) {
       const locked = new Set((await client.query("select payload->>'field' f from submissions where person_id = $1 and kind = 'correction' and status = 'approved'", [id])).rows.map(r => r.f));
       for (const u of Array.isArray(f.updates) ? f.updates.slice(0, 8) : []) {
-        const url = src(u && u.url), field = u && u.field, value = str(u && u.value, field === 'knownFor' ? 400 : 200);
+        const url = src(u && u.url), field = u && u.field, value = str(u && u.value, field === 'knownFor' ? 160 : 200);
         if (!FIELDS[field] || !value) { reject(field, 'unknown field or empty value'); continue; }
         if (!url) { reject(field + ': ' + value, 'source not fetched in this session'); continue; }
         if (id === cfg.owner) { reject(field, "the owner's card is edited by hand only"); continue; }
         if (locked.has(field)) { reject(field, 'fixed by an approved correction'); continue; }
         if (field === 'region' && !REGIONS.includes(value)) { reject(field, 'not a known region'); continue; }
         if (field === 'segment' && !SEGMENTS.includes(value)) { reject(field, 'not a known segment'); continue; }
+        if (field === 'knownFor' && PRAISE.test(value)) { reject(field + ': ' + value, 'praise word; facts only'); continue; }
         await client.query(`update people set ${FIELDS[field]} = $2, updated_at = now() where id = $1`, [id, value]);
         stats.factsAdded++; used(url);
       }
+      let ntopics = (await client.query('select count(*)::int n from person_topics where person_id = $1', [id])).rows[0].n;
       for (const t of Array.isArray(f.topics) ? f.topics.slice(0, 12) : []) {
         const url = src(t && t.url);
         if (!TOPICS.includes(t && t.topic)) { reject(t && t.topic, 'not in the topic list'); continue; }
         if (!url) { reject(t.topic, 'source not fetched in this session'); continue; }
+        if (ntopics >= MAX_TOPICS) { reject(t.topic, 'already ' + MAX_TOPICS + ' topics'); continue; }
+        ntopics++;
         const r = await client.query('insert into person_topics (person_id, topic, url) values ($1,$2,$3) on conflict do nothing', [id, t.topic, url]);
         if (r.rowCount) { stats.factsAdded++; used(url); }
       }
       for (const s of Array.isArray(f.systems) ? f.systems.slice(0, 12) : []) {
         const url = src(s && s.url), name = str(s && s.name, 80);
         if (!name || !ROLES.includes(s.role)) { reject(name, 'missing system or unknown role'); continue; }
+        if (name.length > 40 || /[()\/]/.test(name) || GENERIC_SYSTEM.test(name)) { reject(name, 'not a named product'); continue; }
         if (!url) { reject(s.role + ' ' + name, 'source not fetched in this session'); continue; }
         const r = await client.query('insert into person_systems (person_id, system, role, url, date) values ($1,$2,$3,$4,$5) on conflict do nothing', [id, name, s.role, url, yearish(s.date)]);
         if (r.rowCount) { stats.factsAdded++; used(url); }
@@ -295,6 +309,7 @@ async function apply(pool, cfg, target, card, f, fetched, stats) {
       for (const x of Array.isArray(f.roles) ? f.roles.slice(0, 12) : []) {
         const url = src(x && x.url), org = str(x && x.org, 120), title = str(x && x.title, 160);
         if (!org) { reject(title, 'role without organisation'); continue; }
+        if (title.length > 80 || NOT_A_ROLE.test(title) || EVENT_ORG.test(org)) { reject(title + ', ' + org, 'an appearance, not a job'); continue; }
         if (!url) { reject(title + ', ' + org, 'source not fetched in this session'); continue; }
         const r = await client.query('insert into person_roles (person_id, title, org, from_year, to_year, url) values ($1,$2,$3,$4,$5,$6) on conflict do nothing',
           [id, title, org, yearish(x.from).slice(0, 4), yearish(x.to).slice(0, 4), url]);

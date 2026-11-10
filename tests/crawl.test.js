@@ -48,12 +48,14 @@ const twoTurns = findings => (body) => {
 
 test('a deepen run keeps only facts from fetched pages, links people of the same session, adds a newcomer and records the run', async () => {
   await only('ernie-humphrey');
+  await pool.query("delete from person_topics where person_id = 'ernie-humphrey' and topic in ('Commodities', 'Fraud')");
+  await pool.query("delete from person_topics where person_id = 'ernie-humphrey' and topic = (select topic from person_topics where person_id = 'ernie-humphrey' order by topic limit 1) and (select count(*) from person_topics where person_id = 'ernie-humphrey') >= 6");
   const before = (await pool.query("select evidence from co_appearances where a = 'craig-jeffery' and b = 'ernie-humphrey'")).rows[0];
   calls = [];
   script = twoTurns({
     notes: 'Spoke at the 2026 Treasury Forum, session 12. Try the 2025 programme next.',
     updates: [{ field: 'headline', value: 'Treasurer, Example Corp', url: A }, { field: 'org', value: 'Other Corp', url: 'https://not-fetched.example.org/x' }],
-    topics: [{ topic: 'Cash pooling', url: A }, { topic: 'Bananas', url: A }],
+    topics: [{ topic: 'Commodities', url: A }, { topic: 'Bananas', url: A }, { topic: 'Fraud', url: A }],
     systems: [{ name: 'Kyriba', role: 'uses', url: A, date: '2026' }],
     roles: [{ title: 'Treasurer', org: 'Example Corp', from: '2024', url: A }],
     links: [
@@ -84,7 +86,9 @@ test('a deepen run keeps only facts from fetched pages, links people of the same
   assert.match(p.insight_notes, /2025 programme/);
   assert.ok(p.deepened_at && p.deepen_attempts >= 1);
   assert.equal((await pool.query("select 1 from person_topics where person_id = 'ernie-humphrey' and topic = 'Bananas'")).rows.length, 0);
-  assert.equal((await pool.query("select 1 from person_topics where person_id = 'ernie-humphrey' and topic = 'Cash pooling' and url = $1", [A])).rows.length, 1);
+  assert.equal((await pool.query("select count(*)::int n from person_topics where person_id = 'ernie-humphrey'")).rows[0].n, 6, 'six topics at most');
+  assert.ok(r.rejections.some(x => /Fraud \(already 6 topics\)/.test(x)));
+  assert.equal((await pool.query("select 1 from person_topics where person_id = 'ernie-humphrey' and topic = 'Commodities' and url = $1", [A])).rows.length, 1);
   assert.equal((await pool.query("select 1 from person_systems where person_id = 'ernie-humphrey' and system = 'Kyriba' and role = 'uses'")).rows.length, 1);
   const after = (await pool.query("select evidence from co_appearances where a = 'craig-jeffery' and b = 'ernie-humphrey'")).rows[0];
   assert.equal(after.evidence.length, before.evidence.length + 1, 'one link per pair, evidence added to it');
@@ -110,12 +114,12 @@ test('a deepen run keeps only facts from fetched pages, links people of the same
 test("the owner's card is never edited by the crawler; additions with a source are kept", async () => {
   await only('vincent-donnat');
   const before = (await pool.query("select headline, org from people where id = 'vincent-donnat'")).rows[0];
-  script = twoTurns({ notes: 'x', updates: [{ field: 'headline', value: 'Something else', url: A }], topics: [{ topic: 'Cash pooling', url: A }] });
+  script = twoTurns({ notes: 'x', updates: [{ field: 'headline', value: 'Something else', url: A }], systems: [{ name: 'Nomentia', role: 'evaluated', url: A }] });
   const r = await crawl(pool, cfg());
   assert.deepEqual(r.deepened, ['vincent-donnat']);
   const p = (await pool.query("select headline, org from people where id = 'vincent-donnat'")).rows[0];
   assert.deepEqual(p, before);
-  assert.equal((await pool.query("select 1 from person_topics where person_id = 'vincent-donnat' and topic = 'Cash pooling'")).rows.length, 1);
+  assert.equal((await pool.query("select 1 from person_systems where person_id = 'vincent-donnat' and system = 'Nomentia' and role = 'evaluated'")).rows.length, 1);
 });
 
 test('an approved link is read first and closed; a card that gives nothing twice is parked', async () => {
@@ -162,4 +166,21 @@ test('an API error is recorded and stops the run without touching the card', asy
   assert.equal(r.errors.length, 1);
   assert.match(r.errors[0], /API 401: invalid x-api-key/);
   assert.equal((await pool.query("select deepen_attempts from people where id = 'adam-larson'")).rows[0].deepen_attempts, before.deepen_attempts);
+});
+
+test('the review page lists the crawler runs with what they kept and discarded', async () => {
+  process.env.ADMIN_TOKEN = 'crawl-test';
+  delete require.cache[require.resolve('../server')];
+  const s = require('../server');
+  const server = await new Promise(r => { const x = s.app.listen(0, () => r(x)); });
+  await pool.query(`insert into runs (id, data, started_at) values ('review-view', '{"mode":"render","deepened":["ernie-humphrey"],"factsAdded":3,"costUsd":0.31}', now()) on conflict (id) do nothing`);
+  try {
+    const q = await fetch('http://127.0.0.1:' + server.address().port + '/api/admin/queue', { headers: { 'x-admin-token': 'crawl-test' } }).then(r => r.json());
+    assert.ok(q.runs.length >= 2, 'the error run and this one');
+    assert.ok(q.runs.some(r => (r.data.errors || []).length), 'errors are shown');
+    const withWork = q.runs.find(r => (r.data.deepened || []).includes('ernie-humphrey'));
+    assert.equal(withWork.names['ernie-humphrey'], 'Ernie Humphrey');
+    const html = require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'review.html'), 'utf8');
+    assert.ok(html.includes("['run','Crawler']") && html.includes('function runItem'));
+  } finally { server.close(); await s.pool.end(); }
 });

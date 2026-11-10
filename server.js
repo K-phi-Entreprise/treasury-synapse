@@ -216,7 +216,11 @@ app.get('/api/admin/queue', admin, async (req, res, next) => {
         from submissions s left join people p on p.id = s.person_id where s.status in ('pending','discuss')
         order by (s.kind = 'removal') desc, s.added_at`),
       pool.query(`select l.*, p.name as person_name from leads l left join people p on p.id = l.person_id where l.status = 'pending' order by l.added_at desc nulls last`)]);
-    res.json({ connections: c.rows, submissions: s.rows, leads: l.rows, mail: mail.configured() });
+    const runs = (await pool.query("select id, data, started_at from runs where data->>'mode' = 'render' order by started_at desc limit 15")).rows;
+    const ids = [...new Set(runs.flatMap(r => r.data.deepened || []))];
+    const names = ids.length ? Object.fromEntries((await pool.query('select id, name from people where id = any($1)', [ids])).rows.map(r => [r.id, r.name])) : {};
+    runs.forEach(r => { r.names = names; });
+    res.json({ connections: c.rows, submissions: s.rows, leads: l.rows, runs, mail: mail.configured() });
   } catch (e) { next(e); }
 });
 app.post('/api/admin/connections-batch/:batch', admin, async (req, res, next) => {
