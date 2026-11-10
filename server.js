@@ -14,6 +14,14 @@ const SALT = process.env.IP_SALT || ADMIN_TOKEN || 'synapse';
 const LIMITS = { connection: 10, submission: 10, import: 2 };
 
 app.set('trust proxy', true);
+/* the onrender.com address sends visitors to the real domain (health checks stay where they are) */
+const canon = () => { try { return new URL(process.env.PUBLIC_URL || '').origin; } catch (e) { return ''; } };
+app.use((req, res, next) => {
+  const CANON = canon();
+  if (CANON && /\.onrender\.com$/i.test(req.hostname || '') && (req.method === 'GET' || req.method === 'HEAD') && req.path !== '/api/health')
+    return res.redirect(301, CANON + req.originalUrl);
+  next();
+});
 app.use(compression());
 /* admin catch-up import: registered before the small JSON limit so a full store dump (a few MB) fits */
 app.post('/api/admin/import', (req, res, next) => admin(req, res, next), express.json({ limit: '40mb' }), async (req, res, next) => {

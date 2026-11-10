@@ -119,3 +119,19 @@ test('the served page is a full document that reads the API, with the three angl
   for (const a of ['data-a="social"', 'data-a="topics"', 'data-a="connections"']) assert.ok(html.includes(a), a);
   assert.ok(!/—/.test(html.replace(/<style[\s\S]*?<\/style>/g, '')), 'no em dash in copy');
 });
+
+test('the onrender.com address redirects to the real domain, the real domain and health checks do not', async () => {
+  const prev = process.env.PUBLIC_URL;
+  process.env.PUBLIC_URL = 'https://synapse.example';
+  const port = new URL(base).port;
+  const get = (p, host) => new Promise((ok, ko) => require('http').get({ host: '127.0.0.1', port, path: p, headers: { host } }, r => { r.resume(); ok(r); }).on('error', ko));
+  try {
+    let r = await get('/?focus=craig-jeffery', 'treasury-synapse.onrender.com');
+    assert.equal(r.statusCode, 301);
+    assert.equal(r.headers.location, 'https://synapse.example/?focus=craig-jeffery');
+    assert.equal((await get('/review', 'treasury-synapse.onrender.com')).headers.location, 'https://synapse.example/review');
+    assert.equal((await get('/api/health', 'treasury-synapse.onrender.com')).statusCode, 200);
+    assert.equal((await get('/api/health', 'synapse.example')).statusCode, 200);
+    assert.equal((await get('/', 'synapse.example')).statusCode, 200);
+  } finally { if (prev == null) delete process.env.PUBLIC_URL; else process.env.PUBLIC_URL = prev; }
+});
