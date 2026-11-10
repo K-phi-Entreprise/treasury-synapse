@@ -1,0 +1,31 @@
+<style>
+.mt h3{margin:0 0 4px;font:700 18px/1.25 var(--font-display)}
+.mt p,.mt li{color:var(--fg-dim);font-size:13.5px;line-height:1.55}
+.mt ul{margin:8px 0 0;padding-left:18px}
+.mt li{margin:0 0 8px}
+.mt b{color:var(--fg);font-weight:600}
+</style>
+<div class="sbm-wrap" id="mt-wrap" hidden>
+  <div class="sbm mt" role="dialog" aria-modal="true" aria-labelledby="mt-h">
+    <h3 id="mt-h">How the Market view is counted</h3>
+    <button class="close x" id="mt-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <ul>
+      <li><b>A line</b> means one organisation runs, is implementing, is selecting or has replaced a system for its own finance or treasury, and a public page says so. Every line links to that page.</li>
+      <li><b>The same sources for every vendor:</b> its public customer stories (the lists on casestudies.com and its own reference pages) and one search for its named customers in press releases and conference talks. No vendor gets more searches than another. On top come searches that name no vendor: job posts, selection announcements, moves from spreadsheets, commodity traders. People on the map add what their own pages say about their employer.</li>
+      <li><b>Not counted:</b> a vendor, a consultancy or an integrator as a user; a job post that only asks for experience with a product; a bank using vendor software to serve its clients; paid customer databases; anything the crawler did not read itself.</li>
+      <li><b>Read the sizes with care:</b> a bubble counts public evidence, not customers. Vendors that publish many customer stories look bigger; systems with a large base and few published stories look smaller. Nothing is weighted or corrected to compensate. This is not market share.</li>
+      <li><b>Selecting now:</b> a job post or an announcement of the last nine months, unless a later page shows the system running.</li>
+      <li><b>Industry, size and country:</b> from Wikidata when an organisation of the same name is found, otherwise Unknown. Each organisation's card links to its item.</li>
+    </ul>
+  </div>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),w=$('mt-wrap');
+  const close=()=>{w.hidden=true};
+  window.synapseMethod=()=>{w.hidden=false};
+  $('mt-close').addEventListener('click',close);
+  w.addEventListener('click',e=>{if(e.target===w)close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!w.hidden)close()});
+})();
+</script>

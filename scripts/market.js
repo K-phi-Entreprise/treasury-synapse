@@ -92,22 +92,32 @@ async function upsertInstall(db, r, source = 'harvest') {
 
 /* ---------- where the harvester reads ---------- */
 const CS = 'https://www.casestudies.com/company/';
-const VENDOR_INDEXES = ['kyriba', 'gtreasury', 'ripple-treasury-powered-by-gtreasury', 'ion-treasury', 'ion', 'reval', 'nomentia', 'agicap', 'embat', 'atlar', 'trovata', 'highradius',
-  'treasury-intelligence-solutions-tis', 'datalog-finance', 'coprocess', 'kantox', 'fireapps', 'hedgeflows', 'cashforce', 'cashanalytics', 'finance-active',
-  'accesspay', 'bottomline-technologies', 'serrala', 'coupa-software', 'fis', 'sap', 'centime', 'statement', 'tesorio', 'cashbook', 'hazeltree', 'derivative-path', 'eurobase', 'bound',
-  'zentreasury', 'planixs', 'salmon-software', 'visual-risk', 'round-treasury', 'nilus', 'modern-treasury-corp', 'finastra',
+/* One method for every vendor: its public customer stories (casestudies.com lists, its own reference pages) and one search for its
+ * named customers in the press and in talks. No vendor gets more searches than another; searches that name no vendor come on top. */
+const VENDORS = [
+  ['Kyriba', ['kyriba']], ['GTreasury', ['gtreasury', 'ripple-treasury-powered-by-gtreasury']], ['ION Treasury', ['ion-treasury', 'ion', 'reval']],
+  ['Nomentia', ['nomentia'], ['https://nomentia.com/references']], ['Agicap', ['agicap']], ['Embat', ['embat']], ['Atlar', ['atlar']], ['Trovata', ['trovata']],
+  ['HighRadius', ['highradius']], ['TIS', ['treasury-intelligence-solutions-tis']], ['DataLog Finance', ['datalog-finance']], ['Coprocess', ['coprocess']],
+  ['Kantox', ['kantox']], ['FiREapps', ['fireapps']], ['HedgeFlows', ['hedgeflows']], ['Cashforce', ['cashforce']], ['CashAnalytics', ['cashanalytics']],
+  ['Finance Active', ['finance-active']], ['AccessPay', ['accesspay']], ['Bottomline', ['bottomline-technologies']], ['Serrala', ['serrala']],
+  ['Coupa Treasury', ['coupa-software']], ['FIS', ['fis']], ['SAP Treasury', ['sap']], ['Centime', ['centime']], ['Statement', ['statement']],
+  ['Tesorio', ['tesorio']], ['Cashbook', ['cashbook']], ['Hazeltree', ['hazeltree']], ['Derivative Path', ['derivative-path']], ['Eurobase', ['eurobase']],
+  ['Bound', ['bound']], ['ZenTreasury', ['zentreasury']], ['Planixs', ['planixs']], ['Salmon Software', ['salmon-software']], ['Visual Risk', ['visual-risk']],
+  ['Round Treasury', ['round-treasury']], ['Nilus', ['nilus']], ['Modern Treasury', ['modern-treasury-corp']], ['Finastra', ['finastra']],
+  ['Diapason', []], ['Piteco', []], ['Sage XRT', []], ['Allevo', []], ['Exalog', []], ['Cegid treasury', []], ['Treasury Next', []],
   /* EPM and FP&A */
-  'anaplan', 'board-international', 'pigment', 'onestream', 'workday-adaptive-planning', 'jedox', 'cch-tagetik', 'planful', 'vena-solutions', 'prophix', 'abacum', 'cube'];
-/* vendors with few listings on casestudies.com: their own pages, the press and talks */
-const VENDOR_SEARCHES = ['Diapason TMS', 'Piteco tesoreria', 'Sage XRT', 'Allevo treasury', 'SAP Treasury and Risk Management', 'Coupa Treasury (Bellin)', 'Finastra Fusion Treasury corporate',
-  'Wall Street Suite ION', 'Exalog Allmybanks', 'Cegid trésorerie', 'Treasury Next', 'HighRadius Treasury', 'Kantox', 'Oracle EPM', 'SAP Analytics Cloud planning'];
-const SOURCES = VENDOR_INDEXES.map(v => ({ url: CS + v, label: 'Case studies: ' + v, kind: 'index' })).concat([
-  { url: 'https://nomentia.com/references', label: 'Nomentia references', kind: 'index' },
-  { url: 'search:treasury management system implementation job post', label: 'Job posts asking someone to select or implement a TMS', kind: 'search' },
-  { url: 'search:company selects treasury management system press release', label: 'Press releases: a company selects or goes live with a TMS', kind: 'search' },
-  { url: 'search:treasury management system replaced spreadsheets case study', label: 'Case studies of moves from spreadsheets to a TMS', kind: 'search' },
-  { url: 'search:commodity trading treasury system liquidity margin', label: 'Commodity traders and the systems their treasury runs', kind: 'search' }
-]).concat(VENDOR_SEARCHES.map(v => ({ url: 'search:' + v + ' customer', label: 'Named customers of ' + v + ': its own reference pages, press releases, conference talks', kind: 'search' })));
+  ['Anaplan', ['anaplan']], ['Board', ['board-international']], ['Pigment', ['pigment']], ['OneStream', ['onestream']], ['Workday Adaptive Planning', ['workday-adaptive-planning']],
+  ['Jedox', ['jedox']], ['CCH Tagetik', ['cch-tagetik']], ['Planful', ['planful']], ['Vena', ['vena-solutions']], ['Prophix', ['prophix']], ['Abacum', ['abacum']],
+  ['Cube', ['cube']], ['Oracle EPM', []], ['SAP Analytics Cloud', []]
+];
+const SOURCES = [].concat(
+  ...VENDORS.map(([name, slugs, pages]) => slugs.map(v => ({ url: CS + v, label: 'Customer stories: ' + name, kind: 'index' }))
+    .concat((pages || []).map(u => ({ url: u, label: 'Customer references: ' + name, kind: 'index' })))
+    .concat([{ url: 'search:' + name + ' customer case study', label: 'Named customers of ' + name + ': its own reference pages, press releases, conference talks', kind: 'search' }])),
+  [{ url: 'search:treasury management system implementation job post', label: 'Job posts asking someone to select or implement a TMS', kind: 'search' },
+    { url: 'search:company selects treasury management system press release', label: 'Press releases: a company selects or goes live with a TMS', kind: 'search' },
+    { url: 'search:treasury management system replaced spreadsheets case study', label: 'Case studies of moves from spreadsheets to a TMS', kind: 'search' },
+    { url: 'search:commodity trading treasury system liquidity margin', label: 'Commodity traders and the systems their treasury runs', kind: 'search' }]);
 
 const INDEX_URLS = new Set(SOURCES.filter(x => x.kind === 'index').map(x => x.url));
 
@@ -127,6 +137,8 @@ async function seed(pool, dir = path.join(__dirname, '..', 'data')) {
     n += k;
   }
   for (const x of SOURCES) await pool.query('insert into market_sources (url, label, kind) values ($1,$2,$3) on conflict (url) do nothing', [x.url, x.label, x.kind]);
+  /* searches outside the method (an earlier, uneven list) are dropped */
+  await pool.query("delete from market_sources where kind = 'search' and not (url = any($1))", [SOURCES.filter(x => x.kind === 'search').map(x => x.url)]);
   /* a vertical for companies whose industry is known but not yet mapped */
   const { verticalOf } = require('./enrich');
   for (const c of (await pool.query("select id, industry from companies where vertical = '' and industry <> ''")).rows) {
@@ -282,4 +294,4 @@ if (require.main === module && process.argv.includes('--seed')) {
   const pool = makePool();
   seed(pool).then(async n => { console.log('market seed: ' + n + ' facts'); await pool.end(); }).catch(async e => { console.error(e); await pool.end(); process.exit(1); });
 }
-module.exports = { compKey, canonSystem, upsertInstall, seed, loadMarket, harvest, SOURCES, NOT_A_USER };
+module.exports = { compKey, canonSystem, upsertInstall, seed, loadMarket, harvest, SOURCES, VENDORS, NOT_A_USER };

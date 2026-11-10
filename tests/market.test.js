@@ -127,3 +127,16 @@ test('the page carries the K-phi palettes, dark by default with a remembered lig
   assert.match(html, /DM\+Sans/);
   assert.ok(!/#6ee7f0|#0e1328/.test(html), 'no literal colours left from the old palette');
 });
+
+test('one method for every vendor: one named-customer search each, nothing extra, and the method is on the page', async () => {
+  const { SOURCES, VENDORS, seed } = require('../scripts/market');
+  for (const [name] of VENDORS) assert.strictEqual(SOURCES.filter(x => x.kind === 'search' && x.url === 'search:' + name + ' customer case study').length, 1, name);
+  const named = SOURCES.filter(x => x.kind === 'search' && VENDORS.some(([n]) => x.url.includes(n)));
+  assert.strictEqual(named.length, VENDORS.length, 'no vendor has a second search');
+  await pool.query("insert into market_sources (url, label, kind) values ('search:FIS Quantum job post', 'extra', 'search') on conflict do nothing");
+  await seed(pool);
+  assert.strictEqual((await pool.query("select count(*)::int n from market_sources where url = 'search:FIS Quantum job post'")).rows[0].n, 0, 'a search outside the method is dropped');
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  assert.match(html, /How the Market view is counted/);
+  assert.match(html, /This is not market share/);
+});

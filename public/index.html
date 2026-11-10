@@ -252,6 +252,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .mkf-tiles{display:flex;flex-wrap:wrap;gap:6px;max-height:190px;overflow-y:auto}
 .mkf-tiles .chip{padding:5px 9px 5px 8px;font-size:12px}
 .mkf-tiles .chip .n{font:400 11px/1 var(--font-mono);color:var(--fg-faint)}
+.mkf-foot{display:flex;gap:14px;flex-wrap:wrap}
 .mkf-reset{margin:8px 0 0;padding:0;border:0;background:none;color:var(--link);font:500 12px/1.2 var(--font-body);cursor:pointer;text-decoration:underline}
 @media (max-width:899px){
   /* phone: the map gets the screen. Header and figures shrink to one line each,
@@ -426,7 +427,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     <div class="mkf" id="mkf" hidden>
       <div class="mkf-tabs" id="mkf-tabs" role="tablist" aria-label="Filter the market by"></div>
       <div class="mkf-tiles" id="mkf-tiles" role="group"></div>
-      <button class="mkf-reset" id="mkf-reset" type="button" hidden>Show all</button>
+      <div class="mkf-foot"><button class="mkf-reset" id="mkf-reset" type="button" hidden>Show all</button><button class="mkf-reset" id="method-btn" type="button">How this is counted</button></div>
     </div>
   </section>
 
@@ -662,7 +663,7 @@ let angle='market';try{const a=localStorage.getItem('synapse.view');if(ANGLES.in
 const E={market:[],social:[],topics:[],connections:[]},EK={market:new Map(),social:new Map(),topics:new Map(),connections:new Map()};
 const socAdj=[];
 let dbRef=null,viewerId='';
-const ANGLE_NOTE={market:'Which organisation runs which system, each line with the public page that says so: a case study, a press release, a job post, a person\'s card. Orange: selecting a system now. Open an organisation to see who on the map works or worked there.',
+const ANGLE_NOTE={market:'Which organisation runs which system, each line with the public page that says so: a case study, a press release, a job post, a person\'s card. Orange: selecting a system now. A bubble counts public evidence, not customers: it is not market share. Open an organisation to see who on the map works or worked there.',
   social:'A line means the two people appeared in the same public setting: episode, panel, webinar, team. It is co-appearance, not acquaintance.',
   topics:'People sit around what they publicly speak about and the systems they use, sell or implement. Bubble size is public footprint: independent publishers, topics, systems.',
   connections:'Lines people declared themselves, faint until reviewed. Nobody\'s network is here until they add it: bring your LinkedIn connections, or say "I know this person" on a card.'};
@@ -776,6 +777,7 @@ function buildFacets(){
 $('mkf-tabs').addEventListener('click',e=>{const b=e.target.closest('.mkf-tab');if(!b)return;mkTab=b.dataset.f;buildFacets()});
 $('mkf-tiles').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const s2=mkOff[mkTab],v=b.dataset.v;if(s2.has(v))s2.delete(v);else{const all=facetCounts(FACETS.find(x=>x.id===mkTab));if(s2.size>=all.length-1)return;s2.add(v)}refreshAll()});
 $('mkf-reset').addEventListener('click',()=>{FACETS.forEach(f=>mkOff[f.id].clear());refreshAll()});
+$('method-btn').addEventListener('click',()=>{if(window.synapseMethod)window.synapseMethod()});
 function renderMarketLists(){
   const box=$('region-list');box.textContent='';
   const sys=[];for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='system')sys.push(i);
@@ -2371,6 +2373,38 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   document.addEventListener('synapse:hub',e=>{const d=e.detail||{};hb.hidden=d.kind!=='system';hubName=d.name||'';hb.textContent='Consultants who implement '+hubName});
   document.addEventListener('synapse:detail',()=>{hb.hidden=true});
   hb.addEventListener('click',()=>open({system:hubName}));
+})();
+</script>
+
+<style>
+.mt h3{margin:0 0 4px;font:700 18px/1.25 var(--font-display)}
+.mt p,.mt li{color:var(--fg-dim);font-size:13.5px;line-height:1.55}
+.mt ul{margin:8px 0 0;padding-left:18px}
+.mt li{margin:0 0 8px}
+.mt b{color:var(--fg);font-weight:600}
+</style>
+<div class="sbm-wrap" id="mt-wrap" hidden>
+  <div class="sbm mt" role="dialog" aria-modal="true" aria-labelledby="mt-h">
+    <h3 id="mt-h">How the Market view is counted</h3>
+    <button class="close x" id="mt-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <ul>
+      <li><b>A line</b> means one organisation runs, is implementing, is selecting or has replaced a system for its own finance or treasury, and a public page says so. Every line links to that page.</li>
+      <li><b>The same sources for every vendor:</b> its public customer stories (the lists on casestudies.com and its own reference pages) and one search for its named customers in press releases and conference talks. No vendor gets more searches than another. On top come searches that name no vendor: job posts, selection announcements, moves from spreadsheets, commodity traders. People on the map add what their own pages say about their employer.</li>
+      <li><b>Not counted:</b> a vendor, a consultancy or an integrator as a user; a job post that only asks for experience with a product; a bank using vendor software to serve its clients; paid customer databases; anything the crawler did not read itself.</li>
+      <li><b>Read the sizes with care:</b> a bubble counts public evidence, not customers. Vendors that publish many customer stories look bigger; systems with a large base and few published stories look smaller. Nothing is weighted or corrected to compensate. This is not market share.</li>
+      <li><b>Selecting now:</b> a job post or an announcement of the last nine months, unless a later page shows the system running.</li>
+      <li><b>Industry, size and country:</b> from Wikidata when an organisation of the same name is found, otherwise Unknown. Each organisation's card links to its item.</li>
+    </ul>
+  </div>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),w=$('mt-wrap');
+  const close=()=>{w.hidden=true};
+  window.synapseMethod=()=>{w.hidden=false};
+  $('mt-close').addEventListener('click',close);
+  w.addEventListener('click',e=>{if(e.target===w)close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!w.hidden)close()});
 })();
 </script>
 
