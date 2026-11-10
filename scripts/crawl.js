@@ -452,7 +452,7 @@ async function crawl(pool, cfg = config(), opts = {}) {
   const spent = await spentToday(pool);
   const targets = await pickTargets(pool, cfg);
   if (opts.dryRun) {
-    const ms = cfg.marketPages > 0 ? (await pool.query("select url from market_sources where status = 'queued' order by case kind when 'page' then 0 when 'index' then 1 else 2 end, read_at nulls first limit $1", [cfg.marketPages])).rows.map(r => 'market:' + r.url) : [];
+    const ms = cfg.marketPages > 0 ? (await pool.query("select url from market_sources where status = 'queued' order by case kind when 'index' then 0 when 'page' then 1 else 2 end, read_at nulls first limit $1", [cfg.marketPages])).rows.map(r => 'market:' + r.url) : [];
     return { dryRun: true, spentToday: spent, targets: targets.map(t => t.type + ':' + (t.type === 'lead' ? t.lead.url : t.personId)).concat(ms) };
   }
   if (!cfg.apiKey) stats.notes = 'ANTHROPIC_API_KEY is not set; nothing done.';

@@ -39,7 +39,7 @@ const STATUS = ['live', 'implementing', 'selecting', 'previous'];
 const KINDS = ['case_study', 'press', 'job_post', 'talk', 'article', 'filing'];
 const REGIONS = ['United States', 'United Kingdom', 'France', 'DACH', 'Benelux', 'Nordics', 'Southern Europe', 'Asia-Pacific', 'Other', 'Unknown'];
 /* advisers and vendors show up in job posts and case studies; they are not users of the systems they implement */
-const NOT_A_USER = /^(ey|ernst-and-young|pwc|pricewaterhousecoopers|deloitte|kpmg|accenture|zanders|clearsulting|bearingpoint|capgemini|ibm|rsm|grant-thornton|bdo|mazars|forvis-mazars|protiviti|talan|absys-cyborg|cognizant|infosys|wipro|tcs|tata-consultancy-services|genpact|hcl|redbridge|strategic-treasurer|actualize-consulting|treasury-alliance|real-treasury)$/;
+const NOT_A_USER = /^(ey|ernst-and-young|pwc|pricewaterhousecoopers|deloitte|kpmg|accenture|zanders|clearsulting|bearingpoint|capgemini|rsm|grant-thornton|bdo|mazars|forvis-mazars|protiviti|talan|absys-cyborg|cognizant|infosys|wipro|tata-consultancy-services|genpact|redbridge|strategic-treasurer|actualize-consulting|treasury-alliance|real-treasury)$/;
 const s = (v, max = 300) => (v == null ? '' : String(v)).replace(/\s+/g, ' ').trim().slice(0, max);
 const dateish = v => (/^(19|20)\d\d(-\d\d){0,2}$/.test(s(v)) ? s(v) : '');
 const httpUrl = u => { try { const x = new URL(String(u)); return /^https?:$/.test(x.protocol) ? x.toString() : ''; } catch (e) { return ''; } };
@@ -87,24 +87,39 @@ async function upsertInstall(db, r, source = 'harvest') {
 
 /* ---------- where the harvester reads ---------- */
 const CS = 'https://www.casestudies.com/company/';
-const VENDOR_INDEXES = ['kyriba', 'gtreasury', 'ion-treasury', 'ion', 'reval', 'nomentia', 'agicap', 'embat', 'atlar', 'trovata', 'highradius',
+const VENDOR_INDEXES = ['kyriba', 'gtreasury', 'ripple-treasury-powered-by-gtreasury', 'ion-treasury', 'ion', 'reval', 'nomentia', 'agicap', 'embat', 'atlar', 'trovata', 'highradius',
   'treasury-intelligence-solutions-tis', 'datalog-finance', 'coprocess', 'kantox', 'fireapps', 'hedgeflows', 'cashforce', 'cashanalytics', 'finance-active',
-  'accesspay', 'bottomline-technologies', 'serrala', 'coupa', 'fis', 'sap', 'centime', 'statement', 'tesorio', 'cashbook', 'hazeltree', 'derivative-path', 'eurobase', 'bound'];
+  'accesspay', 'bottomline-technologies', 'serrala', 'coupa-software', 'fis', 'sap', 'centime', 'statement', 'tesorio', 'cashbook', 'hazeltree', 'derivative-path', 'eurobase', 'bound',
+  'zentreasury', 'planixs', 'salmon-software', 'visual-risk', 'round-treasury', 'nilus', 'modern-treasury-corp', 'finastra',
+  /* EPM and FP&A */
+  'anaplan', 'board-international', 'pigment', 'onestream', 'workday-adaptive-planning', 'jedox', 'cch-tagetik', 'planful', 'vena-solutions', 'prophix', 'abacum', 'cube'];
+/* vendors with few listings on casestudies.com: their own pages, the press and talks */
+const VENDOR_SEARCHES = ['Diapason TMS', 'Piteco tesoreria', 'Sage XRT', 'Allevo treasury', 'SAP Treasury and Risk Management', 'Coupa Treasury (Bellin)', 'Finastra Fusion Treasury corporate',
+  'Wall Street Suite ION', 'Exalog Allmybanks', 'Cegid trésorerie', 'Treasury Next', 'HighRadius Treasury', 'Kantox', 'Oracle EPM', 'SAP Analytics Cloud planning'];
 const SOURCES = VENDOR_INDEXES.map(v => ({ url: CS + v, label: 'Case studies: ' + v, kind: 'index' })).concat([
   { url: 'https://nomentia.com/references', label: 'Nomentia references', kind: 'index' },
   { url: 'search:treasury management system implementation job post', label: 'Job posts asking someone to select or implement a TMS', kind: 'search' },
   { url: 'search:company selects treasury management system press release', label: 'Press releases: a company selects or goes live with a TMS', kind: 'search' },
   { url: 'search:treasury management system replaced spreadsheets case study', label: 'Case studies of moves from spreadsheets to a TMS', kind: 'search' },
   { url: 'search:commodity trading treasury system liquidity margin', label: 'Commodity traders and the systems their treasury runs', kind: 'search' }
-]);
+]).concat(VENDOR_SEARCHES.map(v => ({ url: 'search:' + v + ' customer', label: 'Named customers of ' + v + ': its own reference pages, press releases, conference talks', kind: 'search' })));
 
 const INDEX_URLS = new Set(SOURCES.filter(x => x.kind === 'index').map(x => x.url));
 
-async function seed(pool, file = path.join(__dirname, '..', 'data', 'market-seed.json')) {
+/* every data/market-seed*.json is loaded once; the first file predates the bookkeeping, so seed rows already there count as it */
+async function seed(pool, dir = path.join(__dirname, '..', 'data')) {
   let n = 0;
-  if (fs.existsSync(file)) {
-    const have = (await pool.query("select count(*)::int n from installs where source = 'seed'")).rows[0].n;
-    if (!have) for (const r of JSON.parse(fs.readFileSync(file, 'utf8'))) { const x = await upsertInstall(pool, r, 'seed'); if (x.ok) n++; }
+  const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => /^market-seed.*\.json$/.test(f)).sort() : [];
+  const done = new Set((await pool.query('select file from market_seed_files')).rows.map(r => r.file));
+  if (!done.has('market-seed.json') && (await pool.query("select count(*)::int n from installs where source = 'seed'")).rows[0].n > 0) {
+    await pool.query("insert into market_seed_files (file, rows) values ('market-seed.json', 0) on conflict do nothing"); done.add('market-seed.json');
+  }
+  for (const f of files) {
+    if (done.has(f)) continue;
+    let k = 0;
+    for (const r of JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))) { const x = await upsertInstall(pool, r, 'seed'); if (x.ok) k++; }
+    await pool.query('insert into market_seed_files (file, rows) values ($1,$2) on conflict do nothing', [f, k]);
+    n += k;
   }
   for (const x of SOURCES) await pool.query('insert into market_sources (url, label, kind) values ($1,$2,$3) on conflict (url) do nothing', [x.url, x.label, x.kind]);
   return n;
@@ -186,7 +201,7 @@ function briefFor(src) {
 
 async function pickSources(pool, n) {
   return (await pool.query(`select * from market_sources where status = 'queued' or (status = 'done' and kind <> 'page' and read_at < now() - interval '30 days')
-    order by case kind when 'page' then 0 when 'index' then 1 else 2 end, read_at nulls first, attempts, added_at limit $1`, [n])).rows;
+    order by case kind when 'index' then 0 when 'page' then 1 else 2 end, read_at nulls first, attempts, added_at limit $1`, [n])).rows;
 }
 
 async function harvest(pool, cfg, stats, budgetLeft) {

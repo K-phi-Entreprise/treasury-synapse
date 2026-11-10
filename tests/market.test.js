@@ -33,7 +33,9 @@ test('names meet on one key and products on their vendor', () => {
   assert.strictEqual(canonSystem('Kyriba Enterprise').system, 'Kyriba');
 });
 
-test('the seed is loaded once, with the job-post selections, and the sources are queued', async () => {
+test('each seed file is loaded once, with the job-post selections, and the sources are queued', async () => {
+  assert.ok((await pool.query('select count(*)::int n from market_seed_files')).rows[0].n >= 2, 'both seed files are booked');
+  assert.ok((await pool.query("select count(distinct system)::int n from installs where status = 'live'")).rows[0].n >= 15, 'vendors beyond the first four');
   const n = (await pool.query("select count(*)::int n from installs where source = 'seed'")).rows[0].n;
   assert.ok(n >= 200, 'seed rows: ' + n);
   await require('../scripts/migrate').migrate(pool);
@@ -96,7 +98,7 @@ test('the harvester keeps facts only from pages it fetched, queues single storie
   assert.strictEqual(run.market.added, 2, JSON.stringify(run.market));
   assert.strictEqual(run.market.rejected, 2);
   assert.strictEqual(run.market.nextPages, 1, 'LinkedIn is never queued');
-  const ag = (await pool.query("select company_id, replaced, url from installs where system = 'Agicap' order by company_id")).rows;
+  const ag = (await pool.query("select company_id from installs where system = 'Agicap' and source = 'harvest' order by company_id")).rows;
   assert.deepStrictEqual(ag.map(x => x.company_id), ['le-slip-francais', 'petit-bateau']);
   assert.strictEqual((await pool.query('select region from companies where id = $1', ['petit-bateau'])).rows[0].region, 'France');
   const s = (await pool.query('select status, found from market_sources where url = $1', [src])).rows[0];

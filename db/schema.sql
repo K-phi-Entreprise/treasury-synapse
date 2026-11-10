@@ -336,3 +336,10 @@ create table if not exists market_sources (
   read_at timestamptz,
   added_at timestamptz not null default now()
 );
+
+-- Which data/market-seed*.json files are loaded (each once).
+create table if not exists market_seed_files (
+  file text primary key,
+  rows integer not null default 0,
+  loaded_at timestamptz not null default now()
+);
