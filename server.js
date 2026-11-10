@@ -15,6 +15,16 @@ const LIMITS = { connection: 10, submission: 10, import: 2 };
 
 app.set('trust proxy', true);
 app.use(compression());
+/* admin catch-up import: registered before the small JSON limit so a full store dump (a few MB) fits */
+app.post('/api/admin/import', (req, res, next) => admin(req, res, next), express.json({ limit: '40mb' }), async (req, res, next) => {
+  try {
+    const d = req.body || {};
+    if (!Array.isArray(d.people) || !Array.isArray(d.edges)) return res.status(400).json({ error: 'not a store dump (people and edges expected)' });
+    const r = await require('./scripts/import').importDump(pool, d, { merge: true });
+    cache.at = 0;
+    res.json({ ok: true, result: r });
+  } catch (e) { next(e); }
+});
 app.use(express.json({ limit: '64kb' }));
 
 const ipHash = req => crypto.createHash('sha256').update(SALT + '|' + (req.ip || '')).digest('hex').slice(0, 32);

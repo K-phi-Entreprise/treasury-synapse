@@ -49,6 +49,14 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
 .err{color:var(--no);margin:10px 0 0}
 .bar{display:flex;gap:10px;align-items:center}
 .bar button{background:none;border:0;color:var(--faint);font:400 12px var(--mono);cursor:pointer;text-decoration:underline}
+.imp{margin:28px 0 0;padding:14px 16px;border:1px dashed var(--line);border-radius:14px;color:var(--dim)}
+.imp h2{margin:0 0 4px;font:600 15px/1.3 var(--body);color:var(--fg)}
+.imp p{margin:0 0 10px;font-size:13px}
+.imp .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.imp input[type=file]{min-width:0;max-width:100%;color:var(--dim);font:400 12.5px var(--body)}
+.imp button{padding:7px 14px;border-radius:9px;border:1px solid rgba(110,231,240,.45);background:transparent;color:var(--accent);font:500 13px var(--body);cursor:pointer}
+.imp button[disabled]{opacity:.45;cursor:default}
+.imp .res{margin:10px 0 0;font:400 12px/1.5 var(--mono);color:var(--fg);overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -65,6 +73,12 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     </header>
     <nav id="tabs" aria-label="Queues"></nav>
     <div class="list" id="list"></div>
+    <section class="imp" aria-labelledby="imp-h">
+      <h2 id="imp-h">Catch up from a store file</h2>
+      <p>Adds what a file from the crawler holds: new people and links, more evidence, insight. It never brings back a deleted card, never undoes a correction you approved, and never changes a decision on a lead or a connection.</p>
+      <div class="row"><input type="file" id="imp-file" accept=".json,application/json"><button type="button" id="imp-go" disabled>Import</button></div>
+      <p class="res" id="imp-res" role="status" aria-live="polite"></p>
+    </section>
   </div>
 </main>
 <script>
@@ -169,6 +183,22 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     if(!items(tab).length){const k=TABS.map(t=>t[0]).find(k=>items(k).length);if(k)tab=k}
     render();
   }
+  const f=$('imp-file'),go=$('imp-go'),res=$('imp-res');
+  f.addEventListener('change',()=>{go.disabled=!f.files.length;res.textContent=''});
+  go.addEventListener('click',async()=>{
+    const file=f.files[0];if(!file)return;go.disabled=true;res.className='res';res.textContent='Reading '+file.name+'…';
+    try{
+      const text=await file.text();let d;try{d=JSON.parse(text)}catch(e){throw new Error('This file is not JSON.')}
+      if(!Array.isArray(d.people)||!Array.isArray(d.edges))throw new Error('This is not a store file (no people and edges).');
+      res.textContent='Importing '+d.people.length.toLocaleString()+' people and '+d.edges.length.toLocaleString()+' links. This takes up to a minute.';
+      const r=await fetch('/api/admin/import',{method:'POST',headers:{'x-admin-token':token,'Content-Type':'application/json'},body:text});
+      if(r.status===401){showGate('That token was not accepted.');return}
+      const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||('HTTP '+r.status));
+      const x=j.result||{};
+      res.textContent='Done. New people '+(x.newPeople||0)+', new links '+(x.newEdges||0)+', new evidence on existing links '+(x.evidenceAdded||0)+', cards kept deleted '+(x.removedSkipped||0)+', approved corrections kept '+(x.lockedFields||0)+'.';
+      f.value='';
+    }catch(e){res.className='res err';res.textContent=String(e.message||e);go.disabled=false}
+  });
   load();
 })();
 </script>

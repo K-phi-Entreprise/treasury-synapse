@@ -1,13 +1,17 @@
 'use strict';
 /* Imports a dump of the artifact store (people, edges, vendors, runs, leads, connections) into Postgres.
- * Usage: node scripts/import.js [--if-empty] data/seed/dump.json
- * --if-empty: do nothing when the people table already has rows (used by the Render pre-deploy step). */
+ * Usage: node scripts/import.js [--if-empty|--merge] data/seed/dump.json
+ * --if-empty: do nothing when the people table already has rows (used by the Render pre-deploy step).
+ * --merge: catch up a live store without undoing review decisions: people deleted by an approved removal stay deleted,
+ *   fields fixed by an approved correction keep the reviewed value, link evidence is unioned by url (confidence = max),
+ *   topics/systems/roles are only added, lead and connection statuses are never overwritten. */
 const fs = require('fs');
 const { makePool } = require('./db');
 
 const KIND_CONF = { podcast: 0.9, panel: 0.9, filing: 0.9, webinar: 0.8, executive: 0.7, article: 0.6, colleague: 0.5 };
 const ROLES = new Set(['uses', 'sells', 'implements', 'integrates', 'evaluated']);
 const ts = v => { const t = Date.parse(v || ''); return isNaN(t) ? null : new Date(t).toISOString(); };
+const LOCKABLE = { headline: 'headline', org: 'org', city: 'city', region: 'region', knownFor: 'known_for' };
 const str = v => (v == null ? '' : String(v));
 
 async function importDump(pool, dump, opts = {}) {
@@ -19,10 +23,26 @@ async function importDump(pool, dump, opts = {}) {
       if (r.rows[0].n > 0) return Object.assign(out, { skipped: true, existing: r.rows[0].n });
     }
     await client.query('begin');
-    const ids = new Set();
+    const merge = !!opts.merge;
+    const removed = new Set(), locked = new Map();
+    if (merge) {
+      out.removedSkipped = 0; out.lockedFields = 0; out.newPeople = 0; out.newEdges = 0; out.evidenceAdded = 0;
+      const subs = await client.query("select kind, person_id, payload from submissions where status = 'approved' and kind in ('removal','correction') and person_id is not null");
+      for (const r of subs.rows) {
+        if (r.kind === 'removal') removed.add(r.person_id);
+        else if (r.payload && LOCKABLE[r.payload.field]) (locked.get(r.person_id) || locked.set(r.person_id, new Set()).get(r.person_id)).add(r.payload.field);
+      }
+    }
+    const existing = new Map();
+    if (merge) for (const r of (await client.query('select id, headline, org, city, region, known_for from people')).rows) existing.set(r.id, r);
+    const ids = new Set(existing.keys());
     for (const p of dump.people || []) {
       if (!p || !p.id || !p.name) continue;
+      if (removed.has(p.id) && !existing.has(p.id)) { out.removedSkipped++; continue; }
+      if (merge && !existing.has(p.id)) out.newPeople++;
       ids.add(p.id);
+      const lock = locked.get(p.id), cur = existing.get(p.id);
+      const keep = (field, v) => { if (lock && cur && lock.has(field)) { out.lockedFields++; return cur[LOCKABLE[field]]; } return v; };
       await client.query(
         `insert into people (id,name,headline,org,city,region,segment,seed,found_via,source,known_for,publishers,publisher_domains,followers,
            added_at,crawled_at,deepened_at,crawl_attempts,deepen_attempts,parked,parked_reason,insight_notes)
@@ -32,8 +52,8 @@ async function importDump(pool, dump, opts = {}) {
            publishers=excluded.publishers, publisher_domains=excluded.publisher_domains, followers=excluded.followers, added_at=excluded.added_at,
            crawled_at=excluded.crawled_at, deepened_at=excluded.deepened_at, crawl_attempts=excluded.crawl_attempts, deepen_attempts=excluded.deepen_attempts,
            parked=excluded.parked, parked_reason=excluded.parked_reason, insight_notes=excluded.insight_notes, updated_at=now()`,
-        [p.id, str(p.name), str(p.headline), str(p.org), str(p.city), str(p.region) || 'Unknown', str(p.segment) || 'Corporate treasury', !!p.seed,
-         p.foundVia || null, str(p.source), str(p.knownFor), Number(p.publishers) || 0, Array.isArray(p.publisherDomains) ? p.publisherDomains.map(String) : [],
+        [p.id, str(p.name), keep('headline', str(p.headline)), keep('org', str(p.org)), keep('city', str(p.city)), keep('region', str(p.region) || 'Unknown'),
+         str(p.segment) || 'Corporate treasury', !!p.seed, p.foundVia || null, str(p.source), keep('knownFor', str(p.knownFor)), Number(p.publishers) || 0, Array.isArray(p.publisherDomains) ? p.publisherDomains.map(String) : [],
          p.followers == null ? null : Number(p.followers), ts(p.addedAt), ts(p.crawledAt), ts(p.deepenedAt), Number(p.crawlAttempts) || 0,
          Number(p.deepenAttempts) || 0, !!p.parked, str(p.parkedReason), str(p.insightNotes)]);
       out.people++;
@@ -59,11 +79,24 @@ async function importDump(pool, dump, opts = {}) {
       if (!e || !e.a || !e.b || e.a === e.b || !ids.has(e.a) || !ids.has(e.b)) { out.skippedEdges++; continue; }
       const [a, b] = e.a < e.b ? [e.a, e.b] : [e.b, e.a];
       const kind = KIND_CONF[e.kind] ? e.kind : 'article';
-      const ev = Array.isArray(e.evidence) && e.evidence.length ? e.evidence : [{ url: str(e.url), label: str(e.label), date: '', kind }];
+      let ev = Array.isArray(e.evidence) && e.evidence.length ? e.evidence : [{ url: str(e.url), label: str(e.label), date: '', kind }];
+      let conf = Number(e.confidence) || KIND_CONF[kind], head = { kind, label: str(e.label), url: str(e.url) };
+      if (merge) {
+        const old = (await client.query('select kind, label, url, confidence, evidence from co_appearances where a = $1 and b = $2', [a, b])).rows[0];
+        if (!old) out.newEdges++;
+        else {
+          const seen = new Set((old.evidence || []).map(x => x && x.url));
+          const add = ev.filter(x => x && x.url && !seen.has(x.url));
+          out.evidenceAdded += add.length;
+          ev = (old.evidence || []).concat(add);
+          conf = Math.max(conf, Number(old.confidence) || 0);
+          head = { kind: old.kind, label: old.label, url: old.url };
+        }
+      }
       await client.query(
         `insert into co_appearances (a,b,kind,label,url,confidence,evidence,added_at) values ($1,$2,$3,$4,$5,$6,$7,$8)
          on conflict (a,b) do update set kind=excluded.kind, label=excluded.label, url=excluded.url, confidence=excluded.confidence, evidence=excluded.evidence, updated_at=now()`,
-        [a, b, kind, str(e.label), str(e.url), Number(e.confidence) || KIND_CONF[kind], JSON.stringify(ev), ts(e.addedAt)]);
+        [a, b, head.kind, head.label, head.url, conf, JSON.stringify(ev), ts(e.addedAt)]);
       out.edges++;
       for (const x of ev) {
         if (!x || !x.url) continue;
@@ -79,7 +112,7 @@ async function importDump(pool, dump, opts = {}) {
       if (!c || !c.from || !c.to || !ids.has(c.from) || !ids.has(c.to) || c.from === c.to) continue;
       await client.query(
         `insert into connections (from_id,to_id,status,note,by_viewer,added_at) values ($1,$2,$3,$4,$5,$6)
-         on conflict (from_id,to_id) do update set status=excluded.status, updated_at=now()`,
+         on conflict (from_id,to_id) do ${merge ? 'nothing' : 'update set status=excluded.status, updated_at=now()'}`,
         [c.from, c.to, ['pending', 'confirmed', 'rejected'].includes(c.status) ? c.status : 'pending', str(c.note), str(c.by), ts(c.addedAt) || new Date().toISOString()]);
       out.connections++;
     }
@@ -112,12 +145,12 @@ async function importDump(pool, dump, opts = {}) {
 
 if (require.main === module) {
   const args = process.argv.slice(2);
-  const ifEmpty = args.includes('--if-empty');
+  const ifEmpty = args.includes('--if-empty'), merge = args.includes('--merge');
   const file = args.find(a => !a.startsWith('--'));
-  if (!file) { console.error('usage: node scripts/import.js [--if-empty] <dump.json>'); process.exit(2); }
+  if (!file) { console.error('usage: node scripts/import.js [--if-empty|--merge] <dump.json>'); process.exit(2); }
   const dump = JSON.parse(fs.readFileSync(file, 'utf8'));
   const pool = makePool();
-  importDump(pool, dump, { ifEmpty }).then(r => { console.log(JSON.stringify(r)); return pool.end(); })
+  importDump(pool, dump, { ifEmpty, merge }).then(r => { console.log(JSON.stringify(r)); return pool.end(); })
     .catch(e => { console.error(e); process.exit(1); });
 }
 module.exports = { importDump };
