@@ -25,6 +25,11 @@ const api = (p, init) => fetch(base + p, init).then(async r => ({ status: r.stat
 
 test('schema applies twice without error', async () => { await migrate(pool); });
 
+test('pair order is byte order whatever the database collation (Render sorts like a dictionary)', async () => {
+  const c = await pool.query("select pg_get_constraintdef(oid) d from pg_constraint where conname = 'co_appearances_check'");
+  assert.match(c.rows[0].d, /COLLATE "C"/);
+});
+
 test('importer loads the dump: every person, every edge between known people, one occasion per evidence url', async () => {
   const r = await importDump(pool, dump);
   assert.equal(r.people, dump.people.length);

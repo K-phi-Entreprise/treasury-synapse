@@ -86,8 +86,7 @@ create table if not exists co_appearances (
   evidence jsonb not null default '[]',
   added_at timestamptz,
   updated_at timestamptz not null default now(),
-  primary key (a, b),
-  check (a < b)
+  primary key (a, b)
 );
 create index if not exists co_appearances_b on co_appearances (b);
 create index if not exists co_appearances_updated_at on co_appearances (updated_at);
@@ -170,3 +169,8 @@ create or replace view v_connections as
 alter table submissions add column if not exists confirm_token text;
 alter table submissions add column if not exists confirmed_at timestamptz;
 create unique index if not exists submissions_confirm_token on submissions (confirm_token) where confirm_token is not null;
+
+-- Pair order is byte order (what the code and the crawler use), never the database's dictionary collation,
+-- which ignores hyphens and would reject "sam-russell" < "samantha-mcganney". Re-created on every migrate.
+alter table co_appearances drop constraint if exists co_appearances_check;
+alter table co_appearances add constraint co_appearances_check check ((a collate "C") < (b collate "C"));
