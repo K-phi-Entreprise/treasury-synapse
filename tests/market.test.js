@@ -136,6 +136,10 @@ test('one method for every vendor: one named-customer search each, nothing extra
   await pool.query("insert into market_sources (url, label, kind) values ('search:FIS Quantum job post', 'extra', 'search') on conflict do nothing");
   await seed(pool);
   assert.strictEqual((await pool.query("select count(*)::int n from market_sources where url = 'search:FIS Quantum job post'")).rows[0].n, 0, 'a search outside the method is dropped');
+  const { INDUSTRIES } = require('../scripts/market');
+  assert.deepStrictEqual(INDUSTRIES, require('../scripts/enrich').VERTICALS.map(v => v[0]), 'the industry searches cover exactly the filter industries');
+  for (const v of INDUSTRIES) assert.strictEqual(SOURCES.filter(x => x.kind === 'search' && x.url.startsWith('search:' + v + ' ')).length, 1, v);
+  assert.ok(!SOURCES.some(x => /commodity trading treasury system/.test(x.url)), 'no industry gets a search of its own');
   const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
   assert.match(html, /How the Market view is counted/);
   assert.match(html, /This is not market share/);

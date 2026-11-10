@@ -110,14 +110,19 @@ const VENDORS = [
   ['Jedox', ['jedox']], ['CCH Tagetik', ['cch-tagetik']], ['Planful', ['planful']], ['Vena', ['vena-solutions']], ['Prophix', ['prophix']], ['Abacum', ['abacum']],
   ['Cube', ['cube']], ['Oracle EPM', []], ['SAP Analytics Cloud', []]
 ];
+/* the industries of the Market filters (scripts/enrich.js maps Wikidata industries onto them) */
+const INDUSTRIES = ['Commodities & trading', 'Energy & utilities', 'Pharma & healthcare', 'Financial services', 'Technology & software', 'Telecom & media',
+  'Food & beverage', 'Consumer & retail', 'Transport & logistics', 'Automotive & aerospace', 'Chemicals & materials', 'Industrials & manufacturing',
+  'Real estate & construction', 'Professional services', 'Hospitality & leisure', 'Public sector & non-profit'];
 const SOURCES = [].concat(
   ...VENDORS.map(([name, slugs, pages]) => slugs.map(v => ({ url: CS + v, label: 'Customer stories: ' + name, kind: 'index' }))
     .concat((pages || []).map(u => ({ url: u, label: 'Customer references: ' + name, kind: 'index' })))
     .concat([{ url: 'search:' + name + ' customer case study', label: 'Named customers of ' + name + ': its own reference pages, press releases, conference talks', kind: 'search' }])),
   [{ url: 'search:treasury management system implementation job post', label: 'Job posts asking someone to select or implement a TMS', kind: 'search' },
     { url: 'search:company selects treasury management system press release', label: 'Press releases: a company selects or goes live with a TMS', kind: 'search' },
-    { url: 'search:treasury management system replaced spreadsheets case study', label: 'Case studies of moves from spreadsheets to a TMS', kind: 'search' },
-    { url: 'search:commodity trading treasury system liquidity margin', label: 'Commodity traders and the systems their treasury runs', kind: 'search' }]);
+    { url: 'search:treasury management system replaced spreadsheets case study', label: 'Case studies of moves from spreadsheets to a TMS', kind: 'search' }],
+  /* one search per industry, the same for each, so no industry is favoured */
+  INDUSTRIES.map(v => ({ url: 'search:' + v + ' treasury and finance systems case study', label: 'Organisations in ' + v + ' and the treasury and planning systems they run', kind: 'search' })));
 
 const INDEX_URLS = new Set(SOURCES.filter(x => x.kind === 'index').map(x => x.url));
 
@@ -294,4 +299,4 @@ if (require.main === module && process.argv.includes('--seed')) {
   const pool = makePool();
   seed(pool).then(async n => { console.log('market seed: ' + n + ' facts'); await pool.end(); }).catch(async e => { console.error(e); await pool.end(); process.exit(1); });
 }
-module.exports = { compKey, canonSystem, upsertInstall, seed, loadMarket, harvest, SOURCES, VENDORS, NOT_A_USER };
+module.exports = { compKey, canonSystem, upsertInstall, seed, loadMarket, harvest, SOURCES, VENDORS, INDUSTRIES, NOT_A_USER };
