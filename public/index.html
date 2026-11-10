@@ -1574,8 +1574,9 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
 </script>
 
 <style>
-.d-import{display:block;width:100%;margin:12px 0 0;padding:8px 12px;border-radius:9px;border:1px solid var(--line);background:rgba(110,231,240,.06);color:var(--fg);font:500 12.5px/1.3 var(--font-body);cursor:pointer;text-align:left}
-.d-import:hover{border-color:var(--fg-dim)}
+.d-import{display:block;width:100%;margin:12px 0 0;padding:9px 12px;border-radius:6px;border:0;background:#E6FF00;color:#0f1c3a;font:700 12.5px/1.3 var(--font-body);cursor:pointer;text-align:left;box-shadow:0 0 16px rgba(230,255,0,.22)}
+.d-import:hover{box-shadow:0 0 22px rgba(230,255,0,.4)}
+.d-import:focus-visible,.conn-add:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media (max-width:899px){.detail:not(.open) .d-import{display:none}}
 .imp-drop{display:block;margin:4px 0 12px;padding:18px 14px;border:1px dashed var(--line);border-radius:12px;text-align:center;color:var(--fg-dim);font-size:13px;cursor:pointer}
 .imp-drop.over{border-color:#6ee7f0;color:var(--fg)}
@@ -1592,7 +1593,8 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
 .conn-cta .steps span.on{color:var(--c-corp);border-color:rgba(79,209,232,.5)}
 .conn-cta .steps span.done{color:var(--fg-dim)}
 .conn-cta .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.conn-add{display:none;margin:0 0 12px;padding:7px 12px;border-radius:99px;border:1px solid rgba(79,209,232,.45);background:rgba(79,209,232,.08);color:var(--fg);font:500 12.5px/1.2 var(--font-body);cursor:pointer}
+.conn-add{display:none;margin:0 0 12px;padding:8px 14px;border-radius:6px;border:0;background:#E6FF00;color:#0f1c3a;font:700 12.5px/1.2 var(--font-body);cursor:pointer;box-shadow:0 0 0 1px rgba(230,255,0,.35),0 0 18px rgba(230,255,0,.28);transition:box-shadow .2s,transform .2s}
+.conn-add:hover{box-shadow:0 0 0 1px rgba(230,255,0,.6),0 0 26px rgba(230,255,0,.45);transform:translateY(-1px)}
 .filters.conn .conn-add{display:inline-block}
 @media (max-width:899px){.conn-cta{top:auto;bottom:12px;transform:translateX(-50%)}.filters.conn .conn-add{margin:8px 0 0}}
 .imp-list{max-height:38vh;overflow:auto;margin:0 0 12px;border:1px solid var(--line);border-radius:10px}
