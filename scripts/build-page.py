@@ -82,12 +82,20 @@ head='''<!doctype html>
 <meta name="description" content="Who appears with whom in treasury, from public sources: a 3D map of treasury and finance professionals, their topics and the systems they use, sell or implement.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#080b17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Synapse">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 28 28%27%3E%3Cpath d=%27M7 8l7 13M21 7l-7 14M7 8l14-1%27 stroke=%27%236ee7f0%27 stroke-width=%271.4%27 fill=%27none%27/%3E%3Ccircle cx=%277%27 cy=%278%27 r=%272.6%27 fill=%27%236ee7f0%27/%3E%3Ccircle cx=%2721%27 cy=%277%27 r=%272.6%27 fill=%27%23c084fc%27/%3E%3Ccircle cx=%2714%27 cy=%2721%27 r=%272.6%27 fill=%27%23fda4af%27/%3E%3C/svg%3E">
 <style>:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 '''
-open('public/index.html','w',encoding='utf-8').write(head+src+'\n'+extra+'\n</body>\n</html>\n')
+sw='<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));</script>'
+open('public/index.html','w',encoding='utf-8').write(head+src+'\n'+extra+'\n'+sw+'\n</body>\n</html>\n')
 js=re.findall(r'<script>(.*?)</script>',src,re.S)[-1]
 open('/tmp/synapse-page.js','w').write(js)
 print('built public/index.html',len(src)//1024,'KB')

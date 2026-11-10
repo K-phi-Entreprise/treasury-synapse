@@ -135,3 +135,23 @@ test('the onrender.com address redirects to the real domain, the real domain and
     assert.equal((await get('/', 'synapse.example')).statusCode, 200);
   } finally { if (prev == null) delete process.env.PUBLIC_URL; else process.env.PUBLIC_URL = prev; }
 });
+
+test('the map installs as an app: manifest, icons, service worker never stale, home-screen tags on the page', async () => {
+  const m = await fetch(base + '/manifest.webmanifest');
+  assert.match(m.headers.get('content-type'), /application\/manifest\+json/);
+  const j = await m.json();
+  assert.equal(j.display, 'standalone');
+  assert.ok(j.icons.some(i => i.purpose === 'maskable') && j.icons.some(i => i.sizes === '512x512'));
+  for (const i of j.icons.concat([{ src: '/icons/apple-touch-icon.png' }])) {
+    const r = await fetch(base + i.src);
+    assert.equal(r.status, 200, i.src);
+    assert.match(r.headers.get('content-type'), /image\/png/);
+  }
+  const sw = await fetch(base + '/sw.js');
+  assert.equal(sw.headers.get('cache-control'), 'no-cache');
+  const swText = await sw.text();
+  assert.match(swText, /startsWith\('\/review'\)/, 'the review page is never cached');
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  for (const t of ['rel="manifest" href="/manifest.webmanifest"', 'name="apple-mobile-web-app-capable" content="yes"', 'rel="apple-touch-icon"', 'navigator.serviceWorker.register("/sw.js")'])
+    assert.ok(html.includes(t), t);
+});

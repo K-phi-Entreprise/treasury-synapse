@@ -313,6 +313,9 @@ if (pool) require('./chat').mount(app, {
 app.get(['/', '/index.html'], (req, res) => { res.set('Cache-Control', 'no-cache'); res.sendFile(path.join(__dirname, 'public', 'index.html')); });
 app.get(['/review', '/review/'], (req, res) => { res.set({ 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' }); res.sendFile(path.join(__dirname, 'public', 'review.html')); });
 app.get('/robots.txt', (req, res) => res.type('text/plain').send('User-agent: *\nAllow: /\nDisallow: /review\nDisallow: /api/\n'));
+/* the service worker must never be stale: browsers re-check it on every visit */
+app.get('/sw.js', (req, res) => { res.set({ 'Cache-Control': 'no-cache', 'Service-Worker-Allowed': '/' }); res.type('application/javascript').sendFile(path.join(__dirname, 'public', 'sw.js')); });
+app.get('/manifest.webmanifest', (req, res) => { res.set('Cache-Control', 'no-cache'); res.type('application/manifest+json').sendFile(path.join(__dirname, 'public', 'manifest.webmanifest')); });
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1h' }));
 app.use((req, res) => res.status(404).json({ error: 'not found' }));
 app.use((err, req, res, next) => { console.error(err); res.status(500).json({ error: 'server error' }); }); // eslint-disable-line no-unused-vars
