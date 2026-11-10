@@ -11,7 +11,7 @@ const app = express();
 const pool = process.env.DATABASE_URL ? makePool() : null;
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 const SALT = process.env.IP_SALT || ADMIN_TOKEN || 'synapse';
-const LIMITS = { connection: 10, submission: 10, import: 2 };
+const LIMITS = { connection: 10, submission: 10, import: 2, claim: 5 };
 
 app.set('trust proxy', true);
 /* the onrender.com address sends visitors to the real domain (health checks stay where they are) */
@@ -269,6 +269,15 @@ app.post('/api/admin/submissions/:id', admin, async (req, res, next) => {
       if (p.field === 'region' && !REGIONS.includes(value)) throw Object.assign(new Error('bad region'), { http: 400 });
       await client.query(`update people set ${FIELDS[p.field]} = $2, updated_at = now() where id = $1`, [sub.person_id, value]);
     }
+    let signIn = '';
+    if (sub.kind === 'claim' && status === 'approved') {
+      await client.query(`insert into claims (person_id, email, method, confirmed_at) values ($1,$2,'review',now())
+        on conflict (person_id) do update set email = excluded.email, method = 'review', confirmed_at = now()`, [sub.person_id, sub.email]);
+      await client.query('update people set updated_at = now() where id = $1', [sub.person_id]);
+      const t = crypto.randomBytes(24).toString('base64url');
+      await client.query("insert into claim_tokens (token, person_id, email, purpose, expires_at) values ($1,$2,$3,'login',now() + interval '7 days')", [t, sub.person_id, sub.email]);
+      signIn = PUBLIC_URL + '/api/claim/' + t;
+    }
     if (sub.kind === 'link' && status === 'approved') {
       /* the crawler reads queued leads and extracts what the page attests */
       await client.query(`insert into leads (id, url, reason, person_id, snippet, status, added_at) values ($1,$2,'submitted by a visitor, approved',$3,$4,'queued',now())
@@ -277,7 +286,8 @@ app.post('/api/admin/submissions/:id', admin, async (req, res, next) => {
     await client.query('commit');
     cache.at = 0;
     if (sub.email && (status !== 'discuss' || note)) {
-      const verdict = status === 'approved' ? (sub.kind === 'removal' ? 'The card has been deleted from the map.' : sub.kind === 'link' ? 'The page will be read by the next crawl and its facts added with their source.' : 'The card has been updated.')
+      const verdict = status === 'approved' ? (sub.kind === 'removal' ? 'The card has been deleted from the map.' : sub.kind === 'link' ? 'The page will be read by the next crawl and its facts added with their source.'
+          : sub.kind === 'claim' ? 'The card is now yours. Sign in with this link (valid 7 days):\n' + signIn : 'The card has been updated.')
         : status === 'rejected' ? (sub.kind === 'removal' ? 'The request was not accepted and the card is visible again.' : 'The change was not accepted.') : 'A question about your request:';
       await mail.send({ to: sub.email, subject: 'Treasury Synapse: your request', text: 'Hello,\n\n' + verdict + (note ? '\n\n' + note : '') + '\n\nTreasury Synapse, by K-phi\n' });
     }
@@ -297,6 +307,9 @@ app.post('/api/admin/leads/:id', admin, async (req, res, next) => {
     res.json({ ok: true });
   } catch (e) { next(e); }
 });
+
+/* ---------- claimed cards ---------- */
+const claims = pool ? require('./claims').mount(app, { pool, mail, ipHash, underQuota, publicUrl: PUBLIC_URL, secret: SALT, emailRe: EMAIL_RE, onChange: () => { cache.at = 0; } }) : null;
 
 /* ---------- chat (D2) ---------- */
 if (pool) require('./chat').mount(app, {

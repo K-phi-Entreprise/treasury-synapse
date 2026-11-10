@@ -181,3 +181,24 @@ create index if not exists connections_batch on connections (batch) where batch 
 
 -- Render crawler (D3 of the migration): consecutive deepen runs that added nothing; parked after two
 alter table people add column if not exists empty_runs integer not null default 0;
+
+-- Claimed cards: the person proved they are the card with a link to a work email (or a reviewer approved it)
+create table if not exists claims (
+  person_id text primary key references people(id) on delete cascade,
+  email text not null,
+  method text not null default 'domain' check (method in ('domain','review')),
+  confirmed_at timestamptz,
+  added_at timestamptz not null default now()
+);
+create index if not exists claims_email on claims (email);
+create table if not exists claim_tokens (
+  token text primary key,
+  person_id text not null references people(id) on delete cascade,
+  email text not null,
+  purpose text not null check (purpose in ('claim','login')),
+  expires_at timestamptz not null,
+  used_at timestamptz,
+  added_at timestamptz not null default now()
+);
+alter table submissions drop constraint if exists submissions_kind_check;
+alter table submissions add constraint submissions_kind_check check (kind in ('correction','link','removal','connection','claim'));

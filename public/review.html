@@ -87,7 +87,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
   const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
   let token='';try{token=localStorage.getItem('synapse.admin')||''}catch(e){}
   let data=null,tab='removal';
-  const TABS=[['removal','Removals'],['correction','Corrections'],['link','Links'],['connection','Connections'],['lead','Unreadable pages'],['run','Crawler']];
+  const TABS=[['removal','Removals'],['correction','Corrections'],['link','Links'],['claim','Claims'],['connection','Connections'],['lead','Unreadable pages'],['run','Crawler']];
   const FIELD={headline:'Title and company',org:'Organisation',city:'City',region:'Region',knownFor:'Known for',other:'Something else'};
   const CUR={headline:'person_headline',org:'person_org',city:'person_city',region:'person_region',knownFor:'person_known_for'};
   const ago=t=>{if(!t)return '';const m=Math.round((Date.now()-Date.parse(t))/60000);return m<60?m+' min ago':m<1440?Math.round(m/60)+' h ago':Math.round(m/1440)+' d ago'};
@@ -135,12 +135,14 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
       if(p.field!=='other'){const now=s[CUR[p.field]]||'(empty)';const l=el('div');l.append(el('span','from',now),document.createTextNode('  →  '),el('span','to',p.value));b.appendChild(l)}
       if(p.note)b.appendChild(el('div','','“'+p.note+'”'));
     }else if(s.kind==='link'){const a=el('a','',p.url);a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';b.appendChild(a);if(p.note)b.appendChild(el('div','','“'+p.note+'”'))}
+    else if(s.kind==='claim'){b.appendChild(el('div','','Wants to claim this card. Why it was not automatic: '+(p.reason||'unknown')+'.'));if(p.note)b.appendChild(el('div','','“'+p.note+'”'))}
     else{b.appendChild(el('div','',(p.self?'Sent by the person or on their behalf. ':'Sender did not say they are this person. ')+'Card hidden since '+ago(s.added_at)+'.'));if(p.reason)b.appendChild(el('div','','“'+p.reason+'”'))}
     if(s.email)b.appendChild(el('div','',s.email));
     if(s.decision_note)b.appendChild(el('div','','Your last note: '+s.decision_note));
     it.appendChild(b);
     const send=st=>(note,val)=>call('/api/admin/submissions/'+s.id,Object.assign({status:st,note},val!=null&&val!==''?{value:val}:{}));
     const labels=s.kind==='removal'?[['ok','Approve · delete for good',send('approved')],['no','Reject · show again',send('rejected')],['ask','Discuss',send('discuss')]]
+      :s.kind==='claim'?[['ok','Approve · send a sign-in link',send('approved')],['no','Reject',send('rejected')],['ask','Discuss',send('discuss')]]
       :s.kind==='link'?[['ok','Approve · queue for the crawler',send('approved')],['no','Reject',send('rejected')],['ask','Discuss',send('discuss')]]
       :[['ok',p.field==='other'?'Approve (edit by hand)':'Approve · apply',send('approved')],['no','Reject',send('rejected')],['ask','Discuss',send('discuss')]];
     it.appendChild(actions(s,{buttons:labels,editable:s.kind==='correction'&&p.field!=='other'&&p.field!=='region'?p.value:null}));

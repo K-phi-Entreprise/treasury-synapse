@@ -571,6 +571,8 @@ let sel=-1,hov=-1,nbr=null,hl=null;
 window.synapseSelected=()=>(sel>=0&&G.nodes[sel]&&!G.nodes[sel].hub)?{id:G.nodes[sel].id,name:G.nodes[sel].name,headline:G.nodes[sel].headline}:null;
 let meId='';try{meId=localStorage.getItem('synapse.me')||''}catch(e){}
 window.synapseMe=()=>meId;
+window.synapseFocus=id=>{const i=G.idx.get(id);if(i==null)return false;select(i,true);return true};
+window.synapseSetMe=id=>{meId=id||'';if(sel>=0)renderDetail()};
 window.synapsePeople=()=>{const o=[];for(let i=0;i<G.n;i++){const n=G.nodes[i];if(!n.hub)o.push({id:n.id,name:n.name,org:n.org||''})}return o};
 /* Three angles on the same facts. E holds the raw edges per angle; G carries only the active one. */
 const ANGLES=['social','topics','connections'];
@@ -673,7 +675,7 @@ function renderDetail(){
   $('d-via').textContent=via!=null?G.nodes[via].name:(n.seed?'Seed list':'Public source');
   $('d-centred').hidden=G.center!==sel;
   $('d-me').setAttribute('aria-pressed',String(n.id===meId));$('d-me').textContent=n.id===meId?'you':'this is me';
-  if(window.synapseOnDetail)window.synapseOnDetail(n.id);
+  if(window.synapseOnDetail)window.synapseOnDetail(n.id);document.dispatchEvent(new CustomEvent('synapse:detail',{detail:n.id}));
   const know=$('d-know');
   if(meId&&n.id!==meId&&G.idx.has(meId)){
     const key=meId<n.id?meId+'|'+n.id:n.id+'|'+meId,k=EK.connections.get(key),r=k!=null?E.connections[k]:null;
@@ -1603,6 +1605,110 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       msg.textContent=j.added+' connection'+(j.added===1?'':'s')+' sent for review'+(j.existing?' ('+j.existing+' were already declared)':'')+'. They appear, faint, in the Connections view.';
       setTimeout(()=>location.reload(),2800);
     }catch(err){$('imp-go').disabled=false;msg.className='msg err';msg.textContent=String(err.message||err)}
+  });
+})();
+</script>
+
+<style>
+.d-claimed{display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding:2px 8px;border-radius:99px;border:1px solid rgba(110,231,240,.45);color:#6ee7f0;font:500 9.5px/1.4 var(--font-mono);letter-spacing:.06em;text-transform:none}
+.d-claim{display:block;width:100%;margin:12px 0 0;padding:8px 12px;border-radius:9px;border:1px solid rgba(110,231,240,.35);background:rgba(110,231,240,.06);color:var(--fg);font:500 12.5px/1.3 var(--font-body);cursor:pointer;text-align:left}
+.d-claim:hover{border-color:#6ee7f0}
+.d-mine{margin:12px 0 0;padding:8px 12px;border-radius:9px;border:1px solid rgba(110,231,240,.35);font-size:12.5px;color:var(--fg-dim);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.d-mine b{color:#6ee7f0;font-weight:600}
+.d-mine button{margin-left:auto;padding:0;border:0;background:none;color:var(--fg-faint);font:400 11.5px var(--font-mono);text-decoration:underline;cursor:pointer}
+@media (max-width:899px){.detail:not(.open) .d-claim,.detail:not(.open) .d-mine{display:none}}
+.cl-alt{margin:12px 0 0;padding:0;border:0;background:none;color:var(--fg-faint);font:400 12px var(--font-mono);text-decoration:underline;cursor:pointer}
+.syn-toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:70;max-width:calc(100% - 32px);padding:10px 16px;border-radius:12px;background:#0e1328;border:1px solid rgba(110,231,240,.45);color:var(--fg);font-size:13.5px;box-shadow:0 12px 32px rgba(0,0,0,.45)}
+</style>
+<div class="sbm-wrap" id="cl-wrap" hidden>
+  <form class="sbm" id="cl" novalidate autocomplete="on">
+    <h3 id="cl-title">Claim this card</h3>
+    <button class="close x" id="cl-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="who" id="cl-who"></p>
+    <div id="cl-claim">
+      <p class="sbm-hint" id="cl-why">Once it is yours, you can say on your card what you worked on and implemented, which systems you know, and whether you are open to a reference call. Links and bubble size still come only from public pages.</p>
+      <label><span>Your work email</span><input type="email" id="cl-email" maxlength="200" autocomplete="email" placeholder="name@company.com"></label>
+      <p class="sbm-hint" id="cl-hint"></p>
+      <label><span>Anything we should know (optional)</span><textarea id="cl-note" maxlength="600" placeholder="For example: I left that company in 2025, my address is now at…"></textarea></label>
+    </div>
+    <div id="cl-login" hidden>
+      <p class="sbm-hint">Already claimed your card on another device? Enter the address you used. If it owns a card, a sign-in link is on its way.</p>
+      <label><span>Your email</span><input type="email" id="cl-email2" maxlength="200" autocomplete="email"></label>
+    </div>
+    <button class="go" id="cl-go" type="submit">Send me the link</button>
+    <p class="msg" id="cl-msg" role="status" aria-live="polite"></p>
+    <button class="cl-alt" id="cl-alt" type="button">Already claimed it? Sign in</button>
+  </form>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const wrap=$('cl-wrap'),msg=$('cl-msg');
+  let claimed=new Set(),me=null,cur=null,mode='claim';
+  /* badge, claim button and "your card" line on the person card */
+  const seg=document.querySelector('#detail .d-seg');
+  const badge=document.createElement('span');badge.className='d-claimed';badge.id='d-claimed';badge.textContent='claimed';badge.hidden=true;seg.appendChild(badge);
+  const btn=document.createElement('button');btn.type='button';btn.className='d-claim';btn.id='d-claim';btn.hidden=true;
+  const mine=document.createElement('div');mine.className='d-mine';mine.id='d-mine';mine.hidden=true;
+  mine.innerHTML='<b>Your card</b><span>signed in on this device</span><button type="button" id="d-signout">Sign out</button>';
+  const anchor=$('d-edit');anchor.parentNode.insertBefore(btn,anchor);anchor.parentNode.insertBefore(mine,anchor);
+  function person(id){return ((window.synapsePeople&&window.synapsePeople())||[]).find(p=>p.id===id)}
+  function paint(id){
+    cur=id||cur;const p=cur&&person(cur);
+    if(!p){badge.hidden=btn.hidden=mine.hidden=true;return}
+    const isClaimed=claimed.has(p.id),isMine=me&&me.personId===p.id;
+    badge.hidden=!isClaimed;mine.hidden=!isMine;
+    btn.hidden=!!isMine;btn.textContent=isClaimed?'This is my card: sign in':'Is this you? Claim this card';
+  }
+  document.addEventListener('synapse:detail',e=>paint(e.detail));
+  function open(m){
+    const p=cur&&person(cur);if(!p)return;
+    mode=m||(claimed.has(p.id)?'login':'claim');
+    $('cl-title').textContent=mode==='login'?'Sign in to your card':'Claim this card';
+    $('cl-who').textContent=p.name+(p.org?' · '+p.org:'');
+    $('cl-claim').hidden=mode!=='claim';$('cl-login').hidden=mode!=='login';
+    $('cl-alt').textContent=mode==='claim'?'Already claimed it? Sign in':'Not claimed yet? Claim this card';
+    $('cl-hint').textContent=p.org?'Use your address at '+p.org+'. A personal or other address is fine too: a person checks it before the card is yours.':'A person checks the request if the address does not match the organisation on the card.';
+    msg.textContent='';msg.className='msg';$('cl-go').disabled=false;$('cl-go').hidden=false;wrap.hidden=false;
+    setTimeout(()=>(mode==='claim'?$('cl-email'):$('cl-email2')).focus(),30);
+  }
+  const close=()=>{wrap.hidden=true};
+  btn.addEventListener('click',()=>open());
+  $('cl-alt').addEventListener('click',()=>open(mode==='claim'?'login':'claim'));
+  $('cl-close').addEventListener('click',close);
+  wrap.addEventListener('click',e=>{if(e.target===wrap)close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!wrap.hidden)close()});
+  $('cl').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const go=$('cl-go');go.disabled=true;msg.className='msg';msg.textContent='Sending…';
+    try{
+      const body=mode==='claim'?{personId:cur,email:$('cl-email').value.trim(),note:$('cl-note').value.trim()}:{email:$('cl-email2').value.trim()};
+      const r=await fetch(mode==='claim'?'/api/claims':'/api/claims/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+      const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not go through. Try again.');
+      if(j.mail==='not sent'&&j.status==='review')msg.textContent='Your request is recorded, but email is not available right now. We will get back to you.';
+      else if(j.mail==='not sent')msg.textContent='Email is not available right now, so the link could not be sent. Please try again later.';
+      else if(mode==='login')msg.textContent='If this address owns a card, a sign-in link is on its way. It is valid for one hour.';
+      else if(j.status==='sent')msg.textContent='Check your inbox: the link is valid for 24 hours. Opening it makes the card yours on this device.';
+      else msg.textContent='Thank you. Confirm your address with the link we just sent; a person then checks the request ('+j.reason+') and you get a sign-in link.';
+      go.hidden=true;
+    }catch(err){go.disabled=false;msg.className='msg err';msg.textContent=String(err.message||err)}
+  });
+  $('d-signout').addEventListener('click',async()=>{await fetch('/api/me/logout',{method:'POST'}).catch(()=>{});me=null;paint();toast('Signed out on this device.')});
+  function toast(t){const d=document.createElement('div');d.className='syn-toast';d.setAttribute('role','status');d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),4200)}
+  window.synapseCard=()=>me;
+  /* on load: who is signed in, which cards are claimed; back from the email link, open your card */
+  const qs=new URLSearchParams(location.search);
+  Promise.all([fetch('/api/me',{cache:'no-store'}).then(r=>r.json()).catch(()=>({})),fetch('/api/claimed').then(r=>r.json()).catch(()=>({ids:[]}))]).then(([m,c])=>{
+    me=m&&m.personId?m:null;claimed=new Set(c.ids||[]);
+    if(me){try{localStorage.setItem('synapse.me',me.personId)}catch(e){}if(window.synapseSetMe)window.synapseSetMe(me.personId)}
+    paint();
+    const card=qs.get('card');
+    if(card&&me&&card===me.personId){
+      if(qs.get('claimed'))toast('Your card is claimed. You are signed in on this device.');else toast('Signed in to your card.');
+      history.replaceState(null,'',location.pathname);
+      let tries=0;(function focus(){if(window.synapseFocus&&window.synapseFocus(card))return;if(++tries<40)setTimeout(focus,250)})();
+    }
+    document.dispatchEvent(new CustomEvent('synapse:me',{detail:me}));
   });
 })();
 </script>
