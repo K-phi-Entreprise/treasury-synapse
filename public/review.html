@@ -87,7 +87,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
   const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
   let token='';try{token=localStorage.getItem('synapse.admin')||''}catch(e){}
   let data=null,tab='removal';
-  const TABS=[['removal','Removals'],['correction','Corrections'],['link','Links'],['claim','Claims'],['connection','Connections'],['lead','Unreadable pages'],['decl','Declared'],['run','Crawler']];
+  const TABS=[['request','Requests'],['removal','Removals'],['correction','Corrections'],['link','Links'],['claim','Claims'],['connection','Connections'],['lead','Unreadable pages'],['decl','Declared'],['run','Crawler']];
   const FIELD={headline:'Title and company',org:'Organisation',city:'City',region:'Region',knownFor:'Known for',other:'Something else'};
   const CUR={headline:'person_headline',org:'person_org',city:'person_city',region:'person_region',knownFor:'person_known_for'};
   const ago=t=>{if(!t)return '';const m=Math.round((Date.now()-Date.parse(t))/60000);return m<60?m+' min ago':m<1440?Math.round(m/60)+' h ago':Math.round(m/1440)+' d ago'};
@@ -106,6 +106,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     if(k==='lead')return data.leads;
     if(k==='run')return data.runs||[];
     if(k==='decl')return data.decl||[];
+    if(k==='request')return (data.requests||[]).concat((data.outcomes||[]).map(o=>Object.assign({isOutcome:true},o)));
     return data.submissions.filter(s=>s.kind===k);
   }
   function renderTabs(){
@@ -188,6 +189,45 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     it.appendChild(actions(d,{buttons:[['no',d.forHire!=null?'Turn off availability':'Remove',go]],note:false}));
     return it;
   }
+  const TIMING={now:'now','3m':'within 3 months','6m':'within 6 months',later:'later or not sure'};
+  function personLine(p,rq,kindLabel){
+    const row=el('div','body');row.style.borderTop='1px solid var(--line)';row.style.paddingTop='6px';
+    const t=el('div','',p.name+(p.headline?' · '+p.headline:'')+(p.regionMatch?' · same region':''));row.appendChild(t);
+    const why=[].concat(p.evidence.map(x=>'public: '+x),p.declared.map(x=>'declared: '+x),p.referenceOn.length?['open to a reference call on '+p.referenceOn.join(', ')]:[],p.sells.length?['sells '+p.sells.join(', ')]:[]);
+    row.appendChild(el('div','',why.join(' · ')||kindLabel));
+    if(rq.introductions.some(i=>i.person_id===p.id))row.appendChild(el('span','done','introduced'));
+    else if(p.claimed)row.appendChild(actions(p,{buttons:[['ok','Introduce '+p.name.split(' ')[0],note=>call('/api/admin/requests/'+rq.id+'/introduce',{personId:p.id,note})]],notePh:'A line for both of them (optional)'}));
+    else row.appendChild(el('div','',"Card not claimed, so no address: invite them to claim it."));
+    return row;
+  }
+  function requestItem(rq){
+    const it=el('article','item');const top=el('div','top');
+    if(rq.isOutcome){
+      top.appendChild(el('span','tag','what they chose'));top.appendChild(el('span','when',ago(rq.outcome_at)));it.appendChild(top);
+      const o=rq.outcome||{};it.appendChild(el('div','who',({chose:'Chose '+(o.chosen||'a system'),kept:'Kept what they had',paused:'Paused or stopped',ongoing:'Still deciding'})[o.result]||'Answered'));
+      it.appendChild(el('div','body',[o.considered?'Considered: '+o.considered:'',o.why?'Why: '+o.why:'',o.helped?'Introductions helped: '+o.helped:''].filter(Boolean).join('\n')));
+      return it;
+    }
+    top.appendChild(el('span','tag',rq.kindLabel));
+    top.appendChild(el('span','tag'+(rq.confirmed_at?'':' warn'),rq.confirmed_at?'email confirmed':'email not confirmed'));
+    if(rq.status!=='new')top.appendChild(el('span','tag',rq.status.replace('_',' ')));
+    top.appendChild(el('span','when',ago(rq.added_at)));it.appendChild(top);
+    it.appendChild(el('div','who',[rq.name||'(no name)',rq.role,rq.company].filter(Boolean).join(' · ')));
+    const b=el('div','body');
+    [rq.email,[rq.region,rq.size?rq.size+' people':'',rq.erp?'ERP '+rq.erp:'',rq.timing?TIMING[rq.timing]:''].filter(Boolean).join(' · '),
+     rq.systems.length?'Looking at: '+rq.systems.join(', '):'',rq.topics.length?'Matters: '+rq.topics.join(', '):'',rq.details?'“'+rq.details+'”':'',
+     'May be introduced to: '+['consultants','references','vendors'].filter(k=>rq.routing[k]).join(', ')].filter(Boolean).forEach(l=>b.appendChild(el('div','',l)));
+    it.appendChild(b);
+    const S=rq.suggestions||{};
+    [['consultants','Consultants available for projects'],['references','Open to a reference call'],['vendors','Vendors']].forEach(([k,label])=>{
+      const xs=S[k]||[];if(!rq.routing[k])return;
+      it.appendChild(el('div','body',label+(xs.length?'':': nobody on the map yet')));
+      xs.forEach(p=>it.appendChild(personLine(p,rq,label)));
+    });
+    const st=v=>note=>call('/api/admin/requests/'+rq.id,{status:v,note});
+    it.appendChild(actions(rq,{buttons:[['ask','In progress',st('in_progress')],['ok','Close',st('closed')],['no','Spam',st('spam')]],notePh:'Private note'}));
+    return it;
+  }
   function runItem(r){
     const d=r.data||{};const it=el('article','item');const top=el('div','top');
     top.appendChild(el('span','tag'+(d.errors&&d.errors.length?' warn':''),d.errors&&d.errors.length?'errors':'crawler run'));
@@ -206,11 +246,11 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     renderTabs();const list=$('list');list.textContent='';
     const xs=items(tab);
     if(!xs.length){list.appendChild(el('div','empty','Nothing waiting here.'));return}
-    xs.forEach(x=>list.appendChild(tab==='connection'?connItem(x):tab==='lead'?leadItem(x):tab==='run'?runItem(x):tab==='decl'?declItem(x):subItem(x)));
+    xs.forEach(x=>list.appendChild(tab==='connection'?connItem(x):tab==='lead'?leadItem(x):tab==='run'?runItem(x):tab==='decl'?declItem(x):tab==='request'?requestItem(x):subItem(x)));
   }
   async function load(){
     if(!token){showGate();return}
-    try{data=await call('/api/admin/queue');const dd=await call('/api/admin/declarations').catch(()=>({declarations:[],available:[]}));data.decl=dd.available.map(a=>Object.assign({forHire:true},a)).concat(dd.declarations)}catch(e){if(e.message!=='unauthorised'){$('app').hidden=false;$('gate').hidden=true;$('list').textContent='';$('list').appendChild(el('p','err',String(e.message)))}return}
+    try{data=await call('/api/admin/queue');const dd=await call('/api/admin/declarations').catch(()=>({declarations:[],available:[]}));const rr=await call('/api/admin/requests').catch(()=>({requests:[],outcomes:[]}));data.requests=rr.requests;data.outcomes=rr.outcomes;data.decl=dd.available.map(a=>Object.assign({forHire:true},a)).concat(dd.declarations)}catch(e){if(e.message!=='unauthorised'){$('app').hidden=false;$('gate').hidden=true;$('list').textContent='';$('list').appendChild(el('p','err',String(e.message)))}return}
     $('gate').hidden=true;$('app').hidden=false;
     $('mailstate').textContent=data.mail?'email on':'email not configured';
     if(!items(tab).length){const k=TABS.map(t=>t[0]).find(k=>k!=='run'&&k!=='decl'&&items(k).length);if(k)tab=k}

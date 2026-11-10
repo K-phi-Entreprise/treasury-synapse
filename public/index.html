@@ -664,7 +664,7 @@ function renderDetail(){
   $('d-links').previousElementSibling.textContent=n.hub?'People':'Links';
   $('d-me').hidden=!!n.hub;
   $('d-edit').hidden=!!n.hub;$('d-import').hidden=true;
-  if(n.hub){renderHubDetail(n);return}
+  if(n.hub){renderHubDetail(n);document.dispatchEvent(new CustomEvent('synapse:hub',{detail:{kind:n.hub,name:n.name}}));return}
   $('d-seg').textContent=n.segment+(n.seed?' · Seed':'');$('d-name').textContent=n.name;
   const place=[n.city,n.region!=='Unknown'?n.region:''].filter(Boolean).join(', ');
   $('d-meta').textContent=n.headline+(place?' · '+place:'');
@@ -1662,6 +1662,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
     btn.hidden=!!isMine;btn.textContent=isClaimed?'This is my card: sign in':'Is this you? Claim this card';
   }
   document.addEventListener('synapse:detail',e=>paint(e.detail));
+  document.addEventListener('synapse:hub',()=>{cur=null;badge.hidden=btn.hidden=mine.hidden=true});
   function open(m){
     const p=cur&&person(cur);if(!p)return;
     mode=m||(claimed.has(p.id)?'login':'claim');
@@ -1802,6 +1803,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       if(d.profile.languages.length)r.appendChild(el('small','','Languages: '+d.profile.languages.join(', ')));if(d.profile.note)r.appendChild(el('small','',d.profile.note));box.appendChild(r)}
   }
   document.addEventListener('synapse:detail',e=>paint(e.detail));
+  document.addEventListener('synapse:hub',()=>{cur=null;box.hidden=true});
   function refresh(){return fetch('/api/declared',{cache:'no-store'}).then(r=>r.json()).then(j=>{declared=j.people||{};window.synapseDeclared=()=>declared;paint();document.dispatchEvent(new CustomEvent('synapse:declared'))}).catch(()=>{})}
   refresh();
   /* the editor, for the signed-in owner of the card */
@@ -1860,6 +1862,104 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not save. Try again.');
       await refresh();msg.textContent='Saved. It shows on your card now.';$('ed-go').disabled=false;setTimeout(close,900);
     }catch(err){$('ed-go').disabled=false;msg.className='msg err';msg.textContent=String(err.message||err)}
+  });
+})();
+</script>
+
+<style>
+.help-btn{margin-left:auto;margin-right:8px;padding:5px 12px;border-radius:99px;border:1px solid rgba(110,231,240,.5);background:rgba(110,231,240,.1);color:var(--fg);font:500 12.5px/1.2 var(--font-body);cursor:pointer;white-space:nowrap}
+.help-btn:hover{border-color:#6ee7f0}
+@media (max-width:899px){.help-btn{padding:3px 10px;font-size:11.5px;margin-right:6px}}
+@media (min-width:900px){.top .help-btn{order:3;margin:8px 0 0}}
+.hub-help{display:block;width:100%;margin:12px 0 0;padding:8px 12px;border-radius:9px;border:1px solid rgba(110,231,240,.35);background:rgba(110,231,240,.06);color:var(--fg);font:500 12.5px/1.3 var(--font-body);cursor:pointer;text-align:left}
+.hp .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:480px){.hp .grid{grid-template-columns:1fr}}
+.hp .kinds{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.hp .kinds button,.hp .tp button{padding:6px 11px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-dim);font:500 12.5px/1.25 var(--font-body);cursor:pointer}
+.hp .tp button{padding:4px 9px;font-size:11.5px}
+.hp .kinds button[aria-pressed=true],.hp .tp button[aria-pressed=true]{color:var(--fg);border-color:#6ee7f0;background:rgba(110,231,240,.1)}
+.hp .tp{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 12px}
+.hp h4{margin:4px 0 6px;font:600 12.5px/1.3 var(--font-body);color:var(--fg-dim)}
+.hp .check{margin:0 0 6px}
+</style>
+<div class="sbm-wrap" id="hp-wrap" hidden>
+  <form class="sbm hp" id="hp" novalidate autocomplete="on">
+    <h3>Get help</h3>
+    <button class="close x" id="hp-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="who">Private: your request is never shown on the map. We read every one and introduce you, by email, to people who can help.</p>
+    <div class="kinds" id="hp-kinds" role="group" aria-label="What you need">
+      <button type="button" data-k="selection" aria-pressed="true">Choosing a system</button>
+      <button type="button" data-k="forecasting" aria-pressed="false">Cash forecasting project</button>
+      <button type="button" data-k="implementation" aria-pressed="false">Implementation help</button>
+      <button type="button" data-k="reference" aria-pressed="false">A reference call</button>
+      <button type="button" data-k="other" aria-pressed="false">Something else</button>
+    </div>
+    <label><span>Systems you are looking at (optional)</span><input type="text" id="hp-systems" list="ed-systems" maxlength="400" placeholder="Kyriba, Nomentia, …"></label>
+    <h4>What matters most</h4>
+    <div class="tp" id="hp-topics"></div>
+    <div class="grid">
+      <label><span>Region</span><select id="hp-region"><option value="">Choose</option></select></label>
+      <label><span>Company size (people)</span><select id="hp-size"><option value="">Choose</option><option>&lt;50</option><option>50-250</option><option>250-1000</option><option>1000-5000</option><option>5000+</option></select></label>
+      <label><span>ERP</span><input type="text" id="hp-erp" maxlength="80" placeholder="SAP, NetSuite, …"></label>
+      <label><span>Timing</span><select id="hp-timing"><option value="">Choose</option><option value="now">Now</option><option value="3m">Within 3 months</option><option value="6m">Within 6 months</option><option value="later">Later or not sure</option></select></label>
+    </div>
+    <label><span>In a few words</span><textarea id="hp-details" maxlength="1500" placeholder="Number of entities and banks, what you use today, what is not working…"></textarea></label>
+    <div class="grid">
+      <label><span>Your name</span><input type="text" id="hp-name" maxlength="120" autocomplete="name"></label>
+      <label><span>Role</span><input type="text" id="hp-role" maxlength="120" autocomplete="organization-title" placeholder="Group treasurer"></label>
+      <label><span>Company (optional)</span><input type="text" id="hp-company" maxlength="120" autocomplete="organization"></label>
+      <label><span>Work email</span><input type="email" id="hp-email" maxlength="200" autocomplete="email"></label>
+    </div>
+    <h4>Who may we introduce you to?</h4>
+    <label class="check"><input type="checkbox" id="hp-r-cons" checked><span>Independent consultants who implement these systems</span></label>
+    <label class="check"><input type="checkbox" id="hp-r-ref" checked><span>People who use them and are open to a reference call</span></label>
+    <label class="check"><input type="checkbox" id="hp-r-ven"><span>The vendors themselves</span></label>
+    <button class="go" id="hp-go" type="submit">Send my request</button>
+    <p class="msg" id="hp-msg" role="status" aria-live="polite"></p>
+  </form>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const TOPICS=['Cash forecasting','Liquidity','Bank connectivity','Payments','In-house banking','FX & hedging','Debt & funding','Working capital','AR/AP','FP&A & planning','Consolidation','Treasury technology','TMS selection','Risk & compliance','Fraud','AI in finance','ESG & sustainable finance','Crypto & stablecoins','Commodities'];
+  const REGIONS=['United States','United Kingdom','France','DACH','Benelux','Nordics','Southern Europe','Asia-Pacific','Other'];
+  let kind='selection',tsel=[];
+  REGIONS.forEach(r=>{const o=document.createElement('option');o.textContent=r;$('hp-region').appendChild(o)});
+  function topics(){const h=$('hp-topics');h.textContent='';TOPICS.forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.setAttribute('aria-pressed',String(tsel.includes(t)));b.addEventListener('click',()=>{const i=tsel.indexOf(t);if(i>=0)tsel.splice(i,1);else tsel.push(t);b.setAttribute('aria-pressed',String(i<0))});h.appendChild(b)})}
+  $('hp-kinds').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;kind=b.dataset.k;$('hp-kinds').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
+  function open(pre){
+    pre=pre||{};tsel=(pre.topics||[]).slice();topics();
+    if(pre.system){$('hp-systems').value=pre.system}
+    if(pre.kind){kind=pre.kind;$('hp-kinds').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.k===kind)))}
+    const dl=$('ed-systems');if(dl&&!dl.children.length&&window.synapseSystems)window.synapseSystems().forEach(n=>{const o=document.createElement('option');o.value=n;dl.appendChild(o)});
+    $('hp-msg').textContent='';$('hp-msg').className='msg';$('hp-go').hidden=false;$('hp-go').disabled=false;$('hp-wrap').hidden=false;
+  }
+  window.synapseHelp=open;
+  const close=()=>{$('hp-wrap').hidden=true};
+  $('hp-close').addEventListener('click',close);
+  $('hp-wrap').addEventListener('click',e=>{if(e.target===$('hp-wrap'))close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('hp-wrap').hidden)close()});
+  /* entry points: the header, and the card of a system */
+  const top=document.querySelector('.top'),badge=$('status');
+  const hb=document.createElement('button');hb.type='button';hb.className='help-btn';hb.id='help-btn';hb.textContent='Get help';top.insertBefore(hb,badge);
+  hb.addEventListener('click',()=>open());
+  const hub=document.createElement('button');hub.type='button';hub.className='hub-help';hub.id='hub-help';hub.hidden=true;
+  const anchor=$('d-edit');anchor.parentNode.insertBefore(hub,anchor);
+  let hubName='';
+  document.addEventListener('synapse:hub',e=>{const d=e.detail||{};hub.hidden=d.kind!=='system';hubName=d.name||'';hub.textContent='Choosing or implementing '+hubName+'? Get help';});
+  document.addEventListener('synapse:detail',()=>{hub.hidden=true});
+  hub.addEventListener('click',()=>open({system:hubName}));
+  $('hp').addEventListener('submit',async e=>{
+    e.preventDefault();const msg=$('hp-msg'),go=$('hp-go');go.disabled=true;msg.className='msg';msg.textContent='Sending…';
+    const body={kind,systems:$('hp-systems').value.split(',').map(s=>s.trim()).filter(Boolean),topics:tsel,region:$('hp-region').value,size:$('hp-size').value,erp:$('hp-erp').value,timing:$('hp-timing').value,
+      details:$('hp-details').value,name:$('hp-name').value,role:$('hp-role').value,company:$('hp-company').value,email:$('hp-email').value,
+      routing:{consultants:$('hp-r-cons').checked,references:$('hp-r-ref').checked,vendors:$('hp-r-ven').checked}};
+    try{
+      const r=await fetch('/api/requests',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+      const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not go through. Try again.');
+      msg.textContent=j.mail==='sent'?'Thank you. Confirm your address with the link we just sent, and we come back to you within two working days.':'Thank you, your request is recorded. We come back to you within two working days.';
+      go.hidden=true;
+    }catch(err){go.disabled=false;msg.className='msg err';msg.textContent=String(err.message||err)}
   });
 })();
 </script>

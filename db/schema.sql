@@ -227,3 +227,37 @@ create table if not exists person_profile (
   note text not null default '',
   updated_at timestamptz not null default now()
 );
+
+-- Requests for help: private, never on the map. Outcome asked eight weeks later.
+create table if not exists requests (
+  id serial primary key,
+  kind text not null,
+  email text not null,
+  name text not null default '',
+  role text not null default '',
+  company text not null default '',
+  region text not null default '',
+  size text not null default '',
+  erp text not null default '',
+  systems text[] not null default '{}',
+  topics text[] not null default '{}',
+  timing text not null default '',
+  details text not null default '',
+  routing jsonb not null default '{}',
+  status text not null default 'new' check (status in ('new','in_progress','introduced','closed','spam')),
+  owner_note text not null default '',
+  ip_hash text not null default '',
+  confirm_token text unique,
+  confirmed_at timestamptz,
+  outcome_token text unique,
+  followup_sent_at timestamptz,
+  outcome jsonb,
+  outcome_at timestamptz,
+  added_at timestamptz not null default now()
+);
+create table if not exists introductions (
+  request_id integer not null references requests(id) on delete cascade,
+  person_id text not null references people(id) on delete cascade,
+  at timestamptz not null default now(),
+  primary key (request_id, person_id)
+);

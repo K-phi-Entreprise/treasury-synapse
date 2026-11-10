@@ -11,7 +11,7 @@ const app = express();
 const pool = process.env.DATABASE_URL ? makePool() : null;
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 const SALT = process.env.IP_SALT || ADMIN_TOKEN || 'synapse';
-const LIMITS = { connection: 10, submission: 10, import: 2, claim: 5 };
+const LIMITS = { connection: 10, submission: 10, import: 2, claim: 5, request: 3 };
 
 app.set('trust proxy', true);
 /* the onrender.com address sends visitors to the real domain (health checks stay where they are) */
@@ -311,6 +311,8 @@ app.post('/api/admin/leads/:id', admin, async (req, res, next) => {
 /* ---------- claimed cards ---------- */
 const claims = pool ? require('./claims').mount(app, { pool, mail, ipHash, underQuota, publicUrl: PUBLIC_URL, secret: SALT, emailRe: EMAIL_RE, onChange: () => { cache.at = 0; } }) : null;
 if (claims) require('./declarations').mount(app, { pool, claims, admin, onChange: () => { cache.at = 0; } });
+const requests = pool ? require('./requests').mount(app, { pool, mail, ipHash, underQuota, publicUrl: PUBLIC_URL, emailRe: EMAIL_RE, admin,
+  topics: require('./declarations').TOPICS, regions: require('./declarations').REGIONS }) : null;
 
 /* ---------- chat (D2) ---------- */
 if (pool) require('./chat').mount(app, {
@@ -338,4 +340,4 @@ if (require.main === module) {
   const port = process.env.PORT || 3000;
   app.listen(port, () => console.log('treasury-synapse listening on ' + port));
 }
-module.exports = { app, pool };
+module.exports = { app, pool, requests };

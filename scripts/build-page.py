@@ -70,9 +70,9 @@ rep("  $('d-me').setAttribute('aria-pressed',String(n.id===meId));$('d-me').text
 # D3: suggest-a-change entry on the person card, hidden on topic and system cards
 rep('        <div class="d-src" id="d-src"></div>\n        <button class="d-more" id="d-more" type="button" aria-expanded="false"></button>',
     '        <div class="d-src" id="d-src"></div>\n        <button class="d-import" id="d-import" type="button" hidden>Add my LinkedIn connections (CSV)</button>\n        <button class="d-edit" id="d-edit" type="button">Suggest a correction, add a link, or ask for removal</button>\n        <button class="d-more" id="d-more" type="button" aria-expanded="false"></button>')
-rep("  if(n.hub){renderHubDetail(n);return}","  $('d-edit').hidden=!!n.hub;$('d-import').hidden=true;\n  if(n.hub){renderHubDetail(n);return}")
+rep("  if(n.hub){renderHubDetail(n);return}","  $('d-edit').hidden=!!n.hub;$('d-import').hidden=true;\n  if(n.hub){renderHubDetail(n);document.dispatchEvent(new CustomEvent('synapse:hub',{detail:{kind:n.hub,name:n.name}}));return}")
 import os
-extra=open(os.path.join(os.path.dirname(__file__),'page-extra.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-import.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-claim.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-card.html'),encoding='utf-8').read()
+extra=open(os.path.join(os.path.dirname(__file__),'page-extra.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-import.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-claim.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-card.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-help.html'),encoding='utf-8').read()
 # standalone document: the artifact tool used to add the skeleton
 head='''<!doctype html>
 <html lang="en">

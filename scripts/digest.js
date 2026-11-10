@@ -16,14 +16,18 @@ async function digest(pool) {
     (select count(*)::int from co_appearances where added_at > now() - interval '1 day') new_links,
     (select count(*)::int from people where deepened_at > now() - interval '1 day') deepened,
     (select count(*)::int from people where not hidden) people,
+    (select count(*)::int from requests where status in ('new','in_progress') and confirmed_at is not null) requests,
+    (select count(*)::int from submissions where status = 'pending' and kind = 'claim') claims,
     (select count(*)::int from runs where data->>'mode' = 'render' and started_at > now() - interval '1 day') crawl_runs,
     (select coalesce(sum((data->>'costUsd')::numeric), 0)::float from runs where data->>'mode' = 'render' and started_at > now() - interval '1 day') crawl_usd,
     (select count(*)::int from runs where data->>'mode' = 'render' and started_at > now() - interval '1 day' and jsonb_array_length(coalesce(data->'errors', '[]')) > 0) crawl_errors`);
   const r = q.rows[0];
-  const waiting = r.removals + r.corrections + r.links + r.discuss + r.connections + r.leads;
+  const waiting = r.removals + r.corrections + r.links + r.discuss + r.connections + r.leads + r.requests + r.claims;
   const base = (process.env.PUBLIC_URL || 'https://synapse.k-phi.com').replace(/\/$/, '');
   const lines = [
     'Waiting for you: ' + (waiting ? waiting : 'nothing'),
+    r.requests ? '  ' + r.requests + ' request(s) for help to answer' : '',
+    r.claims ? '  ' + r.claims + ' card claim(s) to check' : '',
     r.removals ? '  ' + r.removals + ' removal request(s), cards hidden until you decide' : '',
     r.corrections ? '  ' + r.corrections + ' correction(s)' : '',
     r.links ? '  ' + r.links + ' public link(s)' : '',
@@ -42,6 +46,8 @@ async function digest(pool) {
 if (require.main === module) {
   const pool = makePool();
   digest(pool).then(async d => {
+    /* the eight-week "what did you choose, and why?" emails go out with the digest */
+    try { const n = await require('../requests').mount(require('express')(), { pool, mail, ipHash: () => '', underQuota: async () => true, publicUrl: (process.env.PUBLIC_URL || 'https://synapse.k-phi.com').replace(/\/$/, ''), emailRe: /./, admin: (q, s, n) => n(), topics: [], regions: [] }).sendFollowUps(); if (n) console.log('follow-ups sent:', n); } catch (e) { console.error('follow-ups failed', e.message); }
     console.log(d.text);
     if (process.env.OWNER_EMAIL) console.log(JSON.stringify(await mail.send({ to: process.env.OWNER_EMAIL, subject: d.subject, text: d.text })));
     await pool.end();

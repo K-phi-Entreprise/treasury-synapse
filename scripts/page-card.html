@@ -86,6 +86,7 @@
       if(d.profile.languages.length)r.appendChild(el('small','','Languages: '+d.profile.languages.join(', ')));if(d.profile.note)r.appendChild(el('small','',d.profile.note));box.appendChild(r)}
   }
   document.addEventListener('synapse:detail',e=>paint(e.detail));
+  document.addEventListener('synapse:hub',()=>{cur=null;box.hidden=true});
   function refresh(){return fetch('/api/declared',{cache:'no-store'}).then(r=>r.json()).then(j=>{declared=j.people||{};window.synapseDeclared=()=>declared;paint();document.dispatchEvent(new CustomEvent('synapse:declared'))}).catch(()=>{})}
   refresh();
   /* the editor, for the signed-in owner of the card */

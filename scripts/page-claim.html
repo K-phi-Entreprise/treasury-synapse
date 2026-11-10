@@ -50,6 +50,7 @@
     btn.hidden=!!isMine;btn.textContent=isClaimed?'This is my card: sign in':'Is this you? Claim this card';
   }
   document.addEventListener('synapse:detail',e=>paint(e.detail));
+  document.addEventListener('synapse:hub',()=>{cur=null;badge.hidden=btn.hidden=mine.hidden=true});
   function open(m){
     const p=cur&&person(cur);if(!p)return;
     mode=m||(claimed.has(p.id)?'login':'claim');
