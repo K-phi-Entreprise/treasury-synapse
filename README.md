@@ -1,10 +1,11 @@
 # Treasury Synapse
 
-A 3D map of treasury and finance professionals built only from public sources: who speaks about what, on which systems, and who appeared with whom. No LinkedIn data, no photos, every fact carries the URL it came from.
+A 3D map of the treasury technology market and its people, built only from public sources: which company runs which system, who is selecting one now, and whom to ask. No LinkedIn data, no photos, every fact carries the URL it came from.
 
-## Three angles on one set of facts
+## Angles on one set of facts
 
-- Social: public co-appearance (same episode, panel, webinar, team). Not acquaintance.
+- Market (default): organisations around the systems they run, implement, are selecting or replaced, from vendor customer stories, press releases, job posts and person cards. Advisers and vendors are never counted as users. A selection counts as "now" for nine months unless a later page shows the system running. Tables `companies`, `installs`, `market_sources`; first facts in `data/market-seed.json`; the crawler reads `CRAWL_MARKET_PAGES` sources per run (default 2) before it deepens cards.
+- People (was Social): public co-appearance (same episode, panel, webinar, team). Not acquaintance.
 - Topics: people around the topics they speak about and the systems they use, sell or implement. Size is public footprint.
 - Connections: declared by people themselves, pending until the owner validates.
 

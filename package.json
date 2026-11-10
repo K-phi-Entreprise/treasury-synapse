@@ -8,7 +8,7 @@
     "start": "node server.js",
     "migrate": "node scripts/migrate.js",
     "import": "node scripts/import.js",
-    "test": "node --test --test-concurrency=1 tests/store.test.js tests/chat.test.js tests/review.test.js tests/crawl.test.js tests/claims.test.js tests/requests.test.js"
+    "test": "node --test --test-concurrency=1 tests/store.test.js tests/chat.test.js tests/review.test.js tests/crawl.test.js tests/claims.test.js tests/requests.test.js tests/market.test.js"
   },
   "dependencies": {
     "compression": "^1.7.4",

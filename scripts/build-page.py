@@ -19,6 +19,7 @@ start_new='''  async function start(){
         const g=await r.json();
         (g.people||[]).forEach(d=>pendingP.push(d));(g.edges||[]).forEach(d=>pendingE.push(d));
         (g.connections||[]).forEach(d=>{if(d.status!=='rejected')pendingC.push(d)});
+        (g.companies||[]).forEach(d=>pendingCo.push(d));(g.installs||[]).forEach(d=>pendingI.push(d));if(g.companyPeople)staffIn=g.companyPeople;
         since=g.now||since;gotP=true;gotE=true;setStatus('live','Live');queueIngest();
       }catch(e){setStatus('','Disconnected')}
     }
@@ -79,7 +80,7 @@ head='''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Who appears with whom in treasury, from public sources: a 3D map of treasury and finance professionals, their topics and the systems they use, sell or implement.">
+<meta name="description" content="Which company runs which treasury system, and whom to ask: a 3D map of the treasury technology market and its people, built from public sources only.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">

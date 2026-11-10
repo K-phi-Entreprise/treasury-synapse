@@ -20,6 +20,7 @@ async function migrate(pool) {
   await waitForDb(pool);
   const sql = fs.readFileSync(path.join(__dirname, '..', 'db', 'schema.sql'), 'utf8');
   await pool.query(sql);
+  await require('./market').seed(pool);
 }
 
 if (require.main === module) {

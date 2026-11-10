@@ -48,6 +48,9 @@ function config(env = process.env) {
     maxCalls: n('CRAWL_MAX_CALLS', 10),         // API calls per target
     fetchesPerTarget: n('CRAWL_FETCHES', 6),
     searchesPerTarget: n('CRAWL_SEARCHES', 4),
+    marketPages: n('CRAWL_MARKET_PAGES', 2),   // market sources (vendor case-study lists, single stories, job searches) per run
+    marketFetches: n('CRAWL_MARKET_FETCHES', 4),
+    marketSearches: n('CRAWL_MARKET_SEARCHES', 3),
     owner: env.OWNER_ID || 'vincent-donnat'
   };
 }
@@ -448,11 +451,20 @@ async function crawl(pool, cfg = config(), opts = {}) {
     evidenceAdded: 0, factsAdded: 0, rejected: 0, rejections: [], leadsAdded: 0, pagesRead: 0, searches: 0, calls: 0, costUsd: 0, errors: [], notes: '' };
   const spent = await spentToday(pool);
   const targets = await pickTargets(pool, cfg);
-  if (opts.dryRun) return { dryRun: true, spentToday: spent, targets: targets.map(t => t.type + ':' + (t.type === 'lead' ? t.lead.url : t.personId)) };
+  if (opts.dryRun) {
+    const ms = cfg.marketPages > 0 ? (await pool.query("select url from market_sources where status = 'queued' order by case kind when 'page' then 0 when 'index' then 1 else 2 end, read_at nulls first limit $1", [cfg.marketPages])).rows.map(r => 'market:' + r.url) : [];
+    return { dryRun: true, spentToday: spent, targets: targets.map(t => t.type + ':' + (t.type === 'lead' ? t.lead.url : t.personId)).concat(ms) };
+  }
   if (!cfg.apiKey) stats.notes = 'ANTHROPIC_API_KEY is not set; nothing done.';
   else if (spent >= cfg.dailyUsd) stats.notes = 'Daily spend cap reached (' + spent.toFixed(2) + ' of ' + cfg.dailyUsd + ' USD); nothing done.';
   else {
+    /* the Market view first (the primary angle): company-system sources, inside the same daily cap */
+    if (cfg.marketPages > 0) {
+      try { await require('./market').harvest(pool, cfg, stats, cfg.dailyUsd - spent); }
+      catch (e) { stats.errors.push('market: ' + str(e.message, 300)); }
+    }
     for (const t of targets) {
+      if (stats.errors.some(x => / 40[13]:| 429:| 529:/.test(x))) break;
       if (spent + stats.costUsd >= cfg.dailyUsd) { stats.notes = 'Stopped at the daily spend cap.'; break; }
       try {
         const r = await research(pool, cfg, t, stats);
@@ -479,4 +491,4 @@ if (require.main === module) {
     .then(async r => { console.log(JSON.stringify(r, null, 1)); await pool.end(); if (r.errors && r.errors.length && !r.calls) process.exit(1); })
     .catch(async e => { console.error(e); await pool.end().catch(() => {}); process.exit(1); });
 }
-module.exports = { crawl, config, normUrl, TOPICS, BLOCKED };
+module.exports = { crawl, config, normUrl, TOPICS, BLOCKED, callApi, cost, withCache };

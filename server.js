@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const express = require('express');
 const compression = require('compression');
 const { makePool } = require('./scripts/db');
+const { loadMarket } = require('./scripts/market');
 
 const app = express();
 const pool = process.env.DATABASE_URL ? makePool() : null;
@@ -53,7 +54,9 @@ async function loadGraph(since) {
      from people p${sinceSql.replace('updated_at', 'p.updated_at')} order by p.added_at nulls last`, params);
   const edges = await pool.query(`select * from v_social${sinceSql} order by added_at nulls last`, params);
   const conns = await pool.query(`select * from v_connections${sinceSql} order by added_at`, params);
+  const market = await loadMarket(pool, since);
   return {
+    companies: market.companies, installs: market.installs, companyPeople: market.companyPeople || null,
     now: new Date().toISOString(),
     people: people.rows.filter(p => !p.hidden).map(p => ({
       id: p.id, name: p.name, headline: p.headline, org: p.org, city: p.city, region: p.region, segment: p.segment, seed: p.seed,

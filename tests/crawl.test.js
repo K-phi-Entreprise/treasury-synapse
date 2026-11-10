@@ -34,7 +34,7 @@ test.before(async () => {
 });
 test.after(async () => { mock.close(); await pool.end(); });
 
-const cfg = extra => Object.assign(config({ ANTHROPIC_API_KEY: 'test-key', ANTHROPIC_BASE_URL: 'http://127.0.0.1:' + mock.address().port, CRAWL_TARGETS: '1' }), extra || {});
+const cfg = extra => Object.assign(config({ ANTHROPIC_API_KEY: 'test-key', ANTHROPIC_BASE_URL: 'http://127.0.0.1:' + mock.address().port, CRAWL_TARGETS: '1', CRAWL_MARKET_PAGES: '0' }), extra || {});
 async function only(id) {
   await pool.query("update people set deepened_at = now(), parked = false, empty_runs = 0; update leads set status = 'pending' where status = 'queued'; delete from runs where data->>'mode' = 'render'");
   await pool.query('update people set deepened_at = null where id = $1', [id]);

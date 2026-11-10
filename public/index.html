@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Who appears with whom in treasury, from public sources: a 3D map of treasury and finance professionals, their topics and the systems they use, sell or implement.">
+<meta name="description" content="Which company runs which treasury system, and whom to ask: a 3D map of the treasury technology market and its people, built from public sources only.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -291,19 +291,19 @@ button:focus-visible{outline:2px solid var(--c-corp);outline-offset:2px}
       <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M7 8l7 13M21 7l-7 14M7 8l14-1" stroke="currentColor" stroke-width="1.4" fill="none" opacity=".55"/><circle cx="7" cy="8" r="2.6" fill="currentColor"/><circle cx="21" cy="7" r="3.2" fill="currentColor"/><circle cx="14" cy="21" r="4" fill="currentColor"/></svg>
       <div>
         <h1>Treasury Synapse</h1>
-        <p class="sub">Who appears with whom in treasury, from public sources. Grows as the crawler runs.</p>
+        <p class="sub">Which company runs which treasury system, and whom to ask. Public sources only; grows as the crawler runs.</p>
       </div>
     </div>
     <span class="badge" id="status"><i></i><span id="status-t">Connecting</span></span>
   </header>
 
   <section class="kpis band" aria-label="Key figures">
-    <article class="kpi"><span class="k-label">People</span><strong class="k-val" id="k1">0</strong><span class="k-sub" id="k1s">on the map</span></article>
-    <article class="kpi"><span class="k-label">Links</span><strong class="k-val" id="k2">0</strong><span class="k-sub" id="k2s">each with a source</span></article>
-    <article class="kpi"><span class="k-label">Organisations</span><strong class="k-val" id="k3">0</strong><span class="k-sub">represented</span></article>
-    <article class="kpi"><span class="k-label">Regions</span><strong class="k-val" id="k4">0</strong><span class="k-sub">covered</span></article>
-    <article class="kpi"><span class="k-label">Sources</span><strong class="k-val" id="k5">0</strong><span class="k-sub">public pages</span></article>
-    <article class="kpi"><span class="k-label">Last 7 days</span><strong class="k-val" id="k6">0</strong><span class="k-sub">people added</span></article>
+    <article class="kpi"><span class="k-label" id="k1l">People</span><strong class="k-val" id="k1">0</strong><span class="k-sub" id="k1s">on the map</span></article>
+    <article class="kpi"><span class="k-label" id="k2l">Links</span><strong class="k-val" id="k2">0</strong><span class="k-sub" id="k2s">each with a source</span></article>
+    <article class="kpi"><span class="k-label" id="k3l">Organisations</span><strong class="k-val" id="k3">0</strong><span class="k-sub" id="k3s">represented</span></article>
+    <article class="kpi"><span class="k-label" id="k4l">Regions</span><strong class="k-val" id="k4">0</strong><span class="k-sub" id="k4s">covered</span></article>
+    <article class="kpi"><span class="k-label" id="k5l">Sources</span><strong class="k-val" id="k5">0</strong><span class="k-sub" id="k5s">public pages</span></article>
+    <article class="kpi"><span class="k-label" id="k6l">Last 7 days</span><strong class="k-val" id="k6">0</strong><span class="k-sub" id="k6s">people added</span></article>
   </section>
 
   <main class="stage" id="stage">
@@ -369,7 +369,8 @@ button:focus-visible{outline:2px solid var(--c-corp);outline-offset:2px}
 
   <section class="filters band" aria-label="Angle and segments">
     <div class="angles" id="angles" role="group" aria-label="Angle">
-      <button class="angle" type="button" data-a="social" aria-pressed="true">Social</button>
+      <button class="angle" type="button" data-a="market" aria-pressed="true">Market</button>
+      <button class="angle" type="button" data-a="social" aria-pressed="false">People</button>
       <button class="angle" type="button" data-a="topics" aria-pressed="false">Topics</button>
       <button class="angle" type="button" data-a="connections" aria-pressed="false">Connections</button>
       <button class="seg-toggle" id="seg-toggle" type="button" aria-expanded="false" aria-controls="chips">Segments<b id="seg-off" hidden></b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
@@ -379,11 +380,11 @@ button:focus-visible{outline:2px solid var(--c-corp);outline-offset:2px}
   </section>
 
   <section class="regions band" aria-label="Regions and most connected">
-    <h3 class="h">Regions</h3>
+    <h3 class="h" id="reg-h">Regions</h3>
     <div id="region-list"></div>
     <h3 class="h" id="hub-h">Most connected</h3>
     <div id="hub-list"></div>
-    <p class="note">Every link points to the public page it was found on: a podcast episode, a panel, a filing. Nothing here comes from private profiles.</p>
+    <p class="note" id="src-note">Every link points to the public page it was found on: a podcast episode, a panel, a filing. Nothing here comes from private profiles.</p>
   </section>
 </div>
 
@@ -405,7 +406,7 @@ const REGION_ORDER=['United States','United Kingdom','France','DACH','Benelux','
 const KINDS={podcast:'Podcast',panel:'Panel',webinar:'Webinar',colleague:'Colleagues',executive:'Executive team',comment:'Comment',filing:'Filing',csv:'Connection',article:'Article',topic:'Topic',system:'System',knows:'Knows'};
 
 /* Graph store: a growing graph fed by the db. */
-const MAX_N=2400,MAX_E=20000;
+const MAX_N=6000,MAX_E=24000;
 function createGraph(){
   return {n:0,e:0,nodes:[],idx:new Map(),adj:[],edges:[],eidx:new Map(),
     pos:new Float32Array(MAX_N*3),vel:new Float32Array(MAX_N*3),size:new Float32Array(MAX_N),born:new Float64Array(MAX_N),
@@ -435,11 +436,32 @@ function upsertHub(G,kind,name,at,rnd){
   const id=hubId(kind,name);let i=G.idx.get(id);if(i!=null)return i;
   if(G.n>=MAX_N)return -1;
   i=G.n++;G.idx.set(id,i);G.adj[i]=[];(G.hubs||(G.hubs=[])).push(i);
-  G.nodes[i]={id:id,name:String(name),hub:kind,headline:kind==='topic'?'Topic':'System',org:'',city:'',region:'Unknown',segment:'',seg:0,seed:false,foundVia:null,source:'',topics:[],systems:[],roles:[],knownFor:'',publishers:0,followers:null,addedAt:''};
+  G.nodes[i]={id:id,name:String(name),hub:kind,headline:kind==='topic'?'Topic':kind==='signal'?'Signal':'System',org:'',city:'',region:'Unknown',segment:'',seg:0,seed:false,foundVia:null,source:'',topics:[],systems:[],roles:[],knownFor:'',publishers:0,followers:null,addedAt:''};
   const u=rnd()*2-1,th=rnd()*6.283,rr=Math.sqrt(1-u*u),rad=G.R*.5;
   G.pos[i*3]=Math.cos(th)*rr*rad;G.pos[i*3+1]=u*rad;G.pos[i*3+2]=Math.sin(th)*rr*rad;G.vel[i*3]=G.vel[i*3+1]=G.vel[i*3+2]=0;
   G.born[i]=at;G.size[i]=5;G.hot=1;return i;
 }
+/* an organisation of the Market view: a node of its own, not a hub (hubs push each other apart hard) */
+function upsertCompany(G,c,at,rnd){
+  const id='co:'+c.id;let i=G.idx.get(id);
+  const meta={id:id,key:String(c.id),name:String(c.name||c.id),hub:'company',headline:String(c.industry||''),org:String(c.name||''),city:'',region:String(c.region||'Unknown'),segment:'',seg:0,seed:false,foundVia:null,source:'',topics:[],systems:[],roles:[],knownFor:'',publishers:0,followers:null,addedAt:String(c.addedAt||''),installs:[],staff:[],selecting:null};
+  if(i!=null){const o=G.nodes[i];meta.installs=o.installs;meta.staff=o.staff;meta.selecting=o.selecting;G.nodes[i]=meta;return i}
+  if(G.n>=MAX_N)return -1;
+  i=G.n++;G.idx.set(id,i);G.nodes[i]=meta;G.adj[i]=[];
+  const u=rnd()*2-1,th=rnd()*6.283,rr=Math.sqrt(1-u*u),rad=G.R*.8;
+  G.pos[i*3]=Math.cos(th)*rr*rad;G.pos[i*3+1]=u*rad;G.pos[i*3+2]=Math.sin(th)*rr*rad;G.vel[i*3]=G.vel[i*3+1]=G.vel[i*3+2]=0;
+  G.born[i]=at;G.size[i]=3;G.hot=1;return i;
+}
+/* a selection counts as "now" for nine months, unless a later page shows the system running */
+function selectingNow(co){
+  const today=Date.now();let best=null;
+  co.installs.forEach(r=>{if(r.status!=='selecting')return;const t=Date.parse(r.date||'')||0;if(t&&today-t>270*864e5)return;if(!best||t>(Date.parse(best.date||'')||0))best=r});
+  if(!best)return null;
+  const bt=Date.parse(best.date||'')||0;
+  if(co.installs.some(r=>(r.status==='live'||r.status==='implementing')&&(Date.parse(r.date||'')||0)>=bt&&bt>0&&(Date.parse(r.date||'')||0)>0))return null;
+  return best;
+}
+function movedOffSheets(co){return co.installs.some(r=>/excel|spreadsheet/i.test(r.replaced||'')||(r.status==='previous'&&/excel|spreadsheet/i.test(r.system)))}
 function edgeKey(a,b){return a<b?a+'_'+b:b+'_'+a}
 function upsertEdge(G,d,at){
   const a=G.idx.get(d.a),b=G.idx.get(d.b);
@@ -464,23 +486,24 @@ function footprint(n){return 1+n.publishers*1.5+n.topics.length+.5*n.systems.len
 function resize(G){
   let mx=1,mh=1;
   const val=i=>{const n=G.nodes[i];if(angle==='topics')return footprint(n);return n.followers!=null?Math.sqrt(n.followers/40):G.adj[i].length};
-  for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub){if(G.adj[i].length>mh)mh=G.adj[i].length}else{const v=val(i);if(v>mx)mx=v}}
-  for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub)G.size[i]=4+11*Math.sqrt(G.adj[i].length/mh);else G.size[i]=3+(n.seed?2:0)+9*Math.sqrt(val(i)/mx)}
+  for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub==='company')continue;if(n.hub){if(G.adj[i].length>mh)mh=G.adj[i].length}else{const v=val(i);if(v>mx)mx=v}}
+  for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub==='company')G.size[i]=3+1.4*Math.min(5,G.adj[i].length)+(n.staff.length?1.6:0);else if(n.hub)G.size[i]=4+11*Math.sqrt(G.adj[i].length/mh);else G.size[i]=3+(n.seed?2:0)+9*Math.sqrt(val(i)/mx)}
 }
 function step(G,dt){
-  const N=G.n;if(!N)return;
-  const P=G.pos,V=G.vel,F=new Float32Array(N*3);
-  for(let i=0;i<N;i++){
+  const A=G.act||null,N=A?A.length:G.n;if(!N)return;
+  const P=G.pos,V=G.vel,F=new Float32Array(G.n*3),on=G.on||null;
+  for(let u=0;u<N;u++){
+    const i=A?A[u]:u;
     const ix=P[i*3],iy=P[i*3+1],iz=P[i*3+2];
-    for(let j=i+1;j<N;j++){
+    for(let w=u+1;w<N;w++){const j=A?A[w]:w;
       const dx=ix-P[j*3],dy=iy-P[j*3+1],dz=iz-P[j*3+2];
       const d2=dx*dx+dy*dy+dz*dz+6,f=520/(d2*Math.sqrt(d2));
       F[i*3]+=dx*f;F[i*3+1]+=dy*f;F[i*3+2]+=dz*f;F[j*3]-=dx*f;F[j*3+1]-=dy*f;F[j*3+2]-=dz*f;
     }
   }
-  if(G.hubs&&G.hubs.length>1){const H=G.hubs;for(let u=0;u<H.length;u++)for(let w=u+1;w<H.length;w++){const i=H[u],j=H[w];const dx=P[i*3]-P[j*3],dy=P[i*3+1]-P[j*3+1],dz=P[i*3+2]-P[j*3+2];const d2=dx*dx+dy*dy+dz*dz+20,f=9000/(d2*Math.sqrt(d2));F[i*3]+=dx*f;F[i*3+1]+=dy*f;F[i*3+2]+=dz*f;F[j*3]-=dx*f;F[j*3+1]-=dy*f;F[j*3+2]-=dz*f}}
+  if(G.hubs&&G.hubs.length>1){const H=on?G.hubs.filter(h=>on[h]):G.hubs;for(let u=0;u<H.length;u++)for(let w=u+1;w<H.length;w++){const i=H[u],j=H[w];const dx=P[i*3]-P[j*3],dy=P[i*3+1]-P[j*3+1],dz=P[i*3+2]-P[j*3+2];const d2=dx*dx+dy*dy+dz*dz+20,f=9000/(d2*Math.sqrt(d2));F[i*3]+=dx*f;F[i*3+1]+=dy*f;F[i*3+2]+=dz*f;F[j*3]-=dx*f;F[j*3+1]-=dy*f;F[j*3+2]-=dz*f}}
   for(let e=0;e<G.e;e++){
-    const a=G.edges[e].a,b=G.edges[e].b;
+    const a=G.edges[e].a,b=G.edges[e].b;if(on&&!(on[a]&&on[b]))continue;
     const dx=P[b*3]-P[a*3],dy=P[b*3+1]-P[a*3+1],dz=P[b*3+2]-P[a*3+2];
     const d=Math.sqrt(dx*dx+dy*dy+dz*dz)+.01,L=14+8*(1-G.edges[e].conf);
     const f=(d-L)*.05/d;
@@ -489,24 +512,31 @@ function step(G,dt){
   if(G.center>=0){
     const c=G.center;
     F[c*3]-=P[c*3]*.6;F[c*3+1]-=P[c*3+1]*.6;F[c*3+2]-=P[c*3+2]*.6;
-    for(let i=0;i<N;i++){
-      if(i===c)continue;
+    for(let u=0;u<N;u++){
+      const i=A?A[u]:u;if(i===c)continue;
       const x=P[i*3],y=P[i*3+1],z=P[i*3+2],r=Math.sqrt(x*x+y*y+z*z)+.01,tr=EGO_R[G.hops[i]],f=(tr-r)*.08/r;
       F[i*3]+=x*f;F[i*3+1]+=y*f;F[i*3+2]+=z*f;
     }
   }
   let maxv=0;
-  for(let i=0;i<N;i++)for(let c=0;c<3;c++){
-    F[i*3+c]-=P[i*3+c]*(G.center>=0?.004:.02);
+  for(let u=0;u<N;u++)for(let c=0;c<3;c++){
+    const i=A?A[u]:u;F[i*3+c]-=P[i*3+c]*(G.center>=0?.004:.02);
     let v=(V[i*3+c]+F[i*3+c]*dt*14)*.82;
     if(v>4)v=4;else if(v<-4)v=-4;
     V[i*3+c]=v;P[i*3+c]+=v;if(Math.abs(v)>maxv)maxv=Math.abs(v);
   }
-  let r=0;for(let i=0;i<N;i++){const d=Math.hypot(P[i*3],P[i*3+1],P[i*3+2]);if(d>r)r=d}
+  let r=0;for(let u=0;u<N;u++){const i=A?A[u]:u;const d=Math.hypot(P[i*3],P[i*3+1],P[i*3+2]);if(d>r)r=d}
   G.R+=(Math.max(40,r+12)-G.R)*.05;
   if(maxv<.02)G.hot=0;
 }
 function computeKPIs(G,vis){
+  if(angle==='market'){
+    let co=0,pairs=0,moves=0,selecting=0;const sys=new Set(),src=new Set();
+    for(let i=0;i<G.n;i++){const c=G.nodes[i];if(!vis[i]||c.hub!=='company')continue;co++;
+      c.installs.forEach(r=>{if(r.status==='live'||r.status==='implementing'){pairs++;sys.add(r.system)}if(r.url)src.add(r.url)});
+      if(movedOffSheets(c))moves++;if(c.selecting)selecting++}
+    return {market:true,n:co,links:pairs,orgs:sys.size,regs:moves,sources:src.size,week:selecting};
+  }
   let n=0,links=0,week=0;const orgs=new Set(),regs=new Set(),src=new Set();
   const cutoff=Date.now()-7*864e5;
   for(let i=0;i<G.n;i++){if(!vis[i])continue;const p=G.nodes[i];if(p.hub)continue;n++;if(p.org)orgs.add(p.org.toLowerCase());if(p.region&&p.region!=='Unknown')regs.add(p.region);if(p.source)src.add(p.source);const t=Date.parse(p.addedAt);if(t&&t>cutoff)week++}
@@ -576,16 +606,17 @@ window.synapseFocus=id=>{const i=G.idx.get(id);if(i==null)return false;select(i,
 window.synapseSetMe=id=>{meId=id||'';if(sel>=0)renderDetail()};
 window.synapsePeople=()=>{const o=[];for(let i=0;i<G.n;i++){const n=G.nodes[i];if(!n.hub)o.push({id:n.id,name:n.name,org:n.org||''})}return o};
 /* Three angles on the same facts. E holds the raw edges per angle; G carries only the active one. */
-const ANGLES=['social','topics','connections'];
-let angle='social';try{const a=localStorage.getItem('synapse.angle');if(ANGLES.indexOf(a)>=0)angle=a}catch(e){}
-const E={social:[],topics:[],connections:[]},EK={social:new Map(),topics:new Map(),connections:new Map()};
+const ANGLES=['market','social','topics','connections'];
+let angle='market';try{const a=localStorage.getItem('synapse.view');if(ANGLES.indexOf(a)>=0)angle=a}catch(e){}
+const E={market:[],social:[],topics:[],connections:[]},EK={market:new Map(),social:new Map(),topics:new Map(),connections:new Map()};
 const socAdj=[];
 let dbRef=null,viewerId='';
-const ANGLE_NOTE={social:'A line means the two people appeared in the same public setting: episode, panel, webinar, team. It is co-appearance, not acquaintance.',
+const ANGLE_NOTE={market:'Which organisation runs which system, each line with the public page that says so: a case study, a press release, a job post, a person\'s card. Orange: selecting a system now. Open an organisation to see who on the map works or worked there.',
+  social:'A line means the two people appeared in the same public setting: episode, panel, webinar, team. It is co-appearance, not acquaintance.',
   topics:'People sit around what they publicly speak about and the systems they use, sell or implement. Bubble size is public footprint: independent publishers, topics, systems.',
   connections:'Lines people declared themselves, faint until reviewed. Nobody\'s network is here until they add it: bring your LinkedIn connections, or say "I know this person" on a card.'};
-const K2_SUB={social:'public co-appearances',topics:'person to topic or system',connections:'declared by people'};
-const HUB_H={social:'Most connected',topics:'Largest footprint',connections:'Most declared'};
+const K2_SUB={market:'each with a source',social:'public co-appearances',topics:'person to topic or system',connections:'declared by people'};
+const HUB_H={market:'Selecting now',social:'Most connected',topics:'Largest footprint',connections:'Most declared'};
 function addRaw(which,r){
   const key=r.a<r.b?r.a+'|'+r.b:r.b+'|'+r.a;
   const had=EK[which].has(key);
@@ -601,7 +632,10 @@ function deriveTopicEdges(i,at){
 }
 function setAngle(a,first){
   if(ANGLES.indexOf(a)<0)return;
-  angle=a;try{localStorage.setItem('synapse.angle',a)}catch(e){}
+  angle=a;try{localStorage.setItem('synapse.view',a)}catch(e){}
+  $('chips').hidden=a==='market';$('seg-toggle').hidden=a==='market';
+  $('reg-h').textContent=a==='market'?'Most used systems':'Regions';
+  $('src-note').textContent=a==='market'?'Every line points to the public page that says so: a vendor\'s customer story, a press release, a job post. Vendors and consultancies are never counted as users.':'Every link points to the public page it was found on: a podcast episode, a panel, a filing. Nothing here comes from private profiles.';
   document.querySelectorAll('#angles .angle').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.a===a)));
   $('angle-note').textContent=ANGLE_NOTE[a];$('k2s').textContent=K2_SUB[a];$('hub-h').textContent=HUB_H[a];
   if(window.synapseOnAngle)window.synapseOnAngle(a);
@@ -620,19 +654,46 @@ $('btn-rot').setAttribute('aria-pressed',String(auto));
 
 let refreshNodes=function(){},paintEdges=function(){},rebuildActive=function(){},applyColors=function(){},focusLocal=function(){},resetView=function(){},focusRegion=function(){};
 let updateSugg=function(){},chatHideAnswer=function(){};
-const HUBHEX={topic:'#f6d27a',system:'#8fd3ff'},HUBRGB={topic:hex2rgb('#f6d27a'),system:hex2rgb('#8fd3ff')};
-function nodeRGB(i){const n=G.nodes[i];return n.hub?HUBRGB[n.hub]:n.seed?SEEDRGB:SEGRGB[n.seg]}
-function nodeColor(i){const n=G.nodes[i];return n.hub?HUBHEX[n.hub]:n.seed?'#ffffff':SEGS[n.seg].color}
+const HUBHEX={topic:'#f6d27a',system:'#8fd3ff',company:'#86e3b8',signal:'#ff9a62'},HUBRGB={topic:hex2rgb('#f6d27a'),system:hex2rgb('#8fd3ff'),company:hex2rgb('#86e3b8'),signal:hex2rgb('#ff9a62')};
+function nodeRGB(i){const n=G.nodes[i];return n.hub?(n.hub==='company'&&n.selecting?HUBRGB.signal:HUBRGB[n.hub]):n.seed?SEEDRGB:SEGRGB[n.seg]}
+function nodeColor(i){const n=G.nodes[i];return n.hub?(n.hub==='company'&&n.selecting?HUBHEX.signal:HUBHEX[n.hub]):n.seed?'#ffffff':SEGS[n.seg].color}
 
 /* ---------- DOM ---------- */
 function setStatus(cls,text){const b=$('status');b.className='badge '+cls;$('status-t').textContent=text}
 function renderKPIs(){
   const k=computeKPIs(G,vis);
-  let tot=0;for(let i=0;i<G.n;i++)if(!G.nodes[i].hub)tot++;
+  const L=k.market?[['Organisations',''],['Systems in use',K2_SUB.market],['Systems','named'],['Off spreadsheets','moves found'],['Sources','public pages'],['Selecting now','from job posts and releases']]
+    :[['People',''],['Links',K2_SUB[angle]],['Organisations','represented'],['Regions','covered'],['Sources','public pages'],['Last 7 days','people added']];
+  L.forEach((x,j)=>{$('k'+(j+1)+'l').textContent=x[0];if(j>0)$('k'+(j+1)+'s').textContent=x[1]});
+  let tot=0;for(let i=0;i<G.n;i++)if(k.market?G.nodes[i].hub==='company':!G.nodes[i].hub)tot++;
   $('k1').textContent=k.n;$('k1s').textContent=k.n===tot?'on the map':'of '+tot+' shown';
   $('k2').textContent=k.links;$('k3').textContent=k.orgs;$('k4').textContent=k.regs;$('k5').textContent=k.sources;$('k6').textContent=k.week;
 }
+function renderMarketLists(){
+  const box=$('region-list');box.textContent='';
+  const sys=[];for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='system')sys.push(i);
+  sys.sort((a,b)=>G.adj[b].length-G.adj[a].length);
+  const mx=sys.length?G.adj[sys[0]].length:1;
+  sys.slice(0,8).forEach(i=>{
+    const b=el('button','rrow');b.type='button';b.dataset.i=i;
+    const bar=el('span','bar'),f=el('b');f.style.width=(G.adj[i].length/mx*100)+'%';bar.appendChild(f);
+    b.append(el('span','rn',G.nodes[i].name),bar,el('span','rc',String(G.adj[i].length)));box.appendChild(b);
+  });
+  const hb=$('hub-list');hb.textContent='';
+  const cos=[];for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='company')cos.push(i);
+  let pick=cos.filter(i=>G.nodes[i].selecting).sort((a,b)=>String(G.nodes[b].selecting.date).localeCompare(String(G.nodes[a].selecting.date)));
+  const sel2=pick.length>0;$('hub-h').textContent=sel2?'Selecting now':'Most systems in use';
+  if(!sel2)pick=cos.sort((a,b)=>G.adj[b].length-G.adj[a].length);
+  pick.slice(0,6).forEach((i,k)=>{
+    const n=G.nodes[i],b=el('button','hub');b.type='button';b.dataset.i=i;
+    const r=n.selecting,tx=el('span','ht');
+    tx.append(el('span','h1',n.name),el('span','h2',r?((r.system?'Looking at '+n.installs.filter(x=>x.status==='selecting'&&x.system).map(x=>x.system).join(', '):'A system selection')+(r.date?' · '+r.date:'')):n.installs.filter(x=>x.status==='live').map(x=>x.system).join(', ')));
+    b.append(el('span','hr',String(k+1)),tx,el('span','hv',r?(r.kind==='job_post'?'job post':r.kind.replace('_',' ')):(G.adj[i].length+' systems')));
+    hb.appendChild(b);
+  });
+}
 function renderLists(){
+  if(angle==='market')return renderMarketLists();
   const cnt={};
   for(let i=0;i<G.n;i++)if(vis[i]&&!G.nodes[i].hub){const r=G.nodes[i].region||'Unknown';cnt[r]=(cnt[r]||0)+1}
   const names=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]||REGION_ORDER.indexOf(a)-REGION_ORDER.indexOf(b));
@@ -661,7 +722,9 @@ function renderDetail(){
   if(sel<0){d.hidden=true;updateSugg();return}
   const n=G.nodes[sel];
   d.hidden=false;d.style.setProperty('--sc',nodeColor(sel));
-  $('d-links').previousElementSibling.textContent=n.hub?'People':'Links';
+  $('d-links').previousElementSibling.textContent=n.hub==='company'?'Systems':n.hub?(angle==='market'?'Organisations':'People'):'Links';
+  $('d-regs').previousElementSibling.textContent=n.hub==='company'?'People on the map':'Regions reached';
+  $('d-via').previousElementSibling.textContent=n.hub==='company'?'Sources':'Found via';
   $('d-me').hidden=!!n.hub;
   $('d-edit').hidden=!!n.hub;$('d-import').hidden=true;
   if(n.hub){renderHubDetail(n);document.dispatchEvent(new CustomEvent('synapse:hub',{detail:{kind:n.hub,name:n.name}}));return}
@@ -702,7 +765,77 @@ function renderDetail(){
   if(n.publishers>1)src.append((n.source?' · ':'')+'cited by '+n.publishers+' publishers');
   updateSugg();
 }
+const STATUS_TXT={live:'runs it',implementing:'implementing',selecting:'selecting',previous:'replaced it'};
+const KIND_TXT={case_study:'case study',press:'press release',job_post:'job post',talk:'talk',article:'article',filing:'filing',person:'person card'};
+function installLine(r){
+  const bits=[STATUS_TXT[r.status]||r.status];
+  if(r.since)bits.push('since '+r.since);if(r.partner)bits.push('with '+r.partner);
+  if(r.replaced)bits.push('replaced '+r.replaced);if(r.date&&r.status!=='live')bits.push(r.date);
+  return bits.join(' · ');
+}
+function goPerson(id){if(angle==='market')setAngle('social');const i=G.idx.get(id);if(i!=null)select(i,true)}
+window.synapseGoPerson=goPerson;
+function renderCompanyDetail(n){
+  const co=n,live=co.installs.filter(r=>r.status==='live'||r.status==='implementing');
+  $('d-seg').textContent=co.selecting?'Organisation · Selecting now':'Organisation';$('d-name').textContent=co.name;
+  $('d-meta').textContent=[co.headline,co.region!=='Unknown'?co.region:''].filter(Boolean).join(' · ')||(live.length?'Runs '+live.map(r=>r.system).join(', '):'Selecting a system');
+  const urls=new Set(co.installs.map(r=>r.url).filter(Boolean));
+  $('d-links').textContent=new Set(live.map(r=>r.system)).size;$('d-regs').textContent=co.staff.length;$('d-via').textContent=urls.size;
+  $('d-centred').hidden=G.center!==sel;$('d-know').hidden=true;
+  const d=$('detail'),open=d.classList.contains('open');
+  $('d-more').textContent=open?'Hide sources':'Show '+urls.size+(urls.size===1?' source':' sources')+(co.staff.length?' and '+co.staff.length+(co.staff.length===1?' person':' people'):'');
+  $('d-more').setAttribute('aria-expanded',String(open));
+  const ins=$('d-insight');ins.textContent='';
+  const order={live:0,implementing:1,selecting:2,previous:3};
+  const rows=co.installs.slice().sort((a,b)=>order[a.status]-order[b.status]);
+  const t=el('div','tags');
+  rows.forEach(r=>{const g=el('span','tag sys',(r.system||'A new system')+(r.product&&r.product!==r.system?' '+r.product:'')+' ');g.appendChild(el('b','',STATUS_TXT[r.status]));t.appendChild(g)});
+  if(rows.length)ins.appendChild(t);
+  const lead=rows.find(r=>r.note&&r.kind!=='person');if(lead)ins.appendChild(el('div','kf',lead.note));
+  if(co.selecting)ins.appendChild(el('div','kf','Selection in progress'+(co.selecting.date?' ('+co.selecting.kind.replace('_',' ')+' of '+co.selecting.date+')':'')+'.'));
+  if(co.staff.length){const r=el('div','roles');r.appendChild(el('span','','Who to ask: '+co.staff.length+(co.staff.length===1?' person on the map works or worked here':' people on the map work or worked here')+'.'));ins.appendChild(r)}
+  const list=$('d-list');list.textContent='';
+  rows.forEach(r=>{
+    const a=el('a','lk'+(r.status==='previous'?' pend':''));
+    if(r.url){a.href=r.url;a.target='_blank';a.rel='noopener noreferrer'}else a.href='#';
+    const tx=el('div');tx.append(el('b','',(r.system||'A new system')+(r.product&&r.product!==r.system?' · '+r.product:'')),el('small','',installLine(r)+(r.person?' · '+r.person+(r.personTitle?', '+r.personTitle:''):'')));
+    a.append(tx,el('span','cf',KIND_TXT[r.kind]||r.kind));list.appendChild(a);
+  });
+  co.staff.forEach(x=>{const p=G.nodes[x.i];if(!p)return;const a=el('a','lk');a.href='#';a.dataset.pid=p.id;
+    const tx=el('div');tx.append(el('b','',p.name),el('small','',(x.past?'Worked here'+(x.past!=='before'?' until '+x.past:'')+' · ':'')+(p.headline||p.org)));
+    a.append(tx,el('span','cf','person'));list.appendChild(a)});
+  const src=$('d-src');src.textContent='';
+  updateSugg();
+}
+function renderMarketSystem(n){
+  $('d-seg').textContent=n.hub==='signal'?'Signal':'System';$('d-name').textContent=n.name;
+  const cos=G.adj[sel].filter(j=>vis[j]);
+  const cnt={live:0,implementing:0,selecting:0,previous:0};let moves=0;
+  cos.forEach(j=>{const c=G.nodes[j];c.installs.forEach(r=>{if(r.system===n.name&&cnt[r.status]!=null)cnt[r.status]++});if(movedOffSheets(c)&&c.installs.some(r=>r.system===n.name&&r.status==='live'))moves++});
+  $('d-meta').textContent=n.hub==='signal'?cos.length+' organisations selecting a system, from job posts and press releases of the last nine months':cnt.live+' organisations publicly run it'+(cnt.selecting?' · '+cnt.selecting+' have it on a shortlist':'')+(cnt.previous?' · '+cnt.previous+' replaced it':'');
+  $('d-links').textContent=cos.length;$('d-regs').textContent=new Set(cos.map(j=>G.nodes[j].region).filter(r=>r!=='Unknown')).size;$('d-via').textContent='Public pages';
+  $('d-centred').hidden=G.center!==sel;$('d-know').hidden=true;
+  const pros=[];for(let i=0;i<G.n;i++){const p=G.nodes[i];if(p.hub)continue;const x=p.systems.find(y=>y.name&&y.name.toLowerCase()===n.name.toLowerCase()&&(y.role==='implements'||y.role==='integrates'));if(x)pros.push(i)}
+  const d=$('detail'),open=d.classList.contains('open');$('d-more').textContent=open?'Hide':'Show '+cos.length+' organisations'+(pros.length?' and '+pros.length+' who implement it':'');$('d-more').setAttribute('aria-expanded',String(open));
+  const ins=$('d-insight');ins.textContent='';
+  const t=el('div','tags');Object.keys(cnt).forEach(k=>{if(!cnt[k])return;const g=el('span','tag sys',cnt[k]+' ');g.appendChild(el('b','',STATUS_TXT[k]));t.appendChild(g)});if(moves){const g=el('span','tag sys',moves+' ');g.appendChild(el('b','','came from spreadsheets'));t.appendChild(g)}
+  if(t.children.length)ins.appendChild(t);
+  const withStaff=cos.filter(j=>G.nodes[j].staff.length).length;
+  if(withStaff)ins.appendChild(el('div','kf',withStaff+(withStaff===1?' of these organisations has':' have')+' someone on the map who works or worked there: open one to see whom to ask.'));
+  const list=$('d-list');list.textContent='';
+  cos.slice().sort((a,b)=>G.nodes[b].staff.length-G.nodes[a].staff.length||G.nodes[a].name.localeCompare(G.nodes[b].name)).forEach(j=>{
+    const c=G.nodes[j],r=c.installs.find(x=>x.system===n.name)||c.selecting||{};
+    const a=el('a','lk');a.href='#';a.dataset.i=j;
+    const tx=el('div');tx.append(el('b','',c.name),el('small','',r.status?installLine(r):''));
+    a.append(tx,el('span','cf',c.staff.length?c.staff.length+' to ask':''));list.appendChild(a);
+  });
+  pros.forEach(i=>{const p=G.nodes[i],a=el('a','lk');a.href='#';a.dataset.pid=p.id;const tx=el('div');tx.append(el('b','',p.name),el('small','','Implements it · '+(p.headline||p.org)));a.append(tx,el('span','cf','person'));list.appendChild(a)});
+  $('d-src').textContent='';
+  updateSugg();
+}
 function renderHubDetail(n){
+  if(n.hub==='company')return renderCompanyDetail(n);
+  if(angle==='market')return renderMarketSystem(n);
   $('d-seg').textContent=n.hub==='topic'?'Topic':'System';$('d-name').textContent=n.name;
   const es=edgesOf(sel).filter(x=>vis[x.a]&&vis[x.b]);
   const people=es.map(x=>x.a===sel?x.b:x.a);
@@ -743,7 +876,10 @@ function setHL(ids){
   refreshNodes();paintEdges();rebuildActive();
 }
 function refreshAll(){
-  for(let i=0;i<G.n;i++){const n=G.nodes[i];vis[i]=n.hub?(angle==='topics'?1:0):(segOn[n.seg]?1:0)}
+  for(let i=0;i<G.n;i++){const n=G.nodes[i];
+    if(angle==='market')vis[i]=n.hub==='company'?(G.adj[i].length?1:0):(n.hub==='system'||n.hub==='signal')?(G.adj[i].length?1:0):0;
+    else vis[i]=n.hub?(angle==='topics'&&(n.hub==='topic'||n.hub==='system')&&G.adj[i].length?1:0):(segOn[n.seg]?1:0)}
+  G.on=vis;G.act=[];for(let i=0;i<G.n;i++)if(vis[i])G.act.push(i);
   if(sel>=0&&!vis[sel])sel=-1;
   if(hov>=0&&!vis[hov])hov=-1;
   nbr=sel>=0?new Set(G.adj[sel].filter(j=>vis[j])):null;
@@ -788,9 +924,9 @@ window.synapseFindMe=()=>{showWelcome(false);pendingMe=true;const f=$('find-in')
 function showWelcome(on){welcoming=on;$('welcome').hidden=!on;if(on){pendingMe=true;$('hint').classList.add('off')}}
 $('w-find').addEventListener('click',()=>{showWelcome(false);$('find-in').focus()});
 $('w-skip').addEventListener('click',()=>{showWelcome(false);pendingMe=false;try{localStorage.setItem('synapse.skipWelcome','1')}catch(e){}});
-$('d-list').addEventListener('click',e=>{const a=e.target.closest('.lk');if(a&&a.dataset.i!=null){e.preventDefault();select(+a.dataset.i,true)}});
+$('d-list').addEventListener('click',e=>{const a=e.target.closest('.lk');if(!a)return;if(a.dataset.pid){e.preventDefault();goPerson(a.dataset.pid)}else if(a.dataset.i!=null){e.preventDefault();select(+a.dataset.i,true)}else if(a.getAttribute('href')==='#')e.preventDefault()});
 $('hub-list').addEventListener('click',e=>{const b=e.target.closest('.hub');if(b)select(+b.dataset.i,true)});
-$('region-list').addEventListener('click',e=>{const b=e.target.closest('.rrow');if(b)focusRegion(b.dataset.r)});
+$('region-list').addEventListener('click',e=>{const b=e.target.closest('.rrow');if(!b)return;if(b.dataset.i!=null)select(+b.dataset.i,true);else focusRegion(b.dataset.r)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sel>=0)select(-1)});
 $('btn-rot').addEventListener('click',()=>{auto=!auto;$('btn-rot').setAttribute('aria-pressed',String(auto))});
 $('btn-reset').addEventListener('click',()=>resetView());
@@ -817,7 +953,7 @@ let setFindValue=function(){};
     items.forEach((i,k)=>{
       const b=el('button','find-item');b.type='button';b.dataset.i=i;b.setAttribute('role','option');b.setAttribute('aria-selected',String(k===cur));b.style.setProperty('--sc',nodeColor(i));
       const t=el('span');t.append(el('span','fn',G.nodes[i].name),el('span','fo',G.nodes[i].org||G.nodes[i].headline));
-      b.append(el('i'),t,el('span','fl',G.adj[i].length+' links'));
+      const na=G.adj[i].length,nn=G.nodes[i];b.append(el('i'),t,el('span','fl',nn.hub==='company'?na+(na===1?' system':' systems'):nn.hub&&angle==='market'?na+' organisations':na+' links'));
       list.appendChild(b);
     });
     list.hidden=false;
@@ -1088,7 +1224,7 @@ function initGL(){
   function updateLabels(now){
     const W=stage.clientWidth,H=stage.clientHeight;
     const acc={};
-    for(let i=0;i<G.n;i++){if(!vis[i]||now<G.born[i])continue;const r=G.nodes[i].region;if(r==='Unknown'||r==='Other')continue;const a=acc[r]||(acc[r]={x:0,y:0,z:0,c:0});a.x+=G.pos[i*3];a.y+=G.pos[i*3+1];a.z+=G.pos[i*3+2];a.c++}
+    for(let i=0;i<G.n;i++){if(angle==='market')break;if(!vis[i]||now<G.born[i])continue;const r=G.nodes[i].region;if(r==='Unknown'||r==='Other')continue;const a=acc[r]||(acc[r]={x:0,y:0,z:0,c:0});a.x+=G.pos[i*3];a.y+=G.pos[i*3+1];a.z+=G.pos[i*3+2];a.c++}
     regLbl.forEach((e,r)=>{if(!acc[r])e.style.opacity=0});
     Object.keys(acc).forEach(r=>{
       let e=regLbl.get(r);if(!e){e=el('div','lbl',r);lblBox.appendChild(e);regLbl.set(r,e)}
@@ -1099,7 +1235,7 @@ function initGL(){
       e.style.transform='translate('+p.x.toFixed(1)+'px,'+p.y.toFixed(1)+'px) translate(-50%,-50%)';
     });
     const show=new Set();
-    for(let i=0;i<G.n;i++){if(!vis[i])continue;if(G.nodes[i].id===meId||i===sel||i===hov||(G.nodes[i].hub&&(G.nodes[i].hub==='topic'||G.adj[i].length>=6))||(hl&&hl.has(i)&&hl.size<=12)||(nbr&&nbr.has(i)&&nbr.size<=24&&(W>=700||topNbr.has(i))))show.add(i)}
+    for(let i=0;i<G.n;i++){if(!vis[i])continue;if(G.nodes[i].id===meId||i===sel||i===hov||(G.nodes[i].hub&&(G.nodes[i].hub==='topic'||G.nodes[i].hub==='signal'||(G.nodes[i].hub==='system'&&G.adj[i].length>=(angle==='market'?2:6))))||(hl&&hl.has(i)&&hl.size<=12)||(nbr&&nbr.has(i)&&nbr.size<=24&&(W>=700||topNbr.has(i))))show.add(i)}
     nameLbl.forEach((e,i)=>{if(!show.has(i))e.style.opacity=0});
     show.forEach(i=>{
       let e=nameLbl.get(i);if(!e){e=el('div','lbl name',G.nodes[i].name);lblBox.appendChild(e);nameLbl.set(i,e)}
@@ -1168,7 +1304,7 @@ function initGL(){
   const tip=$('tip');
   function showTip(i,cx,cy){
     if(i<0){tip.hidden=true;return}
-    const n=G.nodes[i];tip.textContent='';tip.append(el('b','',n.name),el('span','',(n.org||n.headline)+' · '+G.adj[i].length+' links'));tip.hidden=false;
+    const n=G.nodes[i];tip.textContent='';const na=G.adj[i].length;tip.append(el('b','',n.name),el('span','',n.hub==='company'?(n.selecting?'Selecting now · ':'')+n.installs.filter(r=>r.status==='live').map(r=>r.system).join(', '):n.hub&&angle==='market'?na+' organisations':(n.org||n.headline)+' · '+na+' links'));tip.hidden=false;
     const rc=stage.getBoundingClientRect();let x=cx-rc.left+14,y=cy-rc.top+16;
     if(x+tip.offsetWidth>rc.width-8)x=cx-rc.left-tip.offsetWidth-14;if(y+tip.offsetHeight>rc.height-8)y=cy-rc.top-tip.offsetHeight-12;
     tip.style.transform='translate('+Math.max(4,x)+'px,'+Math.max(4,y)+'px)';
@@ -1205,7 +1341,7 @@ function initGL(){
   function frame(now){
     requestAnimationFrame(frame);
     const dt=Math.min(.05,(now-last)/1000);last=now;
-    if(G.n){if(G.hot||G.n<900||(frameNo&1))step(G,dt);if(G.hot&&G.n<900)step(G,dt)}
+    const NA=G.act?G.act.length:G.n;if(NA){if(G.hot||NA<900||(frameNo&1))step(G,dt);if(G.hot&&NA<900)step(G,dt)}
     frameNo++;
     if(Math.abs(G.R-lastR)>.5||lastC!==G.center){lastR=G.R;lastC=G.center;fit();dust.scale.setScalar(G.R)}
     uni.uR.value=G.R;
@@ -1229,6 +1365,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
 (function(){
   const growth=$('growth');
   let lastSeen=0;try{lastSeen=Number(localStorage.getItem('synapse.lastSeen')||0)}catch(e){}
+  let pendingCo=[],pendingI=[],staffIn=null;
   let pendingP=[],pendingE=[],pendingC=[],gotP=false,gotE=false,booted=false,timer=null,scheduled=0,growTimer=null,ingestTimer=null;
   function queueIngest(){if(ingestTimer)return;ingestTimer=setTimeout(()=>{ingestTimer=null;ingest()},60)}
   function known(x){
@@ -1241,7 +1378,8 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
     const now=performance.now();
     const items=pendingP.map(d=>({t:'p',d:d,at:Date.parse(d.addedAt)||0})).concat(pendingE.map(d=>({t:'e',d:d,at:Date.parse(d.addedAt)||0})),pendingC.map(d=>({t:'c',d:d,at:Date.parse(d.addedAt)||0})));
     pendingP=[];pendingE=[];pendingC=[];
-    if(!items.length)return;
+    const coIn=pendingCo,inIn=pendingI,stIn=staffIn;pendingCo=[];pendingI=[];staffIn=null;
+    if(!items.length&&!coIn.length&&!inIn.length&&!stIn)return;
     items.sort((a,b)=>a.at-b.at||(a.t==='p'?-1:1));
     const freshCount=items.filter(x=>!known(x)).length;
     const newPeople=items.filter(x=>x.t==='p'&&!known(x)).length;
@@ -1255,17 +1393,37 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       else if(x.t==='c'){addRaw('connections',Object.assign({},x.d,{a:x.d.from,b:x.d.to,kind:'knows',label:x.d.status==='confirmed'?'Confirmed connection':'Declared, awaiting validation',confidence:x.d.status==='confirmed'?.9:.35,at:at}))}
       else{const e=addRaw('social',Object.assign({},x.d,{at:at}));if(e>=0&&isFresh)addedE++}
     });
-    scheduled=base+stepMs*k;
+    /* market: organisations, then what they run, then who on the map works or worked there */
+    const mStep=reduce?0:Math.max(6,Math.min(40,2500/Math.max(1,coIn.length)));
+    const mBase=performance.now()+(booted?0:300);
+    coIn.forEach((c,j)=>{const isFresh=!G.idx.has('co:'+c.id);upsertCompany(G,c,isFresh?mBase+mStep*j:now-1e4,rnd)});
+    const touched=new Set();
+    inIn.forEach(r=>{
+      const ci=G.idx.get('co:'+r.company);if(ci==null)return;const co=G.nodes[ci],at=Math.max(G.born[ci],now-1e4);
+      const ex=co.installs.findIndex(x=>x.system===r.system&&x.status===r.status);if(ex>=0)co.installs[ex]=r;else co.installs.push(r);
+      touched.add(ci);
+      if(r.system){const h=upsertHub(G,'system',r.system,at,rnd);if(h>=0&&G.born[h]>at)G.born[h]=at;if(h>=0)addRaw('market',{a:co.id,b:G.nodes[h].id,kind:r.status,label:installLine(r),url:r.url,confidence:r.status==='live'?.9:r.status==='implementing'?.75:r.status==='selecting'?.45:.25,addedAt:r.addedAt||'',at:at})}
+      if(/excel|spreadsheet/i.test(r.replaced||'')&&!/excel/i.test(r.system)){const h=upsertHub(G,'system','Excel',at,rnd);if(h>=0&&G.born[h]>at)G.born[h]=at;if(h>=0)addRaw('market',{a:co.id,b:G.nodes[h].id,kind:'previous',label:'replaced it',url:r.url,confidence:.25,addedAt:r.addedAt||'',at:at})}
+    });
+    touched.forEach(ci=>{const co=G.nodes[ci];co.selecting=selectingNow(co);if(co.selecting){const h=upsertHub(G,'signal','Selecting now',G.born[ci],rnd);if(h>=0)addRaw('market',{a:co.id,b:G.nodes[h].id,kind:'selecting',label:'selecting',url:co.selecting.url,confidence:.6,addedAt:co.selecting.addedAt||'',at:G.born[ci]})}});
+    if(stIn)Object.keys(stIn).forEach(key=>{const ci=G.idx.get('co:'+key);if(ci==null)return;G.nodes[ci].staff=(stIn[key]||[]).map(x=>({i:G.idx.get(x.id),past:x.past||''})).filter(x=>x.i!=null)});
+    if(coIn.length&&!gotP&&!gotE){gotP=gotE=true}
+    scheduled=Math.max(base+stepMs*k,mBase+mStep*coIn.length);
     const firstBoot=!booted;
     if(!booted){booted=true;if(timer){clearTimeout(timer);timer=null}}
     refreshAll();
     if(firstBoot){
       const mi=meId?G.idx.get(meId):undefined;
       let skip=false;try{skip=!!localStorage.getItem('synapse.skipWelcome')}catch(e){}
-      if(mi!=null)setTimeout(()=>{if(sel<0)select(mi,true)},reduce?0:Math.min(2500,stepMs*k+400));
-      else if(!skip)showWelcome(true);
+      if(angle!=='market'){if(mi!=null)setTimeout(()=>{if(sel<0)select(mi,true)},reduce?0:Math.min(2500,stepMs*k+400));
+      else if(!skip)showWelcome(true)}
     }
-    if(newPeople){
+    if(angle==='market'&&coIn.length&&!firstBoot){}
+    else if(angle==='market'&&coIn.length){
+      growth.textContent=coIn.length+' organisations · '+inIn.length+' systems in use growing in';growth.classList.remove('off');
+      if(growTimer)clearTimeout(growTimer);growTimer=setTimeout(()=>growth.classList.add('off'),Math.max(5000,mStep*coIn.length+2500));
+    }
+    else if(newPeople){
       const pl=(n,w)=>n+' '+(n===1?w:(w==='person'?'people':w+'s'));
       growth.textContent=since?('+'+since+' since your last visit'):(pl(addedP,'person')+' · '+pl(addedE,'link')+' growing in');
       growth.classList.remove('off');
@@ -1284,6 +1442,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
         const g=await r.json();
         (g.people||[]).forEach(d=>pendingP.push(d));(g.edges||[]).forEach(d=>pendingE.push(d));
         (g.connections||[]).forEach(d=>{if(d.status!=='rejected')pendingC.push(d)});
+        (g.companies||[]).forEach(d=>pendingCo.push(d));(g.installs||[]).forEach(d=>pendingI.push(d));if(g.companyPeople)staffIn=g.companyPeople;
         since=g.now||since;gotP=true;gotE=true;setStatus('live','Live');queueIngest();
       }catch(e){setStatus('','Disconnected')}
     }

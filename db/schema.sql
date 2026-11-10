@@ -287,3 +287,52 @@ create table if not exists network_leads (
 );
 create unique index if not exists network_leads_unique on network_leads (owner_id, lower(first_name), lower(last_name), lower(company));
 create index if not exists network_leads_queue on network_leads (priority desc, added_at) where status = 'queued';
+
+-- Market angle: which company runs which system, each fact with the public page that says so.
+-- status: live (runs it), implementing, selecting (a shortlist or a selection in progress, system may be empty), previous (what it replaced).
+create table if not exists companies (
+  id text primary key,                      -- company key: name without legal suffixes, slugged
+  name text not null,
+  region text not null default 'Unknown',
+  industry text not null default '',
+  hidden boolean not null default false,
+  added_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index if not exists companies_updated_at on companies (updated_at);
+
+create table if not exists installs (
+  company_id text not null references companies(id) on delete cascade,
+  system text not null default '',
+  status text not null check (status in ('live', 'implementing', 'selecting', 'previous')),
+  product text not null default '',
+  since text not null default '',           -- year it went live, as the page states it
+  date text not null default '',            -- date of the evidence (job post, press release), YYYY[-MM[-DD]]
+  partner text not null default '',         -- implementation partner named by the page
+  replaced text not null default '',        -- what it replaced, as the page states it (Excel, a legacy TMS, a named product)
+  person text not null default '',
+  person_title text not null default '',
+  url text not null,
+  kind text not null default 'case_study' check (kind in ('case_study', 'press', 'job_post', 'talk', 'article', 'filing')),
+  note text not null default '',
+  evidence jsonb not null default '[]',
+  source text not null default 'harvest',   -- harvest (crawler), seed
+  added_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  primary key (company_id, system, status)
+);
+create index if not exists installs_updated_at on installs (updated_at);
+create index if not exists installs_system on installs (lower(system));
+
+-- Pages the market harvester reads: vendor case-study indexes and reference pages, single case studies, job searches.
+create table if not exists market_sources (
+  url text primary key,
+  label text not null default '',
+  kind text not null default 'index' check (kind in ('index', 'page', 'search')),
+  status text not null default 'queued' check (status in ('queued', 'done', 'failed')),
+  attempts integer not null default 0,
+  found integer not null default 0,
+  notes text not null default '',
+  read_at timestamptz,
+  added_at timestamptz not null default now()
+);
