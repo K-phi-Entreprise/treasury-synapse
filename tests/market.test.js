@@ -144,3 +144,13 @@ test('one method for every vendor: one named-customer search each, nothing extra
   assert.match(html, /How the Market view is counted/);
   assert.match(html, /This is not market share/);
 });
+
+test('the page knows its build and the server tells it; the service worker cache follows the build', async () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  const b = (html.match(/window\.SYNAPSE_BUILD="([0-9a-f]+)"/) || [])[1];
+  assert.ok(b, 'the page carries its build');
+  const g = await fetch(base + '/api/graph?since=' + encodeURIComponent(new Date().toISOString())).then(r => r.json());
+  assert.strictEqual(g.build, b, 'the server announces the same build');
+  assert.match(fs.readFileSync(path.join(__dirname, '..', 'public', 'sw.js'), 'utf8'), new RegExp("const CACHE = 'synapse-" + b + "'"));
+  assert.match(html, /function newVersion/);
+});

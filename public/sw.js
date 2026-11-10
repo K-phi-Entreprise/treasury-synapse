@@ -1,7 +1,7 @@
 /* Treasury Synapse service worker: makes the map installable and opens it offline on the last copy.
  * The page and the graph are always fetched fresh when the network is there (network first);
  * three.js and the icons come from the cache. The review page and every other API call are never cached. */
-const CACHE = 'synapse-v1';
+const CACHE = 'synapse-be3b8f9f1f';
 const SHELL = ['/', '/vendor/three.min.js', '/manifest.webmanifest', '/icons/icon-192.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
@@ -21,7 +21,8 @@ self.addEventListener('fetch', e => {
   }
   if (req.mode === 'navigate' || p === '/api/graph') {
     const key = req.mode === 'navigate' ? '/' : req;
-    e.respondWith(fetch(req).then(r => { if (r.ok) { const c = r.clone(); caches.open(CACHE).then(x => x.put(key, c)); } return r; })
+    /* the page is always asked from the server, past any HTTP cache; the copy here is only for offline */
+    e.respondWith(fetch(req.mode === 'navigate' ? new Request(req.url, { cache: 'no-store', credentials: 'same-origin' }) : req).then(r => { if (r.ok) { const c = r.clone(); caches.open(CACHE).then(x => x.put(key, c)); } return r; })
       .catch(() => caches.match(key).then(hit => hit || Response.error())));
   }
 });

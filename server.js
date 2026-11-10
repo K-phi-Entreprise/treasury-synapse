@@ -41,6 +41,9 @@ app.use((req, res, next) => (req.path === '/api/connections/import' ? jsonImport
 const ipHash = req => crypto.createHash('sha256').update(SALT + '|' + (req.ip || '')).digest('hex').slice(0, 32);
 const iso = v => (v ? new Date(v).toISOString() : '');
 
+/* the page's build: a page older than this reloads itself */
+let BUILD = '';
+try { BUILD = JSON.parse(require('fs').readFileSync(path.join(__dirname, 'public', 'build.json'), 'utf8')).build || ''; } catch (e) { BUILD = ''; }
 /* ---------- graph: one query set, cached for a minute ---------- */
 let cache = { at: 0, body: null };
 async function loadGraph(since) {
@@ -56,6 +59,7 @@ async function loadGraph(since) {
   const conns = await pool.query(`select * from v_connections${sinceSql} order by added_at`, params);
   const market = await loadMarket(pool, since);
   return {
+    build: BUILD,
     companies: market.companies, installs: market.installs, companyPeople: market.companyPeople || null,
     now: new Date().toISOString(),
     people: people.rows.filter(p => !p.hidden).map(p => ({

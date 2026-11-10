@@ -21,9 +21,23 @@ start_new='''  async function start(){
         (g.connections||[]).forEach(d=>{if(d.status!=='rejected')pendingC.push(d)});
         (g.companies||[]).forEach(d=>pendingCo.push(d));(g.installs||[]).forEach(d=>pendingI.push(d));if(g.companyPeople)staffIn=g.companyPeople;
         since=g.now||since;gotP=true;gotE=true;setStatus('live','Live');queueIngest();
+        if(g.build&&g.build!==window.SYNAPSE_BUILD)newVersion(g.build);
       }catch(e){setStatus('','Disconnected')}
     }
-    await poll();setInterval(poll,120000);
+    /* an older copy of the page (a restored tab, a cached app) reloads itself once the server has a newer build */
+    function newVersion(b){
+      let tried='';try{tried=sessionStorage.getItem('synapse.reloadFor')||''}catch(e){}
+      const busy=document.querySelector('.sbm-wrap:not([hidden])')||(document.activeElement&&/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName));
+      if(tried!==b&&!busy){try{sessionStorage.setItem('synapse.reloadFor',b)}catch(e){}location.reload();return}
+      if(document.getElementById('nv-bar'))return;
+      const bar=document.createElement('button');bar.id='nv-bar';bar.type='button';bar.textContent='A newer version of the map is ready. Tap to reload';
+      bar.style.cssText='position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:80;padding:9px 14px;border:0;border-radius:8px;background:var(--cta-bg);color:var(--cta-fg);font:600 13px/1.2 var(--font-body);cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3)';
+      bar.addEventListener('click',()=>location.reload());document.body.appendChild(bar);
+    }
+    let lastPoll=Date.now();
+    await poll();setInterval(()=>{lastPoll=Date.now();poll()},120000);
+    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&Date.now()-lastPoll>15000){lastPoll=Date.now();poll()}});
+    addEventListener('pageshow',e=>{if(e.persisted){lastPoll=Date.now();poll()}});
   }
 '''
 src=src.replace(start_old,start_new)
@@ -97,7 +111,16 @@ head='''<!doctype html>
 <body>
 '''
 sw='<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));</script>'
-open('public/index.html','w',encoding='utf-8').write(head+src+'\n'+extra+'\n'+sw+'\n</body>\n</html>\n')
+import hashlib,json
+doc=head+src+'\n'+extra+'\n'+sw+'\n</body>\n</html>\n'
+build=hashlib.sha1(doc.encode('utf-8')).hexdigest()[:10]
+doc=doc.replace('<meta name="theme-color"','<script>window.SYNAPSE_BUILD="'+build+'";</script>\n<meta name="theme-color"',1)
+open('public/index.html','w',encoding='utf-8').write(doc)
+open('public/build.json','w').write(json.dumps({'build':build})+'\n')
+swp='public/sw.js';swt=open(swp,encoding='utf-8').read()
+swt=re.sub(r"const CACHE = 'synapse-[^']*';","const CACHE = 'synapse-"+build+"';",swt)
+open(swp,'w',encoding='utf-8').write(swt)
+print('build',build)
 js=re.findall(r'<script>(.*?)</script>',src,re.S)[-1]
 open('/tmp/synapse-page.js','w').write(js)
 print('built public/index.html',len(src)//1024,'KB')
