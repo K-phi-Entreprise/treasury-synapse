@@ -127,3 +127,22 @@ test('find a consultant: public evidence first, declared next, vendors of the sy
   const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
   assert.ok(html.includes("fetch('/api/consultants?'") && html.includes('window.synapseConsultants=open'));
 });
+
+test('your network: who links you to a consultant, and the request carries the person and the intermediaries', async () => {
+  /* vincent knows jouni; jouni knows craig: vincent reaches craig through jouni */
+  await pool.query("insert into connections (from_id, to_id, status) values ('vincent-donnat','jouni-kirjola','confirmed'),('craig-jeffery','jouni-kirjola','pending') on conflict do nothing");
+  const p = await fetch(base + '/api/paths?from=vincent-donnat&to=craig-jeffery,jouni-kirjola,adam-larson').then(r => r.json());
+  assert.deepEqual(p.paths['jouni-kirjola'], { direct: true, via: [] });
+  assert.deepEqual(p.paths['craig-jeffery'], { direct: false, via: [{ id: 'jouni-kirjola', name: 'Jouni Kirjola' }] });
+  assert.equal(p.paths['adam-larson'], undefined);
+  mailbox = [];
+  await pool.query("delete from quotas where kind = 'request'");
+  const r = await post('/api/requests', { kind: 'implementation', email: 'v@example.org', systems: ['Kyriba'], details: 'Intro please', targetId: 'craig-jeffery', viaIds: ['jouni-kirjola', 'not-a-person'] });
+  assert.equal(r.status, 200);
+  const q = await fetch(base + '/api/admin/requests', { headers: adm }).then(r => r.json());
+  const rq = q.requests.find(x => x.email === 'v@example.org');
+  assert.equal(rq.target.name, 'Craig Jeffery');
+  assert.deepEqual(rq.via.map(v => v.id), ['jouni-kirjola'], 'unknown people dropped');
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  assert.ok(html.includes("fetch('/api/paths?from='") && html.includes('id="imp-consent"') && html.includes('.sbm select option{background-color:#0e1328'));
+});

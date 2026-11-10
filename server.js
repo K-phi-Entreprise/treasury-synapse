@@ -97,6 +97,7 @@ app.post('/api/connections/import', async (req, res, next) => {
     const to = [...new Set((Array.isArray(req.body.to) ? req.body.to : []).map(slug).filter(Boolean))].filter(id => id !== from);
     if (!from || !to.length) return res.status(400).json({ error: 'nothing to import' });
     if (to.length > 500) return res.status(400).json({ error: 'at most 500 connections per import' });
+    if (req.body.consent !== true) return res.status(400).json({ error: 'please agree to show these connections publicly on the map' });
     const known = await pool.query('select id from people where id = any($1) and not hidden', [[from, ...to]]);
     const ok = new Set(known.rows.map(r => r.id));
     if (!ok.has(from)) return res.status(404).json({ error: 'unknown person' });
@@ -106,7 +107,7 @@ app.post('/api/connections/import', async (req, res, next) => {
     let added = 0;
     for (const id of to) {
       if (!ok.has(id)) continue;
-      const r = await pool.query(`insert into connections (from_id, to_id, status, note, ip_hash, batch) values ($1,$2,'pending','LinkedIn connections import',$3,$4)
+      const r = await pool.query(`insert into connections (from_id, to_id, status, note, ip_hash, batch, public_consent_at) values ($1,$2,'pending','LinkedIn connections import',$3,$4,now())
         on conflict (from_id, to_id) do nothing returning 1`, [from, id, h, batch]);
       added += r.rowCount;
     }
@@ -305,6 +306,31 @@ app.post('/api/admin/leads/:id', admin, async (req, res, next) => {
     const r = await pool.query('update leads set status = $2 where id = $1 returning id', [clip(req.params.id, 200), status]);
     if (!r.rows.length) return res.status(404).json({ error: 'unknown lead' });
     res.json({ ok: true });
+  } catch (e) { next(e); }
+});
+
+/* ---------- your network: who links you to someone, through declared connections (2 steps at most) ---------- */
+app.get('/api/paths', async (req, res, next) => {
+  try {
+    res.set('Cache-Control', 'no-cache');
+    const from = slug(req.query.from), targets = [...new Set(String(req.query.to || '').split(',').map(slug).filter(Boolean))].slice(0, 50);
+    if (!from || !targets.length) return res.json({ paths: {} });
+    const rows = (await pool.query(`with n as (select case when from_id = $1 then to_id else from_id end id from connections where status in ('pending','confirmed') and (from_id = $1 or to_id = $1))
+      select from_id a, to_id b, status from connections where status in ('pending','confirmed')
+        and (from_id = $1 or to_id = $1 or from_id in (select id from n) or to_id in (select id from n))`, [from])).rows;
+    const mine = new Map();
+    for (const e of rows) { if (e.a === from) mine.set(e.b, e.status); else if (e.b === from) mine.set(e.a, e.status); }
+    const out = {};
+    for (const t of targets) {
+      if (t === from) continue;
+      if (mine.has(t)) { out[t] = { direct: true, via: [] }; continue; }
+      const via = rows.filter(e => (e.a === t && mine.has(e.b)) || (e.b === t && mine.has(e.a))).map(e => (e.a === t ? e.b : e.a));
+      if (via.length) out[t] = { direct: false, via: [...new Set(via)].slice(0, 5) };
+    }
+    const ids = [...new Set(Object.values(out).flatMap(p => p.via))];
+    const names = ids.length ? Object.fromEntries((await pool.query('select id, name from people where id = any($1)', [ids])).rows.map(x => [x.id, x.name])) : {};
+    for (const p of Object.values(out)) p.via = p.via.map(id => ({ id, name: names[id] || id }));
+    res.json({ paths: out });
   } catch (e) { next(e); }
 });
 

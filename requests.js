@@ -20,6 +20,8 @@ function clean(b, { topics, regions }) {
     systems: [...new Set((Array.isArray(b.systems) ? b.systems : String(b.systems || '').split(',')).map(s => clip(s, 60)).filter(Boolean))].slice(0, 10),
     topics: [...new Set((Array.isArray(b.topics) ? b.topics : []).filter(t => topics.includes(t)))],
     timing: TIMING[b.timing] ? b.timing : '', details: String(b.details || '').trim().slice(0, 1500),
+    targetId: String(b.targetId || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 120) || null,
+    viaIds: [...new Set((Array.isArray(b.viaIds) ? b.viaIds : []).map(v => String(v).toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 120)).filter(Boolean))].slice(0, 5),
     routing: { consultants: b.routing ? !!b.routing.consultants : true, references: b.routing ? !!b.routing.references : true, vendors: !!(b.routing && b.routing.vendors) }
   };
   if (!out.details && !out.systems.length && !out.topics.length) return { error: 'tell us a little about what you need' };
@@ -37,9 +39,11 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, emailRe, admin,
       if (c.error) return res.status(400).json({ error: c.error });
       if (!(await underQuota(req, 'request'))) return res.status(429).json({ error: 'daily limit reached, try again tomorrow' });
       const token = crypto.randomBytes(18).toString('base64url'), outcome = crypto.randomBytes(18).toString('base64url');
-      const r = await pool.query(`insert into requests (kind, email, name, role, company, region, size, erp, systems, topics, timing, details, routing, ip_hash, confirm_token, outcome_token)
-        values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16) returning id`,
-        [c.kind, email, c.name, c.role, c.company, c.region, c.size, c.erp, c.systems, c.topics, c.timing, c.details, JSON.stringify(c.routing), ipHash(req), token, outcome]);
+      if (c.targetId && !(await pool.query('select 1 from people where id = $1', [c.targetId])).rows.length) c.targetId = null;
+      if (c.viaIds.length) c.viaIds = (await pool.query('select id from people where id = any($1)', [c.viaIds])).rows.map(x => x.id);
+      const r = await pool.query(`insert into requests (kind, email, name, role, company, region, size, erp, systems, topics, timing, details, routing, ip_hash, confirm_token, outcome_token, target_id, via_ids)
+        values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18) returning id`,
+        [c.kind, email, c.name, c.role, c.company, c.region, c.size, c.erp, c.systems, c.topics, c.timing, c.details, JSON.stringify(c.routing), ipHash(req), token, outcome, c.targetId, c.viaIds]);
       const sent = await mail.send({ to: email, subject: 'Treasury Synapse: please confirm your request',
         text: 'Hello' + (c.name ? ' ' + c.name : '') + ',\n\nThanks for asking: ' + KINDS[c.kind].toLowerCase() + (c.systems.length ? ' (' + c.systems.join(', ') + ')' : '') + '.\n\nConfirm it here so we can get to work:\n' + publicUrl + '/api/requests/confirm/' + token +
           '\n\nYour request stays private: it is never shown on the map, and nobody is introduced to you without your contact details being shared on purpose, by email, to both sides.\n\nTreasury Synapse, by K-phi\n' });
@@ -91,7 +95,10 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, emailRe, admin,
       const r = await pool.query("select * from requests where status not in ('closed','spam') order by added_at desc limit 100");
       const intro = await pool.query('select i.*, p.name from introductions i join people p on p.id = i.person_id where i.request_id = any($1)', [r.rows.map(x => x.id)]);
       const out = [];
-      for (const rq of r.rows) out.push(Object.assign({}, rq, { confirm_token: undefined, outcome_token: undefined, kindLabel: KINDS[rq.kind], suggestions: await suggest(rq), introductions: intro.rows.filter(i => i.request_id === rq.id) }));
+      const named = [...new Set(r.rows.flatMap(x => [x.target_id].concat(x.via_ids || [])).filter(Boolean))];
+      const who = named.length ? Object.fromEntries((await pool.query('select p.id, p.name, p.headline, (c.confirmed_at is not null) claimed from people p left join claims c on c.person_id = p.id where p.id = any($1)', [named])).rows.map(x => [x.id, x])) : {};
+      for (const rq of r.rows) out.push(Object.assign({}, rq, { confirm_token: undefined, outcome_token: undefined, kindLabel: KINDS[rq.kind], suggestions: await suggest(rq), introductions: intro.rows.filter(i => i.request_id === rq.id),
+        target: rq.target_id ? who[rq.target_id] || null : null, via: (rq.via_ids || []).map(id => who[id]).filter(Boolean) }));
       const outcomes = (await pool.query("select id, kind, systems, outcome, outcome_at from requests where outcome is not null order by outcome_at desc limit 50")).rows;
       res.json({ requests: out, outcomes });
     } catch (e) { next(e); }

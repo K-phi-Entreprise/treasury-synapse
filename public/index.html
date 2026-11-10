@@ -1310,6 +1310,9 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
 .sbm label span{display:block;margin:0 0 4px}
 .sbm input[type=text],.sbm input[type=url],.sbm input[type=email],.sbm select,.sbm textarea{width:100%;box-sizing:border-box;padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--fg);font:400 14px/1.35 var(--font-body)}
 .sbm textarea{min-height:68px;resize:vertical}
+/* native dropdown lists follow the dark theme (Windows draws them white otherwise) */
+.sbm select{color-scheme:dark;background-color:#141a35}
+.sbm select option{background-color:#0e1328;color:#e8ecff}
 .sbm .check{display:flex;gap:8px;align-items:flex-start;color:var(--fg-dim)}
 .sbm .check input{margin-top:3px}
 .sbm .sbm-hint{margin:2px 0 12px;font:400 11.5px/1.45 var(--font-mono);color:var(--fg-faint)}
@@ -1455,7 +1458,8 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
     <div id="imp-step2" hidden>
       <p class="imp-sum" id="imp-sum"></p>
       <div class="imp-list" id="imp-list"></div>
-      <button class="go" id="imp-go" type="submit">Send for review</button>
+      <label class="check" style="margin:0 0 10px"><input type="checkbox" id="imp-consent"><span>I agree to show these connections publicly on the map, as lines between my card and theirs. Each of them can ask for the line to be removed.</span></label>
+      <button class="go" id="imp-go" type="submit" disabled>Send for review</button>
     </div>
     <p class="msg" id="imp-msg" role="status" aria-live="polite"></p>
   </form>
@@ -1559,7 +1563,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   function open(){
     const id=window.synapseMe&&window.synapseMe();if(!id)return;
     const p=((window.synapsePeople&&window.synapsePeople())||[]).find(x=>x.id===id);if(!p)return;
-    me=p;matches=[];$('imp-who').textContent='As '+p.name;$('imp-step1').hidden=false;$('imp-step2').hidden=true;msg.textContent='';msg.className='msg';$('imp-file').value='';$('imp-go').disabled=false;wrap.hidden=false;
+    me=p;matches=[];$('imp-who').textContent='As '+p.name;$('imp-step1').hidden=false;$('imp-step2').hidden=true;msg.textContent='';msg.className='msg';$('imp-file').value='';$('imp-consent').checked=false;$('imp-go').disabled=true;wrap.hidden=false;
   }
   function close(){wrap.hidden=true}
   async function take(file){
@@ -1586,6 +1590,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
     });
   }
   btn.addEventListener('click',open);
+  $('imp-consent').addEventListener('change',e=>{$('imp-go').disabled=!e.target.checked});
   $('imp-close').addEventListener('click',close);
   wrap.addEventListener('click',e=>{if(e.target===wrap)close()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!wrap.hidden)close()});
@@ -1596,11 +1601,12 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   drop.addEventListener('drop',e=>{const f=e.dataTransfer&&e.dataTransfer.files[0];if(f)take(f)});
   $('imp').addEventListener('submit',async e=>{
     e.preventDefault();
+    if(!$('imp-consent').checked){msg.className='msg err';msg.textContent='Tick the box to agree that these connections are shown on the map.';return}
     const ids=[...$('imp-list').querySelectorAll('input:checked')].map(cb=>matches[+cb.dataset.k].p.id);
     if(!ids.length){msg.className='msg err';msg.textContent='Tick at least one person.';return}
     $('imp-go').disabled=true;msg.className='msg';msg.textContent='Sending…';
     try{
-      const r=await fetch('/api/connections/import',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({from:me.id,to:ids})});
+      const r=await fetch('/api/connections/import',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({from:me.id,to:ids,consent:true})});
       const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not go through. Try again.');
       imported=true;try{localStorage.setItem('synapse.imported','1')}catch(e){}
       msg.textContent=j.added+' connection'+(j.added===1?'':'s')+' sent for review'+(j.existing?' ('+j.existing+' were already declared)':'')+'. They appear, faint, in the Connections view.';
@@ -1924,12 +1930,12 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   const $=id=>document.getElementById(id);
   const TOPICS=['Cash forecasting','Liquidity','Bank connectivity','Payments','In-house banking','FX & hedging','Debt & funding','Working capital','AR/AP','FP&A & planning','Consolidation','Treasury technology','TMS selection','Risk & compliance','Fraud','AI in finance','ESG & sustainable finance','Crypto & stablecoins','Commodities'];
   const REGIONS=['United States','United Kingdom','France','DACH','Benelux','Nordics','Southern Europe','Asia-Pacific','Other'];
-  let kind='selection',tsel=[];
+  let kind='selection',tsel=[],target=null,via=[];
   REGIONS.forEach(r=>{const o=document.createElement('option');o.textContent=r;$('hp-region').appendChild(o)});
   function topics(){const h=$('hp-topics');h.textContent='';TOPICS.forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.setAttribute('aria-pressed',String(tsel.includes(t)));b.addEventListener('click',()=>{const i=tsel.indexOf(t);if(i>=0)tsel.splice(i,1);else tsel.push(t);b.setAttribute('aria-pressed',String(i<0))});h.appendChild(b)})}
   $('hp-kinds').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;kind=b.dataset.k;$('hp-kinds').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
   function open(pre){
-    pre=pre||{};tsel=(pre.topics||[]).slice();topics();
+    pre=pre||{};tsel=(pre.topics||[]).slice();topics();target=pre.targetId||null;via=pre.viaIds||[];
     if(pre.system){$('hp-systems').value=pre.system}
     if(pre.details){$('hp-details').value=pre.details}
     if(pre.kind){kind=pre.kind;$('hp-kinds').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.k===kind)))}
@@ -1956,6 +1962,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
     e.preventDefault();const msg=$('hp-msg'),go=$('hp-go');go.disabled=true;msg.className='msg';msg.textContent='Sending…';
     const body={kind,systems:$('hp-systems').value.split(',').map(s=>s.trim()).filter(Boolean),topics:tsel,region:$('hp-region').value,size:$('hp-size').value,erp:$('hp-erp').value,timing:$('hp-timing').value,
       details:$('hp-details').value,name:$('hp-name').value,role:$('hp-role').value,company:$('hp-company').value,email:$('hp-email').value,
+      targetId:target,viaIds:via,
       routing:{consultants:$('hp-r-cons').checked,references:$('hp-r-ref').checked,vendors:$('hp-r-ven').checked}};
     try{
       const r=await fetch('/api/requests',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
@@ -1983,6 +1990,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
 .cs-item .row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 .cs-item .row button{padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);font:500 12px var(--font-body);cursor:pointer}
 .cs-item .row button.pri{border-color:rgba(110,231,240,.5);background:rgba(110,231,240,.1)}
+.cs-item .net{color:#86efac}
 .cs-count{margin:0 0 8px;font:400 11.5px var(--font-mono);color:var(--fg-faint)}
 .cs-link{display:none}
 @media (min-width:900px){.top .cs-link{display:inline-block;order:3;margin:8px 0 0 8px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-dim);font:500 12.5px/1.2 var(--font-body);cursor:pointer}}
@@ -1997,6 +2005,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       <label><span>Topic</span><select id="cs-topic"><option value="">Any</option></select></label>
       <label><span>Region</span><select id="cs-region"><option value="">Any</option></select></label>
     </div>
+    <p class="sbm-hint" id="cs-net" hidden>Find yourself on the map (type your name, then "this is me") to see who in your network knows them.</p>
     <p class="cs-count" id="cs-count" role="status" aria-live="polite"></p>
     <div class="cs-list" id="cs-list"></div>
   </div>
@@ -2019,7 +2028,12 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       const j=await fetch('/api/consultants?'+q,{cache:'no-store'}).then(r=>r.json());if(my!==seq)return;
       const list=$('cs-list');list.textContent='';
       $('cs-count').textContent=j.total?j.total+' found'+(j.total>j.consultants.length?', showing the first '+j.consultants.length:''):'Nobody matches yet. Ask for help and we will look for you.';
+      const me=window.synapseMe&&window.synapseMe();let paths={};
+      if(me&&j.consultants.length){try{paths=(await fetch('/api/paths?from='+encodeURIComponent(me)+'&to='+j.consultants.map(c=>c.id).join(','),{cache:'no-store'}).then(r=>r.json())).paths||{}}catch(e){}}
+      if(my!==seq)return;
+      $('cs-net').hidden=!!me;
       j.consultants.forEach(c=>{
+        const path=paths[c.id];
         const it=el('article','cs-item');it.appendChild(el('h5','',c.name));it.appendChild(el('p','meta',[c.headline||c.org,c.region&&c.region!=='Unknown'?c.region:''].filter(Boolean).join(' · ')));
         const tags=el('div','tags');
         if(c.available)tags.appendChild(el('span','av','available for projects'+(c.regions.length?' · '+c.regions.join(', '):'')));
@@ -2030,9 +2044,10 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
         if(c.evidence.length){const l=el('div','ln');l.append(el('small','','public'),document.createTextNode(c.evidence.map(e=>VERB[e.role]+' '+e.system+(e.sources>1?' ('+e.sources+' sources)':'')).join(' · ')));it.appendChild(l)}
         if(c.declared.length){const l=el('div','ln');l.append(el('small','','declared'),document.createTextNode(c.declared.map(d=>DVERB[d.role]+' '+d.system+(d.topics.length?': '+d.topics.join(', '):'')).join(' · ')));it.appendChild(l)}
         if(c.languages.length||c.note){const l=el('div','ln');l.textContent=[c.languages.length?'Languages: '+c.languages.join(', '):'',c.note].filter(Boolean).join(' · ');it.appendChild(l)}
+        if(path){const l=el('div','ln net');l.append(el('small','','your network'),document.createTextNode(path.direct?'You know them directly':'Through '+path.via.map(v=>v.name).join(', ')));it.appendChild(l)}
         const row=el('div','row');
         const ask=el('button','pri','Ask for an introduction');ask.type='button';
-        ask.addEventListener('click',()=>{close();window.synapseHelp&&window.synapseHelp({kind:'implementation',system:$('cs-system').value.trim(),details:'I would like an introduction to '+c.name+(c.org?' ('+c.org+')':'')+'.'})});
+        ask.addEventListener('click',()=>{close();window.synapseHelp&&window.synapseHelp({kind:'implementation',system:$('cs-system').value.trim(),details:'I would like an introduction to '+c.name+(c.org?' ('+c.org+')':'')+'.'+(path?(path.direct?' We already know each other.':' We are connected through '+path.via.map(v=>v.name).join(', ')+'.'):''),targetId:c.id,viaIds:path&&!path.direct?path.via.map(v=>v.id):[]})});
         const show=el('button','','Show on the map');show.type='button';show.addEventListener('click',()=>{close();window.synapseFocus&&window.synapseFocus(c.id)});
         row.append(ask,show);it.appendChild(row);list.appendChild(it);
       });

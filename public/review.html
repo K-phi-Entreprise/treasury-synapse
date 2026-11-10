@@ -213,6 +213,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     if(rq.status!=='new')top.appendChild(el('span','tag',rq.status.replace('_',' ')));
     top.appendChild(el('span','when',ago(rq.added_at)));it.appendChild(top);
     it.appendChild(el('div','who',[rq.name||'(no name)',rq.role,rq.company].filter(Boolean).join(' · ')));
+    if(rq.target)it.appendChild(el('div','body','Wants an introduction to '+rq.target.name+(rq.target.claimed?'':' (card not claimed)')+(rq.via&&rq.via.length?', and is connected to them through '+rq.via.map(v=>v.name+(v.claimed?'':' (not claimed)')).join(', '):'')+'.'));
     const b=el('div','body');
     [rq.email,[rq.region,rq.size?rq.size+' people':'',rq.erp?'ERP '+rq.erp:'',rq.timing?TIMING[rq.timing]:''].filter(Boolean).join(' · '),
      rq.systems.length?'Looking at: '+rq.systems.join(', '):'',rq.topics.length?'Matters: '+rq.topics.join(', '):'',rq.details?'“'+rq.details+'”':'',

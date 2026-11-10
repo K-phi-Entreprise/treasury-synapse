@@ -56,12 +56,12 @@
   const $=id=>document.getElementById(id);
   const TOPICS=['Cash forecasting','Liquidity','Bank connectivity','Payments','In-house banking','FX & hedging','Debt & funding','Working capital','AR/AP','FP&A & planning','Consolidation','Treasury technology','TMS selection','Risk & compliance','Fraud','AI in finance','ESG & sustainable finance','Crypto & stablecoins','Commodities'];
   const REGIONS=['United States','United Kingdom','France','DACH','Benelux','Nordics','Southern Europe','Asia-Pacific','Other'];
-  let kind='selection',tsel=[];
+  let kind='selection',tsel=[],target=null,via=[];
   REGIONS.forEach(r=>{const o=document.createElement('option');o.textContent=r;$('hp-region').appendChild(o)});
   function topics(){const h=$('hp-topics');h.textContent='';TOPICS.forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.setAttribute('aria-pressed',String(tsel.includes(t)));b.addEventListener('click',()=>{const i=tsel.indexOf(t);if(i>=0)tsel.splice(i,1);else tsel.push(t);b.setAttribute('aria-pressed',String(i<0))});h.appendChild(b)})}
   $('hp-kinds').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;kind=b.dataset.k;$('hp-kinds').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
   function open(pre){
-    pre=pre||{};tsel=(pre.topics||[]).slice();topics();
+    pre=pre||{};tsel=(pre.topics||[]).slice();topics();target=pre.targetId||null;via=pre.viaIds||[];
     if(pre.system){$('hp-systems').value=pre.system}
     if(pre.details){$('hp-details').value=pre.details}
     if(pre.kind){kind=pre.kind;$('hp-kinds').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.k===kind)))}
@@ -88,6 +88,7 @@
     e.preventDefault();const msg=$('hp-msg'),go=$('hp-go');go.disabled=true;msg.className='msg';msg.textContent='Sending…';
     const body={kind,systems:$('hp-systems').value.split(',').map(s=>s.trim()).filter(Boolean),topics:tsel,region:$('hp-region').value,size:$('hp-size').value,erp:$('hp-erp').value,timing:$('hp-timing').value,
       details:$('hp-details').value,name:$('hp-name').value,role:$('hp-role').value,company:$('hp-company').value,email:$('hp-email').value,
+      targetId:target,viaIds:via,
       routing:{consultants:$('hp-r-cons').checked,references:$('hp-r-ref').checked,vendors:$('hp-r-ven').checked}};
     try{
       const r=await fetch('/api/requests',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});

@@ -138,7 +138,10 @@ test('the review page is served, not indexed, and the map carries the form', asy
 
 test('LinkedIn import: only known people, one batch, a daily limit, confirmable at once on the review page', async () => {
   await pool.query("delete from quotas where kind = 'import'; delete from connections where note = 'LinkedIn connections import';");
-  const imp = body => fetch(base + '/api/connections/import', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(async r => ({ status: r.status, body: await r.json() }));
+  const imp = (body, consent = true) => fetch(base + '/api/connections/import', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign(consent ? { consent: true } : {}, body)) }).then(async r => ({ status: r.status, body: await r.json() }));
+  const noConsent = await imp({ from: 'vincent-donnat', to: ['jouni-kirjola'] }, false);
+  assert.equal(noConsent.status, 400, 'nothing is imported without agreeing to make it public');
+  assert.match(noConsent.body.error, /publicly/);
   assert.equal((await imp({ from: 'nobody-here', to: ['craig-jeffery'] })).status, 404);
   assert.equal((await imp({ from: 'vincent-donnat', to: [] })).status, 400);
   const r = await imp({ from: 'vincent-donnat', to: ['jouni-kirjola', 'melania-maior', 'craig-jeffery', 'not-on-the-map', 'vincent-donnat', 'craig-jeffery'] });
@@ -149,6 +152,7 @@ test('LinkedIn import: only known people, one batch, a daily limit, confirmable 
   const mine = q.connections.filter(c => c.batch === r.body.batch);
   assert.equal(mine.length, 3);
   assert.equal(mine[0].batch_pending, 3);
+  assert.equal((await pool.query("select count(*)::int n from connections where batch = $1 and public_consent_at is not null", [r.body.batch])).rows[0].n, 3, 'the agreement is recorded');
   const g = await fetch(base + '/api/graph?since=2000-01-01T00:00:00Z').then(r => r.json());
   assert.ok(g.connections.some(c => c.from === 'vincent-donnat' && c.to === 'jouni-kirjola' && c.status === 'pending'), 'shown pending in the connections angle');
   const s = await adminPost('/api/admin/connections-batch/' + r.body.batch, { status: 'confirmed' });
@@ -160,7 +164,7 @@ test('LinkedIn import: only known people, one batch, a daily limit, confirmable 
   const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
   assert.ok(html.includes('id="d-import"') && html.includes("fetch('/api/connections/import'"));
   const imp2 = html.slice(html.indexOf('id="imp-wrap"'));
-  assert.ok(imp2.includes('body:JSON.stringify({from:me.id,to:ids})') && !/FormData|file\.text\(\)\)\s*\}/.test(imp2), 'only the matched ids are sent, never the file');
+  assert.ok(imp2.includes('body:JSON.stringify({from:me.id,to:ids,consent:true})') && !/FormData|file\.text\(\)\)\s*\}/.test(imp2), 'only the matched ids are sent, never the file');
 });
 
 test('catch-up import from /review: adds people, links and evidence, never undoes a review decision', async () => {

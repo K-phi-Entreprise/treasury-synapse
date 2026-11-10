@@ -14,6 +14,7 @@
 .cs-item .row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 .cs-item .row button{padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);font:500 12px var(--font-body);cursor:pointer}
 .cs-item .row button.pri{border-color:rgba(110,231,240,.5);background:rgba(110,231,240,.1)}
+.cs-item .net{color:#86efac}
 .cs-count{margin:0 0 8px;font:400 11.5px var(--font-mono);color:var(--fg-faint)}
 .cs-link{display:none}
 @media (min-width:900px){.top .cs-link{display:inline-block;order:3;margin:8px 0 0 8px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-dim);font:500 12.5px/1.2 var(--font-body);cursor:pointer}}
@@ -28,6 +29,7 @@
       <label><span>Topic</span><select id="cs-topic"><option value="">Any</option></select></label>
       <label><span>Region</span><select id="cs-region"><option value="">Any</option></select></label>
     </div>
+    <p class="sbm-hint" id="cs-net" hidden>Find yourself on the map (type your name, then "this is me") to see who in your network knows them.</p>
     <p class="cs-count" id="cs-count" role="status" aria-live="polite"></p>
     <div class="cs-list" id="cs-list"></div>
   </div>
@@ -50,7 +52,12 @@
       const j=await fetch('/api/consultants?'+q,{cache:'no-store'}).then(r=>r.json());if(my!==seq)return;
       const list=$('cs-list');list.textContent='';
       $('cs-count').textContent=j.total?j.total+' found'+(j.total>j.consultants.length?', showing the first '+j.consultants.length:''):'Nobody matches yet. Ask for help and we will look for you.';
+      const me=window.synapseMe&&window.synapseMe();let paths={};
+      if(me&&j.consultants.length){try{paths=(await fetch('/api/paths?from='+encodeURIComponent(me)+'&to='+j.consultants.map(c=>c.id).join(','),{cache:'no-store'}).then(r=>r.json())).paths||{}}catch(e){}}
+      if(my!==seq)return;
+      $('cs-net').hidden=!!me;
       j.consultants.forEach(c=>{
+        const path=paths[c.id];
         const it=el('article','cs-item');it.appendChild(el('h5','',c.name));it.appendChild(el('p','meta',[c.headline||c.org,c.region&&c.region!=='Unknown'?c.region:''].filter(Boolean).join(' · ')));
         const tags=el('div','tags');
         if(c.available)tags.appendChild(el('span','av','available for projects'+(c.regions.length?' · '+c.regions.join(', '):'')));
@@ -61,9 +68,10 @@
         if(c.evidence.length){const l=el('div','ln');l.append(el('small','','public'),document.createTextNode(c.evidence.map(e=>VERB[e.role]+' '+e.system+(e.sources>1?' ('+e.sources+' sources)':'')).join(' · ')));it.appendChild(l)}
         if(c.declared.length){const l=el('div','ln');l.append(el('small','','declared'),document.createTextNode(c.declared.map(d=>DVERB[d.role]+' '+d.system+(d.topics.length?': '+d.topics.join(', '):'')).join(' · ')));it.appendChild(l)}
         if(c.languages.length||c.note){const l=el('div','ln');l.textContent=[c.languages.length?'Languages: '+c.languages.join(', '):'',c.note].filter(Boolean).join(' · ');it.appendChild(l)}
+        if(path){const l=el('div','ln net');l.append(el('small','','your network'),document.createTextNode(path.direct?'You know them directly':'Through '+path.via.map(v=>v.name).join(', ')));it.appendChild(l)}
         const row=el('div','row');
         const ask=el('button','pri','Ask for an introduction');ask.type='button';
-        ask.addEventListener('click',()=>{close();window.synapseHelp&&window.synapseHelp({kind:'implementation',system:$('cs-system').value.trim(),details:'I would like an introduction to '+c.name+(c.org?' ('+c.org+')':'')+'.'})});
+        ask.addEventListener('click',()=>{close();window.synapseHelp&&window.synapseHelp({kind:'implementation',system:$('cs-system').value.trim(),details:'I would like an introduction to '+c.name+(c.org?' ('+c.org+')':'')+'.'+(path?(path.direct?' We already know each other.':' We are connected through '+path.via.map(v=>v.name).join(', ')+'.'):''),targetId:c.id,viaIds:path&&!path.direct?path.via.map(v=>v.id):[]})});
         const show=el('button','','Show on the map');show.type='button';show.addEventListener('click',()=>{close();window.synapseFocus&&window.synapseFocus(c.id)});
         row.append(ask,show);it.appendChild(row);list.appendChild(it);
       });

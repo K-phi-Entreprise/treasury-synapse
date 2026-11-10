@@ -261,3 +261,9 @@ create table if not exists introductions (
   at timestamptz not null default now(),
   primary key (request_id, person_id)
 );
+
+-- Imported networks are public on the map only with the importer's explicit agreement
+alter table connections add column if not exists public_consent_at timestamptz;
+-- A request may name the person to be introduced to, and the people in the requester's network who link to them
+alter table requests add column if not exists target_id text;
+alter table requests add column if not exists via_ids text[] not null default '{}';

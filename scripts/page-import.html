@@ -46,7 +46,8 @@
     <div id="imp-step2" hidden>
       <p class="imp-sum" id="imp-sum"></p>
       <div class="imp-list" id="imp-list"></div>
-      <button class="go" id="imp-go" type="submit">Send for review</button>
+      <label class="check" style="margin:0 0 10px"><input type="checkbox" id="imp-consent"><span>I agree to show these connections publicly on the map, as lines between my card and theirs. Each of them can ask for the line to be removed.</span></label>
+      <button class="go" id="imp-go" type="submit" disabled>Send for review</button>
     </div>
     <p class="msg" id="imp-msg" role="status" aria-live="polite"></p>
   </form>
@@ -150,7 +151,7 @@
   function open(){
     const id=window.synapseMe&&window.synapseMe();if(!id)return;
     const p=((window.synapsePeople&&window.synapsePeople())||[]).find(x=>x.id===id);if(!p)return;
-    me=p;matches=[];$('imp-who').textContent='As '+p.name;$('imp-step1').hidden=false;$('imp-step2').hidden=true;msg.textContent='';msg.className='msg';$('imp-file').value='';$('imp-go').disabled=false;wrap.hidden=false;
+    me=p;matches=[];$('imp-who').textContent='As '+p.name;$('imp-step1').hidden=false;$('imp-step2').hidden=true;msg.textContent='';msg.className='msg';$('imp-file').value='';$('imp-consent').checked=false;$('imp-go').disabled=true;wrap.hidden=false;
   }
   function close(){wrap.hidden=true}
   async function take(file){
@@ -177,6 +178,7 @@
     });
   }
   btn.addEventListener('click',open);
+  $('imp-consent').addEventListener('change',e=>{$('imp-go').disabled=!e.target.checked});
   $('imp-close').addEventListener('click',close);
   wrap.addEventListener('click',e=>{if(e.target===wrap)close()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!wrap.hidden)close()});
@@ -187,11 +189,12 @@
   drop.addEventListener('drop',e=>{const f=e.dataTransfer&&e.dataTransfer.files[0];if(f)take(f)});
   $('imp').addEventListener('submit',async e=>{
     e.preventDefault();
+    if(!$('imp-consent').checked){msg.className='msg err';msg.textContent='Tick the box to agree that these connections are shown on the map.';return}
     const ids=[...$('imp-list').querySelectorAll('input:checked')].map(cb=>matches[+cb.dataset.k].p.id);
     if(!ids.length){msg.className='msg err';msg.textContent='Tick at least one person.';return}
     $('imp-go').disabled=true;msg.className='msg';msg.textContent='Sending…';
     try{
-      const r=await fetch('/api/connections/import',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({from:me.id,to:ids})});
+      const r=await fetch('/api/connections/import',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({from:me.id,to:ids,consent:true})});
       const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not go through. Try again.');
       imported=true;try{localStorage.setItem('synapse.imported','1')}catch(e){}
       msg.textContent=j.added+' connection'+(j.added===1?'':'s')+' sent for review'+(j.existing?' ('+j.existing+' were already declared)':'')+'. They appear, faint, in the Connections view.';
