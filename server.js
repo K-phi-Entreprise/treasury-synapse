@@ -11,7 +11,7 @@ const app = express();
 const pool = process.env.DATABASE_URL ? makePool() : null;
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 const SALT = process.env.IP_SALT || ADMIN_TOKEN || 'synapse';
-const LIMITS = { connection: 10, submission: 10 };
+const LIMITS = { connection: 10, submission: 10, import: 2 };
 
 app.set('trust proxy', true);
 app.use(compression());
@@ -71,6 +71,31 @@ async function underQuota(req, kind) {
   return r.rows[0].n <= LIMITS[kind];
 }
 const slug = v => String(v || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 120);
+
+/* LinkedIn Connections.csv, matched in the visitor's browser: only ids of people already on the map arrive here. */
+app.post('/api/connections/import', async (req, res, next) => {
+  try {
+    const from = slug(req.body.from);
+    const to = [...new Set((Array.isArray(req.body.to) ? req.body.to : []).map(slug).filter(Boolean))].filter(id => id !== from);
+    if (!from || !to.length) return res.status(400).json({ error: 'nothing to import' });
+    if (to.length > 500) return res.status(400).json({ error: 'at most 500 connections per import' });
+    const known = await pool.query('select id from people where id = any($1) and not hidden', [[from, ...to]]);
+    const ok = new Set(known.rows.map(r => r.id));
+    if (!ok.has(from)) return res.status(404).json({ error: 'unknown person' });
+    if (!(await underQuota(req, 'import'))) return res.status(429).json({ error: 'two imports a day at most, try again tomorrow' });
+    const batch = 'csv-' + Date.now().toString(36) + '-' + crypto.randomBytes(3).toString('hex');
+    const h = ipHash(req);
+    let added = 0;
+    for (const id of to) {
+      if (!ok.has(id)) continue;
+      const r = await pool.query(`insert into connections (from_id, to_id, status, note, ip_hash, batch) values ($1,$2,'pending','LinkedIn connections import',$3,$4)
+        on conflict (from_id, to_id) do nothing returning 1`, [from, id, h, batch]);
+      added += r.rowCount;
+    }
+    cache.at = 0;
+    res.json({ added, existing: to.filter(id => ok.has(id)).length - added, unknown: to.filter(id => !ok.has(id)).length, batch });
+  } catch (e) { next(e); }
+});
 
 app.post('/api/connections', async (req, res, next) => {
   try {
@@ -173,7 +198,8 @@ app.get('/api/admin/queue', admin, async (req, res, next) => {
   try {
     const [c, s, l] = await Promise.all([
       pool.query(`select c.*, pf.name as from_name, pf.headline as from_headline, pt.name as to_name, pt.headline as to_headline,
-          (select count(*)::int from connections x where x.ip_hash = c.ip_hash and x.ip_hash <> '') as same_sender
+          (select count(*)::int from connections x where x.ip_hash = c.ip_hash and x.ip_hash <> '') as same_sender,
+          (select count(*)::int from connections y where y.batch = c.batch and y.status = 'pending') as batch_pending
         from connections c join people pf on pf.id = c.from_id join people pt on pt.id = c.to_id where c.status = 'pending' order by c.added_at`),
       pool.query(`select s.id, s.kind, s.person_id, s.payload, s.email, s.status, s.decision_note, s.added_at, s.confirmed_at,
           p.name as person_name, p.headline as person_headline, p.org as person_org, p.city as person_city, p.region as person_region, p.known_for as person_known_for
@@ -181,6 +207,15 @@ app.get('/api/admin/queue', admin, async (req, res, next) => {
         order by (s.kind = 'removal') desc, s.added_at`),
       pool.query(`select l.*, p.name as person_name from leads l left join people p on p.id = l.person_id where l.status = 'pending' order by l.added_at desc nulls last`)]);
     res.json({ connections: c.rows, submissions: s.rows, leads: l.rows, mail: mail.configured() });
+  } catch (e) { next(e); }
+});
+app.post('/api/admin/connections-batch/:batch', admin, async (req, res, next) => {
+  try {
+    const status = String(req.body.status || '');
+    if (!['confirmed', 'rejected'].includes(status)) return res.status(400).json({ error: 'bad status' });
+    const r = await pool.query("update connections set status = $2, reviewed_at = now(), updated_at = now() where batch = $1 and status = 'pending'", [clip(req.params.batch, 60), status]);
+    cache.at = 0;
+    res.json({ ok: true, updated: r.rowCount });
   } catch (e) { next(e); }
 });
 app.post('/api/admin/connections/:from/:to', admin, async (req, res, next) => {

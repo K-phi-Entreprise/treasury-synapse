@@ -174,3 +174,7 @@ create unique index if not exists submissions_confirm_token on submissions (conf
 -- which ignores hyphens and would reject "sam-russell" < "samantha-mcganney". Re-created on every migrate.
 alter table co_appearances drop constraint if exists co_appearances_check;
 alter table co_appearances add constraint co_appearances_check check ((a collate "C") < (b collate "C"));
+
+-- CSV import: declared connections arrive in batches the owner can confirm or reject at once
+alter table connections add column if not exists batch text;
+create index if not exists connections_batch on connections (batch) where batch is not null;

@@ -11,7 +11,7 @@ let mailbox = [], mailSrv, server, base, pool;
 const TOKEN = 'review-test-token';
 
 test.before(async () => {
-  await require('./setup').ready();
+  await require('./setup').ready({ reset: true });
   mailSrv = http.createServer((req, res) => {
     let b = ''; req.on('data', c => { b += c; });
     req.on('end', () => { mailbox.push({ auth: req.headers.authorization, body: JSON.parse(b) }); res.setHeader('content-type', 'application/json'); res.end('{"id":"m1"}'); });
@@ -134,4 +134,31 @@ test('the review page is served, not indexed, and the map carries the form', asy
   assert.ok(html.includes('id="d-edit"') && html.includes("fetch('/api/submissions'"));
   const review = fs.readFileSync(path.join(__dirname, '..', 'public', 'review.html'), 'utf8');
   for (const f of [html, review]) assert.ok(!/\balert\(|confirm\(|prompt\(/.test(f.replace(/confirm\/|confirmed|confirmation|Confirm/g, '')), 'no browser dialogs');
+});
+
+test('LinkedIn import: only known people, one batch, a daily limit, confirmable at once on the review page', async () => {
+  await pool.query("delete from quotas where kind = 'import'; delete from connections where note = 'LinkedIn connections import';");
+  const imp = body => fetch(base + '/api/connections/import', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(async r => ({ status: r.status, body: await r.json() }));
+  assert.equal((await imp({ from: 'nobody-here', to: ['craig-jeffery'] })).status, 404);
+  assert.equal((await imp({ from: 'vincent-donnat', to: [] })).status, 400);
+  const r = await imp({ from: 'vincent-donnat', to: ['jouni-kirjola', 'melania-maior', 'craig-jeffery', 'not-on-the-map', 'vincent-donnat', 'craig-jeffery'] });
+  assert.equal(r.status, 200);
+  assert.equal(r.body.added, 3, 'self, duplicates and unknown ids dropped');
+  assert.equal(r.body.unknown, 1);
+  const q = await queue();
+  const mine = q.connections.filter(c => c.batch === r.body.batch);
+  assert.equal(mine.length, 3);
+  assert.equal(mine[0].batch_pending, 3);
+  const g = await fetch(base + '/api/graph?since=2000-01-01T00:00:00Z').then(r => r.json());
+  assert.ok(g.connections.some(c => c.from === 'vincent-donnat' && c.to === 'jouni-kirjola' && c.status === 'pending'), 'shown pending in the connections angle');
+  const s = await adminPost('/api/admin/connections-batch/' + r.body.batch, { status: 'confirmed' });
+  assert.equal(s.body.updated, 3);
+  assert.ok(!(await queue()).connections.some(c => c.batch === r.body.batch));
+  const r2 = await imp({ from: 'vincent-donnat', to: ['jouni-kirjola'] });
+  assert.equal(r2.body.added, 0, 'already declared');
+  assert.equal((await imp({ from: 'vincent-donnat', to: ['adam-larson'] })).status, 429, 'third import of the day refused');
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  assert.ok(html.includes('id="d-import"') && html.includes("fetch('/api/connections/import'"));
+  const imp2 = html.slice(html.indexOf('id="imp-wrap"'));
+  assert.ok(imp2.includes('body:JSON.stringify({from:me.id,to:ids})') && !/FormData|file\.text\(\)\)\s*\}/.test(imp2), 'only the matched ids are sent, never the file');
 });

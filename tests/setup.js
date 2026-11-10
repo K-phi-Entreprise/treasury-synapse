@@ -9,7 +9,7 @@ async function ready({ reset } = {}) {
   const pool = makePool();
   if (reset) await pool.query('drop schema public cascade; create schema public;');
   await migrate(pool);
-  if (!reset) await importDump(pool, require(path.join(__dirname, '..', 'data', 'seed', 'dump.json')), { ifEmpty: true });
+  await importDump(pool, require(path.join(__dirname, '..', 'data', 'seed', 'dump.json')), { ifEmpty: !reset });
   await pool.end();
 }
 module.exports = { ready };

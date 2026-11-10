@@ -1,0 +1,131 @@
+<style>
+.d-import{display:block;width:100%;margin:12px 0 0;padding:8px 12px;border-radius:9px;border:1px solid var(--line);background:rgba(110,231,240,.06);color:var(--fg);font:500 12.5px/1.3 var(--font-body);cursor:pointer;text-align:left}
+.d-import:hover{border-color:var(--fg-dim)}
+@media (max-width:899px){.detail:not(.open) .d-import{display:none}}
+.imp-drop{display:block;margin:4px 0 12px;padding:18px 14px;border:1px dashed var(--line);border-radius:12px;text-align:center;color:var(--fg-dim);font-size:13px;cursor:pointer}
+.imp-drop.over{border-color:#6ee7f0;color:var(--fg)}
+.imp-drop input{display:none}
+.imp-list{max-height:38vh;overflow:auto;margin:0 0 12px;border:1px solid var(--line);border-radius:10px}
+.imp-row{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-bottom:1px solid var(--line);font-size:13px;cursor:pointer}
+.imp-row:last-child{border-bottom:0}
+.imp-row input{margin-top:3px}
+.imp-row small{display:block;color:var(--fg-faint);font:400 11px/1.4 var(--font-mono)}
+.imp-sum{margin:0 0 10px;font-size:13px;line-height:1.45;color:var(--fg)}
+.imp-steps{margin:0 0 12px;padding-left:18px;color:var(--fg-dim);font-size:12.5px;line-height:1.5}
+.imp-steps li{margin:0 0 3px}
+</style>
+<div class="sbm-wrap" id="imp-wrap" hidden>
+  <form class="sbm" id="imp" novalidate>
+    <h3>Add your LinkedIn connections</h3>
+    <button class="close x" id="imp-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="who" id="imp-who"></p>
+    <div id="imp-step1">
+      <ol class="imp-steps">
+        <li>On LinkedIn: Settings, Data privacy, Get a copy of your data, Connections.</li>
+        <li>LinkedIn emails you a file called Connections.csv, usually within minutes.</li>
+        <li>Drop it below. It is read here, in your browser, and never uploaded.</li>
+      </ol>
+      <label class="imp-drop" id="imp-drop">Choose Connections.csv or drop it here<input type="file" id="imp-file" accept=".csv,text/csv"></label>
+      <p class="sbm-hint">Only people already on this map are matched, by name and company. Nobody new is added, and emails in the file are ignored. Matches become connections in the Connections view once they have been reviewed; they never change anyone's size on the map.</p>
+    </div>
+    <div id="imp-step2" hidden>
+      <p class="imp-sum" id="imp-sum"></p>
+      <div class="imp-list" id="imp-list"></div>
+      <button class="go" id="imp-go" type="submit">Send for review</button>
+    </div>
+    <p class="msg" id="imp-msg" role="status" aria-live="polite"></p>
+  </form>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const wrap=$('imp-wrap'),msg=$('imp-msg'),btn=$('d-import');
+  let me=null,matches=[];
+  window.synapseOnDetail=id=>{const m=window.synapseMe&&window.synapseMe();btn.hidden=!(m&&id===m)};
+  const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+  const STOP=new Set(['inc','ltd','llc','gmbh','sa','sas','ag','plc','group','the','and','co','corp','corporation','limited','bv','nv','spa','srl']);
+  const orgTokens=s=>norm(s).split(' ').filter(t=>t.length>1&&!STOP.has(t));
+  function orgMatch(a,b){const A=orgTokens(a),B=orgTokens(b);if(!A.length||!B.length)return false;return A.some(t=>B.includes(t))}
+  /* CSV with quoted fields; LinkedIn adds a few "Notes" lines before the header */
+  function parseCSV(text){
+    const rows=[];let row=[],f='',q=false;
+    for(let i=0;i<text.length;i++){const c=text[i];
+      if(q){if(c==='"'){if(text[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+      else if(c==='"')q=true;else if(c===','){row.push(f);f=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;row.push(f);rows.push(row);row=[];f=''}else f+=c}
+    if(f||row.length){row.push(f);rows.push(row)}
+    return rows;
+  }
+  function readConnections(text){
+    const rows=parseCSV(text.replace(/^﻿/,''));
+    const h=rows.findIndex(r=>r.some(c=>/^first name$/i.test(c.trim()))&&r.some(c=>/^last name$/i.test(c.trim())));
+    if(h<0)return null;
+    const head=rows[h].map(c=>c.trim().toLowerCase());
+    const fi=head.indexOf('first name'),li=head.indexOf('last name'),ci=head.indexOf('company');
+    return rows.slice(h+1).filter(r=>r.length>Math.max(fi,li)&&(r[fi]||r[li])).slice(0,30000).map(r=>({first:r[fi]||'',last:r[li]||'',company:ci>=0?(r[ci]||''):''}));
+  }
+  function match(conns){
+    const people=(window.synapsePeople&&window.synapsePeople())||[];
+    const full=new Map(),short=new Map();
+    const add=(m,k,p)=>{if(!k)return;(m.get(k)||m.set(k,[]).get(k)).push(p)};
+    people.forEach(p=>{const t=norm(p.name).split(' ');add(full,t.join(' '),p);if(t.length>=2)add(short,t[0]+' '+t[t.length-1],p)});
+    const out=new Map();
+    for(const c of conns){
+      const f=norm(c.first).split(' ').filter(Boolean),l=norm(c.last).split(' ').filter(Boolean);
+      if(!f.length||!l.length)continue;
+      let cand=full.get(f.concat(l).join(' '))||short.get(f[0]+' '+l[l.length-1])||[];
+      cand=cand.filter(p=>p.id!==me.id);
+      if(!cand.length)continue;
+      let pick=null,how='';
+      const byOrg=cand.filter(p=>orgMatch(p.org,c.company));
+      if(byOrg.length===1){pick=byOrg[0];how='name and company'}
+      else if(cand.length===1){pick=cand[0];how=c.company&&cand[0].org&&!orgMatch(cand[0].org,c.company)?'name only, different company':'name'}
+      if(pick&&!out.has(pick.id))out.set(pick.id,{p:pick,how,company:c.company});
+    }
+    return [...out.values()];
+  }
+  function open(){
+    const id=window.synapseMe&&window.synapseMe();if(!id)return;
+    const p=((window.synapsePeople&&window.synapsePeople())||[]).find(x=>x.id===id);if(!p)return;
+    me=p;matches=[];$('imp-who').textContent='As '+p.name;$('imp-step1').hidden=false;$('imp-step2').hidden=true;msg.textContent='';msg.className='msg';$('imp-file').value='';$('imp-go').disabled=false;wrap.hidden=false;
+  }
+  function close(){wrap.hidden=true}
+  async function take(file){
+    msg.className='msg';msg.textContent='Reading…';
+    if(!file||file.size>15*1024*1024){msg.className='msg err';msg.textContent='That file is too large to be a connections export.';return}
+    const conns=readConnections(await file.text());
+    if(!conns){msg.className='msg err';msg.textContent='This does not look like LinkedIn’s Connections.csv (no First Name and Last Name columns).';return}
+    matches=match(conns);msg.textContent='';
+    $('imp-step1').hidden=true;$('imp-step2').hidden=false;
+    $('imp-sum').textContent=matches.length?matches.length+' of your '+conns.length.toLocaleString()+' connections are on the map. Untick anyone you do not want to add.':'None of your '+conns.length.toLocaleString()+' connections are on the map yet.';
+    $('imp-go').hidden=!matches.length;
+    const list=$('imp-list');list.textContent='';list.hidden=!matches.length;
+    matches.sort((a,b)=>a.p.name.localeCompare(b.p.name)).forEach((m,k)=>{
+      const r=document.createElement('label');r.className='imp-row';
+      const cb=document.createElement('input');cb.type='checkbox';cb.checked=m.how!=='name only, different company';cb.dataset.k=k;
+      const t=document.createElement('span');t.textContent=m.p.name;const s=document.createElement('small');s.textContent=(m.p.org||'')+' · matched on '+m.how;t.appendChild(s);
+      r.append(cb,t);list.appendChild(r);
+    });
+  }
+  btn.addEventListener('click',open);
+  $('imp-close').addEventListener('click',close);
+  wrap.addEventListener('click',e=>{if(e.target===wrap)close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!wrap.hidden)close()});
+  $('imp-file').addEventListener('change',e=>take(e.target.files[0]));
+  const drop=$('imp-drop');
+  ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+  drop.addEventListener('drop',e=>{const f=e.dataTransfer&&e.dataTransfer.files[0];if(f)take(f)});
+  $('imp').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const ids=[...$('imp-list').querySelectorAll('input:checked')].map(cb=>matches[+cb.dataset.k].p.id);
+    if(!ids.length){msg.className='msg err';msg.textContent='Tick at least one person.';return}
+    $('imp-go').disabled=true;msg.className='msg';msg.textContent='Sending…';
+    try{
+      const r=await fetch('/api/connections/import',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({from:me.id,to:ids})});
+      const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not go through. Try again.');
+      msg.textContent=j.added+' connection'+(j.added===1?'':'s')+' sent for review'+(j.existing?' ('+j.existing+' were already declared)':'')+'. They appear, faint, in the Connections view.';
+      setTimeout(()=>location.reload(),2800);
+    }catch(err){$('imp-go').disabled=false;msg.className='msg err';msg.textContent=String(err.message||err)}
+  });
+})();
+</script>

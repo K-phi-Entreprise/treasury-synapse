@@ -138,7 +138,13 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     const who=el('div','who',c.from_name+'  knows  '+c.to_name);who.appendChild(el('small','',(c.from_headline||'')+'  ·  '+(c.to_headline||'')));it.appendChild(who);
     if(c.note)it.appendChild(el('div','body','“'+c.note+'”'));
     const st=v=>()=>call('/api/admin/connections/'+encodeURIComponent(c.from_id)+'/'+encodeURIComponent(c.to_id),{status:v});
-    it.appendChild(actions(c,{buttons:[['ok','Confirm',st('confirmed')],['no','Reject',st('rejected')]],note:false}));
+    const btns=[['ok','Confirm',st('confirmed')],['no','Reject',st('rejected')]];
+    if(c.batch&&c.batch_pending>1){
+      top.insertBefore(el('span','tag','LinkedIn import · '+c.batch_pending+' pending'),top.lastChild);
+      const bt=v=>()=>call('/api/admin/connections-batch/'+encodeURIComponent(c.batch),{status:v});
+      btns.push(['ok','Confirm all '+c.batch_pending+' from this import',bt('confirmed')],['no','Reject the whole import',bt('rejected')]);
+    }
+    it.appendChild(actions(c,{buttons:btns,note:false}));
     return it;
   }
   function leadItem(l){
