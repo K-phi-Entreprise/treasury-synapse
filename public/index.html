@@ -1446,8 +1446,8 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
     <div id="imp-step1">
       <ol class="imp-steps">
         <li>Open <a href="https://www.linkedin.com/mypreferences/d/download-my-data" target="_blank" rel="noopener noreferrer">Download your data</a> on LinkedIn (Settings, Data privacy, Download your data).</li>
-        <li>Choose <b>Want something in particular?</b>, tick <b>Connections</b> only, then <b>Request archive</b>.</li>
-        <li>LinkedIn emails you a download link, usually within 10 minutes. Download the file and drop it below as it is, zip or csv.</li>
+        <li>Choose <b>Download larger data archive</b> (the first option: it is the one that includes connections), then <b>Request archive</b>.</li>
+        <li>LinkedIn emails you when it is ready: a first file often within minutes, the full archive within a day. Download the zip and drop it below as it is.</li>
       </ol>
       <label class="imp-drop" id="imp-drop">Choose the file or drop it here<small>The .zip from LinkedIn, or Connections.csv. It is read on this device and never uploaded.</small><input type="file" id="imp-file" accept=".csv,.zip,text/csv,application/zip"></label>
       <p class="sbm-hint">Only people already on this map are matched, by name and company. Nobody new is added, and emails in the file are ignored. Matches become connections in the Connections view once they have been reviewed; they never change anyone's size on the map.</p>
@@ -1564,7 +1564,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   function close(){wrap.hidden=true}
   async function take(file){
     msg.className='msg';msg.textContent='Reading…';
-    if(!file||file.size>60*1024*1024){msg.className='msg err';msg.textContent='That file is too large to be a connections export.';return}
+    if(!file||file.size>300*1024*1024){msg.className='msg err';msg.textContent='That file is too large to be a connections export.';return}
     let text;
     try{
       const head=new Uint8Array(await file.slice(0,4).arrayBuffer());
