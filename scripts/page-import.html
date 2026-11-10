@@ -5,6 +5,21 @@
 .imp-drop{display:block;margin:4px 0 12px;padding:18px 14px;border:1px dashed var(--line);border-radius:12px;text-align:center;color:var(--fg-dim);font-size:13px;cursor:pointer}
 .imp-drop.over{border-color:#6ee7f0;color:var(--fg)}
 .imp-drop input{display:none}
+.imp-drop small{display:block;margin-top:6px;font:400 11px/1.4 var(--font-mono);color:var(--fg-faint)}
+.imp-steps a{color:var(--c-corp)}
+.imp-steps b{color:var(--fg);font-weight:600}
+/* Connections view: the call to add your own network */
+.conn-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(380px,calc(100% - 32px));padding:18px 18px 16px;border-radius:16px;background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(79,209,232,.35);box-shadow:0 0 0 1px rgba(79,209,232,.08),0 18px 48px rgba(0,0,0,.45);z-index:5;text-align:center}
+.conn-cta h2{margin:0 0 6px;font:700 18px/1.2 var(--font-display);letter-spacing:-.01em}
+.conn-cta p{margin:0 0 12px;color:var(--fg-dim);font-size:13px;line-height:1.5}
+.conn-cta .steps{display:flex;justify-content:center;gap:6px;margin:0 0 12px;font:500 10.5px/1.4 var(--font-mono);letter-spacing:.04em;color:var(--fg-faint)}
+.conn-cta .steps span{padding:3px 8px;border-radius:99px;border:1px solid var(--line)}
+.conn-cta .steps span.on{color:var(--c-corp);border-color:rgba(79,209,232,.5)}
+.conn-cta .steps span.done{color:var(--fg-dim)}
+.conn-cta .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.conn-add{display:none;margin:0 0 12px;padding:7px 12px;border-radius:99px;border:1px solid rgba(79,209,232,.45);background:rgba(79,209,232,.08);color:var(--fg);font:500 12.5px/1.2 var(--font-body);cursor:pointer}
+.filters.conn .conn-add{display:inline-block}
+@media (max-width:899px){.conn-cta{top:auto;bottom:12px;transform:translateX(-50%)}.filters.conn .conn-add{margin:8px 0 0}}
 .imp-list{max-height:38vh;overflow:auto;margin:0 0 12px;border:1px solid var(--line);border-radius:10px}
 .imp-row{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-bottom:1px solid var(--line);font-size:13px;cursor:pointer}
 .imp-row:last-child{border-bottom:0}
@@ -21,11 +36,11 @@
     <p class="who" id="imp-who"></p>
     <div id="imp-step1">
       <ol class="imp-steps">
-        <li>On LinkedIn: Settings, Data privacy, Get a copy of your data, Connections.</li>
-        <li>LinkedIn emails you a file called Connections.csv, usually within minutes.</li>
-        <li>Drop it below. It is read here, in your browser, and never uploaded.</li>
+        <li>Open <a href="https://www.linkedin.com/mypreferences/d/download-my-data" target="_blank" rel="noopener noreferrer">Download your data</a> on LinkedIn (Settings, Data privacy, Download your data).</li>
+        <li>Choose <b>Want something in particular?</b>, tick <b>Connections</b> only, then <b>Request archive</b>.</li>
+        <li>LinkedIn emails you a download link, usually within 10 minutes. Download the file and drop it below as it is, zip or csv.</li>
       </ol>
-      <label class="imp-drop" id="imp-drop">Choose Connections.csv or drop it here<input type="file" id="imp-file" accept=".csv,text/csv"></label>
+      <label class="imp-drop" id="imp-drop">Choose the file or drop it here<small>The .zip from LinkedIn, or Connections.csv. It is read on this device and never uploaded.</small><input type="file" id="imp-file" accept=".csv,.zip,text/csv,application/zip"></label>
       <p class="sbm-hint">Only people already on this map are matched, by name and company. Nobody new is added, and emails in the file are ignored. Matches become connections in the Connections view once they have been reviewed; they never change anyone's size on the map.</p>
     </div>
     <div id="imp-step2" hidden>
@@ -42,6 +57,55 @@
   const wrap=$('imp-wrap'),msg=$('imp-msg'),btn=$('d-import');
   let me=null,matches=[];
   window.synapseOnDetail=id=>{const m=window.synapseMe&&window.synapseMe();btn.hidden=!(m&&id===m)};
+  /* ---- Connections view: nobody's network is here until they add it, so say so and make it one tap ---- */
+  const stageEl=document.getElementById('stage'),filtersEl=document.querySelector('.filters');
+  const cta=document.createElement('section');cta.className='conn-cta';cta.hidden=true;cta.setAttribute('aria-label','Add your network');
+  cta.innerHTML='<h2>Add your network</h2><p>Nobody\'s network is on the map until they add it. Bring your LinkedIn connections: the file is read on this device, only people already on the map are matched, and links show once reviewed.</p><div class="steps"><span id="cc-s1">1 · find yourself</span><span id="cc-s2">2 · add your connections</span></div><div class="row"><button class="btn primary" id="cc-go" type="button"></button><button class="btn" id="cc-later" type="button">Later</button></div>';
+  stageEl.appendChild(cta);
+  const addBtn=document.createElement('button');addBtn.type='button';addBtn.className='conn-add';addBtn.id='conn-add';addBtn.textContent='+ Add your LinkedIn connections';
+  const note=document.getElementById('angle-note');note.parentNode.insertBefore(addBtn,note.nextSibling);
+  let curAngle='',later=false,imported=false;try{imported=!!localStorage.getItem('synapse.imported')}catch(e){}
+  function ccRender(){
+    const me=window.synapseMe&&window.synapseMe();
+    const ppl=(window.synapsePeople&&window.synapsePeople())||[];const known=!!me&&(!ppl.length||ppl.some(p=>p.id===me));
+    $('cc-s1').className=known?'done':'on';$('cc-s1').textContent=known?'1 · you are on the map ✓':'1 · find yourself';
+    $('cc-s2').className=known?'on':'';
+    $('cc-go').textContent=known?'Add my LinkedIn connections':'Find my name';
+    filtersEl.classList.toggle('conn',curAngle==='connections');
+    cta.hidden=!(curAngle==='connections'&&!later&&!imported);
+  }
+  function start(){
+    const me=window.synapseMe&&window.synapseMe();
+    const ppl=(window.synapsePeople&&window.synapsePeople())||[];
+    if(me&&ppl.some(p=>p.id===me)){cta.hidden=true;open();return}
+    cta.hidden=true;window.synapseFindMe&&window.synapseFindMe();
+  }
+  window.synapseOnAngle=a=>{curAngle=a;later=false;ccRender()};
+  window.synapseOnMe=id=>{ccRender();if(id&&curAngle==='connections'&&!imported){setTimeout(open,350)}};
+  {const b=document.querySelector('#angles .angle[aria-pressed="true"]');curAngle=b?b.dataset.a:'';ccRender()}
+  $('cc-go').addEventListener('click',start);
+  $('cc-later').addEventListener('click',()=>{later=true;ccRender()});
+  addBtn.addEventListener('click',start);
+  /* LinkedIn sends a zip: read Connections.csv out of it here, in the browser (stored or deflated entries) */
+  async function fromZip(buf){
+    const v=new DataView(buf),u8=new Uint8Array(buf);let e=-1;
+    for(let i=buf.byteLength-22;i>=Math.max(0,buf.byteLength-65557);i--)if(v.getUint32(i,true)===0x06054b50){e=i;break}
+    if(e<0)return null;
+    let p=v.getUint32(e+16,true);const n=v.getUint16(e+10,true),dec=new TextDecoder();
+    for(let k=0;k<n;k++){
+      if(v.getUint32(p,true)!==0x02014b50)return null;
+      const method=v.getUint16(p+10,true),csize=v.getUint32(p+20,true),nl=v.getUint16(p+28,true),xl=v.getUint16(p+30,true),cl=v.getUint16(p+32,true),off=v.getUint32(p+42,true);
+      const name=dec.decode(u8.subarray(p+46,p+46+nl));
+      if(/(^|\/)connections\.csv$/i.test(name)){
+        const start=off+30+v.getUint16(off+26,true)+v.getUint16(off+28,true),data=u8.subarray(start,start+csize);
+        if(method===0)return dec.decode(data);
+        if(method===8&&typeof DecompressionStream!=='undefined'){const s=new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'));return await new Response(s).text()}
+        throw new Error('This browser cannot open the zip. Unzip it and drop Connections.csv instead.');
+      }
+      p+=46+nl+xl+cl;
+    }
+    return '';
+  }
   const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
   const STOP=new Set(['inc','ltd','llc','gmbh','sa','sas','ag','plc','group','the','and','co','corp','corporation','limited','bv','nv','spa','srl']);
   const orgTokens=s=>norm(s).split(' ').filter(t=>t.length>1&&!STOP.has(t));
@@ -91,8 +155,14 @@
   function close(){wrap.hidden=true}
   async function take(file){
     msg.className='msg';msg.textContent='Reading…';
-    if(!file||file.size>15*1024*1024){msg.className='msg err';msg.textContent='That file is too large to be a connections export.';return}
-    const conns=readConnections(await file.text());
+    if(!file||file.size>60*1024*1024){msg.className='msg err';msg.textContent='That file is too large to be a connections export.';return}
+    let text;
+    try{
+      const head=new Uint8Array(await file.slice(0,4).arrayBuffer());
+      if(head[0]===0x50&&head[1]===0x4b){text=await fromZip(await file.arrayBuffer());if(text==='')throw new Error('There is no Connections.csv in this zip. In LinkedIn, tick Connections when you request the archive.');if(text==null)throw new Error('This zip could not be read. Unzip it and drop Connections.csv instead.')}
+      else text=await file.text();
+    }catch(err){msg.className='msg err';msg.textContent=String(err.message||err);return}
+    const conns=readConnections(text);
     if(!conns){msg.className='msg err';msg.textContent='This does not look like LinkedIn’s Connections.csv (no First Name and Last Name columns).';return}
     matches=match(conns);msg.textContent='';
     $('imp-step1').hidden=true;$('imp-step2').hidden=false;
@@ -123,6 +193,7 @@
     try{
       const r=await fetch('/api/connections/import',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({from:me.id,to:ids})});
       const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not go through. Try again.');
+      imported=true;try{localStorage.setItem('synapse.imported','1')}catch(e){}
       msg.textContent=j.added+' connection'+(j.added===1?'':'s')+' sent for review'+(j.existing?' ('+j.existing+' were already declared)':'')+'. They appear, faint, in the Connections view.';
       setTimeout(()=>location.reload(),2800);
     }catch(err){$('imp-go').disabled=false;msg.className='msg err';msg.textContent=String(err.message||err)}
