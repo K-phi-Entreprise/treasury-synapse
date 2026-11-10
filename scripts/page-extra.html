@@ -2,9 +2,9 @@
 .d-edit{display:block;margin:10px 0 0;padding:0;border:0;background:none;color:var(--fg-faint);font:400 11.5px/1.4 var(--font-mono);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .d-edit:hover{color:var(--fg)}
 @media (max-width:899px){.detail:not(.open) .d-edit{display:none}}
-.sbm-wrap{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center;background:rgba(4,6,14,.6);padding:0 max(16px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(16px,env(safe-area-inset-left,0px))}
+.sbm-wrap{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center;background:var(--scrim);padding:0 max(16px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(16px,env(safe-area-inset-left,0px))}
 @media (min-width:700px){.sbm-wrap{align-items:center}}
-.sbm{width:100%;max-width:440px;max-height:calc(100dvh - 32px);overflow:auto;background:#0e1328;border:1px solid var(--line);border-radius:16px 16px 0 0;padding:18px 18px 20px;color:var(--fg);font-family:var(--font-body);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.sbm{width:100%;max-width:440px;max-height:calc(100dvh - 32px);overflow:auto;background:var(--sheet);border:1px solid var(--line);border-radius:16px 16px 0 0;padding:18px 18px 20px;color:var(--fg);font-family:var(--font-body);box-shadow:0 20px 60px rgba(0,0,0,.5)}
 @media (min-width:700px){.sbm{border-radius:16px}}
 .sbm h3{margin:0 28px 4px 0;font:600 17px/1.25 var(--font-display)}
 .sbm .who{margin:0 0 14px;padding-right:30px;color:var(--fg-dim);font-size:13px}
@@ -12,21 +12,21 @@
 .sbm{position:relative}
 .sbm-tabs{display:flex;gap:6px;margin:0 0 14px;flex-wrap:wrap}
 .sbm-tabs button{padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-dim);font:500 12.5px/1.2 var(--font-body);cursor:pointer}
-.sbm-tabs button[aria-pressed=true]{color:var(--fg);border-color:var(--fg-dim);background:rgba(255,255,255,.06)}
+.sbm-tabs button[aria-pressed=true]{color:var(--fg);border-color:var(--fg-dim);background:var(--tint-2)}
 .sbm label{display:block;margin:0 0 10px;font-size:12.5px;color:var(--fg-dim)}
 .sbm label span{display:block;margin:0 0 4px}
-.sbm input[type=text],.sbm input[type=url],.sbm input[type=email],.sbm select,.sbm textarea{width:100%;box-sizing:border-box;padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--fg);font:400 14px/1.35 var(--font-body)}
+.sbm input[type=text],.sbm input[type=url],.sbm input[type=email],.sbm select,.sbm textarea{width:100%;box-sizing:border-box;padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:var(--tint-1);color:var(--fg);font:400 14px/1.35 var(--font-body)}
 .sbm textarea{min-height:68px;resize:vertical}
 /* native dropdown lists follow the dark theme (Windows draws them white otherwise) */
-.sbm select{color-scheme:dark;background-color:#141a35}
-.sbm select option{background-color:#0e1328;color:#e8ecff}
+.sbm select{background-color:var(--sheet)}
+.sbm select option{background-color:var(--sheet);color:var(--fg)}
 .sbm .check{display:flex;gap:8px;align-items:flex-start;color:var(--fg-dim)}
 .sbm .check input{margin-top:3px}
 .sbm .sbm-hint{margin:2px 0 12px;font:400 11.5px/1.45 var(--font-mono);color:var(--fg-faint)}
-.sbm .go{width:100%;margin-top:4px;padding:10px 14px;border-radius:10px;border:0;background:#6ee7f0;color:#05101a;font:600 14px/1 var(--font-body);cursor:pointer}
+.sbm .go{width:100%;margin-top:4px;padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:var(--on-accent);font:600 14px/1 var(--font-body);cursor:pointer}
 .sbm .go[disabled]{opacity:.55;cursor:default}
 .sbm .msg{margin:10px 0 0;font-size:13px;line-height:1.45}
-.sbm .msg.err{color:#ff9db4}
+.sbm .msg.err{color:var(--neg)}
 </style>
 <div class="sbm-wrap" id="sub-wrap" hidden>
   <form class="sbm" id="sub" autocomplete="on" novalidate>

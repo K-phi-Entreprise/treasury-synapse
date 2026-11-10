@@ -1,25 +1,25 @@
 <style>
-.d-import{display:block;width:100%;margin:12px 0 0;padding:9px 12px;border-radius:6px;border:0;background:#E6FF00;color:#0f1c3a;font:700 12.5px/1.3 var(--font-body);cursor:pointer;text-align:left;box-shadow:0 0 16px rgba(230,255,0,.22)}
-.d-import:hover{box-shadow:0 0 22px rgba(230,255,0,.4)}
-.d-import:focus-visible,.conn-add:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.d-import{display:block;width:100%;margin:12px 0 0;padding:9px 12px;border-radius:6px;border:0;background:var(--cta-bg);color:var(--cta-fg);font:700 12.5px/1.3 var(--font-body);cursor:pointer;text-align:left;box-shadow:0 0 16px color-mix(in srgb,var(--cta-glow) 22%,transparent)}
+.d-import:hover{box-shadow:0 0 22px color-mix(in srgb,var(--cta-glow) 40%,transparent)}
+.d-import:focus-visible,.conn-add:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 @media (max-width:899px){.detail:not(.open) .d-import{display:none}}
 .imp-drop{display:block;margin:4px 0 12px;padding:18px 14px;border:1px dashed var(--line);border-radius:12px;text-align:center;color:var(--fg-dim);font-size:13px;cursor:pointer}
-.imp-drop.over{border-color:#6ee7f0;color:var(--fg)}
+.imp-drop.over{border-color:var(--accent);color:var(--fg)}
 .imp-drop input{display:none}
 .imp-drop small{display:block;margin-top:6px;font:400 11px/1.4 var(--font-mono);color:var(--fg-faint)}
-.imp-steps a{color:var(--c-corp)}
+.imp-steps a{color:var(--accent)}
 .imp-steps b{color:var(--fg);font-weight:600}
 /* Connections view: the call to add your own network */
-.conn-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(380px,calc(100% - 32px));padding:18px 18px 16px;border-radius:16px;background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(79,209,232,.35);box-shadow:0 0 0 1px rgba(79,209,232,.08),0 18px 48px rgba(0,0,0,.45);z-index:5;text-align:center}
+.conn-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(380px,calc(100% - 32px));padding:18px 18px 16px;border-radius:16px;background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 8%,transparent),0 18px 48px rgba(0,0,0,.45);z-index:5;text-align:center}
 .conn-cta h2{margin:0 0 6px;font:700 18px/1.2 var(--font-display);letter-spacing:-.01em}
 .conn-cta p{margin:0 0 12px;color:var(--fg-dim);font-size:13px;line-height:1.5}
 .conn-cta .steps{display:flex;justify-content:center;gap:6px;margin:0 0 12px;font:500 10.5px/1.4 var(--font-mono);letter-spacing:.04em;color:var(--fg-faint)}
 .conn-cta .steps span{padding:3px 8px;border-radius:99px;border:1px solid var(--line)}
-.conn-cta .steps span.on{color:var(--c-corp);border-color:rgba(79,209,232,.5)}
+.conn-cta .steps span.on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 50%,transparent)}
 .conn-cta .steps span.done{color:var(--fg-dim)}
 .conn-cta .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.conn-add{display:none;margin:0 0 12px;padding:8px 14px;border-radius:6px;border:0;background:#E6FF00;color:#0f1c3a;font:700 12.5px/1.2 var(--font-body);cursor:pointer;box-shadow:0 0 0 1px rgba(230,255,0,.35),0 0 18px rgba(230,255,0,.28);transition:box-shadow .2s,transform .2s}
-.conn-add:hover{box-shadow:0 0 0 1px rgba(230,255,0,.6),0 0 26px rgba(230,255,0,.45);transform:translateY(-1px)}
+.conn-add{display:none;margin:0 0 12px;padding:8px 14px;border-radius:6px;border:0;background:var(--cta-bg);color:var(--cta-fg);font:700 12.5px/1.2 var(--font-body);cursor:pointer;box-shadow:0 0 0 1px color-mix(in srgb,var(--cta-glow) 35%,transparent),0 0 18px color-mix(in srgb,var(--cta-glow) 28%,transparent);transition:box-shadow .2s,transform .2s}
+.conn-add:hover{box-shadow:0 0 0 1px color-mix(in srgb,var(--cta-glow) 60%,transparent),0 0 26px color-mix(in srgb,var(--cta-glow) 45%,transparent);transform:translateY(-1px)}
 .filters.conn .conn-add{display:inline-block}
 @media (max-width:899px){.conn-cta{top:auto;bottom:12px;transform:translateX(-50%)}.filters.conn .conn-add{margin:8px 0 0}}
 .imp-list{max-height:38vh;overflow:auto;margin:0 0 12px;border:1px solid var(--line);border-radius:10px}

@@ -84,14 +84,15 @@ head='''<!doctype html>
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#080b17">
+<meta name="theme-color" content="#07070f">
+<script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Synapse">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 28 28%27%3E%3Cpath d=%27M7 8l7 13M21 7l-7 14M7 8l14-1%27 stroke=%27%236ee7f0%27 stroke-width=%271.4%27 fill=%27none%27/%3E%3Ccircle cx=%277%27 cy=%278%27 r=%272.6%27 fill=%27%236ee7f0%27/%3E%3Ccircle cx=%2721%27 cy=%277%27 r=%272.6%27 fill=%27%23c084fc%27/%3E%3Ccircle cx=%2714%27 cy=%2721%27 r=%272.6%27 fill=%27%23fda4af%27/%3E%3C/svg%3E">
-<style>:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 '''

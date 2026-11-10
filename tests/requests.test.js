@@ -144,5 +144,5 @@ test('your network: who links you to a consultant, and the request carries the p
   assert.equal(rq.target.name, 'Craig Jeffery');
   assert.deepEqual(rq.via.map(v => v.id), ['jouni-kirjola'], 'unknown people dropped');
   const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
-  assert.ok(html.includes("fetch('/api/paths?from='") && html.includes('id="imp-consent"') && html.includes('.sbm select option{background-color:#0e1328'));
+  assert.ok(html.includes("fetch('/api/paths?from='") && html.includes('id="imp-consent"') && html.includes('.sbm select option{background-color:var(--sheet)'));
 });

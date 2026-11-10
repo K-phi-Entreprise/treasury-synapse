@@ -117,3 +117,13 @@ test('the page opens on the Market view, with organisations, systems and the sel
   assert.match(html, /Selecting now/);
   assert.match(html, /function renderCompanyDetail/);
 });
+
+test('the page carries the K-phi palettes, dark by default with a remembered light mode', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  assert.match(html, /--bg:#07070f;/);
+  assert.match(html, /:root\[data-theme="light"\]\{\s*--bg:#f4f6fb;/);
+  assert.match(html, /localStorage\.getItem\("synapse\.theme"\)/);
+  assert.match(html, /id="btn-theme"/);
+  assert.match(html, /DM\+Sans/);
+  assert.ok(!/#6ee7f0|#0e1328/.test(html), 'no literal colours left from the old palette');
+});
