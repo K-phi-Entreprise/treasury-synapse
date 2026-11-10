@@ -106,9 +106,9 @@ const VENDORS = [
   ['Round Treasury', ['round-treasury']], ['Nilus', ['nilus']], ['Modern Treasury', ['modern-treasury-corp']], ['Finastra', ['finastra']],
   ['Diapason', []], ['Piteco', []], ['Sage XRT', []], ['Allevo', []], ['Exalog', []], ['Cegid treasury', []], ['Treasury Next', []],
   /* EPM and FP&A */
-  ['Anaplan', ['anaplan']], ['Board', ['board-international']], ['Pigment', ['pigment']], ['OneStream', ['onestream']], ['Workday Adaptive Planning', ['workday-adaptive-planning']],
-  ['Jedox', ['jedox']], ['CCH Tagetik', ['cch-tagetik']], ['Planful', ['planful']], ['Vena', ['vena-solutions']], ['Prophix', ['prophix']], ['Abacum', ['abacum']],
-  ['Cube', ['cube']], ['Oracle EPM', []], ['SAP Analytics Cloud', []]
+  ['Anaplan', [], ['https://www.anaplan.com/customers/']], ['Board', ['boardinternational']], ['Pigment', ['pigment']], ['OneStream', ['onestream-software']], ['Workday Adaptive Planning', ['workday-adaptive-planning']],
+  ['Jedox', ['jedox']], ['CCH Tagetik', ['cch-tagetik']], ['Planful', ['planful']], ['Vena', ['vena-solutions']], ['Prophix', ['prophix-software']], ['Abacum', ['abacum']],
+  ['Cube', ['cube-software']], ['Oracle EPM', []], ['SAP Analytics Cloud', []]
 ];
 /* the industries of the Market filters (scripts/enrich.js maps Wikidata industries onto them) */
 const INDUSTRIES = ['Commodities & trading', 'Energy & utilities', 'Pharma & healthcare', 'Financial services', 'Technology & software', 'Telecom & media',
