@@ -361,6 +361,8 @@ app.get('/api/paths', async (req, res, next) => {
 const claims = pool ? require('./claims').mount(app, { pool, mail, ipHash, underQuota, publicUrl: PUBLIC_URL, secret: SALT, emailRe: EMAIL_RE, onChange: () => { cache.at = 0; } }) : null;
 if (claims) require('./declarations').mount(app, { pool, claims, admin, onChange: () => { cache.at = 0; } });
 if (pool) require('./consultants').mount(app, { pool, topics: require('./declarations').TOPICS, regions: require('./declarations').REGIONS });
+/* company profiles for the Market filters, from Wikidata, a small batch a minute */
+if (pool && process.env.ENRICH !== 'off' && require.main === module) require('./scripts/enrich').start(pool, { onChange: () => { cache.at = 0; } });
 const requests = pool ? require('./requests').mount(app, { pool, mail, ipHash, underQuota, publicUrl: PUBLIC_URL, emailRe: EMAIL_RE, admin,
   topics: require('./declarations').TOPICS, regions: require('./declarations').REGIONS }) : null;
 

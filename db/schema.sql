@@ -343,3 +343,12 @@ create table if not exists market_seed_files (
   rows integer not null default 0,
   loaded_at timestamptz not null default now()
 );
+
+-- Company profile for the Market filters: vertical, size, country. Filled from Wikidata (every value links to the item) or from the pages the harvester reads.
+alter table companies add column if not exists wikidata text not null default '';
+alter table companies add column if not exists vertical text not null default '';
+alter table companies add column if not exists employees integer;
+alter table companies add column if not exists size text not null default '';
+alter table companies add column if not exists country text not null default '';
+alter table companies add column if not exists enriched_at timestamptz;
+alter table companies add column if not exists enrich_note text not null default '';

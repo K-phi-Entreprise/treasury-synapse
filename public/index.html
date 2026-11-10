@@ -244,6 +244,15 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .d-more{display:none;width:100%;margin:0;padding:7px 0 0;border:0;border-top:1px solid var(--line);background:none;color:var(--fg-dim);font:500 11px/1.3 var(--font-mono);letter-spacing:.05em;cursor:pointer;text-align:center}
 .d-more:hover{color:var(--fg)}
 .seg-toggle{display:none}
+.mkf-tabs{display:flex;gap:4px;margin:0 0 8px;overflow-x:auto;scrollbar-width:none}
+.mkf-tabs::-webkit-scrollbar{display:none}
+.mkf-tab{flex:none;padding:5px 10px;border:0;border-bottom:2px solid transparent;background:none;color:var(--fg-faint);font:500 12px/1.2 var(--font-body);cursor:pointer}
+.mkf-tab[aria-selected=true]{color:var(--fg);border-bottom-color:var(--accent)}
+.mkf-tab b{margin-left:4px;padding:0 5px;border-radius:7px;background:var(--cta-bg);color:var(--cta-fg);font:700 10px/14px var(--font-mono)}
+.mkf-tiles{display:flex;flex-wrap:wrap;gap:6px;max-height:190px;overflow-y:auto}
+.mkf-tiles .chip{padding:5px 9px 5px 8px;font-size:12px}
+.mkf-tiles .chip .n{font:400 11px/1 var(--font-mono);color:var(--fg-faint)}
+.mkf-reset{margin:8px 0 0;padding:0;border:0;background:none;color:var(--link);font:500 12px/1.2 var(--font-body);cursor:pointer;text-decoration:underline}
 @media (max-width:899px){
   /* phone: the map gets the screen. Header and figures shrink to one line each,
      the angle note and the segment chips fold behind a Segments button. */
@@ -268,7 +277,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .seg-toggle[aria-expanded=true]{color:var(--fg);border-color:var(--fg-dim)}
   .seg-toggle[aria-expanded=true] svg{transform:rotate(180deg)}
   .seg-toggle b{min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--cta-bg);color:var(--cta-fg);font:700 10px/16px var(--font-mono);text-align:center}
-  .filters:not(.open) .angle-note,.filters:not(.open) .chips{display:none}
+  .filters:not(.open) .angle-note,.filters:not(.open) .chips,.filters:not(.open) .mkf{display:none}
+  .filters.open .mkf-tiles{max-height:22vh}
   .filters.open .angle-note{margin:8px 0}
   .filters.open .chips{max-height:28vh;overflow-y:auto}
   .tools{top:8px}
@@ -409,10 +419,15 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
       <button class="angle" type="button" data-a="social" aria-pressed="false">People</button>
       <button class="angle" type="button" data-a="topics" aria-pressed="false">Topics</button>
       <button class="angle" type="button" data-a="connections" aria-pressed="false">Connections</button>
-      <button class="seg-toggle" id="seg-toggle" type="button" aria-expanded="false" aria-controls="chips">Segments<b id="seg-off" hidden></b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="seg-toggle" id="seg-toggle" type="button" aria-expanded="false" aria-controls="chips"><span id="seg-lbl">Segments</span><b id="seg-off" hidden></b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
     </div>
     <p class="angle-note" id="angle-note"></p>
     <div class="chips" id="chips"></div>
+    <div class="mkf" id="mkf" hidden>
+      <div class="mkf-tabs" id="mkf-tabs" role="tablist" aria-label="Filter the market by"></div>
+      <div class="mkf-tiles" id="mkf-tiles" role="group"></div>
+      <button class="mkf-reset" id="mkf-reset" type="button" hidden>Show all</button>
+    </div>
   </section>
 
   <section class="regions band" aria-label="Regions and most connected">
@@ -480,7 +495,7 @@ function upsertHub(G,kind,name,at,rnd){
 /* an organisation of the Market view: a node of its own, not a hub (hubs push each other apart hard) */
 function upsertCompany(G,c,at,rnd){
   const id='co:'+c.id;let i=G.idx.get(id);
-  const meta={id:id,key:String(c.id),name:String(c.name||c.id),hub:'company',headline:String(c.industry||''),org:String(c.name||''),city:'',region:String(c.region||'Unknown'),segment:'',seg:0,seed:false,foundVia:null,source:'',topics:[],systems:[],roles:[],knownFor:'',publishers:0,followers:null,addedAt:String(c.addedAt||''),installs:[],staff:[],selecting:null};
+  const meta={id:id,key:String(c.id),name:String(c.name||c.id),hub:'company',headline:String(c.industry||''),org:String(c.name||''),city:'',region:String(c.region||'Unknown'),segment:'',seg:0,seed:false,foundVia:null,source:'',topics:[],systems:[],roles:[],knownFor:'',publishers:0,followers:null,addedAt:String(c.addedAt||''),vertical:String(c.vertical||''),size:String(c.size||''),employees:c.employees==null?null:Number(c.employees),country:String(c.country||''),wikidata:String(c.wikidata||''),installs:[],staff:[],selecting:null};
   if(i!=null){const o=G.nodes[i];meta.installs=o.installs;meta.staff=o.staff;meta.selecting=o.selecting;G.nodes[i]=meta;return i}
   if(G.n>=MAX_N)return -1;
   i=G.n++;G.idx.set(id,i);G.nodes[i]=meta;G.adj[i]=[];
@@ -569,7 +584,7 @@ function computeKPIs(G,vis){
   if(angle==='market'){
     let co=0,pairs=0,moves=0,selecting=0;const sys=new Set(),src=new Set();
     for(let i=0;i<G.n;i++){const c=G.nodes[i];if(!vis[i]||c.hub!=='company')continue;co++;
-      c.installs.forEach(r=>{if(r.status==='live'||r.status==='implementing'){pairs++;sys.add(r.system)}if(r.url)src.add(r.url)});
+      c.installs.forEach(r=>{const h=r.system?G.idx.get(hubId('system',r.system)):null;if(r.system&&!(h!=null&&vis[h]))return;if(r.status==='live'||r.status==='implementing'){pairs++;sys.add(r.system)}if(r.url)src.add(r.url)});
       if(movedOffSheets(c))moves++;if(c.selecting)selecting++}
     return {market:true,n:co,links:pairs,orgs:sys.size,regs:moves,sources:src.size,week:selecting};
   }
@@ -669,7 +684,7 @@ function deriveTopicEdges(i,at){
 function setAngle(a,first){
   if(ANGLES.indexOf(a)<0)return;
   angle=a;try{localStorage.setItem('synapse.view',a)}catch(e){}
-  $('chips').hidden=a==='market';$('seg-toggle').hidden=a==='market';
+  $('chips').hidden=a==='market';$('seg-lbl').textContent=a==='market'?'Filters':'Segments';
   $('reg-h').textContent=a==='market'?'Most used systems':'Regions';
   $('src-note').textContent=a==='market'?'Every line points to the public page that says so: a vendor\'s customer story, a press release, a job post. Vendors and consultancies are never counted as users.':'Every link points to the public page it was found on: a podcast episode, a panel, a filing. Nothing here comes from private profiles.';
   document.querySelectorAll('#angles .angle').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.a===a)));
@@ -690,13 +705,27 @@ $('btn-rot').setAttribute('aria-pressed',String(auto));
 
 let refreshNodes=function(){},paintEdges=function(){},rebuildActive=function(){},applyColors=function(){},focusLocal=function(){},resetView=function(){},focusRegion=function(){};
 let updateSugg=function(){},chatHideAnswer=function(){};
-const HUBHEX={topic:'#f6d27a',system:'#8fd3ff',company:'#86e3b8',signal:'#ff9a62'},HUBRGB={topic:hex2rgb('#f6d27a'),system:hex2rgb('#8fd3ff'),company:hex2rgb('#86e3b8'),signal:hex2rgb('#ff9a62')};
+const HUBHEX={topic:'#f6d27a',system:'#8fd3ff',company:'#c8c8e0',signal:'#ffb000'},HUBRGB={topic:hex2rgb('#f6d27a'),system:hex2rgb('#8fd3ff'),company:hex2rgb('#c8c8e0'),signal:hex2rgb('#ffb000')};
+/* system families, in K-phi's workspace colours: Cash blue for treasury, FP&A yellow for planning */
+const FAMILIES=[
+  {id:'Treasury',dark:'#5B9CFF',light:'#2f55c8',re:/kyriba|gtreasury|ion treasury|^fis\b|coupa treasury|sap treasury|nomentia|serrala|^tis$|agicap|embat|atlar|trovata|datalog|sage xrt|piteco|diapason|highradius|cashforce|treasury next|allevo|wall ?street|titantreasury|finastra|reval|bellin|kantox|fireapps|coprocess|zentreasury|salmon|hazeltree|cashanalytics|calypso|murex|visual risk|bottomline|statement|nilus|centime|tesorio|cobase|planixs|exalog|quantum|integrity/i},
+  {id:'EPM & FP&A',dark:'#E6FF00',light:'#b07800',re:/anaplan|^vena|pigment|onestream|^board|jedox|planful|prophix|abacum|^cube|adaptive|oracle epm|hyperion|tagetik|analytics cloud|datarails|mosaic|causal|kepion|k-.?phi/i},
+  {id:'ERP',dark:'#B79CFF',light:'#6f5ff0',re:/^sap\b(?!.*(treasury|analytics))|s\/4|oracle(?!.*epm)|netsuite|dynamics|business central|^sage (x3|intacct|50|100|200)|^workday(?!.*adaptive)|^infor\b|jd ?edwards|^jde$|^ifs\b|quickbooks|^xero|odoo|epicor|unit4/i},
+  {id:'Banking & payments',dark:'#36D6A0',light:'#1a8a5a',re:/swift|fxall|360t|citi|j\.?p\.? ?morgan|bank|alviere|ramp|stripe|airwallex|axway|fiserv|tsys|fabescf|payment|faturalab|etr digital|adyen|wise|ebury/i},
+  {id:'Spreadsheets',dark:'#9a9ab8',light:'#5a6a7e',re:/^excel$|spreadsheet/i},
+  {id:'Other',dark:'#8a8aa8',light:'#7a8398',re:/./}
+];
+const FAMRGB={},FAMRGB_L={};FAMILIES.forEach(f=>{FAMRGB[f.id]=hex2rgb(f.dark);FAMRGB_L[f.id]=hex2rgb(f.light)});
+function familyOf(name){for(const f of FAMILIES)if(f.re.test(String(name||'')))return f.id;return 'Other'}
+const ERP_NAMES=[['SAP',/^sap\b|s\/4/i],['Oracle',/^oracle/i],['NetSuite',/netsuite/i],['Microsoft Dynamics',/dynamics|business central/i],['Sage',/^sage/i],['Workday',/^workday/i],['Infor',/^infor\b/i],['JD Edwards',/jd ?edwards|^jde$/i],['IFS',/^ifs\b/i],['QuickBooks',/quickbooks/i],['Xero',/^xero/i],['Odoo',/odoo/i],['Epicor',/epicor/i],['Unit4',/unit4/i]];
+function erpName(sys){for(const [n,re] of ERP_NAMES)if(re.test(sys))return n;return sys}
 let lightMode=document.documentElement.dataset.theme==='light';
 const SEEDRGB_L=hex2rgb('#0f1c3a'),DARKEN=new Map();
 function lite(c){let d=DARKEN.get(c);if(!d){d=[c[0]*.62,c[1]*.62,c[2]*.62];DARKEN.set(c,d)}return d}
-function nodeRGB0(i){const n=G.nodes[i];return n.hub?(n.hub==='company'&&n.selecting?HUBRGB.signal:HUBRGB[n.hub]):n.seed?SEEDRGB:SEGRGB[n.seg]}
-function nodeRGB(i){if(!lightMode)return nodeRGB0(i);const n=G.nodes[i];if(!n.hub&&n.seed)return SEEDRGB_L;return lite(nodeRGB0(i))}
-function nodeColor(i){const n=G.nodes[i];return n.hub?(n.hub==='company'&&n.selecting?HUBHEX.signal:HUBHEX[n.hub]):n.seed?'#ffffff':SEGS[n.seg].color}
+const COMP_L=hex2rgb('#4a5a6e'),SIGNAL_L=hex2rgb('#e05a52');
+function nodeRGB0(i){const n=G.nodes[i];if(n.hub==='system')return FAMRGB[n.fam||(n.fam=familyOf(n.name))];return n.hub?(n.hub==='company'&&n.selecting?HUBRGB.signal:HUBRGB[n.hub]):n.seed?SEEDRGB:SEGRGB[n.seg]}
+function nodeRGB(i){if(!lightMode)return nodeRGB0(i);const n=G.nodes[i];if(!n.hub&&n.seed)return SEEDRGB_L;if(n.hub==='system')return FAMRGB_L[n.fam||(n.fam=familyOf(n.name))];if(n.hub==='company')return n.selecting?SIGNAL_L:COMP_L;if(n.hub==='signal')return SIGNAL_L;return lite(nodeRGB0(i))}
+function nodeColor(i){const n=G.nodes[i];if(n.hub==='system'){const f=FAMILIES.find(x=>x.id===(n.fam||(n.fam=familyOf(n.name))));return lightMode?f.light:f.dark}return n.hub?(n.hub==='company'&&n.selecting?HUBHEX.signal:HUBHEX[n.hub]):n.seed?'#ffffff':SEGS[n.seg].color}
 
 /* ---------- DOM ---------- */
 function setStatus(cls,text){const b=$('status');b.className='badge '+cls;$('status-t').textContent=text}
@@ -709,6 +738,44 @@ function renderKPIs(){
   $('k1').textContent=k.n;$('k1s').textContent=k.n===tot?'on the map':'of '+tot+' shown';
   $('k2').textContent=k.links;$('k3').textContent=k.orgs;$('k4').textContent=k.regs;$('k5').textContent=k.sources;$('k6').textContent=k.week;
 }
+/* Market filters: a company shows when none of its values is unchecked; ERP and systems are lists, a company shows when one of them is checked */
+const SIZE_ORDER=['Under 250','250 to 1,000','1,000 to 5,000','5,000 to 20,000','20,000 and more','Unknown'];
+const FACETS=[
+  {id:'vertical',label:'Vertical',of:c=>[c.vertical||'Unknown']},
+  {id:'erp',label:'ERP',of:c=>{const e=[...new Set(c.installs.filter(r=>(r.status==='live'||r.status==='implementing')&&r.system&&familyOf(r.system)==='ERP').map(r=>erpName(r.system)))];return e.length?e:['Not known']}},
+  {id:'size',label:'Size',of:c=>[c.size||'Unknown'],order:SIZE_ORDER},
+  {id:'region',label:'Region',of:c=>[c.region||'Unknown'],order:REGION_ORDER},
+  {id:'family',label:'Systems',of:null,order:FAMILIES.map(f=>f.id)}
+];
+const mkOff={};FACETS.forEach(f=>{mkOff[f.id]=new Set()});
+let mkTab='vertical';
+function companyPasses(c){for(const f of FACETS){if(!f.of||!mkOff[f.id].size)continue;if(!f.of(c).some(v=>!mkOff[f.id].has(v)))return false}return true}
+const TILE_HUES=['#5B9CFF','#E6FF00','#B79CFF','#36D6A0','#ffb000','#ef6461','#8fd3ff','#f6d27a','#ff7d9e','#9a9ab8','#cbc3f7','#86e3b8','#f3b35c','#6f63d6','#c8c8e0','#4fd1e8'];
+function facetCounts(f){
+  const cnt=new Map();
+  for(let i=0;i<G.n;i++){const n=G.nodes[i];
+    if(f.id==='family'){if(n.hub!=='system')continue;let k=0;for(const j of (G.adjM&&G.adjM[i])||[])k++;if(!k)continue;const v=n.fam||(n.fam=familyOf(n.name));cnt.set(v,(cnt.get(v)||0)+k)}
+    else{if(n.hub!=='company'||!n.installs.length)continue;f.of(n).forEach(v=>cnt.set(v,(cnt.get(v)||0)+1))}}
+  const keys=[...cnt.keys()].sort((a,b)=>{const o=f.order;if(o){const x=o.indexOf(a),y=o.indexOf(b);if(x>=0||y>=0)return (x<0?99:x)-(y<0?99:y)}const ua=/^(Unknown|Not known)$/.test(a),ub=/^(Unknown|Not known)$/.test(b);if(ua!==ub)return ua?1:-1;return cnt.get(b)-cnt.get(a)});
+  return keys.map(k=>[k,cnt.get(k)]);
+}
+function buildFacets(){
+  const box=$('mkf');box.hidden=angle!=='market';if(box.hidden)return;
+  const tabs=$('mkf-tabs');tabs.textContent='';
+  FACETS.forEach(f=>{const b=el('button','mkf-tab',f.label);b.type='button';b.setAttribute('role','tab');b.dataset.f=f.id;b.setAttribute('aria-selected',String(f.id===mkTab));if(mkOff[f.id].size)b.appendChild(el('b','',String(mkOff[f.id].size)));tabs.appendChild(b)});
+  const f=FACETS.find(x=>x.id===mkTab),tiles=$('mkf-tiles');tiles.textContent='';
+  facetCounts(f).forEach(([v,n],k)=>{
+    const b=el('button','chip');b.type='button';b.dataset.v=v;b.setAttribute('aria-pressed',String(!mkOff[f.id].has(v)));
+    const fam=f.id==='family'?FAMILIES.find(x=>x.id===v):null;
+    b.style.setProperty('--sc',fam?(lightMode?fam.light:fam.dark):/^(Unknown|Not known)$/.test(v)?'#6a6a8e':TILE_HUES[k%TILE_HUES.length]);
+    b.append(el('i'),el('span','',v),el('span','n',String(n)));tiles.appendChild(b);
+  });
+  const any=FACETS.some(x=>mkOff[x.id].size);$('mkf-reset').hidden=!any;
+  const off=FACETS.reduce((a,x)=>a+mkOff[x.id].size,0);const sb=$('seg-off');sb.hidden=!off;sb.textContent=off?String(off):'';
+}
+$('mkf-tabs').addEventListener('click',e=>{const b=e.target.closest('.mkf-tab');if(!b)return;mkTab=b.dataset.f;buildFacets()});
+$('mkf-tiles').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const s2=mkOff[mkTab],v=b.dataset.v;if(s2.has(v))s2.delete(v);else{const all=facetCounts(FACETS.find(x=>x.id===mkTab));if(s2.size>=all.length-1)return;s2.add(v)}refreshAll()});
+$('mkf-reset').addEventListener('click',()=>{FACETS.forEach(f=>mkOff[f.id].clear());refreshAll()});
 function renderMarketLists(){
   const box=$('region-list');box.textContent='';
   const sys=[];for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='system')sys.push(i);
@@ -818,7 +885,7 @@ window.synapseGoPerson=goPerson;
 function renderCompanyDetail(n){
   const co=n,live=co.installs.filter(r=>r.status==='live'||r.status==='implementing');
   $('d-seg').textContent=co.selecting?'Organisation · Selecting now':'Organisation';$('d-name').textContent=co.name;
-  $('d-meta').textContent=[co.headline,co.region!=='Unknown'?co.region:''].filter(Boolean).join(' · ')||(live.length?'Runs '+live.map(r=>r.system).join(', '):'Selecting a system');
+  $('d-meta').textContent=[co.vertical||co.headline,co.employees?co.employees.toLocaleString('en')+' people':'',co.country||(co.region!=='Unknown'?co.region:'')].filter(Boolean).join(' · ')||(live.length?'Runs '+live.map(r=>r.system).join(', '):'Selecting a system');
   const urls=new Set(co.installs.map(r=>r.url).filter(Boolean));
   $('d-links').textContent=new Set(live.map(r=>r.system)).size;$('d-regs').textContent=co.staff.length;$('d-via').textContent=urls.size;
   $('d-centred').hidden=G.center!==sel;$('d-know').hidden=true;
@@ -845,6 +912,7 @@ function renderCompanyDetail(n){
     const tx=el('div');tx.append(el('b','',p.name),el('small','',(x.past?'Worked here'+(x.past!=='before'?' until '+x.past:'')+' · ':'')+(p.headline||p.org)));
     a.append(tx,el('span','cf','person'));list.appendChild(a)});
   const src=$('d-src');src.textContent='';
+  if(co.wikidata){src.append('Profile: ');const a=el('a','','Wikidata '+co.wikidata);a.href='https://www.wikidata.org/wiki/'+co.wikidata;a.target='_blank';a.rel='noopener noreferrer';src.appendChild(a)}
   updateSugg();
 }
 function renderMarketSystem(n){
@@ -917,13 +985,20 @@ function setHL(ids){
 }
 function refreshAll(){
   for(let i=0;i<G.n;i++){const n=G.nodes[i];
-    if(angle==='market')vis[i]=n.hub==='company'?(G.adj[i].length?1:0):(n.hub==='system'||n.hub==='signal')?(G.adj[i].length?1:0):0;
+    if(angle==='market')vis[i]=0;
     else vis[i]=n.hub?(angle==='topics'&&(n.hub==='topic'||n.hub==='system')&&G.adj[i].length?1:0):(segOn[n.seg]?1:0)}
+  if(angle==='market'){
+    G.adjM=G.adj;
+    const pass=new Uint8Array(G.n);
+    for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub==='company'&&G.adj[i].length&&companyPasses(n))pass[i]=1}
+    for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub!=='system'&&n.hub!=='signal')continue;if(n.hub==='system'&&mkOff.family.has(n.fam||(n.fam=familyOf(n.name))))continue;if(G.adj[i].some(j=>pass[j]))vis[i]=1}
+    for(let i=0;i<G.n;i++)if(pass[i]&&G.adj[i].some(j=>vis[j]&&G.nodes[j].hub==='system'||vis[j]&&G.nodes[j].hub==='signal'))vis[i]=1;
+  }
   G.on=vis;G.act=[];for(let i=0;i<G.n;i++)if(vis[i])G.act.push(i);
   if(sel>=0&&!vis[sel])sel=-1;
   if(hov>=0&&!vis[hov])hov=-1;
   nbr=sel>=0?new Set(G.adj[sel].filter(j=>vis[j])):null;
-  resize(G);renderKPIs();renderLists();buildChips();applyColors();refreshNodes();paintEdges();rebuildActive();renderDetail();
+  resize(G);renderKPIs();renderLists();buildChips();buildFacets();applyColors();refreshNodes();paintEdges();rebuildActive();renderDetail();
   if(G.n>0)$('empty').hidden=true;
 }
 const chipBox=$('chips');
@@ -938,7 +1013,7 @@ function buildChips(){
 }
 const segToggle=$('seg-toggle'),filtersEl=document.querySelector('.filters');
 segToggle.addEventListener('click',()=>{const o=!filtersEl.classList.contains('open');filtersEl.classList.toggle('open',o);segToggle.setAttribute('aria-expanded',String(o));setTimeout(()=>window.dispatchEvent(new Event('resize')),0)});
-function segBadge(){const off=segOn.filter(x=>!x).length;const b=$('seg-off');b.hidden=!off;b.textContent=off?String(off):''}
+function segBadge(){if(angle==='market')return;const off=segOn.filter(x=>!x).length;const b=$('seg-off');b.hidden=!off;b.textContent=off?String(off):''}
 chipBox.addEventListener('click',e=>{
   const b=e.target.closest('.chip');if(!b)return;
   const k=+b.dataset.k;
@@ -971,7 +1046,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sel>=0)select(-1)})
 $('btn-rot').addEventListener('click',()=>{auto=!auto;$('btn-rot').setAttribute('aria-pressed',String(auto))});
 $('btn-reset').addEventListener('click',()=>resetView());
 function themeUi(){const l=document.documentElement.dataset.theme==='light';$('btn-theme').setAttribute('aria-label',l?'Switch to dark mode':'Switch to light mode');const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',l?'#f4f6fb':'#07070f')}
-$('btn-theme').addEventListener('click',()=>{const l=document.documentElement.dataset.theme!=='light';document.documentElement.dataset.theme=l?'light':'dark';try{localStorage.setItem('synapse.theme',l?'light':'dark')}catch(e){}themeUi();if(window.synapseGLTheme)window.synapseGLTheme(l)});
+$('btn-theme').addEventListener('click',()=>{const l=document.documentElement.dataset.theme!=='light';document.documentElement.dataset.theme=l?'light':'dark';try{localStorage.setItem('synapse.theme',l?'light':'dark')}catch(e){}themeUi();if(window.synapseGLTheme)window.synapseGLTheme(l);buildFacets();if(sel>=0)renderDetail()});
 themeUi();
 setTimeout(()=>$('hint').classList.add('off'),9000);
 

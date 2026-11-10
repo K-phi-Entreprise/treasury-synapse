@@ -56,11 +56,16 @@ async function upsertInstall(db, r, source = 'harvest') {
   if (c.system && compKey(c.system) === key) return { ok: false, reason: 'the vendor itself' };
   const kind = KINDS.includes(r.kind) ? r.kind : 'case_study';
   const region = REGIONS.includes(r.region) ? r.region : 'Unknown';
-  await db.query(`insert into companies (id, name, region, industry) values ($1,$2,$3,$4)
+  const { verticalOf, sizeOf } = require('./enrich');
+  const emp = Number(r.employees) > 0 ? Math.round(Number(r.employees)) : null;
+  await db.query(`insert into companies (id, name, region, industry, vertical, employees, size) values ($1,$2,$3,$4,$5,$6,$7)
     on conflict (id) do update set region = case when companies.region = 'Unknown' then excluded.region else companies.region end,
       industry = case when companies.industry = '' then excluded.industry else companies.industry end,
-      updated_at = case when (companies.region = 'Unknown' and excluded.region <> 'Unknown') or (companies.industry = '' and excluded.industry <> '') then now() else companies.updated_at end`,
-  [key, name, region, s(r.industry, 80)]);
+      vertical = case when companies.vertical = '' then excluded.vertical else companies.vertical end,
+      employees = coalesce(companies.employees, excluded.employees), size = case when companies.size = '' then excluded.size else companies.size end,
+      updated_at = case when (companies.region = 'Unknown' and excluded.region <> 'Unknown') or (companies.industry = '' and excluded.industry <> '')
+        or (companies.vertical = '' and excluded.vertical <> '') or (companies.employees is null and excluded.employees is not null) then now() else companies.updated_at end`,
+  [key, name, region, s(r.industry, 80), verticalOf([r.industry]), emp, sizeOf(emp)]);
   const ev = { url, kind, date: dateish(r.date), note: s(r.note, 300) };
   const row = [key, c.system, status, s(r.product, 120) || c.product, dateish(r.since) || s(r.since, 10).replace(/[^0-9]/g, '').slice(0, 4), dateish(r.date),
     s(r.partner, 120), s(r.replaced, 120), s(r.person, 120), s(r.personTitle || r.person_title, 120), url, kind, s(r.note, 300), JSON.stringify([ev]), source];
@@ -122,6 +127,11 @@ async function seed(pool, dir = path.join(__dirname, '..', 'data')) {
     n += k;
   }
   for (const x of SOURCES) await pool.query('insert into market_sources (url, label, kind) values ($1,$2,$3) on conflict (url) do nothing', [x.url, x.label, x.kind]);
+  /* a vertical for companies whose industry is known but not yet mapped */
+  const { verticalOf } = require('./enrich');
+  for (const c of (await pool.query("select id, industry from companies where vertical = '' and industry <> ''")).rows) {
+    const v = verticalOf([c.industry]); if (v) await pool.query('update companies set vertical = $2, updated_at = now() where id = $1', [c.id, v]);
+  }
   return n;
 }
 
@@ -131,7 +141,8 @@ async function loadMarket(pool, since) {
   const companies = (await pool.query(`select * from companies where not hidden${since ? ' and updated_at > $1' : ''} order by added_at`, p)).rows;
   const installs = (await pool.query(`select i.* from installs i join companies c on c.id = i.company_id and not c.hidden${since ? ' where i.updated_at > $1' : ''} order by i.added_at`, p)).rows;
   const out = {
-    companies: companies.map(c => ({ id: c.id, name: c.name, region: c.region, industry: c.industry, addedAt: c.added_at && c.added_at.toISOString() })),
+    companies: companies.map(c => ({ id: c.id, name: c.name, region: c.region, industry: c.industry, vertical: c.vertical, size: c.size, employees: c.employees, country: c.country,
+      wikidata: c.wikidata, addedAt: c.added_at && c.added_at.toISOString() })),
     installs: installs.map(i => ({ company: i.company_id, system: i.system, status: i.status, product: i.product, since: i.since, date: i.date, partner: i.partner,
       replaced: i.replaced, person: i.person, personTitle: i.person_title, url: i.url, kind: i.kind, note: i.note, sources: (i.evidence || []).length, addedAt: i.added_at && i.added_at.toISOString() }))
   };
@@ -143,7 +154,7 @@ async function loadMarket(pool, since) {
   for (const r of ppl) {
     const key = compKey(r.org), c = canonSystem(r.system);
     if (!key || !c.system || NOT_A_USER.test(key) || compKey(c.system) === key) continue;
-    if (!byKey.has(key)) { const co = { id: key, name: r.org, region: r.region || 'Unknown', industry: r.segment === 'Banks' ? 'Financial services' : '', addedAt: null }; byKey.set(key, co); out.companies.push(co); }
+    if (!byKey.has(key)) { const co = { id: key, name: r.org, region: r.region || 'Unknown', industry: r.segment === 'Banks' ? 'Financial services' : '', vertical: r.segment === 'Banks' ? 'Financial services' : '', size: '', employees: null, country: '', wikidata: '', addedAt: null }; byKey.set(key, co); out.companies.push(co); }
     if (!out.installs.some(i => i.company === key && i.system === c.system && i.status === 'live'))
       out.installs.push({ company: key, system: c.system, status: 'live', product: c.product, since: '', date: r.date || '', partner: '', replaced: '', person: '', personTitle: '',
         url: r.url || '', kind: 'person', note: 'From the card of someone who works there', sources: 1, personId: r.id, addedAt: null });
@@ -178,7 +189,8 @@ const SUBMIT = {
         partner: { type: 'string', description: 'Implementation partner named by the page.' },
         replaced: { type: 'string', description: 'What it replaced, in the page\'s words (Excel, a legacy TMS, a named product).' },
         person: { type: 'string', description: 'A named employee of the organisation quoted or credited on the page.' }, person_title: { type: 'string' },
-        region: { type: 'string', enum: REGIONS }, industry: { type: 'string' },
+        region: { type: 'string', enum: REGIONS, description: 'Where the organisation is based.' }, industry: { type: 'string', description: 'Its industry in a few words (food retail, pharmaceuticals, commodity trading).' },
+        employees: { type: 'number', description: 'Number of employees, only if the page states it.' },
         kind: { type: 'string', enum: KINDS }, note: { type: 'string', description: 'One factual sentence, no praise words.' },
         url: { type: 'string' } }, required: ['company', 'status', 'url'] } },
       next_pages: { type: 'array', description: 'Single case studies, press releases or job posts worth reading next for detail (year, partner, what was replaced, person).', items: { type: 'object', properties: { url: { type: 'string' }, label: { type: 'string' } }, required: ['url'] } }
@@ -190,6 +202,7 @@ function systemPrompt(cfg) {
   return 'You collect facts for the Market view of "Treasury Synapse": which organisation runs which treasury, cash, payments or FP&A system, from public pages only. ' +
     'Report an organisation only for its own use of the system. A vendor, a consultancy or an integrator is never the user; a bank is a user only when it runs the system for its own treasury. ' +
     'A job post shows the system the employer runs ("our Kyriba platform") or a selection in progress ("select and implement a new TMS"); a post that only asks for experience with a product says nothing about the employer, skip it. ' +
+    'Also report the ERP, the planning (EPM, FP&A) and the bank or payment platforms the page names for the same organisation, each as its own live line (SAP S/4HANA, Oracle NetSuite, Microsoft Dynamics 365, Anaplan, OneStream). ' +
     'When a case study says what was used before (Excel, spreadsheets, a legacy system, a named product), report it as replaced on the same line, and as its own previous line when a product or Excel is named. Never guess. ' +
     'Never use LinkedIn or profile-scraping sites. Write every field in English. You have at most ' + cfg.marketSearches + ' searches and ' + cfg.marketFetches + ' fetches. When done, call submit_market once with everything the fetched pages support, then stop.';
 }
