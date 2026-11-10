@@ -33,7 +33,7 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, emailRe, admin,
 
   app.post('/api/requests', async (req, res, next) => {
     try {
-      const email = clip(req.body.email, 200).toLowerCase();
+      const email = clip(String(req.body.email || '').replace(/\s+/g, ''), 200).toLowerCase();
       if (!emailRe.test(email)) return res.status(400).json({ error: 'an email is needed so we can answer you' });
       const c = clean(req.body || {}, { topics, regions });
       if (c.error) return res.status(400).json({ error: c.error });

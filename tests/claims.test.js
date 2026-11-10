@@ -162,3 +162,10 @@ test('declarations: only the signed-in owner edits a card, values come from fixe
   const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
   for (const t of ['id="ed-wrap"', "fetch('/api/me/card',{method:'PUT'", "fetch('/api/declared'", 'not checked against public pages']) assert.ok(html.includes(t), t);
 });
+
+test('an address with a stray space (a phone keyboard after the dot) is accepted as the address without it', async () => {
+  const r = await fetch(base + '/api/claims/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: 'vincent@k-phi. com' }) });
+  assert.strictEqual(r.status, 200, JSON.stringify(await r.clone().json()));
+  const c = await fetch(base + '/api/claims', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ personId: 'ernie-humphrey', email: ' someone@strategictreasurer. com ' }) });
+  assert.notStrictEqual(c.status, 400, JSON.stringify(await c.clone().json()));
+});

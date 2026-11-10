@@ -78,7 +78,7 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, secret, emailRe
   app.post('/api/claims', async (req, res, next) => {
     try {
       const personId = String(req.body.personId || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 120);
-      const email = String(req.body.email || '').trim().toLowerCase().slice(0, 200);
+      const email = String(req.body.email || '').replace(/\s+/g, '').toLowerCase().slice(0, 200);   /* phone keyboards put a space after the dot */
       if (!personId) return res.status(400).json({ error: 'which card is this?' });
       if (!emailRe.test(email)) return res.status(400).json({ error: 'that email address does not look right' });
       const p = (await pool.query('select id, name, org, headline from people where id = $1 and not hidden', [personId])).rows[0];
@@ -129,7 +129,7 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, secret, emailRe
   /* another device: a sign-in link to the address that claimed the card. Same answer whatever the address, so it reveals nothing. */
   app.post('/api/claims/login', async (req, res, next) => {
     try {
-      const email = String(req.body.email || '').trim().toLowerCase().slice(0, 200);
+      const email = String(req.body.email || '').replace(/\s+/g, '').toLowerCase().slice(0, 200);   /* phone keyboards put a space after the dot */
       if (!emailRe.test(email)) return res.status(400).json({ error: 'that email address does not look right' });
       if (!(await underQuota(req, 'claim'))) return res.status(429).json({ error: 'daily limit reached, try again tomorrow' });
       const rows = (await pool.query('select c.person_id, p.name from claims c join people p on p.id = c.person_id where c.email = $1 and c.confirmed_at is not null and not p.hidden', [email])).rows;

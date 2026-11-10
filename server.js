@@ -189,7 +189,7 @@ app.post('/api/submissions', async (req, res, next) => {
     const payload = cleanPayload(kind, req.body.payload);
     if (!payload) return res.status(400).json({ error: kind === 'link' ? 'a public web address is needed' : 'something is missing in the form' });
     if (payload.refused) return res.status(400).json({ error: 'LinkedIn pages are not used on this map; please send another public page' });
-    const email = clip(req.body.email, 200).trim();
+    const email = clip(String(req.body.email || '').replace(/\s+/g, ''), 200);
     if (email && !EMAIL_RE.test(email)) return res.status(400).json({ error: 'that email address does not look right' });
     if (kind === 'removal' && !email) return res.status(400).json({ error: 'an email is needed for a removal request, to confirm it and tell you the outcome' });
     const person = await pool.query('select id, name from people where id = $1', [personId]);
