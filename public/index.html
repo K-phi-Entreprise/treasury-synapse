@@ -571,6 +571,7 @@ let sel=-1,hov=-1,nbr=null,hl=null;
 window.synapseSelected=()=>(sel>=0&&G.nodes[sel]&&!G.nodes[sel].hub)?{id:G.nodes[sel].id,name:G.nodes[sel].name,headline:G.nodes[sel].headline}:null;
 let meId='';try{meId=localStorage.getItem('synapse.me')||''}catch(e){}
 window.synapseMe=()=>meId;
+window.synapseSystems=()=>{const o=new Set();for(let i=0;i<G.n;i++){const n=G.nodes[i];if(!n.hub&&n.systems)n.systems.forEach(x=>o.add(x.name))}return [...o].sort()};
 window.synapseFocus=id=>{const i=G.idx.get(id);if(i==null)return false;select(i,true);return true};
 window.synapseSetMe=id=>{meId=id||'';if(sel>=0)renderDetail()};
 window.synapsePeople=()=>{const o=[];for(let i=0;i<G.n;i++){const n=G.nodes[i];if(!n.hub)o.push({id:n.id,name:n.name,org:n.org||''})}return o};
@@ -1709,6 +1710,156 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       let tries=0;(function focus(){if(window.synapseFocus&&window.synapseFocus(card))return;if(++tries<40)setTimeout(focus,250)})();
     }
     document.dispatchEvent(new CustomEvent('synapse:me',{detail:me}));
+  });
+})();
+</script>
+
+<style>
+.decl{margin:10px 0 0;padding:9px 11px;border-radius:10px;border:1px dashed rgba(150,165,230,.35);font-size:12.5px;line-height:1.45}
+.decl-h{display:flex;justify-content:space-between;gap:8px;margin:0 0 6px;font:500 9.5px/1.4 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--fg-faint)}
+.decl-row{margin:0 0 5px;color:var(--fg)}
+.decl-row:last-child{margin-bottom:0}
+.decl-row b{font-weight:600}
+.decl-row small{display:block;color:var(--fg-dim);font-size:11.5px}
+.decl-ref{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:99px;border:1px solid rgba(134,239,172,.5);color:#86efac;font:500 10px/1.5 var(--font-mono)}
+.decl-hire{display:inline-block;margin:2px 0 0;padding:2px 8px;border-radius:99px;background:rgba(110,231,240,.1);color:#6ee7f0;font:500 11px/1.5 var(--font-body)}
+@media (max-width:899px){.detail:not(.open) .decl{display:none}}
+.d-mine .d-editbtn{margin-left:0;padding:5px 10px;border:1px solid rgba(110,231,240,.45);border-radius:8px;color:var(--fg);text-decoration:none;font:500 12px var(--font-body)}
+.ed .sec{margin:0 0 16px}
+.ed .sec h4{margin:0 0 6px;font:600 13px/1.3 var(--font-body);color:var(--fg)}
+.ed .sec p{margin:0 0 8px;font:400 11.5px/1.45 var(--font-mono);color:var(--fg-faint)}
+.ed-sys{border:1px solid var(--line);border-radius:10px;padding:10px;margin:0 0 8px;position:relative}
+.ed-sys .r1{display:grid;grid-template-columns:minmax(0,1fr) 130px;gap:6px;margin:0 0 8px;padding-right:28px}
+.ed-sys .r2{display:flex;gap:6px;align-items:center;margin:8px 0 0;flex-wrap:wrap;font-size:12px;color:var(--fg-dim)}
+.ed-sys .r2 input[type=text]{width:70px}
+.ed-sys .del{position:absolute;right:6px;top:8px;width:26px;height:26px;border:0;background:none;color:var(--fg-faint);cursor:pointer;font-size:16px}
+.ed input[type=text],.ed select{padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--fg);font:400 13px/1.3 var(--font-body);min-width:0;width:100%;box-sizing:border-box}
+.ed-chips{display:flex;flex-wrap:wrap;gap:5px}
+.ed-chips button{padding:4px 9px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-faint);font:500 11.5px/1.3 var(--font-body);cursor:pointer}
+.ed-chips button[aria-pressed=true]{color:var(--fg);border-color:#6ee7f0;background:rgba(110,231,240,.1)}
+.ed .add{padding:7px 12px;border-radius:9px;border:1px dashed var(--line);background:none;color:var(--fg-dim);font:500 12.5px var(--font-body);cursor:pointer;width:100%}
+.ed .check{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--fg-dim);margin:0 0 8px}
+</style>
+<datalist id="ed-systems"></datalist>
+<div class="sbm-wrap" id="ed-wrap" hidden>
+  <form class="sbm ed" id="ed" novalidate>
+    <h3>What I have worked on</h3>
+    <button class="close x" id="ed-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="who" id="ed-who"></p>
+    <p class="sbm-hint">Shown on your card as declared by you, next to what public pages say. It never adds links or changes your size on the map.</p>
+    <div class="sec">
+      <h4>Systems</h4>
+      <p>A system, what you did with it, and on which topics. Tick "reference call" if buyers may ask you how it went.</p>
+      <div id="ed-sys"></div>
+      <button class="add" id="ed-add" type="button">+ Add a system</button>
+    </div>
+    <div class="sec">
+      <h4>Topics I worked on</h4>
+      <div class="ed-chips" id="ed-worked"></div>
+    </div>
+    <div class="sec">
+      <h4>Topics I implemented</h4>
+      <div class="ed-chips" id="ed-impl"></div>
+    </div>
+    <div class="sec">
+      <h4>Projects</h4>
+      <label class="check"><input type="checkbox" id="ed-hire"><span>Available for projects (consultant, interim, advisory)</span></label>
+      <div class="ed-chips" id="ed-regions"></div>
+      <label style="margin-top:8px"><span>Languages</span><input type="text" id="ed-langs" maxlength="200" placeholder="English, French"></label>
+      <label><span>One line for buyers (optional)</span><input type="text" id="ed-note" maxlength="300"></label>
+    </div>
+    <button class="go" id="ed-go" type="submit">Save</button>
+    <p class="msg" id="ed-msg" role="status" aria-live="polite"></p>
+  </form>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+  const VERB={uses:'uses',implements:'implemented',integrates:'integrated',evaluated:'evaluated',sells:'sells'};
+  let declared={},cur=null,choices=null,state=null;
+  /* the "declared by them" block on a card */
+  const box=el('div','decl');box.id='d-decl';box.hidden=true;
+  const ins=$('d-insight');ins.parentNode.insertBefore(box,ins.nextSibling);
+  function first(name){return String(name||'').split(' ')[0]}
+  function paint(id){
+    cur=id||cur;const d=cur&&declared[cur];
+    const p=((window.synapsePeople&&window.synapsePeople())||[]).find(x=>x.id===cur);
+    box.textContent='';box.hidden=!d||(!d.systems.length&&!d.topics.length&&!d.profile);
+    if(box.hidden)return;
+    const h=el('div','decl-h');h.append(el('span','','Declared by '+first(p&&p.name)),el('span','','not checked against public pages'));box.appendChild(h);
+    d.systems.forEach(s=>{
+      const r=el('div','decl-row');const t=el('b','',s.system);r.append(t,document.createTextNode(' · '+VERB[s.role]+(s.from||s.to?' · '+[s.from,s.to||'now'].filter(Boolean).join('–'):'')));
+      if(s.referenceOk)r.appendChild(el('span','decl-ref','open to a reference call'));
+      if(s.topics.length)r.appendChild(el('small','',s.topics.join(', ')));
+      if(s.note)r.appendChild(el('small','',s.note));
+      box.appendChild(r);
+    });
+    const w=d.topics.filter(t=>t.role==='worked_on').map(t=>t.topic),im=d.topics.filter(t=>t.role==='implemented').map(t=>t.topic);
+    if(w.length){const r=el('div','decl-row');r.append(el('b','','Worked on: '),document.createTextNode(w.join(', ')));box.appendChild(r)}
+    if(im.length){const r=el('div','decl-row');r.append(el('b','','Implemented: '),document.createTextNode(im.join(', ')));box.appendChild(r)}
+    if(d.profile&&d.profile.forHire){const r=el('div','decl-row');r.appendChild(el('span','decl-hire','Available for projects'+(d.profile.regions.length?' · '+d.profile.regions.join(', '):'')));
+      if(d.profile.languages.length)r.appendChild(el('small','','Languages: '+d.profile.languages.join(', ')));if(d.profile.note)r.appendChild(el('small','',d.profile.note));box.appendChild(r)}
+  }
+  document.addEventListener('synapse:detail',e=>paint(e.detail));
+  function refresh(){return fetch('/api/declared',{cache:'no-store'}).then(r=>r.json()).then(j=>{declared=j.people||{};window.synapseDeclared=()=>declared;paint();document.dispatchEvent(new CustomEvent('synapse:declared'))}).catch(()=>{})}
+  refresh();
+  /* the editor, for the signed-in owner of the card */
+  function addEditButton(){
+    const mine=$('d-mine');if(!mine||$('d-editcard'))return;
+    const b=el('button','d-editbtn','Edit what I worked on');b.type='button';b.id='d-editcard';
+    mine.insertBefore(b,mine.querySelector('#d-signout'));b.addEventListener('click',openEd);
+  }
+  document.addEventListener('synapse:me',addEditButton);
+  function chips(host,list,on,onToggle){
+    host.textContent='';list.forEach(v=>{const b=el('button','',v);b.type='button';b.setAttribute('aria-pressed',String(on.includes(v)));b.addEventListener('click',()=>{const i=on.indexOf(v);if(i>=0)on.splice(i,1);else on.push(v);b.setAttribute('aria-pressed',String(i<0));onToggle&&onToggle()});host.appendChild(b)});
+  }
+  function sysRow(s){
+    const row=el('div','ed-sys');
+    const r1=el('div','r1');
+    const name=el('input');name.type='text';name.placeholder='System, e.g. Kyriba';name.value=s.system||'';name.setAttribute('list','ed-systems');name.maxLength=60;
+    const role=el('select');choices.roles.forEach(v=>{const o=el('option','',VERB[v]);o.value=v;role.appendChild(o)});role.value=s.role||'uses';
+    r1.append(name,role);row.appendChild(r1);
+    const tp=el('div','ed-chips');const on=(s.topics||[]).slice();chips(tp,choices.topics,on);row.appendChild(tp);
+    const r2=el('div','r2');
+    const from=el('input');from.type='text';from.placeholder='from';from.value=s.from||'';from.maxLength=4;from.inputMode='numeric';
+    const to=el('input');to.type='text';to.placeholder='to';to.value=s.to||'';to.maxLength=4;to.inputMode='numeric';
+    const lab=el('label','check');const cb=el('input');cb.type='checkbox';cb.checked=!!s.referenceOk;lab.append(cb,el('span','','open to a reference call'));lab.style.margin='0 0 0 auto';
+    r2.append(el('span','','Years'),from,to,lab);row.appendChild(r2);
+    const del=el('button','del','×');del.type='button';del.setAttribute('aria-label','Remove');del.addEventListener('click',()=>row.remove());row.appendChild(del);
+    row._get=()=>({system:name.value.trim(),role:role.value,topics:on,from:from.value.trim(),to:to.value.trim(),referenceOk:cb.checked});
+    return row;
+  }
+  async function openEd(){
+    const msg=$('ed-msg');msg.className='msg';msg.textContent='Loading…';$('ed-wrap').hidden=false;$('ed-go').disabled=true;
+    try{
+      const r=await fetch('/api/me/card',{cache:'no-store'});const j=await r.json();if(!r.ok)throw new Error(j.error||'Sign in to your card first.');
+      choices=j.choices;state=j;$('ed-who').textContent='As '+j.name;
+      const names=new Set();((window.synapsePeople&&window.synapsePeople())||[]).forEach(()=>{});
+      const dl=$('ed-systems');dl.textContent='';(window.synapseSystems?window.synapseSystems():[]).forEach(n=>{const o=el('option');o.value=n;dl.appendChild(o)});
+      const host=$('ed-sys');host.textContent='';(j.systems.length?j.systems:[{}]).forEach(s=>host.appendChild(sysRow(s)));
+      state.worked=j.topics.filter(t=>t.role==='worked_on').map(t=>t.topic);state.impl=j.topics.filter(t=>t.role==='implemented').map(t=>t.topic);
+      chips($('ed-worked'),choices.topics,state.worked);chips($('ed-impl'),choices.topics,state.impl);
+      state.regions=j.profile.regions.slice();chips($('ed-regions'),choices.regions,state.regions);
+      $('ed-hire').checked=!!j.profile.forHire;$('ed-langs').value=(j.profile.languages||[]).join(', ');$('ed-note').value=j.profile.note||'';
+      msg.textContent='';$('ed-go').disabled=false;
+    }catch(err){msg.className='msg err';msg.textContent=String(err.message||err)}
+  }
+  $('ed-add').addEventListener('click',()=>{const r=sysRow({});$('ed-sys').appendChild(r);r.querySelector('input').focus()});
+  const close=()=>{$('ed-wrap').hidden=true};
+  $('ed-close').addEventListener('click',close);
+  $('ed-wrap').addEventListener('click',e=>{if(e.target===$('ed-wrap'))close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('ed-wrap').hidden)close()});
+  $('ed').addEventListener('submit',async e=>{
+    e.preventDefault();const msg=$('ed-msg');msg.className='msg';msg.textContent='Saving…';$('ed-go').disabled=true;
+    const systems=[...$('ed-sys').children].map(r=>r._get()).filter(s=>s.system);
+    const topics=state.worked.map(t=>({topic:t,role:'worked_on'})).concat(state.impl.map(t=>({topic:t,role:'implemented'})));
+    const profile={forHire:$('ed-hire').checked,regions:state.regions,languages:$('ed-langs').value,note:$('ed-note').value};
+    try{
+      const r=await fetch('/api/me/card',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({systems,topics,profile})});
+      const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not save. Try again.');
+      await refresh();msg.textContent='Saved. It shows on your card now.';$('ed-go').disabled=false;setTimeout(close,900);
+    }catch(err){$('ed-go').disabled=false;msg.className='msg err';msg.textContent=String(err.message||err)}
   });
 })();
 </script>

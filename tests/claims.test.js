@@ -115,3 +115,50 @@ test('claims are limited per visitor per day, and the page carries the claim flo
   const review = fs.readFileSync(path.join(__dirname, '..', 'public', 'review.html'), 'utf8');
   assert.ok(review.includes("['claim','Claims']"));
 });
+
+test('declarations: only the signed-in owner edits a card, values come from fixed lists, they show apart from evidence, the owner can take them down', async () => {
+  mailbox = [];
+  await pool.query("delete from quotas where kind = 'claim'");
+  await post('/api/claims', { personId: 'jouni-kirjola', email: 'jouni@nomentia.com' });
+  const res = await follow(linkIn(mailbox.shift()));
+  const cookie = res.headers.get('set-cookie').split(';')[0];
+  const put = (body, c) => fetch(base + '/api/me/card', { method: 'PUT', headers: { 'Content-Type': 'application/json', cookie: c || '' }, body: JSON.stringify(body) }).then(async r => ({ status: r.status, body: await r.json() }));
+  assert.equal((await put({ systems: [] }, '')).status, 401, 'not signed in');
+  const edgesBefore = (await pool.query('select count(*)::int n from co_appearances')).rows[0].n;
+  const topicsBefore = (await pool.query("select count(*)::int n from person_topics where person_id = 'jouni-kirjola'")).rows[0].n;
+  let r = await put({
+    systems: [
+      { system: 'Kyriba', role: 'implements', topics: ['In-house banking', 'Cash forecasting', 'Bananas'], from: '2019', to: '2022', referenceOk: true },
+      { system: 'Nomentia', role: 'sells', topics: [] },
+      { system: 'Kyriba', role: 'implements', topics: [] }],
+    topics: [{ topic: 'Liquidity', role: 'worked_on' }, { topic: 'In-house banking', role: 'implemented' }, { topic: 'Gardening', role: 'worked_on' }],
+    profile: { forHire: true, regions: ['Nordics', 'Mars'], languages: 'English, Finnish', note: 'Interim treasury projects' }
+  }, cookie);
+  assert.equal(r.status, 200, JSON.stringify(r.body));
+  assert.equal(r.body.systems.length, 2, 'a duplicate system and role is kept once');
+  assert.deepEqual(r.body.systems.find(s => s.system === 'Kyriba').topics, ['In-house banking', 'Cash forecasting']);
+  assert.equal(r.body.topics.length, 2, 'unknown topics are dropped');
+  assert.deepEqual(r.body.profile.regions, ['Nordics']);
+  assert.deepEqual(r.body.profile.languages, ['English', 'Finnish']);
+  assert.equal((await put({ systems: [{ system: 'X', role: 'hacks' }] }, cookie)).status, 400);
+  const pub = await fetch(base + '/api/declared').then(r => r.json());
+  const j = pub.people['jouni-kirjola'];
+  assert.ok(j.systems.some(s => s.system === 'Kyriba' && s.referenceOk && s.from === '2019'));
+  assert.equal(j.profile.forHire, true);
+  assert.equal((await pool.query('select count(*)::int n from co_appearances')).rows[0].n, edgesBefore, 'declarations never create links');
+  assert.equal((await pool.query("select count(*)::int n from person_topics where person_id = 'jouni-kirjola'")).rows[0].n, topicsBefore, 'nor evidence topics');
+  /* the owner reviews and removes */
+  const a = await fetch(base + '/api/admin/declarations', { headers: { 'x-admin-token': TOKEN } }).then(r => r.json());
+  const row = a.declarations.find(d => d.person_id === 'jouni-kirjola' && d.system === 'Nomentia');
+  assert.ok(row && a.available.some(x => x.person_id === 'jouni-kirjola'));
+  assert.equal((await post('/api/admin/declarations/' + row.id, {}, { 'x-admin-token': TOKEN })).status, 200);
+  await post('/api/admin/available/jouni-kirjola', {}, { 'x-admin-token': TOKEN });
+  const pub2 = (await fetch(base + '/api/declared').then(r => r.json())).people['jouni-kirjola'];
+  assert.ok(!pub2.systems.some(s => s.system === 'Nomentia'));
+  assert.ok(!pub2.profile || !pub2.profile.forHire);
+  const me = await fetch(base + '/api/me/card', { headers: { cookie } }).then(r => r.json());
+  assert.equal(me.name, 'Jouni Kirjola');
+  assert.ok(me.choices.topics.includes('In-house banking'));
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  for (const t of ['id="ed-wrap"', "fetch('/api/me/card',{method:'PUT'", "fetch('/api/declared'", 'not checked against public pages']) assert.ok(html.includes(t), t);
+});

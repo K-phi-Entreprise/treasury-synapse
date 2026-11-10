@@ -310,6 +310,7 @@ app.post('/api/admin/leads/:id', admin, async (req, res, next) => {
 
 /* ---------- claimed cards ---------- */
 const claims = pool ? require('./claims').mount(app, { pool, mail, ipHash, underQuota, publicUrl: PUBLIC_URL, secret: SALT, emailRe: EMAIL_RE, onChange: () => { cache.at = 0; } }) : null;
+if (claims) require('./declarations').mount(app, { pool, claims, admin, onChange: () => { cache.at = 0; } });
 
 /* ---------- chat (D2) ---------- */
 if (pool) require('./chat').mount(app, {

@@ -202,3 +202,28 @@ create table if not exists claim_tokens (
 );
 alter table submissions drop constraint if exists submissions_kind_check;
 alter table submissions add constraint submissions_kind_check check (kind in ('correction','link','removal','connection','claim'));
+
+-- Declarations on claimed cards: what the person says they did. Never evidence: no links, no bubble size.
+create table if not exists declarations (
+  id serial primary key,
+  person_id text not null references people(id) on delete cascade,
+  kind text not null check (kind in ('system','topic')),
+  system text not null default '',
+  role text not null,
+  topics text[] not null default '{}',
+  from_year text not null default '',
+  to_year text not null default '',
+  reference_ok boolean not null default false,
+  note text not null default '',
+  added_at timestamptz not null default now(),
+  removed_at timestamptz
+);
+create index if not exists declarations_person on declarations (person_id) where removed_at is null;
+create table if not exists person_profile (
+  person_id text primary key references people(id) on delete cascade,
+  for_hire boolean not null default false,
+  regions text[] not null default '{}',
+  languages text[] not null default '{}',
+  note text not null default '',
+  updated_at timestamptz not null default now()
+);

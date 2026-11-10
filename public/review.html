@@ -87,7 +87,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
   const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
   let token='';try{token=localStorage.getItem('synapse.admin')||''}catch(e){}
   let data=null,tab='removal';
-  const TABS=[['removal','Removals'],['correction','Corrections'],['link','Links'],['claim','Claims'],['connection','Connections'],['lead','Unreadable pages'],['run','Crawler']];
+  const TABS=[['removal','Removals'],['correction','Corrections'],['link','Links'],['claim','Claims'],['connection','Connections'],['lead','Unreadable pages'],['decl','Declared'],['run','Crawler']];
   const FIELD={headline:'Title and company',org:'Organisation',city:'City',region:'Region',knownFor:'Known for',other:'Something else'};
   const CUR={headline:'person_headline',org:'person_org',city:'person_city',region:'person_region',knownFor:'person_known_for'};
   const ago=t=>{if(!t)return '';const m=Math.round((Date.now()-Date.parse(t))/60000);return m<60?m+' min ago':m<1440?Math.round(m/60)+' h ago':Math.round(m/1440)+' d ago'};
@@ -105,6 +105,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     if(k==='connection')return data.connections;
     if(k==='lead')return data.leads;
     if(k==='run')return data.runs||[];
+    if(k==='decl')return data.decl||[];
     return data.submissions.filter(s=>s.kind===k);
   }
   function renderTabs(){
@@ -172,6 +173,21 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     it.appendChild(actions(l,{buttons:[['ok','Read it · queue for the crawler',st('queued')],['','Done by hand',st('done')],['no','Dismiss',st('dismissed')]],note:false}));
     return it;
   }
+  const VERB={uses:'uses',implements:'implemented',integrates:'integrated',evaluated:'evaluated',sells:'sells',worked_on:'worked on',implemented:'implemented'};
+  function declItem(d){
+    const it=el('article','item');const top=el('div','top');
+    top.appendChild(el('span','tag',d.forHire!=null?'available for projects':d.kind==='system'?'system':'topic'));
+    if(d.reference_ok)top.appendChild(el('span','tag','reference call'));
+    top.appendChild(el('span','when',ago(d.added_at||d.updated_at)));it.appendChild(top);
+    it.appendChild(el('div','who',d.name));
+    const b=el('div','body');
+    if(d.forHire!=null)b.appendChild(el('div','',[(d.regions||[]).join(', '),(d.languages||[]).join(', '),d.note].filter(Boolean).join(' · ')||'No details'));
+    else b.appendChild(el('div','',(d.kind==='system'?d.system+' · ':'')+VERB[d.role]+(d.topics&&d.topics.length?' · '+d.topics.join(', '):'')+(d.from_year||d.to_year?' · '+[d.from_year,d.to_year||'now'].filter(Boolean).join('–'):'')+(d.note?' · '+d.note:'')));
+    it.appendChild(b);
+    const go=d.forHire!=null?()=>call('/api/admin/available/'+encodeURIComponent(d.person_id),{}):()=>call('/api/admin/declarations/'+d.id,{});
+    it.appendChild(actions(d,{buttons:[['no',d.forHire!=null?'Turn off availability':'Remove',go]],note:false}));
+    return it;
+  }
   function runItem(r){
     const d=r.data||{};const it=el('article','item');const top=el('div','top');
     top.appendChild(el('span','tag'+(d.errors&&d.errors.length?' warn':''),d.errors&&d.errors.length?'errors':'crawler run'));
@@ -190,14 +206,14 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     renderTabs();const list=$('list');list.textContent='';
     const xs=items(tab);
     if(!xs.length){list.appendChild(el('div','empty','Nothing waiting here.'));return}
-    xs.forEach(x=>list.appendChild(tab==='connection'?connItem(x):tab==='lead'?leadItem(x):tab==='run'?runItem(x):subItem(x)));
+    xs.forEach(x=>list.appendChild(tab==='connection'?connItem(x):tab==='lead'?leadItem(x):tab==='run'?runItem(x):tab==='decl'?declItem(x):subItem(x)));
   }
   async function load(){
     if(!token){showGate();return}
-    try{data=await call('/api/admin/queue')}catch(e){if(e.message!=='unauthorised'){$('app').hidden=false;$('gate').hidden=true;$('list').textContent='';$('list').appendChild(el('p','err',String(e.message)))}return}
+    try{data=await call('/api/admin/queue');const dd=await call('/api/admin/declarations').catch(()=>({declarations:[],available:[]}));data.decl=dd.available.map(a=>Object.assign({forHire:true},a)).concat(dd.declarations)}catch(e){if(e.message!=='unauthorised'){$('app').hidden=false;$('gate').hidden=true;$('list').textContent='';$('list').appendChild(el('p','err',String(e.message)))}return}
     $('gate').hidden=true;$('app').hidden=false;
     $('mailstate').textContent=data.mail?'email on':'email not configured';
-    if(!items(tab).length){const k=TABS.map(t=>t[0]).find(k=>k!=='run'&&items(k).length);if(k)tab=k}
+    if(!items(tab).length){const k=TABS.map(t=>t[0]).find(k=>k!=='run'&&k!=='decl'&&items(k).length);if(k)tab=k}
     render();
   }
   const f=$('imp-file'),go=$('imp-go'),res=$('imp-res');
