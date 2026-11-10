@@ -19,6 +19,7 @@
     <h3>Get help</h3>
     <button class="close x" id="hp-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     <p class="who">Private: your request is never shown on the map. We read every one and introduce you, by email, to people who can help.</p>
+    <p class="sbm-hint"><button type="button" class="cl-alt" id="hp-browse" style="margin:0">Looking for a consultant? Browse them first</button></p>
     <div class="kinds" id="hp-kinds" role="group" aria-label="What you need">
       <button type="button" data-k="selection" aria-pressed="true">Choosing a system</button>
       <button type="button" data-k="forecasting" aria-pressed="false">Cash forecasting project</button>
@@ -62,11 +63,13 @@
   function open(pre){
     pre=pre||{};tsel=(pre.topics||[]).slice();topics();
     if(pre.system){$('hp-systems').value=pre.system}
+    if(pre.details){$('hp-details').value=pre.details}
     if(pre.kind){kind=pre.kind;$('hp-kinds').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.k===kind)))}
     const dl=$('ed-systems');if(dl&&!dl.children.length&&window.synapseSystems)window.synapseSystems().forEach(n=>{const o=document.createElement('option');o.value=n;dl.appendChild(o)});
     $('hp-msg').textContent='';$('hp-msg').className='msg';$('hp-go').hidden=false;$('hp-go').disabled=false;$('hp-wrap').hidden=false;
   }
   window.synapseHelp=open;
+  $('hp-browse').addEventListener('click',()=>{$('hp-wrap').hidden=true;window.synapseConsultants&&window.synapseConsultants({system:$('hp-systems').value.split(',')[0].trim()})});
   const close=()=>{$('hp-wrap').hidden=true};
   $('hp-close').addEventListener('click',close);
   $('hp-wrap').addEventListener('click',e=>{if(e.target===$('hp-wrap'))close()});

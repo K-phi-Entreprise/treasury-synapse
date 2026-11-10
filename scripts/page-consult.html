@@ -1,0 +1,93 @@
+<style>
+.cs .grid{display:grid;grid-template-columns:minmax(0,1.4fr) 1fr 1fr;gap:8px;margin:0 0 12px}
+@media (max-width:560px){.cs .grid{grid-template-columns:1fr 1fr}.cs .grid label:first-child{grid-column:1/-1}}
+.cs-list{display:flex;flex-direction:column;gap:8px}
+.cs-item{padding:10px 12px;border:1px solid var(--line);border-radius:11px}
+.cs-item h5{margin:0;font:600 14px/1.3 var(--font-body);color:var(--fg)}
+.cs-item .meta{margin:1px 0 6px;font-size:12px;color:var(--fg-dim)}
+.cs-item .tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 6px}
+.cs-item .tags span{padding:1px 8px;border-radius:99px;border:1px solid var(--line);font:500 10.5px/1.6 var(--font-mono);color:var(--fg-dim)}
+.cs-item .tags .av{border-color:rgba(110,231,240,.5);color:#6ee7f0}
+.cs-item .tags .ref{border-color:rgba(134,239,172,.5);color:#86efac}
+.cs-item .ln{font-size:12px;line-height:1.45;color:var(--fg)}
+.cs-item .ln small{color:var(--fg-faint);font:400 10.5px var(--font-mono);letter-spacing:.04em;text-transform:uppercase;margin-right:6px}
+.cs-item .row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.cs-item .row button{padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);font:500 12px var(--font-body);cursor:pointer}
+.cs-item .row button.pri{border-color:rgba(110,231,240,.5);background:rgba(110,231,240,.1)}
+.cs-count{margin:0 0 8px;font:400 11.5px var(--font-mono);color:var(--fg-faint)}
+.cs-link{display:none}
+@media (min-width:900px){.top .cs-link{display:inline-block;order:3;margin:8px 0 0 8px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-dim);font:500 12.5px/1.2 var(--font-body);cursor:pointer}}
+</style>
+<div class="sbm-wrap" id="cs-wrap" hidden>
+  <div class="sbm cs" role="dialog" aria-labelledby="cs-h">
+    <h3 id="cs-h">Find a consultant</h3>
+    <button class="close x" id="cs-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="who">Advisors and people available for projects. Public pages come first: what they have been seen implementing, and how often. Then what they say on their own card.</p>
+    <div class="grid">
+      <label><span>System</span><input type="text" id="cs-system" list="ed-systems" maxlength="60" placeholder="Any"></label>
+      <label><span>Topic</span><select id="cs-topic"><option value="">Any</option></select></label>
+      <label><span>Region</span><select id="cs-region"><option value="">Any</option></select></label>
+    </div>
+    <p class="cs-count" id="cs-count" role="status" aria-live="polite"></p>
+    <div class="cs-list" id="cs-list"></div>
+  </div>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+  const TOPICS=['Cash forecasting','Liquidity','Bank connectivity','Payments','In-house banking','FX & hedging','Debt & funding','Working capital','AR/AP','FP&A & planning','Consolidation','Treasury technology','TMS selection','Risk & compliance','Fraud','AI in finance','ESG & sustainable finance','Crypto & stablecoins','Commodities'];
+  const REGIONS=['United States','United Kingdom','France','DACH','Benelux','Nordics','Southern Europe','Asia-Pacific','Other'];
+  const VERB={uses:'uses',implements:'implements',integrates:'integrates',evaluated:'evaluated'};
+  const DVERB={uses:'uses',implements:'implemented',integrates:'integrated',evaluated:'evaluated'};
+  TOPICS.forEach(t=>{const o=el('option','',t);$('cs-topic').appendChild(o)});
+  REGIONS.forEach(r=>{const o=el('option','',r);$('cs-region').appendChild(o)});
+  let timer=0,seq=0;
+  async function run(){
+    const my=++seq;const q=new URLSearchParams({system:$('cs-system').value.trim(),topic:$('cs-topic').value,region:$('cs-region').value});
+    $('cs-count').textContent='Searching…';
+    try{
+      const j=await fetch('/api/consultants?'+q,{cache:'no-store'}).then(r=>r.json());if(my!==seq)return;
+      const list=$('cs-list');list.textContent='';
+      $('cs-count').textContent=j.total?j.total+' found'+(j.total>j.consultants.length?', showing the first '+j.consultants.length:''):'Nobody matches yet. Ask for help and we will look for you.';
+      j.consultants.forEach(c=>{
+        const it=el('article','cs-item');it.appendChild(el('h5','',c.name));it.appendChild(el('p','meta',[c.headline||c.org,c.region&&c.region!=='Unknown'?c.region:''].filter(Boolean).join(' · ')));
+        const tags=el('div','tags');
+        if(c.available)tags.appendChild(el('span','av','available for projects'+(c.regions.length?' · '+c.regions.join(', '):'')));
+        if(c.declared.some(d=>d.referenceOk))tags.appendChild(el('span','ref','open to a reference call'));
+        if(c.claimed)tags.appendChild(el('span','','claimed card'));
+        if(c.regionMatch)tags.appendChild(el('span','','your region'));
+        if(tags.children.length)it.appendChild(tags);
+        if(c.evidence.length){const l=el('div','ln');l.append(el('small','','public'),document.createTextNode(c.evidence.map(e=>VERB[e.role]+' '+e.system+(e.sources>1?' ('+e.sources+' sources)':'')).join(' · ')));it.appendChild(l)}
+        if(c.declared.length){const l=el('div','ln');l.append(el('small','','declared'),document.createTextNode(c.declared.map(d=>DVERB[d.role]+' '+d.system+(d.topics.length?': '+d.topics.join(', '):'')).join(' · ')));it.appendChild(l)}
+        if(c.languages.length||c.note){const l=el('div','ln');l.textContent=[c.languages.length?'Languages: '+c.languages.join(', '):'',c.note].filter(Boolean).join(' · ');it.appendChild(l)}
+        const row=el('div','row');
+        const ask=el('button','pri','Ask for an introduction');ask.type='button';
+        ask.addEventListener('click',()=>{close();window.synapseHelp&&window.synapseHelp({kind:'implementation',system:$('cs-system').value.trim(),details:'I would like an introduction to '+c.name+(c.org?' ('+c.org+')':'')+'.'})});
+        const show=el('button','','Show on the map');show.type='button';show.addEventListener('click',()=>{close();window.synapseFocus&&window.synapseFocus(c.id)});
+        row.append(ask,show);it.appendChild(row);list.appendChild(it);
+      });
+    }catch(e){$('cs-count').textContent='The search did not work. Try again.'}
+  }
+  const later=()=>{clearTimeout(timer);timer=setTimeout(run,250)};
+  ['cs-system'].forEach(id=>$(id).addEventListener('input',later));
+  ['cs-topic','cs-region'].forEach(id=>$(id).addEventListener('change',run));
+  function open(pre){
+    pre=pre||{};if(pre.system!=null)$('cs-system').value=pre.system;
+    const dl=$('ed-systems');if(dl&&!dl.children.length&&window.synapseSystems)window.synapseSystems().forEach(n=>{const o=document.createElement('option');o.value=n;dl.appendChild(o)});
+    $('cs-wrap').hidden=false;run();
+  }
+  function close(){$('cs-wrap').hidden=true}
+  window.synapseConsultants=open;
+  $('cs-close').addEventListener('click',close);
+  $('cs-wrap').addEventListener('click',e=>{if(e.target===$('cs-wrap'))close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('cs-wrap').hidden)close()});
+  /* entry points: desktop header, the card of a system */
+  const top=document.querySelector('.top');const lk=el('button','cs-link','Find a consultant');lk.type='button';lk.id='cs-link';top.insertBefore(lk,$('status'));lk.addEventListener('click',()=>open());
+  const hb=el('button','hub-help','');hb.type='button';hb.id='hub-cons';hb.hidden=true;const anchor=$('d-edit');anchor.parentNode.insertBefore(hb,anchor);
+  let hubName='';
+  document.addEventListener('synapse:hub',e=>{const d=e.detail||{};hb.hidden=d.kind!=='system';hubName=d.name||'';hb.textContent='Consultants who implement '+hubName});
+  document.addEventListener('synapse:detail',()=>{hb.hidden=true});
+  hb.addEventListener('click',()=>open({system:hubName}));
+})();
+</script>

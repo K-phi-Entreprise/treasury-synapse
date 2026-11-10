@@ -311,6 +311,7 @@ app.post('/api/admin/leads/:id', admin, async (req, res, next) => {
 /* ---------- claimed cards ---------- */
 const claims = pool ? require('./claims').mount(app, { pool, mail, ipHash, underQuota, publicUrl: PUBLIC_URL, secret: SALT, emailRe: EMAIL_RE, onChange: () => { cache.at = 0; } }) : null;
 if (claims) require('./declarations').mount(app, { pool, claims, admin, onChange: () => { cache.at = 0; } });
+if (pool) require('./consultants').mount(app, { pool, topics: require('./declarations').TOPICS, regions: require('./declarations').REGIONS });
 const requests = pool ? require('./requests').mount(app, { pool, mail, ipHash, underQuota, publicUrl: PUBLIC_URL, emailRe: EMAIL_RE, admin,
   topics: require('./declarations').TOPICS, regions: require('./declarations').REGIONS }) : null;
 

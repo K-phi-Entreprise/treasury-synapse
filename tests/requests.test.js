@@ -109,3 +109,21 @@ test('eight weeks later the requester is asked what they chose and why; the answ
   const review = fs.readFileSync(path.join(__dirname, '..', 'public', 'review.html'), 'utf8');
   assert.ok(review.includes("['request','Requests']") && review.includes('/introduce'));
 });
+
+test('find a consultant: public evidence first, declared next, vendors of the system left out, filters by topic and region', async () => {
+  const j = await fetch(base + '/api/consultants?system=Kyriba').then(r => r.json());
+  const craig = j.consultants.find(c => c.id === 'craig-jeffery');
+  assert.ok(craig && craig.available && craig.claimed);
+  assert.ok(craig.declared.some(d => d.system === 'Kyriba' && d.role === 'implements' && d.referenceOk));
+  const sellers = (await pool.query("select person_id from person_systems where lower(system) = 'kyriba' and role = 'sells'")).rows.map(r => r.person_id);
+  assert.ok(sellers.length && !j.consultants.some(c => sellers.includes(c.id)), 'people who sell Kyriba are not consultants for Kyriba');
+  for (let i = 1; i < j.consultants.length; i++) assert.ok(j.consultants[i - 1].evidence.length + j.consultants[i - 1].declared.length > 0);
+  const t = await fetch(base + '/api/consultants?system=Kyriba&topic=In-house%20banking').then(r => r.json());
+  assert.ok(t.consultants.some(c => c.id === 'craig-jeffery'));
+  const none = await fetch(base + '/api/consultants?system=Kyriba&topic=Commodities').then(r => r.json());
+  assert.ok(!none.consultants.some(c => c.id === 'craig-jeffery'));
+  const reg = await fetch(base + '/api/consultants?region=United%20States').then(r => r.json());
+  assert.ok(reg.consultants.find(c => c.id === 'craig-jeffery').regionMatch);
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  assert.ok(html.includes("fetch('/api/consultants?'") && html.includes('window.synapseConsultants=open'));
+});
