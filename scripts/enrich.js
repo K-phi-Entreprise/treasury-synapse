@@ -47,7 +47,7 @@ const COUNTRY = { Q30: ['United States', 'United States'], Q145: ['United Kingdo
 /* properties that only organisations carry; people, places and disambiguation pages are refused */
 const ORG_PROPS = ['P452', 'P1128', 'P159', 'P749', 'P355', 'P169', 'P1454', 'P414', 'P1278', 'P2139'];
 const NOT_ORG = new Set(['Q5', 'Q4167410', 'Q486972', 'Q515', 'Q6256', 'Q532', 'Q3957', 'Q1549591', 'Q13442814', 'Q482994', 'Q7397', 'Q101352', 'Q4167836', 'Q13406463', 'Q11424', 'Q7725634']);
-const VERSION = 2;   /* 2: the best-known organisation of that name wins (most Wikipedia articles), not the first hit */
+const VERSION = 3;   /* 3: the country is where the headquarters are, not a listing or a market */   /* 2: the best-known organisation of that name wins (most Wikipedia articles), not the first hit */
 
 const ids = (claims, p) => ((claims && claims[p]) || []).map(c => c && c.mainsnak && c.mainsnak.datavalue && c.mainsnak.datavalue.value && c.mainsnak.datavalue.value.id).filter(Boolean);
 function employeesOf(claims) {
@@ -70,6 +70,15 @@ function client(fetchImpl = fetch, delayMs = 1100) {
     const text = await r.text();
     if (!r.ok || /too many requests/i.test(text.slice(0, 200))) { const e = new Error('wikidata ' + r.status); e.slow = r.status === 429 || /too many/i.test(text); throw e; }
     return JSON.parse(text);
+  }
+  /* the country of a place (a headquarters city): its own P17 */
+  const placeCountry = new Map();
+  async function countryOfPlace(id) {
+    if (placeCountry.has(id)) return placeCountry.get(id);
+    const j = await get({ action: 'wbgetentities', ids: id, props: 'claims' });
+    const e = j.entities && j.entities[id];
+    const c = e && e.claims ? (ids(e.claims, 'P17')[0] || '') : '';
+    placeCountry.set(id, c); return c;
   }
   async function labelsFor(list) {
     const need = [...new Set(list)].filter(id => !labels.has(id));
@@ -97,7 +106,7 @@ function client(fetchImpl = fetch, delayMs = 1100) {
     ok.sort((a, b) => b.links - a.links);
     return ok[0] || null;
   }
-  return { get, find, labelsFor };
+  return { get, find, labelsFor, countryOfPlace };
 }
 
 async function enrichOne(pool, wd, c) {
@@ -112,7 +121,9 @@ async function enrichOne(pool, wd, c) {
   const kinds = await wd.labelsFor(ids(hit.claims, 'P31'));
   const vertical = verticalOf(industries.concat(kinds, [hit.description, c.industry]));
   const employees = employeesOf(hit.claims);
-  const cq = ids(hit.claims, 'P17')[0] || ids(hit.claims, 'P495')[0] || '';
+  const preferred = p => { const l = ((hit.claims && hit.claims[p]) || []).filter(x => x.mainsnak && x.mainsnak.datavalue); const b = l.find(x => x.rank === 'preferred') || l[0]; return b ? b.mainsnak.datavalue.value.id : ''; };
+  const hq = preferred('P159');
+  const cq = (hq && wd.countryOfPlace ? await wd.countryOfPlace(hq) : '') || preferred('P17') || preferred('P495') || '';
   const country = COUNTRY[cq] ? COUNTRY[cq][0] : (cq ? (await wd.labelsFor([cq]))[0] : '');
   const region = COUNTRY[cq] ? COUNTRY[cq][1] : (cq ? 'Other' : '');
   await pool.query(`update companies set wikidata = $2, vertical = case when vertical = '' then $3 else vertical end,
@@ -151,4 +162,4 @@ function start(pool, { everyMs = 60000, limit = 8, onChange } = {}) {
   return () => clearTimeout(timer);
 }
 
-module.exports = { verticalOf, sizeOf, employeesOf, client, enrichBatch, start, VERTICALS };
+module.exports = { verticalOf, sizeOf, employeesOf, client, enrichBatch, start, VERTICALS, VERSION };

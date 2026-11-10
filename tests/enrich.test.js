@@ -3,7 +3,7 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const { makePool } = require('../scripts/db');
-const { client, enrichBatch, verticalOf, sizeOf, employeesOf } = require('../scripts/enrich');
+const { client, enrichBatch, verticalOf, sizeOf, employeesOf, VERSION } = require('../scripts/enrich');
 
 let pool;
 test.before(async () => { await require('./setup').ready({ reset: true }); pool = makePool(); });
@@ -35,7 +35,7 @@ test('verticals, size bands and the latest head count', () => {
 });
 
 test('a company gets its vertical, size, country and region from the best-known Wikidata item of that name; a person of the same name is refused', async () => {
-  await pool.query("update companies set enriched_at = now(), enrich_v = 2 where id not in ('barilla', 'elis')");
+  await pool.query("update companies set enriched_at = now(), enrich_v = $1 where id not in ('barilla', 'elis')", [VERSION]);
   await pool.query("update companies set enriched_at = null, wikidata = '', vertical = '', size = '', employees = null, country = '', region = 'Unknown' where id in ('barilla', 'elis')");
   const calls = [];
   const r = await enrichBatch(pool, { limit: 5, wd: client(fake(calls), 0) });
