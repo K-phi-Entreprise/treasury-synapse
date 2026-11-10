@@ -201,7 +201,36 @@ button:focus-visible{outline:2px solid var(--c-corp);outline-offset:2px}
 
 .d-more{display:none;width:100%;margin:0;padding:7px 0 0;border:0;border-top:1px solid var(--line);background:none;color:var(--fg-dim);font:500 11px/1.3 var(--font-mono);letter-spacing:.05em;cursor:pointer;text-align:center}
 .d-more:hover{color:var(--fg)}
+.seg-toggle{display:none}
 @media (max-width:899px){
+  /* phone: the map gets the screen. Header and figures shrink to one line each,
+     the angle note and the segment chips fold behind a Segments button. */
+  .app{height:100dvh;grid-template-rows:auto auto minmax(0,1fr) auto}
+  .top{padding-block:8px 2px}
+  h1{font-size:16px}
+  .brand svg{width:20px;height:20px}
+  .badge{padding:3px 8px;font-size:9.5px}
+  .kpis{padding-block:2px 6px;gap:0}
+  .kpi{min-width:0;flex-direction:row;align-items:baseline;gap:5px;padding:0 10px}
+  .kpi:nth-child(n+4){display:none}
+  .k-val{font-size:14px}
+  .k-label{font-size:9.5px;letter-spacing:.06em}
+  .k-sub{display:none}
+  .filters{padding-block:7px 8px}
+  .angles{margin:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .angles::-webkit-scrollbar{display:none}
+  .angle{flex:none;padding:6px 11px}
+  .seg-toggle{display:inline-flex;align-items:center;gap:5px;flex:none;margin-left:auto;padding:6px 8px 6px 11px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-dim);font:500 12.5px/1.2 var(--font-body);cursor:pointer}
+  .seg-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
+  .seg-toggle[aria-expanded=true]{color:var(--fg);border-color:var(--fg-dim)}
+  .seg-toggle[aria-expanded=true] svg{transform:rotate(180deg)}
+  .seg-toggle b{min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--c-corp);color:#06111a;font:700 10px/16px var(--font-mono);text-align:center}
+  .filters:not(.open) .angle-note,.filters:not(.open) .chips{display:none}
+  .filters.open .angle-note{margin:8px 0}
+  .filters.open .chips{max-height:28vh;overflow-y:auto}
+  .tools{top:8px}
+  .find{top:8px}
+  .hint{top:52px}
   .detail{padding:10px 12px 8px}
   .detail h2{font-size:16px;margin-top:4px}
   .d-meta{margin:1px 0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -209,9 +238,24 @@ button:focus-visible{outline:2px solid var(--c-corp);outline-offset:2px}
   .d-stats dd{font-size:15px}
   .d-more{display:block}
   .detail:not(.open) .links,.detail:not(.open) .d-src,.detail:not(.open) .roles{display:none}
+  /* a closed card stays small: one clamped line of what they are known for, tags behind "show" */
+  .detail:not(.open) .tags{display:none}
+  .detail:not(.open) .insight{margin-bottom:6px}
+  .detail:not(.open) .kf{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .detail:not(.open) .d-stats{margin-bottom:4px}
+  /* the dock sits between the search box and the bottom edge, so an open card scrolls inside it instead of covering the search */
+  .dock{top:54px;justify-content:flex-end}
+  .detail.open{max-height:100%;overflow-y:auto;flex:0 1 auto;min-height:0}
+  .answer{flex:0 1 auto;min-height:0;overflow-y:auto}
   .detail.open .d-meta{white-space:normal}
   .detail.open .links{max-height:min(150px,22vh)}
   .a-body{max-height:min(110px,16vh)}
+}
+@media (max-width:380px){
+  .angles{gap:5px}
+  .angle{padding:5px 8px;font-size:11.5px}
+  .seg-toggle{padding:5px 5px 5px 8px;font-size:11.5px;gap:3px}
+  .kpi:nth-child(3){display:none}
 }
 @media (min-width:900px){
   .dock{left:auto;right:max(16px,env(safe-area-inset-right,0px));top:56px;bottom:12px;width:380px;max-width:calc(100% - 32px)}
@@ -320,6 +364,7 @@ button:focus-visible{outline:2px solid var(--c-corp);outline-offset:2px}
       <button class="angle" type="button" data-a="social" aria-pressed="true">Social</button>
       <button class="angle" type="button" data-a="topics" aria-pressed="false">Topics</button>
       <button class="angle" type="button" data-a="connections" aria-pressed="false">Connections</button>
+      <button class="seg-toggle" id="seg-toggle" type="button" aria-expanded="false" aria-controls="chips">Segments<b id="seg-off" hidden></b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
     </div>
     <p class="angle-note" id="angle-note"></p>
     <div class="chips" id="chips"></div>
@@ -703,11 +748,14 @@ function buildChips(){
     chipBox.appendChild(b);
   });
 }
+const segToggle=$('seg-toggle'),filtersEl=document.querySelector('.filters');
+segToggle.addEventListener('click',()=>{const o=!filtersEl.classList.contains('open');filtersEl.classList.toggle('open',o);segToggle.setAttribute('aria-expanded',String(o));setTimeout(()=>window.dispatchEvent(new Event('resize')),0)});
+function segBadge(){const off=segOn.filter(x=>!x).length;const b=$('seg-off');b.hidden=!off;b.textContent=off?String(off):''}
 chipBox.addEventListener('click',e=>{
   const b=e.target.closest('.chip');if(!b)return;
   const k=+b.dataset.k;
   if(segOn[k]&&segOn.filter(Boolean).length===1)return;
-  segOn[k]=!segOn[k];refreshAll();
+  segOn[k]=!segOn[k];refreshAll();segBadge();
 });
 $('d-close').addEventListener('click',()=>select(-1));
 $('angles').addEventListener('click',e=>{const b=e.target.closest('.angle');if(b&&b.dataset.a!==angle)setAngle(b.dataset.a)});
