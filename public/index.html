@@ -1121,7 +1121,11 @@ function initGL(){
     const cardOpen=!detailEl2.hidden||!answerEl.hidden;
     let x0=0,y0=52,x1=W,y1=H;
     if(W>=900-360&&window.innerWidth>=900){if(cardOpen)x1=Math.max(W*.4,dr.left-sr.left-12)}
-    else y1=Math.max(H*.35,dr.top-sr.top-8);
+    else{
+      /* the dock spans the stage on phones; what covers the map is its visible content, bottom-aligned */
+      let top=Infinity;for(const c of dockEl.children){if(c.hidden||!c.offsetHeight)continue;const t=c.getBoundingClientRect().top;if(t<top)top=t}
+      y1=top===Infinity?H:Math.max(H*.35,top-sr.top-8);
+    }
     const tfx=(x1-x0)/W,tfy=(y1-y0)/H,tx=(x0+x1)/2-W/2,ty=(y0+y1)/2-H/2;
     const k=Math.min(1,dt*7);
     fx+=(tfx-fx)*k;fy+=(tfy-fy)*k;offX+=(tx-offX)*k;offY+=(ty-offY)*k;
