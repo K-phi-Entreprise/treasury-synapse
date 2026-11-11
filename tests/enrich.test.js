@@ -27,6 +27,27 @@ const fake = calls => async url => {
   return { ok: true, status: 200, text: async () => JSON.stringify(body) };
 };
 
+test('a headquarters city gives its current country, never a former state, and a newer profile replaces a stored one', async () => {
+  const london = 'Q84', ROMAN = 'Q2277';
+  const E = { QS: { labels: { en: { value: 'Schroders' } }, sitelinks: { enwiki: {} }, claims: { P31: [claim('Q4830453')], P159: [claim(london)] } },
+    [london]: { claims: { P17: [{ rank: 'normal', mainsnak: { datavalue: { value: { id: ROMAN } } }, qualifiers: { P582: [{}] } }, { rank: 'preferred', mainsnak: { datavalue: { value: { id: 'Q145' } } } }] } },
+    QB: { labels: { en: { value: 'Biesterfeld' } }, sitelinks: { dewiki: {} }, claims: { P31: [claim('Q4830453')], P159: [claim('Q1055')] } },
+    Q1055: { claims: { P17: [{ rank: 'normal', mainsnak: { datavalue: { value: { id: 'Q12548' } } } }] } },
+    Q12548: { labels: { en: { value: 'Holy Roman Empire' } } }, Q4830453: { labels: { en: { value: 'business' } } } };
+  const f = async url => { const q = Object.fromEntries(new URL(url).searchParams); let body;
+    if (q.action === 'wbsearchentities') body = { search: q.search === 'Schroders' ? [{ id: 'QS', label: 'Schroders' }] : q.search === 'Biesterfeld' ? [{ id: 'QB', label: 'Biesterfeld' }] : [] };
+    else body = { entities: Object.fromEntries(q.ids.split('|').filter(id => E[id]).map(id => [id, E[id]])) };
+    return { ok: true, status: 200, text: async () => JSON.stringify(body) }; };
+  await pool.query("insert into companies (id, name) values ('schroders', 'Schroders'), ('biesterfeld', 'Biesterfeld') on conflict (id) do nothing");
+  await pool.query("update companies set enriched_at = now(), enrich_v = $1 where id not in ('schroders', 'biesterfeld')", [VERSION]);
+  await pool.query("update companies set enriched_at = now(), enrich_v = 3, wikidata = '', country = 'Roman Empire', region = 'Other' where id in ('schroders', 'biesterfeld')");
+  await enrichBatch(pool, { limit: 5, wd: client(f, 0) });
+  const r = Object.fromEntries((await pool.query("select id, country, region from companies where id in ('schroders', 'biesterfeld')")).rows.map(x => [x.id, x.country + '|' + x.region]));
+  assert.strictEqual(r.schroders, 'United Kingdom|United Kingdom');
+  assert.ok(!/empire/i.test(r.biesterfeld), r.biesterfeld);
+  await pool.query("delete from companies where id in ('schroders', 'biesterfeld')");
+});
+
 test('verticals, size bands and the latest head count', () => {
   assert.strictEqual(verticalOf(['food industry']), 'Food & beverage');
   assert.strictEqual(verticalOf(['', 'commodity trading company']), 'Commodities & trading');

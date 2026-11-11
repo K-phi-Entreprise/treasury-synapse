@@ -37,6 +37,7 @@ function sizeOf(n) {
   if (!(n > 0)) return '';
   return n < 250 ? 'Under 250' : n < 1000 ? '250 to 1,000' : n < 5000 ? '1,000 to 5,000' : n < 20000 ? '5,000 to 20,000' : '20,000 and more';
 }
+const FORMER = /empire|^kingdom of|margraviate|duchy|electorate|francia|prussia|soviet union|yugoslavia|czechoslovakia|east germany|west germany|united kingdom of great britain|confederation of the rhine|republic of venice/i;
 const COUNTRY = { Q30: ['United States', 'United States'], Q145: ['United Kingdom', 'United Kingdom'], Q142: ['France', 'France'],
   Q183: ['Germany', 'DACH'], Q40: ['Austria', 'DACH'], Q39: ['Switzerland', 'DACH'], Q55: ['Netherlands', 'Benelux'], Q31: ['Belgium', 'Benelux'], Q32: ['Luxembourg', 'Benelux'],
   Q34: ['Sweden', 'Nordics'], Q20: ['Norway', 'Nordics'], Q35: ['Denmark', 'Nordics'], Q33: ['Finland', 'Nordics'], Q189: ['Iceland', 'Nordics'],
@@ -47,7 +48,7 @@ const COUNTRY = { Q30: ['United States', 'United States'], Q145: ['United Kingdo
 /* properties that only organisations carry; people, places and disambiguation pages are refused */
 const ORG_PROPS = ['P452', 'P1128', 'P159', 'P749', 'P355', 'P169', 'P1454', 'P414', 'P1278', 'P2139'];
 const NOT_ORG = new Set(['Q5', 'Q4167410', 'Q486972', 'Q515', 'Q6256', 'Q532', 'Q3957', 'Q1549591', 'Q13442814', 'Q482994', 'Q7397', 'Q101352', 'Q4167836', 'Q13406463', 'Q11424', 'Q7725634']);
-const VERSION = 3;   /* 3: the country is where the headquarters are, not a listing or a market */   /* 2: the best-known organisation of that name wins (most Wikipedia articles), not the first hit */
+const VERSION = 4;   /* 4: a city's current country (London is in the United Kingdom, not the Roman Empire); a newer profile replaces the stored country */   /* 3: the country is where the headquarters are, not a listing or a market */   /* 2: the best-known organisation of that name wins (most Wikipedia articles), not the first hit */
 
 const ids = (claims, p) => ((claims && claims[p]) || []).map(c => c && c.mainsnak && c.mainsnak.datavalue && c.mainsnak.datavalue.value && c.mainsnak.datavalue.value.id).filter(Boolean);
 function employeesOf(claims) {
@@ -77,7 +78,10 @@ function client(fetchImpl = fetch, delayMs = 1100) {
     if (placeCountry.has(id)) return placeCountry.get(id);
     const j = await get({ action: 'wbgetentities', ids: id, props: 'claims' });
     const e = j.entities && j.entities[id];
-    const c = e && e.claims ? (ids(e.claims, 'P17')[0] || '') : '';
+    /* a city lists every state it was ever in: the preferred one, else the one with no end date */
+    const l = ((e && e.claims && e.claims.P17) || []).filter(x => x.mainsnak && x.mainsnak.datavalue && x.rank !== 'deprecated');
+    const cur = l.find(x => x.rank === 'preferred') || l.find(x => !(x.qualifiers && x.qualifiers.P582)) || l[0];
+    const c = cur ? cur.mainsnak.datavalue.value.id : '';
     placeCountry.set(id, c); return c;
   }
   async function labelsFor(list) {
@@ -127,13 +131,16 @@ async function enrichOne(pool, wd, c) {
   const hqc = hq && wd.countryOfPlace ? await wd.countryOfPlace(hq) : '';
   const own = preferred('P17') || preferred('P495') || '';
   const cq = (hqc && (COUNTRY[hqc] || !COUNTRY[own]) ? hqc : own) || hqc;
-  const country = COUNTRY[cq] ? COUNTRY[cq][0] : (cq ? (await wd.labelsFor([cq]))[0] : '');
-  const region = COUNTRY[cq] ? COUNTRY[cq][1] : (cq ? 'Other' : '');
+  let country = COUNTRY[cq] ? COUNTRY[cq][0] : (cq ? (await wd.labelsFor([cq]))[0] : '');
+  /* never a former state: the company's own country instead, or nothing */
+  if (!COUNTRY[cq] && FORMER.test(country)) country = COUNTRY[own] ? COUNTRY[own][0] : '';
+  const rq = Object.keys(COUNTRY).find(q => COUNTRY[q][0] === country);
+  const region = rq ? COUNTRY[rq][1] : (country ? 'Other' : '');
   await pool.query(`update companies set wikidata = $2, vertical = case when vertical = '' then $3 else vertical end,
-      employees = coalesce(employees, $4), size = case when size = '' then $5 else size end, country = case when country = '' then $6 else country end,
-      region = case when region = 'Unknown' and $7 <> '' then $7 else region end, industry = case when industry = '' then $8 else industry end,
+      employees = coalesce(employees, $4), size = case when size = '' then $5 else size end, country = case when $6 <> '' then $6 when country ~* $10 then '' else country end,
+      region = case when $7 <> '' then $7 when country ~* $10 then 'Unknown' else region end, industry = case when industry = '' then $8 else industry end,
       enriched_at = now(), enrich_v = $9, enrich_note = '', updated_at = now() where id = $1`,
-  [c.id, hit.id, vertical, employees, sizeOf(employees), country, region, (industries[0] || '').slice(0, 80), VERSION]);
+  [c.id, hit.id, vertical, employees, sizeOf(employees), country, region, (industries[0] || '').slice(0, 80), VERSION, FORMER.source]);
   return { id: c.id, matched: true, wikidata: hit.id, vertical, employees, country };
 }
 

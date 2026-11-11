@@ -64,6 +64,12 @@
   "note": "IT distribution"
  },
  {
+  "id": "edf",
+  "country": "France",
+  "region": "France",
+  "note": "Électricité de France, Paris; Wikidata gave Estonia"
+ },
+ {
   "split": {
    "source": "ncc",
    "id": "ncc-group",
