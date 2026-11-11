@@ -98,5 +98,18 @@
    "system": "Workday Adaptive Planning"
   },
   "note": "Flex Ltd (electronics) is not Flex (fintech)"
+ },
+ {
+  "id": "ncc",
+  "vertical": "Real estate & construction",
+  "country": "Sweden",
+  "region": "Nordics",
+  "wikidata": "",
+  "note": "NCC, the Swedish construction group, not the Japanese company of the same name"
+ },
+ {
+  "id": "ncc-group",
+  "vertical": "Technology & software",
+  "note": "Cyber security"
  }
 ]
