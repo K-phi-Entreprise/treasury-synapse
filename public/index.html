@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="b651d3dc2e";</script>
+<script>window.SYNAPSE_BUILD="0bbde8b461";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -700,6 +700,9 @@ function setAngle(a,first){
   $('angle-note').textContent=ANGLE_NOTE[a];$('k2s').textContent=K2_SUB[a];$('hub-h').textContent=HUB_H[a];
   if(window.synapseOnAngle)window.synapseOnAngle(a);
   if(first)return;
+  /* "find me" belongs to People and Topics; Connections has its own Find my name card; never Market */
+  if(a==='market'||a==='connections'){if(welcoming)showWelcome(false)}
+  else if(!meId&&!welcomeDone&&G.n){let skip=false;try{skip=!!localStorage.getItem('synapse.skipWelcome')}catch(e){}if(!skip&&!welcoming)showWelcome(true)}
   G.e=0;G.eidx=new Map();for(let i=0;i<G.n;i++)G.adj[i]=[];
   const at=performance.now()-1e4;E[a].forEach(r=>upsertEdge(G,r,at));
   G.hot=1;sel=-1;hl=null;nbr=null;hov=-1;setCenter(G,-1);
@@ -1046,10 +1049,11 @@ $('d-know').addEventListener('click',async()=>{
 setAngle(angle,true);
 $('d-more').addEventListener('click',()=>{$('detail').classList.toggle('open');renderDetail()});
 $('d-me').addEventListener('click',()=>{if(sel<0)return;const id=G.nodes[sel].id;meId=meId===id?'':id;try{if(meId)localStorage.setItem('synapse.me',meId);else localStorage.removeItem('synapse.me')}catch(e){}renderDetail();if(window.synapseOnMe)window.synapseOnMe(meId)});
-window.synapseFindMe=()=>{showWelcome(false);pendingMe=true;const f=$('find-in');f.value='';f.placeholder='Type your own name…';f.focus()};
+window.synapseFindMe=()=>{welcomeDone=true;showWelcome(false);pendingMe=true;const f=$('find-in');f.value='';f.placeholder='Type your own name…';f.focus()};
 function showWelcome(on){welcoming=on;$('welcome').hidden=!on;if(on){pendingMe=true;$('hint').classList.add('off')}}
-$('w-find').addEventListener('click',()=>{showWelcome(false);$('find-in').focus()});
-$('w-skip').addEventListener('click',()=>{showWelcome(false);pendingMe=false;try{localStorage.setItem('synapse.skipWelcome','1')}catch(e){}});
+let welcomeDone=false;
+$('w-find').addEventListener('click',()=>{welcomeDone=true;showWelcome(false);$('find-in').focus()});
+$('w-skip').addEventListener('click',()=>{welcomeDone=true;showWelcome(false);pendingMe=false;try{localStorage.setItem('synapse.skipWelcome','1')}catch(e){}});
 $('d-list').addEventListener('click',e=>{const a=e.target.closest('.lk');if(!a)return;if(a.dataset.pid){e.preventDefault();goPerson(a.dataset.pid)}else if(a.dataset.i!=null){e.preventDefault();select(+a.dataset.i,true)}else if(a.getAttribute('href')==='#')e.preventDefault()});
 $('hub-list').addEventListener('click',e=>{const b=e.target.closest('.hub');if(b)select(+b.dataset.i,true)});
 $('region-list').addEventListener('click',e=>{const b=e.target.closest('.rrow');if(!b)return;if(b.dataset.i!=null)select(+b.dataset.i,true);else focusRegion(b.dataset.r)});
