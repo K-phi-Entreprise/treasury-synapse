@@ -1,0 +1,4806 @@
+{
+ "people": [
+  {
+   "id": "adam-smith-awards",
+   "name": "Adam Smith Awards",
+   "headline": "Treasury Today talks, Ravi Patel",
+   "org": "Ravi Patel",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/treasury-talks-podcast-series/"
+  },
+  {
+   "id": "laura-fogarty",
+   "name": "Laura Fogarty",
+   "headline": "Healthcare Industry Head to discuss the latest developments, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/innovation-at-standard-chartered"
+  },
+  {
+   "id": "andrew-blincoe",
+   "name": "Andrew Blincoe",
+   "headline": "Head, Corporates & Institutions",
+   "org": "Corporates & Institutions",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/natwest-treasurys-role-in-a-year-of-shortages"
+  },
+  {
+   "id": "philip-summerton",
+   "name": "Philip Summerton",
+   "headline": "CEO, Cambridge Econometrics",
+   "org": "Cambridge Econometrics",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/citi-digital-dialogues-2021"
+  },
+  {
+   "id": "enno-dykmann",
+   "name": "Enno Dykmann",
+   "headline": "Treasurer, Alliander",
+   "org": "Alliander",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/blackrock-from-fax-machines-to-cloud-solutions-whats-next-for-cash-management-technology"
+  },
+  {
+   "id": "alexander-foltin",
+   "name": "Alexander Foltin",
+   "headline": "Treasurer, European",
+   "org": "European",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://podcasts.captivate.fm/media/66e0e86f-17b7-41db-b3ed-372659827887/tt-2021-09-16-treasury-talks-podcast-episode-22.mp3"
+  },
+  {
+   "id": "wilson-koh",
+   "name": "Wilson Koh",
+   "headline": "In partnership, Kyriba",
+   "org": "Kyriba",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "vineet-sood",
+   "name": "Vineet Sood",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "ramalingam-rajasekar",
+   "name": "Ramalingam Rajasekar",
+   "headline": "In partnership, Bank of America",
+   "org": "Bank of America",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "vivek-mp",
+   "name": "Vivek MP",
+   "headline": "In partnership, DBS",
+   "org": "DBS",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "darren-chua",
+   "name": "Darren Chua",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "dilip-banthiya",
+   "name": "Dilip Banthiya",
+   "headline": "In partnership, DBS",
+   "org": "DBS",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "marion-reuter",
+   "name": "Marion Reuter",
+   "headline": "Regional Head, Transaction Banking Sales",
+   "org": "Transaction Banking Sales",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/standard-chartered-digital-transformation"
+  },
+  {
+   "id": "paul-english",
+   "name": "Paul English",
+   "headline": "In partnership, DBS",
+   "org": "DBS",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "jackson-xu",
+   "name": "Jackson Xu",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "issac-chen",
+   "name": "Issac Chen",
+   "headline": "In partnership, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "may-lee",
+   "name": "May Lee",
+   "headline": "In partnership, ION Group",
+   "org": "ION Group",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "arno-gruner",
+   "name": "Arno Gruner",
+   "headline": "In partnership, Deutsche Bank",
+   "org": "Deutsche Bank",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "manoj-sinha",
+   "name": "Manoj Sinha",
+   "headline": "In partnership, Bank of America",
+   "org": "Bank of America",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "amit-grover",
+   "name": "Amit Grover",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "jun-feng",
+   "name": "Jun Feng",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "zurab-abutidze",
+   "name": "Zurab Abutidze",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "dawn-hoe",
+   "name": "Dawn Hoe",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "jessica-chan",
+   "name": "Jessica Chan",
+   "headline": "In partnership, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "lu-hao",
+   "name": "Lu Hao",
+   "headline": "In partnership, HSBC",
+   "org": "HSBC",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "janet-chong",
+   "name": "Janet Chong",
+   "headline": "In partnership, Bank of America",
+   "org": "Bank of America",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "charlie-praska",
+   "name": "Charlie Praska",
+   "headline": "Director of Cash Business Development, State Street Global Advisors",
+   "org": "State Street Global Advisors",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/future-treasurer-series"
+  },
+  {
+   "id": "freya-yao",
+   "name": "Freya Yao",
+   "headline": "In partnership, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "denis-savastano",
+   "name": "Denis Savastano",
+   "headline": "In partnership, DBS",
+   "org": "DBS",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "doug-knebel",
+   "name": "Doug Knebel",
+   "headline": "In partnership, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "angela-li",
+   "name": "Angela Li",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "ching-ling",
+   "name": "Ching Ling",
+   "headline": "In partnership, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "asset-value",
+   "name": "Asset Value",
+   "headline": "LVNAV",
+   "org": "LVNAV",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020"
+  },
+  {
+   "id": "ursula-hurley",
+   "name": "Ursula Hurley",
+   "headline": "In partnership, BNP Paribas",
+   "org": "BNP Paribas",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "sasha-de-gracia",
+   "name": "Sasha De Gracia",
+   "headline": "In partnership, TreasuryXpress",
+   "org": "TreasuryXpress",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "carrie-reyna",
+   "name": "Carrie Reyna",
+   "headline": "In partnership, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "erich-broksas",
+   "name": "Erich Broksas",
+   "headline": "In partnership, Bank of America",
+   "org": "Bank of America",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "andrew-miller",
+   "name": "Andrew Miller",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "steve-wong",
+   "name": "Steve Wong",
+   "headline": "In partnership, Bank of America",
+   "org": "Bank of America",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "enrico-zecchini",
+   "name": "Enrico Zecchini",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "adam-pring",
+   "name": "Adam Pring",
+   "headline": "In partnership, Bank of America",
+   "org": "Bank of America",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "angela-marconato",
+   "name": "Angela Marconato",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "christopher-swiss",
+   "name": "Christopher Swiss",
+   "headline": "In partnership, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "carolyn-hansen",
+   "name": "Carolyn Hansen",
+   "headline": "In partnership, ICD Portal",
+   "org": "ICD Portal",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "adam-boyle",
+   "name": "Adam Boyle",
+   "headline": "In partnership, GSAM",
+   "org": "GSAM",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "ulrich-schiessl",
+   "name": "Ulrich Schiessl",
+   "headline": "In partnership, BNP Paribas",
+   "org": "BNP Paribas",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "arun-singh",
+   "name": "Arun Singh",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "lucas-meyer",
+   "name": "Lucas Meyer",
+   "headline": "In partnership, Accenture",
+   "org": "Accenture",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "laurie-wiggins",
+   "name": "Laurie Wiggins",
+   "headline": "In partnership, Bloomberg LP",
+   "org": "Bloomberg LP",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "matthew-sullivan",
+   "name": "Matthew Sullivan",
+   "headline": "In partnership, Bank of America",
+   "org": "Bank of America",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "florence-kiburi",
+   "name": "Florence Kiburi",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "steven-krippner",
+   "name": "Steven Krippner",
+   "headline": "In partnership, PwC",
+   "org": "PwC",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "hesham-moustafa",
+   "name": "Hesham Moustafa",
+   "headline": "In partnership, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://treasurytoday.com/podcasts/adam-smith-awards-2020"
+  },
+  {
+   "id": "mariya-tretyak",
+   "name": "Mariya Tretyak",
+   "headline": "Head, Global Cash Pooling Products",
+   "org": "Global Cash Pooling Products",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/bnp-paribas-treasury-insiders"
+  },
+  {
+   "id": "eric-bayle",
+   "name": "Eric Bayle",
+   "headline": "Director – Head, Global Transaction Banking",
+   "org": "Global Transaction Banking",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://tt-static.s3.eu-west-1.amazonaws.com/tt-2020-04-06__treasury-talks-podcast__swift-gpi__MASTER.mp4"
+  },
+  {
+   "id": "frances-hinden",
+   "name": "Frances Hinden",
+   "headline": "VP Treasury Operations, Shell",
+   "org": "Shell",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://tt-static.s3.amazonaws.com/tt-2019-02-11__women-in-treasury-roundtable-podcast.mp3"
+  },
+  {
+   "id": "kim-hochfeld",
+   "name": "Kim Hochfeld",
+   "headline": "EMEA Head, Liquidity Distribution",
+   "org": "Liquidity Distribution",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/2018/morgan-stanley"
+  },
+  {
+   "id": "scott-wachs",
+   "name": "Scott Wachs",
+   "headline": "Global Liquidity Product Head, Morgan Stanley",
+   "org": "Morgan Stanley",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/2018/morgan-stanley"
+  },
+  {
+   "id": "carola-schmitz-becker",
+   "name": "Carola Schmitz-Becker",
+   "headline": "Vice President Corporate Treasury, Deutsche Post DHL",
+   "org": "Deutsche Post DHL",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://tt-static.s3.amazonaws.com/tt-2018-06-19__deutsche-bank-podcast__expert-voices__episode-02.mp3"
+  },
+  {
+   "id": "morgan-mckenney",
+   "name": "Morgan McKenney",
+   "headline": "Head, Core Cash Management",
+   "org": "Core Cash Management",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/2018/citi-engaging-with-ecommerce"
+  },
+  {
+   "id": "core-cash-management",
+   "name": "Core Cash Management",
+   "headline": "Asia Pacific",
+   "org": "Asia Pacific",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/2018/citi-engaging-with-ecommerce"
+  },
+  {
+   "id": "roman-kozhan",
+   "name": "Roman Kozhan",
+   "headline": "Professor of Finance, Warwick Business School",
+   "org": "Warwick Business School",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/2017/treasury-talks/episode-02"
+  },
+  {
+   "id": "jim-colby",
+   "name": "Jim Colby",
+   "headline": "Assistant Treasurer, Honeywell",
+   "org": "Honeywell",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/podcasts/2017/treasury-talks/episode-02"
+  },
+  {
+   "id": "lance-rubin",
+   "name": "Lance Rubin",
+   "headline": "Founder, Model Citizn",
+   "org": "Model Citizn",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/ebdded43-ecb7-4e67-b94d-447463da01ee.mp3"
+  },
+  {
+   "id": "oren-klaff",
+   "name": "Oren Klaff",
+   "headline": "Private Equity Fund Manager and bestselling author, Pitch Anything",
+   "org": "Pitch Anything",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/4f6233b7-46c3-472b-ac55-2f08f568dc63.mp3"
+  },
+  {
+   "id": "alex-curran",
+   "name": "Alex Curran",
+   "headline": "CEO, Aptitude Software",
+   "org": "Aptitude Software",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/e4ff7aad-cc31-461e-9b4c-8f326439706e.mp3"
+  },
+  {
+   "id": "robert-collie",
+   "name": "Robert Collie",
+   "headline": "Founder and CEO, P3 Adaptive",
+   "org": "P3 Adaptive",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/7b77f072-46d8-4e39-b17b-c458d861c2cb.mp3"
+  },
+  {
+   "id": "alex-brower",
+   "name": "Alex Brower",
+   "headline": "Co-founder and CEO, QFlow",
+   "org": "QFlow",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/237e4d97-acc2-44b8-87f6-f208e46e0563.mp3"
+  },
+  {
+   "id": "daniel-settel",
+   "name": "Daniel Settel",
+   "headline": "Co-founders, Eagle",
+   "org": "Eagle",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/9d96be5b-5bc3-441f-8775-01759d7ae828.mp3"
+  },
+  {
+   "id": "tim-stallkamp",
+   "name": "Tim Stallkamp",
+   "headline": "Senior Managing Director, Riveron",
+   "org": "Riveron",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/3c7a1e06-3936-49fe-8ae0-46cbe168e948.mp3"
+  },
+  {
+   "id": "ron-nachum",
+   "name": "Ron Nachum",
+   "headline": "Founder, Sapien",
+   "org": "Sapien",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/c50b2304-3d00-43d8-b9a0-e58a77151b99.mp3"
+  },
+  {
+   "id": "john-yeldham",
+   "name": "John Yeldham",
+   "headline": "Founder, Lodeum",
+   "org": "Lodeum",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/75a175aa-a4af-4445-bc8a-7e6b9d65cfec.mp3"
+  },
+  {
+   "id": "derek-baker",
+   "name": "Derek Baker",
+   "headline": "Head, Strategic Finance",
+   "org": "Strategic Finance",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/03ed7792-f8c7-4a56-83f7-fed1e5389f27.mp3"
+  },
+  {
+   "id": "ali-hussain",
+   "name": "Ali Hussain",
+   "headline": "CEO and co-founder, Tabs",
+   "org": "Tabs",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/37f3e744-acfb-48d4-b9b7-6d128cee4a1e.mp3"
+  },
+  {
+   "id": "matan-feldman",
+   "name": "Matan Feldman",
+   "headline": "Founder and CEO, Wall Street Prep",
+   "org": "Wall Street Prep",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/78e380d1-4365-4bb2-8954-a05ec9e26bda.mp3"
+  },
+  {
+   "id": "michael-gould",
+   "name": "Michael Gould",
+   "headline": "Technology entrepreneur and founder, Kaleidoscope",
+   "org": "Kaleidoscope",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/49df8010-ad22-4f89-9074-efa99043f4ff.mp3"
+  },
+  {
+   "id": "david-ingraham",
+   "name": "David Ingraham",
+   "headline": "Founder and CEO, HyperPerfect",
+   "org": "HyperPerfect",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/f250723f-389d-4aa2-b015-821cbe73abcd.mp3"
+  },
+  {
+   "id": "bryan-mcgowan",
+   "name": "Bryan McGowan",
+   "headline": "Founder, Alpyne",
+   "org": "Alpyne",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/642542d2-ffd8-4270-ba1a-0862879a1a5e.mp3"
+  },
+  {
+   "id": "ian-bennett",
+   "name": "Ian Bennett",
+   "headline": "Partner, PwC",
+   "org": "PwC",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/d8de73b5-63ca-4737-ac69-c6bfd3d46d5d.mp3"
+  },
+  {
+   "id": "john-thomas-foxworthy",
+   "name": "John Thomas Foxworthy",
+   "headline": "Founder and CEO of the Global Institute, Data Science",
+   "org": "Data Science",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/1e232868-6d08-494c-8631-4d4d442d0a9b.mp3"
+  },
+  {
+   "id": "john-thomas",
+   "name": "John Thomas",
+   "headline": "Founder and CEO of the Global Institute, Data Science",
+   "org": "Data Science",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/7840ac80-c80b-4a21-b197-68661dce4b55.mp3"
+  },
+  {
+   "id": "chris-reilly",
+   "name": "Chris Reilly",
+   "headline": "Founder, Financial Modeling Education",
+   "org": "Financial Modeling Education",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/96dbfbfa-7270-4a5c-996e-6e0f4708930d.mp3"
+  },
+  {
+   "id": "aswin-saravanan",
+   "name": "Aswin Saravanan",
+   "headline": "VP of Finance, Qualtrics",
+   "org": "Qualtrics",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/1141ee51-bdee-45a8-a468-db32b4d77a29.mp3"
+  },
+  {
+   "id": "drew-hyatt",
+   "name": "Drew Hyatt",
+   "headline": "Co-founders, Omniga",
+   "org": "Omniga",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/aaf6389b-a20a-43e9-b8a8-7580db9bf9d5.mp3"
+  },
+  {
+   "id": "luke-phillips",
+   "name": "Luke Phillips",
+   "headline": "Senior Business Analyst, Access Analytic",
+   "org": "Access Analytic",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/aca729a4-edfe-4baf-821b-5d666f772cc6.mp3"
+  },
+  {
+   "id": "tim-jacks",
+   "name": "Tim Jacks",
+   "headline": "Founder, Taglo",
+   "org": "Taglo",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/b2d8b59e-591b-48d3-9d57-5e98a4aeed9e.mp3"
+  },
+  {
+   "id": "sasha-orloff",
+   "name": "Sasha Orloff",
+   "headline": "CEO, Puzzle",
+   "org": "Puzzle",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/c141b097-0f26-4a91-9e5b-facbc3d9dd1e.mp3"
+  },
+  {
+   "id": "ian-wong",
+   "name": "Ian Wong",
+   "headline": "Co-founder and CEO, Summation",
+   "org": "Summation",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/48975c45-bf50-4d3e-8073-fe9f09ce65d5.mp3"
+  },
+  {
+   "id": "ian-schnoor",
+   "name": "Ian Schnoor",
+   "headline": "And Giles Male continue their hands-on testing, AI",
+   "org": "AI",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/2a45deef-506e-452a-819e-a3a507b9387a.mp3"
+  },
+  {
+   "id": "kate-gulliver",
+   "name": "Kate Gulliver",
+   "headline": "CFO and CEO, Wayfair",
+   "org": "Wayfair",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/30e967f4-05d8-4766-a100-61259e7170c7.mp3"
+  },
+  {
+   "id": "omar-choucair",
+   "name": "Omar Choucair",
+   "headline": "CFO, Trintech",
+   "org": "Trintech",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/0fdb76f9-1787-4812-a542-6d79cbf2759d.mp3"
+  },
+  {
+   "id": "santiago-nestares",
+   "name": "Santiago Nestares",
+   "headline": "Co-founder and CEO, DualEntry",
+   "org": "DualEntry",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/6bf4db82-b1de-4008-9407-23117e48b237.mp3"
+  },
+  {
+   "id": "john-glasgow",
+   "name": "John Glasgow",
+   "headline": "CEO and co-founder, Campfire",
+   "org": "Campfire",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/f9ebd330-0122-49d1-a588-ab3525f5638f.mp3"
+  },
+  {
+   "id": "todd-niemann",
+   "name": "Todd Niemann",
+   "headline": "Treasurer, Varo Bank",
+   "org": "Varo Bank",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/7bd5b3c7-752a-4476-a54e-f495286c44ce.mp3"
+  },
+  {
+   "id": "alex-fabry",
+   "name": "Alex Fabry",
+   "headline": "Founder, KFA",
+   "org": "KFA",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/ecf429da-e32a-410e-8203-aecc82fd6e87.mp3"
+  },
+  {
+   "id": "franz-faerber",
+   "name": "Franz Faerber",
+   "headline": "Co-founder and CTO, Lensing",
+   "org": "Lensing",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/ec3bf08a-954a-4a56-9354-9f51682723a5.mp3"
+  },
+  {
+   "id": "david-stangeland",
+   "name": "David Stangeland",
+   "headline": "Finance professor at the University, Manitoba",
+   "org": "Manitoba",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/696ad2c7-367f-4f49-aab7-88df1e0c056a.mp3"
+  },
+  {
+   "id": "andrej-lapajne",
+   "name": "Andrej Lapajne",
+   "headline": "CEO and founder, Zebra BI",
+   "org": "Zebra BI",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/6f026298-f826-426a-b7ae-f55487bff9e9.mp3"
+  },
+  {
+   "id": "jeff-seibert",
+   "name": "Jeff Seibert",
+   "headline": "CEO and founder, Digits",
+   "org": "Digits",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/4b991ce8-bfe9-4634-8f4d-1593ca797858.mp3"
+  },
+  {
+   "id": "vaughan-grandin",
+   "name": "Vaughan Grandin",
+   "headline": "Managing Director and Head, Financial Modeling",
+   "org": "Financial Modeling",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/a16b94c0-063c-4a51-a9f1-f9e9fea5a68c.mp3"
+  },
+  {
+   "id": "patrick-culkin",
+   "name": "Patrick Culkin",
+   "headline": "New President and CEO, AFP",
+   "org": "AFP",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/d4a7d881-b7be-4023-b05d-37f6f6787b33.mp3"
+  },
+  {
+   "id": "matthew-lee",
+   "name": "Matthew Lee",
+   "headline": "Co-Founder and CEO, Nummo",
+   "org": "Nummo",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/c0dcfe0d-d7b7-477e-bec3-f8aa1f53933c.mp3"
+  },
+  {
+   "id": "garry-ridge",
+   "name": "Garry Ridge",
+   "headline": "Former CEO, WD-40 Company",
+   "org": "WD-40 Company",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/e258f25f-3d43-4147-aead-439ce82966f3.mp3"
+  },
+  {
+   "id": "morten-lykke-pedersen",
+   "name": "Morten Lykke Pedersen",
+   "headline": "Seasoned financial expert and Partner, Deloitte",
+   "org": "Deloitte",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/ec052f5a-841f-4f0d-8fca-ccd49f7e3af6.mp3"
+  },
+  {
+   "id": "william-spengler",
+   "name": "William Spengler",
+   "headline": "Founder, Frederick Fox",
+   "org": "Frederick Fox",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/c397ac69-6c77-4a10-9350-d20bcda921e9.mp3"
+  },
+  {
+   "id": "dennis-jiang",
+   "name": "Dennis Jiang",
+   "headline": "Co-founder and CEO, Rosie",
+   "org": "Rosie",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/3d697ec5-abde-49a8-b997-1c604c033434.mp3"
+  },
+  {
+   "id": "sarah-schlott",
+   "name": "Sarah Schlott",
+   "headline": "Founder, The Schlott Company",
+   "org": "The Schlott Company",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/89142b7c-cec8-4220-b39b-41c02f6d0c0e.mp3"
+  },
+  {
+   "id": "brian-mcgrath",
+   "name": "Brian McGrath",
+   "headline": "Co-Founder and COO, FutureView Systems",
+   "org": "FutureView Systems",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/d4797a96-8ae4-496f-b9f6-8d7f451e2ded.mp3"
+  },
+  {
+   "id": "nico-christie",
+   "name": "Nico Christie",
+   "headline": "Co-founder, Fundamental Research Labs",
+   "org": "Fundamental Research Labs",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/episodes.captivate.fm/episode/a1512a28-c40a-4cfc-8a9d-289e38d5d562.mp3"
+  },
+  {
+   "id": "adam-rakich",
+   "name": "Adam Rakich",
+   "headline": "Founder and Consulting Director, Northexis",
+   "org": "Northexis",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/6d47ddcb-3383-4ec9-a657-18e3e6b99c96.mp3"
+  },
+  {
+   "id": "alex-holt",
+   "name": "Alex Holt",
+   "headline": "CFO, Milo’s Hamburgers",
+   "org": "Milo’s Hamburgers",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/c07ce285-a0d9-46da-a0f1-afd7d1514144.mp3"
+  },
+  {
+   "id": "paul-lynch",
+   "name": "Paul Lynch",
+   "headline": "Energetic and straightforward CEO, Centage",
+   "org": "Centage",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/6a01baea-7f24-4fc9-a25d-4ae5ad30de5b.mp3"
+  },
+  {
+   "id": "parker-gilbert",
+   "name": "Parker Gilbert",
+   "headline": "CEO and Co-founder, Numeric",
+   "org": "Numeric",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/8326ec32-ce7a-4e53-b983-2aefc0fcf9cf.mp3"
+  },
+  {
+   "id": "geoff-robinson",
+   "name": "Geoff Robinson",
+   "headline": "Founder, TheInvestmentAnalyst",
+   "org": "TheInvestmentAnalyst",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/85f9426e-584c-43c3-8218-4f15777da0f9/Highlights-Geoff-Robinson-V0-MP3.mp3"
+  },
+  {
+   "id": "myles-arnott",
+   "name": "Myles Arnott",
+   "headline": "Co-founder, Full Stack Modeller",
+   "org": "Full Stack Modeller",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/922ecc06-da15-48d0-892f-454d56637b8c/Myles-Arnott-Audio-Intro-V0-MP3.mp3"
+  },
+  {
+   "id": "emma-chieppor",
+   "name": "Emma Chieppor",
+   "headline": "Founder, Excel Dictionary",
+   "org": "Excel Dictionary",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/73134cdb-3537-4576-89b8-9675fa1bb1ea/Emma-Cheippor-Audio-Intro-V1-MP3.mp3"
+  },
+  {
+   "id": "andres-klaric",
+   "name": "Andres Klaric",
+   "headline": "Co-founder and co-CEO, Fuse",
+   "org": "Fuse",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/52305d5e-ccb1-4597-ac1b-55f3f3c3d9f4/Andres-Klaric-Audio-Intro-V0-MP3.mp3"
+  },
+  {
+   "id": "michael-jarman",
+   "name": "Michael Jarman",
+   "headline": "2024 FMWC World Champion known for his innovative modeling techniques and leadership, Operis",
+   "org": "Operis",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/5c7238b1-693e-4331-9981-cbb5de72f736/FMWC-Audio-Intro-V1-MP3.mp3"
+  },
+  {
+   "id": "gabi-steele",
+   "name": "Gabi Steele",
+   "headline": "Seasoned data visualization expert and co-founder, Preql",
+   "org": "Preql",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/91d4952b-5cc5-4782-9581-48cd85b599d9/Gabi-Steele-Audio-with-Intro-V0-converted.mp3"
+  },
+  {
+   "id": "mark-hansen",
+   "name": "Mark Hansen",
+   "headline": "CFO, Entrata",
+   "org": "Entrata",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/515c9ca7-42cf-46b5-b1dc-fb0a438f8eea/Mark-Hansen-Audio-Intro-V0-MP3.mp3"
+  },
+  {
+   "id": "liam-bastick",
+   "name": "Liam Bastick",
+   "headline": "Managing Director, Sum Product",
+   "org": "Sum Product",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/cc9ce2b3-c684-4fc8-8e66-86a1b6eeca4d/Liam-Bastick-Audio-Intro-V0-MP3.mp3"
+  },
+  {
+   "id": "joe-manganelli",
+   "name": "Joe Manganelli",
+   "headline": "Chief Revenue Officer, Amalgam",
+   "org": "Amalgam",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/06baacb2-bf97-4bae-9f57-0cda9e7c1367/Joe-Maganelli-Interview-Audio-Only-V1-MP3.mp3"
+  },
+  {
+   "id": "scott-rostan",
+   "name": "Scott Rostan",
+   "headline": "Founder, Training the Street",
+   "org": "Training the Street",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/25cf864c-015f-4156-ba94-280867ab9301/AI-Episode-Audio-with-Intro-V0-MP3.mp3"
+  },
+  {
+   "id": "ruby-liu",
+   "name": "Ruby Liu",
+   "headline": "Director, KPMG Australia’s Valuation Team",
+   "org": "KPMG Australia’s Valuation Team",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/c9ddc4e9-c4d2-43a7-8324-8468cba4bf8a/Ruby-Liu-Audio-with-Intro-V0-MP3.mp3"
+  },
+  {
+   "id": "andrew-jepson",
+   "name": "Andrew Jepson",
+   "headline": "To discuss the world, Financial Planning",
+   "org": "Financial Planning",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/b54ca0bd-3d7b-4529-a9d5-f09acb974e0e/Andrew-Jepson-Audio-Intro-V0.mp3"
+  },
+  {
+   "id": "jim-o-neill",
+   "name": "Jim O'Neill",
+   "headline": "Co-founder, SaaSWorks",
+   "org": "SaaSWorks",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/0717685b-8c01-4887-af1a-5e8320e61cdd/Jim-O-Neill-Audio-V2-2.mp3"
+  },
+  {
+   "id": "ben-dooley",
+   "name": "Ben Dooley",
+   "headline": "Global head, Productized Solutions",
+   "org": "Productized Solutions",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/41586208-1899-44e8-9461-8a45ae10e1db/Ben-Dooley-Intro-V0-2-MP3.mp3"
+  },
+  {
+   "id": "mitchell-troyanovsky",
+   "name": "Mitchell Troyanovsky",
+   "headline": "Co-Founder, Basis",
+   "org": "Basis",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/e4858ae4-40e9-47d5-a40c-ce4e776375ed/Future-Finance-Mitchell-Episode-Full-Audio-V3.mp3"
+  },
+  {
+   "id": "roderick-mckinley",
+   "name": "Roderick McKinley",
+   "headline": "Blockchain & Tokenomics advisor, Rmckinley",
+   "org": "Rmckinley",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://op3.dev/e/podcasts.captivate.fm/media/bd967229-1fb3-4d1b-85cd-a3f4c1d216b1/Roderick-Audio-MP3.mp3"
+  },
+  {
+   "id": "andrew-temte",
+   "name": "Andrew Temte",
+   "headline": "Is the former CEO, Kaplan Professional",
+   "org": "Kaplan Professional",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://saspod.com/thefpandaguy/73/2323"
+  },
+  {
+   "id": "sebastian-duesterhoeft",
+   "name": "Sebastian Duesterhoeft",
+   "headline": "Partner, Lightspeed Ventures",
+   "org": "Lightspeed Ventures",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://saspod.com/thefpandaguy/73/2308"
+  },
+  {
+   "id": "david-brown",
+   "name": "David Brown",
+   "headline": "Managing Partner, D Brown Consulting",
+   "org": "D Brown Consulting",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://saspod.com/thefpandaguy/73/325"
+  },
+  {
+   "id": "alejandro-hellmund",
+   "name": "Alejandro Hellmund",
+   "headline": "Financial Analyst, Blue Eyed Lending",
+   "org": "Blue Eyed Lending",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/is-your-forecast-just-a-target-in-disguise-alejandro-hellmund/"
+  },
+  {
+   "id": "stephanie-troy",
+   "name": "Stephanie Troy",
+   "headline": "VP of Sales, Datarails",
+   "org": "Datarails",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://FPAtoday.podbean.com/e/sales-vs-finance-what-great-business-partnership-really-looks-like/"
+  },
+  {
+   "id": "tom-hinkle",
+   "name": "Tom Hinkle",
+   "headline": "Senior leader in data and analytics, TIAA",
+   "org": "TIAA",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://FPAtoday.podbean.com/e/if-the-datas-wrong-it-doesnt-matter-how-advanced-your-model-is-tom-hinkle-on-ai-and-data-strategy-in-fpa/"
+  },
+  {
+   "id": "cindy-vindasius",
+   "name": "Cindy Vindasius",
+   "headline": "Founder and CEO, Vindasius Advisory",
+   "org": "Vindasius Advisory",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/more-than-12-erp-implementations-later%e2%80%a6cindy-vindasius/"
+  },
+  {
+   "id": "emily-feinstone",
+   "name": "Emily Feinstone",
+   "headline": "Accounting manager, Eventus Advisory Group",
+   "org": "Eventus Advisory Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/fpa-vs-accountants-in-an-ai-era-with-accountant-emily-feinstone/"
+  },
+  {
+   "id": "kelly-mahncke",
+   "name": "Kelly Mahncke",
+   "headline": "CFO, USA Hockey",
+   "org": "USA Hockey",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/after-the-gold-rush-the-75m-operation-behind-americas-hockey-champions/"
+  },
+  {
+   "id": "troy-anderson",
+   "name": "Troy Anderson",
+   "headline": "CFO, Kelly Services",
+   "org": "Kelly Services",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/35-years-in-finance-and-constant-change-troy-anderson-cfo-at-kelly-services/"
+  },
+  {
+   "id": "stephen-hedlund",
+   "name": "Stephen Hedlund",
+   "headline": "Head of finance, Rillet",
+   "org": "Rillet",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/the-future-of-the-ai-native-erp-stephen-hedlund-rillet/"
+  },
+  {
+   "id": "eddie-reynolds",
+   "name": "Eddie Reynolds",
+   "headline": "CEO, UnionSquare Consulting",
+   "org": "UnionSquare Consulting",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/building-back-trust-between-cfos-and-cros-eddie-reynolds/"
+  },
+  {
+   "id": "chikako-tyler",
+   "name": "Chikako Tyler",
+   "headline": "Chief Operating Officer, California Bank & Trust",
+   "org": "California Bank & Trust",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://FPAtoday.podbean.com/e/chikako-tyler-fpa-lessons-getting-from-cfo-to-coo-at-california-bank-trust/"
+  },
+  {
+   "id": "peter-lynch",
+   "name": "Peter Lynch",
+   "headline": "Founder, ASimpleModel",
+   "org": "ASimpleModel",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/secrets-to-a-simple-model-peter-lynch/"
+  },
+  {
+   "id": "marcos-bento",
+   "name": "Marcos Bento",
+   "headline": "Director Business Intelligence, Wasabi Technologies",
+   "org": "Wasabi Technologies",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/building-a-high-functioning-partnership-between-bi-fpa/"
+  },
+  {
+   "id": "daniel-gardner",
+   "name": "Daniel Gardner",
+   "headline": "Operational finance business partner, FirstGroup Plc",
+   "org": "FirstGroup Plc",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/a-systems-thinking-mindset-for-fpa-success-daniel-gardner/"
+  },
+  {
+   "id": "anna-yamashita",
+   "name": "Anna Yamashita",
+   "headline": "Solutions Consulting, Data Rails",
+   "org": "Data Rails",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://FPAtoday.podbean.com/e/data-analytics-and-ai-for-fpa-teams/"
+  },
+  {
+   "id": "shifra-isaacs",
+   "name": "Shifra Isaacs",
+   "headline": "Developer Relations Advocate, Ascend",
+   "org": "Ascend",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/data-science-masterclass-with-shifra-isaacs/"
+  },
+  {
+   "id": "michael-bayer",
+   "name": "Michael Bayer",
+   "headline": "CFO, Wasabi Technologies",
+   "org": "Wasabi Technologies",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/tech-talent-tariffs-and-taxes/"
+  },
+  {
+   "id": "evgenia-elezova",
+   "name": "Evgenia Elezova",
+   "headline": "Head, Regional Finance",
+   "org": "Regional Finance",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/finance-and-passion-always-in-fashion-for-175-year-old-company/"
+  },
+  {
+   "id": "laurynas-zabulis",
+   "name": "Laurynas Zabulis",
+   "headline": "CFO, Nord Security",
+   "org": "Nord Security",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/nord-security-s-3b-growth-the-fpa-vision/"
+  },
+  {
+   "id": "brent-dykes",
+   "name": "Brent Dykes",
+   "headline": "Bestselling author, Effective Data Storytelling",
+   "org": "Effective Data Storytelling",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/brent-dykes-people-hear-statistics-but-they-feel-stories/"
+  },
+  {
+   "id": "tobias-zwingmann",
+   "name": "Tobias Zwingmann",
+   "headline": "Ex-Senior Data Scientist-turned managing partner, RAPYD",
+   "org": "RAPYD",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/top-senior-data-scientist-on-ai-and-future-proofing-fpa/"
+  },
+  {
+   "id": "george-mount",
+   "name": "George Mount",
+   "headline": "Excel MVP and author, Modern Data Analytics",
+   "org": "Modern Data Analytics",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/an-excel-mvp-walks-into-a-podcast/"
+  },
+  {
+   "id": "daniel-paik",
+   "name": "Daniel Paik",
+   "headline": "Turned founder and CEO, CuroWork",
+   "org": "CuroWork",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://FPAtoday.podbean.com/e/the-last-frontier-getting-fpa-from-back-office-to-brilliant-daniel-paik/"
+  }
+ ],
+ "stages": [
+  {
+   "url": "https://treasurytoday.com/podcasts/treasury-talks-podcast-series/",
+   "label": "Treasury Today, Treasury Talks: Episode 46: Adam Smith Awards special",
+   "kind": "podcast",
+   "date": "2026-07-28",
+   "people": [
+    "adam-smith-awards",
+    "ravi-patel",
+    "marianna-polykrati"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/innovation-at-standard-chartered/",
+   "label": "Treasury Today, Treasury Talks: Standard Chartered: Why AI holds the key to treasury metamorphosis",
+   "kind": "podcast",
+   "date": "2025-07-30",
+   "people": [
+    "vibhor-narang"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/innovation-at-standard-chartered",
+   "label": "Treasury Today, Treasury Talks: Standard Chartered: Tackling working capital challenges with technology",
+   "kind": "podcast",
+   "date": "2023-04-05",
+   "people": [
+    "karen-hom"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/innovation-at-standard-chartered",
+   "label": "Treasury Today, Treasury Talks: Citi: Healthy technology",
+   "kind": "podcast",
+   "date": "2023-01-19",
+   "people": [
+    "laura-fogarty"
+   ]
+  },
+  {
+   "url": "https://podcasts.captivate.fm/media/85e69999-b069-4e65-acf0-30a28b4b00c7/tt-2022-08-09-treasury-talks-podcast-episode-33-working-from-ho.mp3",
+   "label": "Treasury Today, Treasury Talks: Episode 33: Treasury adapts to strong jobs market; WFH and irresistible job opportunities",
+   "kind": "podcast",
+   "date": "2022-08-09",
+   "people": [
+    "mike-richards"
+   ]
+  },
+  {
+   "url": "https://podcasts.captivate.fm/media/9323e335-a94c-4749-a0af-af19a3a9a581/tt-2022-07-25-treasury-talks-podcast-episode-31-asaa-winners-gu.mp3",
+   "label": "Treasury Today, Treasury Talks: Episode 31: SPECIAL EPISODE – Adam Smith Awards Asia 2022 – A winners' guide (part two of three)",
+   "kind": "podcast",
+   "date": "2022-07-25",
+   "people": [
+    "sophie-jackson"
+   ]
+  },
+  {
+   "url": "https://podcasts.captivate.fm/media/19f89c71-840c-484c-b6aa-52c1c81fd690/tt-2022-06-22-treasury-talks-podcast-episode-29-asaa-winners-gu.mp3",
+   "label": "Treasury Today, Treasury Talks: Episode 29: SPECIAL EPISODE – Adam Smith Awards Asia 2022 – A winners' guide (part one of three)",
+   "kind": "podcast",
+   "date": "2022-06-22",
+   "people": [
+    "sophie-jackson"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/natwest-treasurys-role-in-a-year-of-shortages",
+   "label": "Treasury Today, Treasury Talks: NatWest: Treasury's role in a year of shortages",
+   "kind": "podcast",
+   "date": "2022-04-20",
+   "people": [
+    "andrew-blincoe"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/citi-digital-dialogues-2021",
+   "label": "Treasury Today, Treasury Talks: Citi Digital Dialogues series 2021 – Episode 3: Geopolitical risk and the need for resilience",
+   "kind": "podcast",
+   "date": "2022-03-18",
+   "people": [
+    "philip-summerton"
+   ]
+  },
+  {
+   "url": "https://podcasts.captivate.fm/media/6251956d-2143-47a1-80be-9b4f58945e0b/tt-2022-02-14-treasury-talks-podcast-episode-25-asa-winners-gui.mp3",
+   "label": "Treasury Today, Treasury Talks: Episode 25: SPECIAL EPISODE – Adam Smith Awards 2022 – A winners' guide (part two of three)",
+   "kind": "podcast",
+   "date": "2022-02-14",
+   "people": [
+    "meg-coates"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/blackrock-from-fax-machines-to-cloud-solutions-whats-next-for-cash-management-technology",
+   "label": "Treasury Today, Treasury Talks: BlackRock podcast: Building a sustainable investment strategy",
+   "kind": "podcast",
+   "date": "2021-11-16",
+   "people": [
+    "enno-dykmann"
+   ]
+  },
+  {
+   "url": "https://podcasts.captivate.fm/media/66e0e86f-17b7-41db-b3ed-372659827887/tt-2021-09-16-treasury-talks-podcast-episode-22.mp3",
+   "label": "Treasury Today, Treasury Talks: Episode 22: Chip maker Infineon talks treasury strategy",
+   "kind": "podcast",
+   "date": "2021-09-16",
+   "people": [
+    "alexander-foltin"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 23: Treasury Today Asia's Top Treasury Team 2020",
+   "kind": "podcast",
+   "date": "2021-06-09",
+   "people": [
+    "wilson-koh",
+    "vineet-sood"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 22: Best in Class Treasury Solution in India",
+   "kind": "podcast",
+   "date": "2021-06-02",
+   "people": [
+    "ramalingam-rajasekar",
+    "vivek-mp"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/bny-mellon-introduction-to-responsible-investment-for-treasurers",
+   "label": "Treasury Today, Treasury Talks: BNY Mellon: Introduction to responsible investing for treasurers",
+   "kind": "podcast",
+   "date": "2021-06-01",
+   "people": [
+    "joshua-kendall"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 20: Best Crisis Management Solution",
+   "kind": "podcast",
+   "date": "2021-05-19",
+   "people": [
+    "darren-chua",
+    "dilip-banthiya"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/standard-chartered-digital-transformation",
+   "label": "Treasury Today, Treasury Talks: Standard Chartered: Digital transformation",
+   "kind": "podcast",
+   "date": "2021-05-18",
+   "people": [
+    "marion-reuter"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 18: Best ESG Solution",
+   "kind": "podcast",
+   "date": "2021-05-06",
+   "people": [
+    "paul-english"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 17: Best Working Capital Management Solution",
+   "kind": "podcast",
+   "date": "2021-04-28",
+   "people": [
+    "jackson-xu"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 16: Harnessing the Power of Technology",
+   "kind": "podcast",
+   "date": "2021-04-22",
+   "people": [
+    "issac-chen",
+    "may-lee",
+    "arno-gruner"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 14: Best Risk Management Solution",
+   "kind": "podcast",
+   "date": "2021-04-06",
+   "people": [
+    "manoj-sinha"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 13: Best Liquidity Management Solution",
+   "kind": "podcast",
+   "date": "2021-03-31",
+   "people": [
+    "kelvin-li",
+    "amit-grover"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 12: Best Cyber-Security Solution",
+   "kind": "podcast",
+   "date": "2021-03-24",
+   "people": [
+    "jun-feng"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 11: Best Foreign Exchange Solution",
+   "kind": "podcast",
+   "date": "2021-03-17",
+   "people": [
+    "tim-husnik",
+    "zurab-abutidze"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 10: Best Trade Solution",
+   "kind": "podcast",
+   "date": "2021-03-10",
+   "people": [
+    "dawn-hoe"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 9: First Class Relationship Management",
+   "kind": "podcast",
+   "date": "2021-02-24",
+   "people": [
+    "dawn-hoe"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 8: Best Fintech Solution",
+   "kind": "podcast",
+   "date": "2021-02-24",
+   "people": [
+    "jessica-chan"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 6: Best in Class Treasury Solution in China",
+   "kind": "podcast",
+   "date": "2021-02-10",
+   "people": [
+    "lu-hao",
+    "janet-chong"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/future-treasurer-series",
+   "label": "Treasury Today, Treasury Talks: State Street Global Advisors: Future Treasurer Series",
+   "kind": "podcast",
+   "date": "2021-02-08",
+   "people": [
+    "meg-coates",
+    "sophie-jackson",
+    "charlie-praska"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 5: Best Supply Chain Finance Solution",
+   "kind": "podcast",
+   "date": "2021-02-03",
+   "people": [
+    "freya-yao",
+    "denis-savastano"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 25: Best AP Solution",
+   "kind": "podcast",
+   "date": "2021-02-02",
+   "people": [
+    "stuart-madell"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 4: Best Cash Management Solution",
+   "kind": "podcast",
+   "date": "2021-01-27",
+   "people": [
+    "doug-knebel",
+    "angela-li",
+    "christopher-emslie"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 3: Best Short-term Investing Solution",
+   "kind": "podcast",
+   "date": "2021-01-20",
+   "people": [
+    "ching-ling",
+    "asset-value"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 23: Best Funding Solution",
+   "kind": "podcast",
+   "date": "2021-01-20",
+   "people": [
+    "hana-harrison"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-asia-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Asia Episode 2: A Rising Star 2020",
+   "kind": "podcast",
+   "date": "2021-01-13",
+   "people": [
+    "pulat-yunusmetov"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 21: Best ESG Solution",
+   "kind": "podcast",
+   "date": "2020-12-15",
+   "people": [
+    "ursula-hurley"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/hsbc-podcast-series",
+   "label": "Treasury Today, Treasury Talks: HSBC Podcast Series: Pandemic drives importance of APIs and pushes digitisation centre stage",
+   "kind": "podcast",
+   "date": "2020-11-24",
+   "people": [
+    "nadya-hijazi"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 17: Best Crisis Management Solution",
+   "kind": "podcast",
+   "date": "2020-11-17",
+   "people": [
+    "sasha-de-gracia"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 16: Best Cash Management Solution",
+   "kind": "podcast",
+   "date": "2020-11-10",
+   "people": [
+    "brice-zimmermann"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 15: Best Liquidity Management Solution",
+   "kind": "podcast",
+   "date": "2020-11-03",
+   "people": [
+    "carrie-reyna"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 14: Best Card Solution",
+   "kind": "podcast",
+   "date": "2020-10-27",
+   "people": [
+    "erich-broksas",
+    "andrew-miller",
+    "steve-wong"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 12: First Class Relationship Management",
+   "kind": "podcast",
+   "date": "2020-10-13",
+   "people": [
+    "enrico-zecchini",
+    "adam-pring",
+    "angela-marconato"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 11: Best Short-term Investing Solution",
+   "kind": "podcast",
+   "date": "2020-10-06",
+   "people": [
+    "christopher-swiss",
+    "carolyn-hansen",
+    "adam-boyle",
+    "asset-value"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 10: Best in Class Treasury Solution in the Middle East",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "ulrich-schiessl",
+    "arun-singh"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/future-treasurer-series",
+   "label": "Treasury Today, Treasury Talks: State Street Global Advisors The Future Treasurer: now is the time for action",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "lynda-mcgoey"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 9: Best AR Solution",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "lucas-meyer"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/bnp-paribas-treasury-insiders",
+   "label": "Treasury Today, Treasury Talks: BNP Paribas: Treasury Insiders | Episode 2",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "sophie-jackson",
+    "neil-pein"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 8: Best Foreign Exchange Solution",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "laurie-wiggins"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 7: Best Supply Chain Finance Solution",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "matthew-sullivan",
+    "florence-kiburi"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 5: Treasury Today's Top Treasury Team 2020",
+   "kind": "podcast",
+   "date": "2020-08-25",
+   "people": [
+    "amit-singh",
+    "steven-krippner"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/adam-smith-awards-2020",
+   "label": "Treasury Today, Treasury Talks: ASA Episode 4: Best Working Capital Management Solution",
+   "kind": "podcast",
+   "date": "2020-08-18",
+   "people": [
+    "hesham-moustafa"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/bnp-paribas-treasury-insiders",
+   "label": "Treasury Today, Treasury Talks: BNP Paribas: Treasury Insiders | Episode 1",
+   "kind": "podcast",
+   "date": "2020-07-01",
+   "people": [
+    "sophie-jackson",
+    "wim-grosemans",
+    "mariya-tretyak"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/hsbc-apis-taking-treasury-to-the-next-level",
+   "label": "Treasury Today, Treasury Talks: HSBC: APIs taking treasury to the next level",
+   "kind": "podcast",
+   "date": "2020-05-27",
+   "people": [
+    "nadya-hijazi"
+   ]
+  },
+  {
+   "url": "https://tt-static.s3.eu-west-1.amazonaws.com/tt-2020-04-06__treasury-talks-podcast__swift-gpi__MASTER.mp4",
+   "label": "Treasury Today, Treasury Talks: Episode ten: Is SWIFT gpi for corporates giving treasurers what they want?",
+   "kind": "podcast",
+   "date": "2020-04-27",
+   "people": [
+    "eric-bayle",
+    "marc-delbaere"
+   ]
+  },
+  {
+   "url": "https://tt-static.s3.eu-west-1.amazonaws.com/tt-2020-04-02__treasury-talks-podcast__actualize__MASTER.mp4",
+   "label": "Treasury Today, Treasury Talks: Episode nine: Making homeworking work",
+   "kind": "podcast",
+   "date": "2020-04-15",
+   "people": [
+    "priscila-nagalli"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/ssga-what-to-do-when-the-rates-stay-low-podcast",
+   "label": "Treasury Today, Treasury Talks: State Street Global Advisors: What to do when the rates stay low",
+   "kind": "podcast",
+   "date": "2020-01-27",
+   "people": [
+    "vice-president"
+   ]
+  },
+  {
+   "url": "https://tt-static.s3.amazonaws.com/tt-2019-12-10__standard-chartered-podcast.mp3",
+   "label": "Treasury Today, Treasury Talks: Standard Chartered: Real-time payments in an increasingly connected world",
+   "kind": "podcast",
+   "date": "2019-12-16",
+   "people": [
+    "victor-penna"
+   ]
+  },
+  {
+   "url": "https://tt-static.s3.amazonaws.com/tt-2019-02-11__women-in-treasury-roundtable-podcast.mp3",
+   "label": "Treasury Today, Treasury Talks: Episode 4: Women in Treasury Study",
+   "kind": "podcast",
+   "date": "2019-02-20",
+   "people": [
+    "meg-coates",
+    "frances-hinden"
+   ]
+  },
+  {
+   "url": "https://tt-static.s3.amazonaws.com/tt-2019-01-23__hsbc-glcm__thriving-treasury-podcast-series__episode-03.mp3",
+   "label": "Treasury Today, Treasury Talks: HSBC: Thriving Treasury | Episode 3: Data management and exploitation",
+   "kind": "podcast",
+   "date": "2019-01-25",
+   "people": [
+    "suraj-kalati"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/2018/morgan-stanley",
+   "label": "Treasury Today, Treasury Talks: Morgan Stanley: EMEA MMF Reform",
+   "kind": "podcast",
+   "date": "2018-10-11",
+   "people": [
+    "kim-hochfeld",
+    "scott-wachs"
+   ]
+  },
+  {
+   "url": "https://tt-static.s3.amazonaws.com/tt-2018-06-19__deutsche-bank-podcast__expert-voices__episode-02.mp3",
+   "label": "Treasury Today, Treasury Talks: Deutsche Bank: Expert voices | Episode 2: Treasury in a real-time world",
+   "kind": "podcast",
+   "date": "2018-06-19",
+   "people": [
+    "carola-schmitz-becker"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/2018/treasury-talks/episode-03",
+   "label": "Treasury Today, Treasury Talks: Episode three: Talking technology with Royston Da Costa, Assistant Group Treasurer at Ferguson",
+   "kind": "podcast",
+   "date": "2018-05-01",
+   "people": [
+    "royston-da-costa"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/2018/citi-engaging-with-ecommerce",
+   "label": "Treasury Today, Treasury Talks: Citi podcast: Engaging with Ecommerce",
+   "kind": "podcast",
+   "date": "2018-03-02",
+   "people": [
+    "morgan-mckenney",
+    "core-cash-management"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/podcasts/2017/treasury-talks/episode-02",
+   "label": "Treasury Today, Treasury Talks: Episode two: The impact of the global financial crisis on treasury",
+   "kind": "podcast",
+   "date": "2017-12-08",
+   "people": [
+    "roman-kozhan",
+    "jim-colby",
+    "fred-schacknies"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/a41893e2-8087-4f12-8c00-0771ae1d1389.mp3",
+   "label": "The FP&A Guy network: Anthropic’s $81 Billion Loss Isn’t the Whole Story: What Finance Teams Should Read",
+   "kind": "podcast",
+   "date": "2026-11-11",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/ebdded43-ecb7-4e67-b94d-447463da01ee.mp3",
+   "label": "The FP&A Guy network: Why AI Makes Excel Skills More Important, Not Less, for Financial Modelers with Lance Rubin",
+   "kind": "podcast",
+   "date": "2026-11-10",
+   "people": [
+    "paul-barnhurst",
+    "lance-rubin"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/f1298383-d7a6-4f22-a730-4940d9163af5.mp3",
+   "label": "The FP&A Guy network: How to Forecast Your AI Token Costs with Jason Brisbane and Tanvi Lal",
+   "kind": "podcast",
+   "date": "2026-11-05",
+   "people": [
+    "paul-barnhurst",
+    "jason-brisbane"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/29733878-025d-4063-8efd-4e723124eeaa.mp3",
+   "label": "The FP&A Guy network: Anthropic's S1 Explained: Revenue, Compute Costs, and What Finance Teams Should Watch",
+   "kind": "podcast",
+   "date": "2026-11-04",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/e7fc454e-5457-40a2-b1dc-4960432f3c74.mp3",
+   "label": "The FP&A Guy network: From Corporate FP&A to Building The FP&A Guy Business with Paul & Giles",
+   "kind": "podcast",
+   "date": "2026-11-03",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/b60318bc-2967-401c-be11-d428d4fcc41e.mp3",
+   "label": "The FP&A Guy network: What Finance Gets Wrong About Sales Compensation with Josh Miller",
+   "kind": "podcast",
+   "date": "2026-10-29",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/dcfd8223-5f9f-4b1e-a45f-6c12402a7e64.mp3",
+   "label": "The FP&A Guy network: Stop Chasing AI Models. Build Better Processes With Glenn",
+   "kind": "podcast",
+   "date": "2026-10-28",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/481965fa-dad7-4103-bc3e-e82141b49216.mp3",
+   "label": "The FP&A Guy network: Excel LAMBDA and Dynamic Arrays: Benefits and Limits for Financial Models with Diarmuid Early",
+   "kind": "podcast",
+   "date": "2026-10-27",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/b1de9de8-3ddd-443f-b719-7bc9f5966286.mp3",
+   "label": "The FP&A Guy network: How to Choose Finance Software Without Waiting for AI to Settle with Glenn Hopper",
+   "kind": "podcast",
+   "date": "2026-10-21",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/d0e09deb-239a-4cf6-bb0f-87f04c110b81.mp3",
+   "label": "The FP&A Guy network: Stop Chasing Every AI Model and Build Better Finance Processes with Glenn Hopper",
+   "kind": "podcast",
+   "date": "2026-10-14",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/7bb6d51e-69b9-422d-8f18-af63b3ef7fa8.mp3",
+   "label": "The FP&A Guy network: AI Is Accelerating Faster Than Humans Can Keep Up: What Should Finance Pros Do",
+   "kind": "podcast",
+   "date": "2026-10-07",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/f64cad20-135a-46c8-a345-a8098adbbfa7.mp3",
+   "label": "The FP&A Guy network: When AI Does the Analysis, What Makes an FP&A Professional Valuable with Valerie Martin",
+   "kind": "podcast",
+   "date": "2026-10-01",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/7672b6a3-fd4e-4479-be6f-6605adb16c28.mp3",
+   "label": "The FP&A Guy network: AI Can Give You the Right Answer to the Wrong Question with Matija Nakić",
+   "kind": "podcast",
+   "date": "2026-09-30",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "matija-nakic"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/88f339ad-873a-4167-a7a3-836c2303424b.mp3",
+   "label": "The FP&A Guy network: The Three Foundations of Strategic FP&A with Chithra Rajagopalan",
+   "kind": "podcast",
+   "date": "2026-09-24",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/3a1ea21c-80d0-44ed-8a04-49e51c1efaf0.mp3",
+   "label": "The FP&A Guy network: AI, Decision Culture, and the Future of Enterprise Finance with Matija Nakic",
+   "kind": "podcast",
+   "date": "2026-09-23",
+   "people": [
+    "paul-barnhurst",
+    "matija-nakic",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/4f6233b7-46c3-472b-ac55-2f08f568dc63.mp3",
+   "label": "The FP&A Guy network: Financial Modeling, Deal Making, and the Skills Every Analyst Needs with Oren Klaff",
+   "kind": "podcast",
+   "date": "2026-09-22",
+   "people": [
+    "paul-barnhurst",
+    "oren-klaff"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/d1adf97d-7558-4f4d-a8f1-c26b1ce3585b.mp3",
+   "label": "The FP&A Guy network: Are You Solving Business Problems or Just Reporting Numbers? with Eric Alexander",
+   "kind": "podcast",
+   "date": "2026-09-17",
+   "people": [
+    "paul-barnhurst",
+    "eric-alexander"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/ad2842a5-521a-4d20-a268-95463fe9c7e3.mp3",
+   "label": "The FP&A Guy network: Why CFOs Should Lead AI Adoption Instead of Leaving It Solely to IT",
+   "kind": "podcast",
+   "date": "2026-09-16",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/4ea8e1f2-1ea9-48de-bd4d-372193ac4b10.mp3",
+   "label": "The FP&A Guy network: Building AI for the Top 1% of Excel Users with Peter Fuller",
+   "kind": "podcast",
+   "date": "2026-09-15",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/1271916f-7a2e-4897-b00e-817a312f6517.mp3",
+   "label": "The FP&A Guy network: Only 6% of Finance Teams Actually Influence Decisions | Soufyan Hamid",
+   "kind": "podcast",
+   "date": "2026-09-10",
+   "people": [
+    "paul-barnhurst",
+    "soufyan-hamid"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/b42e72b1-2e9d-4a7d-be2f-30dcaa786795.mp3",
+   "label": "The FP&A Guy network: The CFO Should Own AI, Not IT | Glenn Hopper on The AI-Ready CFO",
+   "kind": "podcast",
+   "date": "2026-09-09",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/5405061d-9cbc-4444-8d03-61b4775f0e6a.mp3",
+   "label": "The FP&A Guy network: Why Better Workflows Matter More Than Better Prompts",
+   "kind": "podcast",
+   "date": "2026-09-02",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/29c0e4fc-8ff3-4522-9d21-6869879ae2f0.mp3",
+   "label": "The FP&A Guy network: The Budget Isn't the Goal. Building a Better Business Is with Zach & Chris",
+   "kind": "podcast",
+   "date": "2026-08-27",
+   "people": [
+    "paul-barnhurst",
+    "zach-rial",
+    "chris-ortega",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/bacf2f50-124c-4570-9299-0e06d247ab60.mp3",
+   "label": "The FP&A Guy network: How Finance Pros Should Manage Data Context and Token Forecasting",
+   "kind": "podcast",
+   "date": "2026-08-26",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/e4ff7aad-cc31-461e-9b4c-8f326439706e.mp3",
+   "label": "The FP&A Guy network: Better Data vs Better AI: What Really Matters for Finance with Alex Curran",
+   "kind": "podcast",
+   "date": "2026-08-19",
+   "people": [
+    "paul-barnhurst",
+    "alex-curran",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/6fcf3b2f-bca6-4998-8414-f91790cfcbb4.mp3",
+   "label": "The FP&A Guy network: The AI Data Pioneer: Building the Future of Finance with Alex Curran",
+   "kind": "podcast",
+   "date": "2026-08-12",
+   "people": [
+    "paul-barnhurst",
+    "alex-curran",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/41de7bf7-2d0a-4055-9d53-72fab1ad7487.mp3",
+   "label": "The FP&A Guy network: AI Finance Club: What Three Members Learned from the Experience with Eve, Jurgen & Bukie",
+   "kind": "podcast",
+   "date": "2026-08-06",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/e65f2d0e-2bc6-4174-b212-f9869347eb28.mp3",
+   "label": "The FP&A Guy network: AI, Power BI, and the Future of Finance Work with Rob Collie",
+   "kind": "podcast",
+   "date": "2026-08-05",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/df13a40f-f9a1-4a03-98be-cfc475e6ece1.mp3",
+   "label": "The FP&A Guy network: AI vs. Financial Modeling World Champion: Who Wins, and What Can We Learn from It",
+   "kind": "podcast",
+   "date": "2026-08-04",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/70588d58-36e4-4622-b667-80d36f9c3eae.mp3",
+   "label": "The FP&A Guy network: Networking in Finance: The Career Advice Everyone Learns Too Late with Josette Ferrer",
+   "kind": "podcast",
+   "date": "2026-07-30",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/7b77f072-46d8-4e39-b17b-c458d861c2cb.mp3",
+   "label": "The FP&A Guy network: AI Is Already Changing Data Jobs: Why You Must Create More Value Now with Rob Collie",
+   "kind": "podcast",
+   "date": "2026-07-29",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "robert-collie"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/237e4d97-acc2-44b8-87f6-f208e46e0563.mp3",
+   "label": "The FP&A Guy network: Why Forecasting Is Not Broken, but Your Data Systems & AI Misuse Are the Problem with Alex Brower",
+   "kind": "podcast",
+   "date": "2026-07-22",
+   "people": [
+    "paul-barnhurst",
+    "alex-brower",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/2765823b-5ccf-4f56-920a-737081c914ae.mp3",
+   "label": "The FP&A Guy network: The Dennis Rodman Paradox And How CFOs Can Protect Irreplaceable Specialists With Jack McCullough",
+   "kind": "podcast",
+   "date": "2026-07-16",
+   "people": [
+    "paul-barnhurst",
+    "jack-mccullough"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/497e4865-21e5-4632-9cfb-ba6a3ba03bce.mp3",
+   "label": "The FP&A Guy network: How to Align Marketing and Finance and Fix the Plumbing Problem with Alex Brower",
+   "kind": "podcast",
+   "date": "2026-07-15",
+   "people": [
+    "paul-barnhurst",
+    "alex-brower",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/9d96be5b-5bc3-441f-8775-01759d7ae828.mp3",
+   "label": "The FP&A Guy network: AI Is Making Mistakes in Finance for CFOs to Fix Data Problems and Improve Analysis with Nick & Jain",
+   "kind": "podcast",
+   "date": "2026-07-08",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "daniel-settel"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/29034f3c-2916-4bc9-9d88-6307976b4b12.mp3",
+   "label": "The FP&A Guy network: AI Financial Modeling Test for Finance Pros to Understand the Limitations Using Real Tool Comparison",
+   "kind": "podcast",
+   "date": "2026-07-07",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/98878647-7331-43c7-a0f6-f86eb60c0eb5.mp3",
+   "label": "The FP&A Guy network: I Would Never Let AI Touch a Number and what to do about that with Alok Ajmera",
+   "kind": "podcast",
+   "date": "2026-07-02",
+   "people": [
+    "paul-barnhurst",
+    "alok-ajmera"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/05f59dd1-9059-42cb-b575-332d698765cd.mp3",
+   "label": "The FP&A Guy network: How to Save Time in FP&A Using Structured AI Analysis with Nick and Dan",
+   "kind": "podcast",
+   "date": "2026-07-01",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "daniel-settel"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/3c7a1e06-3936-49fe-8ae0-46cbe168e948.mp3",
+   "label": "The FP&A Guy network: Interim FP&A, What it is, and Why it is A Growing Career Path With Tim Stalkamp",
+   "kind": "podcast",
+   "date": "2026-06-25",
+   "people": [
+    "paul-barnhurst",
+    "tim-stallkamp",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/c50b2304-3d00-43d8-b9a0-e58a77151b99.mp3",
+   "label": "The FP&A Guy network: AI in Finance for CFOs to Stop Reporting Work and Drive Profit Decisions with Ron Nachum",
+   "kind": "podcast",
+   "date": "2026-06-24",
+   "people": [
+    "paul-barnhurst",
+    "ron-nachum",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/1de2f8e7-daa5-4f72-850a-398a8b095cde.mp3",
+   "label": "The FP&A Guy network: AI in Financial Modeling: Better Than Ever, Still Not There, and the Fatigue Factor",
+   "kind": "podcast",
+   "date": "2026-06-23",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/617d3f02-7ca9-42f8-8f2d-0cc00c80d71a.mp3",
+   "label": "The FP&A Guy network: How AI is Being Used to Make Better Decisions and Build Faster Models with Nicholas Moen",
+   "kind": "podcast",
+   "date": "2026-06-18",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/9c34356b-0d1d-4ceb-81a0-2fa0f1090349.mp3",
+   "label": "The FP&A Guy network: How Companies Are Losing Millions While Being Data Rich with Ron Nachum",
+   "kind": "podcast",
+   "date": "2026-06-17",
+   "people": [
+    "paul-barnhurst",
+    "ron-nachum",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/75a175aa-a4af-4445-bc8a-7e6b9d65cfec.mp3",
+   "label": "The FP&A Guy network: The Language and Excel Problem Stopping AI from Fixing Financial Modeling with John Yeldham",
+   "kind": "podcast",
+   "date": "2026-06-16",
+   "people": [
+    "paul-barnhurst",
+    "john-yeldham"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/d87772a7-9a2c-440f-b2b5-49fb60497cef.mp3",
+   "label": "The FP&A Guy network: AI Strategy for CFOs: Manage AI Like an Investment Portfolio and Prove ROI with Dave Trier",
+   "kind": "podcast",
+   "date": "2026-06-10",
+   "people": [
+    "paul-barnhurst",
+    "dave-trier",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/1538013f-cf65-434d-847e-aaaceb103c9c.mp3",
+   "label": "The FP&A Guy network: The Critical Role of Communication and Standard Definitions in Financial Modeling with John Yeldham",
+   "kind": "podcast",
+   "date": "2026-06-09",
+   "people": [
+    "paul-barnhurst",
+    "john-yeldham"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/56bad4df-df9c-433b-8642-eb2c6b821be6.mp3",
+   "label": "The FP&A Guy network: AI Strategy for CFOs Is a Wild West Without Governance Turn AI Into a Portfolio System – Dave Trier",
+   "kind": "podcast",
+   "date": "2026-06-03",
+   "people": [
+    "paul-barnhurst",
+    "dave-trier",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/0e2a54f4-440b-42cd-aba7-b28f2841ca12.mp3",
+   "label": "The FP&A Guy network: FP&A Strategy for Finance Leaders to Scale a Sports Business Like a Startup with Tim Naddy",
+   "kind": "podcast",
+   "date": "2026-05-28",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/1dfe356f-ffa3-41c6-ac02-0c2ef7009cb7.mp3",
+   "label": "The FP&A Guy network: AI in Finance for CFOs: Scaling Confusion Without a Unified Platform with Scott Leshinski",
+   "kind": "podcast",
+   "date": "2026-05-27",
+   "people": [
+    "paul-barnhurst",
+    "scott-leshinski",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/03ed7792-f8c7-4a56-83f7-fed1e5389f27.mp3",
+   "label": "The FP&A Guy network: The Future of FP&A with AI for Finance Professionals to Move Beyond Excel Analysis with Derek Baker",
+   "kind": "podcast",
+   "date": "2026-05-21",
+   "people": [
+    "paul-barnhurst",
+    "derek-baker"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/37f3e744-acfb-48d4-b9b7-6d128cee4a1e.mp3",
+   "label": "The FP&A Guy network: The Broken Revenue Systems and AI Agents Rebuilding Contract to Cash with Ali Hussain",
+   "kind": "podcast",
+   "date": "2026-05-20",
+   "people": [
+    "paul-barnhurst",
+    "ali-hussain",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/78e380d1-4365-4bb2-8954-a05ec9e26bda.mp3",
+   "label": "The FP&A Guy network: AI in Investment Banking for Analysts to Adapt as Workflows Change but Jobs Remain – Matan",
+   "kind": "podcast",
+   "date": "2026-05-19",
+   "people": [
+    "paul-barnhurst",
+    "matan-feldman"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/b580be39-255d-421e-a9a3-0289fd9c22a4.mp3",
+   "label": "The FP&A Guy network: Why Unified Systems are More Important Than Ever in the Era of AI with OneStream President Scott Leshinski",
+   "kind": "podcast",
+   "date": "2026-05-13",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "scott-leshinski"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/8c957cc7-f5fd-48b2-bca4-e4e6c6f97e5f.mp3",
+   "label": "The FP&A Guy network: The Investment Banking Job Hasn't Changed Since 1990. AI Is Changing That with Wall Street Prep CEO Matan Feldman",
+   "kind": "podcast",
+   "date": "2026-05-12",
+   "people": [
+    "paul-barnhurst",
+    "matan-feldman"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/49df8010-ad22-4f89-9074-efa99043f4ff.mp3",
+   "label": "The FP&A Guy network: How FP&A Teams Can Improve Decision-Making with Scenario Planning & Financial Models - Michael",
+   "kind": "podcast",
+   "date": "2026-05-07",
+   "people": [
+    "paul-barnhurst",
+    "michael-gould"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/c5393210-82d9-4fac-8237-f4ddf711ce17.mp3",
+   "label": "The FP&A Guy network: AI Agents Are Replacing Finance Workflows While Revenue Gets More Complex with Ali Hussain",
+   "kind": "podcast",
+   "date": "2026-05-06",
+   "people": [
+    "paul-barnhurst",
+    "ali-hussain",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/53ed9489-7b82-4df3-9717-ae11bb144ee1.mp3",
+   "label": "The FP&A Guy network: FP&A Career Advice and the Current State of FP&A with Glenn and Paul",
+   "kind": "podcast",
+   "date": "2026-04-30",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/f250723f-389d-4aa2-b015-821cbe73abcd.mp3",
+   "label": "The FP&A Guy network: AI in Excel for Finance Pros to Improve Accuracy Using Incremental Workflows with David",
+   "kind": "podcast",
+   "date": "2026-04-29",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "david-ingraham"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/05b668bb-5bcb-47ef-99bd-cfd8117b93c0.mp3",
+   "label": "The FP&A Guy network: AI in Finance for Professionals Dealing with Errors, Overhype, and Constant Learning Pressure",
+   "kind": "podcast",
+   "date": "2026-04-28",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/b78519a1-58c3-4395-8d07-c154a157b1b1.mp3",
+   "label": "The FP&A Guy network: How FP&A Professionals Use AI to Move from Reporting to Strategy with Carolina Lago",
+   "kind": "podcast",
+   "date": "2026-04-23",
+   "people": [
+    "paul-barnhurst",
+    "carolina-lago"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/4cc8c3b8-0193-4d2e-be26-0930860d0b5a.mp3",
+   "label": "The FP&A Guy network: AI in Financial Modeling for Analysts to Improve Accuracy and Speed with David Ingraham",
+   "kind": "podcast",
+   "date": "2026-04-22",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/642542d2-ffd8-4270-ba1a-0862879a1a5e.mp3",
+   "label": "The FP&A Guy network: How CFOs Can Reduce Manual Reporting and Increase Strategic Impact Using AI with Brian McGowan",
+   "kind": "podcast",
+   "date": "2026-04-16",
+   "people": [
+    "paul-barnhurst",
+    "bryan-mcgowan"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/025e4667-e83f-4bc1-9ceb-4ce468404ad5.mp3",
+   "label": "The FP&A Guy network: AI is a Teammate for Finance Leaders to Replace Fear and Drive Strategic Value with Josh Schauer",
+   "kind": "podcast",
+   "date": "2026-04-15",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/f76ad58f-6151-445c-9160-8430adde53cc.mp3",
+   "label": "The FP&A Guy network: How Finance Teams Can Overcome AI Fear and Build Real Use Cases That Work with Josh Schauer",
+   "kind": "podcast",
+   "date": "2026-04-08",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/23a17ef1-d5d0-4180-8981-bed490d5c301.mp3",
+   "label": "The FP&A Guy network: AI Governance for Board Directors to Fix Risk Exposure with Actionable Tools - Shannon Nash",
+   "kind": "podcast",
+   "date": "2026-04-01",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/f21d0f4f-de32-42b9-a389-c67fb83ab061.mp3",
+   "label": "The FP&A Guy network: Excel Will Never Be the Same Again after AI Copilot with Brian Jones",
+   "kind": "podcast",
+   "date": "2026-03-31",
+   "people": [
+    "paul-barnhurst",
+    "vice-president"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/c3e96a02-851f-4de8-87de-f749eb149eaa.mp3",
+   "label": "The FP&A Guy network: AI Strategy Finance Leaders Must Use to Avoid Siloed Tools and Failed Adoption with Vikram Bhandari",
+   "kind": "podcast",
+   "date": "2026-03-26",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/09833993-319b-47bf-927a-745cc162ea0c.mp3",
+   "label": "The FP&A Guy network: AI Governance for CFOs to Control Board Risk and Lead Strategic Transformation with Shannon Nash",
+   "kind": "podcast",
+   "date": "2026-03-25",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/d8de73b5-63ca-4737-ac69-c6bfd3d46d5d.mp3",
+   "label": "The FP&A Guy network: AI Builds Obsession for Financial Modelers to Refocus on Specification Testing and Trust Now",
+   "kind": "podcast",
+   "date": "2026-03-24",
+   "people": [
+    "paul-barnhurst",
+    "ian-bennett",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/f412595f-1b48-46ca-a0f8-2a473886f936.mp3",
+   "label": "The FP&A Guy network: How CFOs Are Using the Return on Change to Fix Failing Projects and Rethink ROI with Vincent & Ilana",
+   "kind": "podcast",
+   "date": "2026-03-19",
+   "people": [
+    "paul-barnhurst",
+    "ilana-esterrich"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/1e232868-6d08-494c-8631-4d4d442d0a9b.mp3",
+   "label": "The FP&A Guy network: How Augmented Intelligence Will Replace AI Hype in Finance with John Thomas",
+   "kind": "podcast",
+   "date": "2026-03-18",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "john-thomas-foxworthy"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/7840ac80-c80b-4a21-b197-68661dce4b55.mp3",
+   "label": "The FP&A Guy network: How Finance Leaders Can Stop AI Failure and Adopt Augmented Intelligence with John Thomas",
+   "kind": "podcast",
+   "date": "2026-03-11",
+   "people": [
+    "paul-barnhurst",
+    "john-thomas",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/40b44f4b-d1b5-4368-ac82-5ebcd482fd41.mp3",
+   "label": "The FP&A Guy network: The Human-in-the-Loop AI Is the Future of Finance Automation with Riya Grover",
+   "kind": "podcast",
+   "date": "2026-03-04",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/ca740c58-0b28-4658-a31d-0dc1343e3109.mp3",
+   "label": "The FP&A Guy network: How HR & FP&A Teams Build Trust to Improve Decision-Making & Business Performance with Deborah & Cynthia",
+   "kind": "podcast",
+   "date": "2026-02-26",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/b25b3ee8-aca4-4033-8f4c-ba0c8e9c574a.mp3",
+   "label": "The FP&A Guy network: How Modern Finance Teams Are Automating Billing and Revenue Workflows with AI Tools - Riya Grover",
+   "kind": "podcast",
+   "date": "2026-02-25",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/6c72f7d2-2ae3-42d9-9cd7-d48d01623efb.mp3",
+   "label": "The FP&A Guy network: We Tested Claude Opus 4.6 and the Results were Super Impressive",
+   "kind": "podcast",
+   "date": "2026-02-24",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/b622a03b-0004-4f11-af74-e9ba24c64947.mp3",
+   "label": "The FP&A Guy network: Claude AI to Automate Bookkeeping with Real Business Workflows",
+   "kind": "podcast",
+   "date": "2026-02-18",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/96dbfbfa-7270-4a5c-996e-6e0f4708930d.mp3",
+   "label": "The FP&A Guy network: AI in Finance for Modelers to Succeed by Mastering the Fundamentals with Chris Reilly",
+   "kind": "podcast",
+   "date": "2026-02-17",
+   "people": [
+    "paul-barnhurst",
+    "chris-reilly"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/1141ee51-bdee-45a8-a468-db32b4d77a29.mp3",
+   "label": "The FP&A Guy network: Establishing A Mission, A Culture And Trust Is Key To Building A High Performing FP&A Team With Aswin",
+   "kind": "podcast",
+   "date": "2026-02-12",
+   "people": [
+    "paul-barnhurst",
+    "aswin-saravanan"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/b1aad85e-4dae-4ebd-a4fd-dda8f43135d1.mp3",
+   "label": "The FP&A Guy network: Claude AI Replaces ChatGPT and Copilot in Finance to Automate Workflows without Planning Tools",
+   "kind": "podcast",
+   "date": "2026-02-11",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/aaf6389b-a20a-43e9-b8a8-7580db9bf9d5.mp3",
+   "label": "The FP&A Guy network: The Future of SMB Finance Is AI Bookkeeping to Replace Broken ERP Systems with Kevin & Drew",
+   "kind": "podcast",
+   "date": "2026-02-04",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "drew-hyatt"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/aca729a4-edfe-4baf-821b-5d666f772cc6.mp3",
+   "label": "The FP&A Guy network: The Excel Techniques for Modelers to Build Real World-Business Forecasts - Luke Phillips",
+   "kind": "podcast",
+   "date": "2026-02-03",
+   "people": [
+    "paul-barnhurst",
+    "luke-phillips"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/c44bcdd9-8514-41e1-8dbb-46d63134025c.mp3",
+   "label": "The FP&A Guy network: The Role Of FP&A In Being IPO Ready With Jeffrey Bernstein",
+   "kind": "podcast",
+   "date": "2026-01-29",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/5ecd818a-ab05-4578-936b-5079c9762477.mp3",
+   "label": "The FP&A Guy network: How SMBs Can Fix Bookkeeping to Build Trustworthy Data and Scale Finance with Kevin & Drew",
+   "kind": "podcast",
+   "date": "2026-01-28",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "drew-hyatt"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/b51fe6ab-a76b-402d-a575-ad7a31ab02bd.mp3",
+   "label": "The FP&A Guy network: How FP&A Professionals Can Evolve Beyond Reporting and Become Strategic Partners with Bryan Lapidus",
+   "kind": "podcast",
+   "date": "2026-01-22",
+   "people": [
+    "paul-barnhurst",
+    "bryan-lapidus"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/55ea3311-2f0b-42e9-a2cc-08d82c17ea5a.mp3",
+   "label": "The FP&A Guy network: AI Adoption Divide in Finance for Leaders to Bridge the Gap Between People and Systems",
+   "kind": "podcast",
+   "date": "2026-01-21",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/b2d8b59e-591b-48d3-9d57-5e98a4aeed9e.mp3",
+   "label": "The FP&A Guy network: How Excel AI Agents Actually Work for Financial Modelers to Understand LLMs & Tools with Tim Jacks",
+   "kind": "podcast",
+   "date": "2026-01-20",
+   "people": [
+    "paul-barnhurst",
+    "tim-jacks",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/05c24641-21b2-425f-99bf-99dd48ba700f.mp3",
+   "label": "The FP&A Guy network: How To Make FP&A Software Tools Work For You And The Future Of FP&A With Ben Pierce",
+   "kind": "podcast",
+   "date": "2026-01-15",
+   "people": [
+    "paul-barnhurst",
+    "ben-pierce"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/3eded8cf-f184-460c-887e-63a2e15aee68.mp3",
+   "label": "The FP&A Guy network: AI Adoption Is Surging but Finance Pros Are Falling Behind Due to Bad Data and Poor Strategy in 2026",
+   "kind": "podcast",
+   "date": "2026-01-14",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/bcd0717a-5b43-4db5-b5fb-40792fc7e051.mp3",
+   "label": "The FP&A Guy network: Financial Modeling for Corporate Finance Teams to Unlock Business Without Templates - Carolina Lago",
+   "kind": "podcast",
+   "date": "2026-01-13",
+   "people": [
+    "paul-barnhurst",
+    "carolina-lago"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/0d9b56b5-e330-476c-89ce-0d1b102c9109.mp3",
+   "label": "The FP&A Guy network: Scaling FP&A with Growth to Build Trusted Processes and Strategic Influence with Noam Sever",
+   "kind": "podcast",
+   "date": "2026-01-08",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/396620a3-2520-4111-bd0d-f2451e65c943.mp3",
+   "label": "The FP&A Guy network: The 80/20 Strategy for FP&A Leaders to Replace Long Budgeting with Business Impact - Andrew Hull",
+   "kind": "podcast",
+   "date": "2026-01-01",
+   "people": [
+    "paul-barnhurst",
+    "vice-president"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/c141b097-0f26-4a91-9e5b-facbc3d9dd1e.mp3",
+   "label": "The FP&A Guy network: The Future of Finance for CFOs to Automate Accounting with AI-First General Ledgers - Sasha Orloff",
+   "kind": "podcast",
+   "date": "2025-12-31",
+   "people": [
+    "paul-barnhurst",
+    "sasha-orloff",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/5780d9e6-85d7-48f0-b4a3-6d8ef431d002.mp3",
+   "label": "The FP&A Guy network: How Curiosity and Listening Help Financial Modelers Build Trusted Models with Ian Bennett",
+   "kind": "podcast",
+   "date": "2025-12-30",
+   "people": [
+    "paul-barnhurst",
+    "ian-bennett"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/48975c45-bf50-4d3e-8073-fe9f09ce65d5.mp3",
+   "label": "The FP&A Guy network: How Finance Teams Can Solve the Monday Morning Problem with Real-Time AI - Ian Wong",
+   "kind": "podcast",
+   "date": "2025-12-24",
+   "people": [
+    "paul-barnhurst",
+    "ian-wong",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/dc31aae0-cc66-41e2-9552-87b695282ca6.mp3",
+   "label": "The FP&A Guy network: We Tested 7 AI Tools in Excel for Financial Modeling, and None Could Build a Reliable Model",
+   "kind": "podcast",
+   "date": "2025-12-23",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/b6491b97-43d5-4a0a-b209-3fffa2b10ebe.mp3",
+   "label": "The FP&A Guy network: How Finance Pros Can Fix Broken Reporting and End the Monday Morning Problem with Ian Wong",
+   "kind": "podcast",
+   "date": "2025-12-17",
+   "people": [
+    "paul-barnhurst",
+    "ian-wong",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/2a45deef-506e-452a-819e-a3a507b9387a.mp3",
+   "label": "The FP&A Guy network: What Happens When the AI Tools Fail Basic Math and More with Ian and Giles",
+   "kind": "podcast",
+   "date": "2025-12-16",
+   "people": [
+    "paul-barnhurst",
+    "ian-schnoor",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/30e967f4-05d8-4766-a100-61259e7170c7.mp3",
+   "label": "The FP&A Guy network: The CFO Leading Talent, Operations & Corporate Communications (Kate Gulliver, CFO & CAO, Wayfair)",
+   "kind": "podcast",
+   "date": "2025-12-15",
+   "people": [
+    "paul-barnhurst",
+    "kate-gulliver",
+    "lauren-pearl",
+    "alex-louisy"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/52b02159-af25-4eda-be21-6bca384e93df.mp3",
+   "label": "The FP&A Guy network: The Soft Skills in Finance for CFOs to Build Influence and Leadership with Rosemary Linden",
+   "kind": "podcast",
+   "date": "2025-12-11",
+   "people": [
+    "paul-barnhurst",
+    "rosemary-linden",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/8c9dc464-ea69-43c6-8d76-7ad8e1277399.mp3",
+   "label": "The FP&A Guy network: ERP and AI Failures Finance Pros Face Without Data and Process Governance with Cindy Vindasius",
+   "kind": "podcast",
+   "date": "2025-12-10",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/2c2a984a-2586-42bc-8ae4-f8de887ea344.mp3",
+   "label": "The FP&A Guy network: The Reality of AI Excel Tools for Finance Teams to Understand Formula Complexity with Ian and Giles",
+   "kind": "podcast",
+   "date": "2025-12-09",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/0fdb76f9-1787-4812-a542-6d79cbf2759d.mp3",
+   "label": "The FP&A Guy network: The CFO Role is Changing for Finance Leaders to Own AI, Talent, and Strategy with Omar Choucair",
+   "kind": "podcast",
+   "date": "2025-12-04",
+   "people": [
+    "paul-barnhurst",
+    "omar-choucair"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/ac1a7c35-b496-48e6-8329-4ba2869c48bb.mp3",
+   "label": "The FP&A Guy network: What Finance Professionals Must Fix Before AI and ERP Transformations Fail with Cindy Vindasius",
+   "kind": "podcast",
+   "date": "2025-12-03",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/6bf4db82-b1de-4008-9407-23117e48b237.mp3",
+   "label": "The FP&A Guy network: The ERP Problem for Finance Teams to Replace Consultant Lock-In with AI - Santiago Nestares",
+   "kind": "podcast",
+   "date": "2025-11-26",
+   "people": [
+    "paul-barnhurst",
+    "santiago-nestares",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/2c8b4d27-7213-443f-bdbd-3350f427d007.mp3",
+   "label": "The FP&A Guy network: Elkar AI Put to the Test in Live Financial Modeling with Honest Results for Modellers - Ian & Giles",
+   "kind": "podcast",
+   "date": "2025-11-25",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/f9ebd330-0122-49d1-a588-ab3525f5638f.mp3",
+   "label": "The FP&A Guy network: Key learnings and takeaways from actual attendees of Campfire's AI finance summit",
+   "kind": "podcast",
+   "date": "2025-11-20",
+   "people": [
+    "paul-barnhurst",
+    "john-glasgow"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/96198228-51e1-46ee-8997-49200eab9a21.mp3",
+   "label": "The FP&A Guy network: DualEntry's Co-founder Santiago Nestares shares why Mid-Market CFO are ditching Legacy ERPs",
+   "kind": "podcast",
+   "date": "2025-11-19",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "santiago-nestares"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/faeb764d-7294-4b54-8be4-d27e5a1c9859.mp3",
+   "label": "The FP&A Guy network: Testing Shortcut AI's bold claims: Did it live up to the hype with Giles Male",
+   "kind": "podcast",
+   "date": "2025-11-18",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/311b6175-fd03-4a23-9488-0dad631b8a1b.mp3",
+   "label": "The FP&A Guy network: The NetSuite AI & MCP Connector Help Finance Teams Turn ERP into a System of Action with Ranga & Joe",
+   "kind": "podcast",
+   "date": "2025-11-12",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "vice-president"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/82a0878b-d75c-46dc-ad1d-4389fbe5a388.mp3",
+   "label": "The FP&A Guy network: How TabAI stacks up as an Excel AI Agent for Financial Modeling Pros, with Ian and Giles",
+   "kind": "podcast",
+   "date": "2025-11-11",
+   "people": [
+    "paul-barnhurst",
+    "ian-schnoor",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/7744840c-e7b8-43d8-a57d-4291e7146b86.mp3",
+   "label": "The FP&A Guy network: How NetSuite uses AI and how the NetSuite Connector is a Game Changer for accountants with Joe and Ranga",
+   "kind": "podcast",
+   "date": "2025-11-05",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/6cebe529-d661-4891-bfe7-14a00ddc2836.mp3",
+   "label": "The FP&A Guy network: How AI  Excel Tools Stackup Against the Hype and How Excel Agent Has Disrupted the Marketplace with Ian and Giles",
+   "kind": "podcast",
+   "date": "2025-11-04",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/aaf70a66-3695-4633-b017-4ff32a03b458.mp3",
+   "label": "The FP&A Guy network: The Transformation Framework for CFOs to Lead Strategy, Culture & Execution at Scale with Paul S. Young",
+   "kind": "podcast",
+   "date": "2025-11-03",
+   "people": [
+    "paul-barnhurst",
+    "wassia-kamon"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/8a6e8329-9cc1-49fd-8261-c474cea08199.mp3",
+   "label": "The FP&A Guy network: The Power of Teaching in FP&A to Influence Executives & Bridge Communication Gaps with Carl Seidman",
+   "kind": "podcast",
+   "date": "2025-10-30",
+   "people": [
+    "paul-barnhurst",
+    "carl-seidman"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/4ab59ef6-4fb7-4957-bde0-f80e1906337f.mp3",
+   "label": "The FP&A Guy network: Testing The New Microsoft Excel Agent for Finance Pros with Ian and Giles",
+   "kind": "podcast",
+   "date": "2025-10-28",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/839a6b71-44f3-462a-a2b1-697d67abc359.mp3",
+   "label": "The FP&A Guy network: How Excel AI Agents Like Rosie Work for FP&A Tasks but Fail at Building Models with Giles and Ian",
+   "kind": "podcast",
+   "date": "2025-10-21",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/261b083f-cb1f-4ef7-a211-867775da77b0.mp3",
+   "label": "The FP&A Guy network: AI in Finance for CFOs to Replace Failing Top-Down Projects with Bottom-Up Shadow AI Wins",
+   "kind": "podcast",
+   "date": "2025-10-15",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/00475d75-387e-401f-8b4c-63ae6bf353b4.mp3",
+   "label": "The FP&A Guy network: Testing Excel AI Software Tracelight on Excel Esports, Financial Modeling and FP&A with Ian And Giles",
+   "kind": "podcast",
+   "date": "2025-10-15",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/7bd5b3c7-752a-4476-a54e-f495286c44ce.mp3",
+   "label": "The FP&A Guy network: FP&A at Early-Stage Companies and the Benefits of Using Python to Automate Data and Enhance Analysis with Todd Niemann",
+   "kind": "podcast",
+   "date": "2025-10-09",
+   "people": [
+    "paul-barnhurst",
+    "todd-niemann"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/fcc45633-b4a6-4e5f-8ec3-c37730e19dc7.mp3",
+   "label": "The FP&A Guy network: AI in the Finance Team for CFOs to Lead Bottom-Up Adoption with Excel Agents and Shadow Tools",
+   "kind": "podcast",
+   "date": "2025-10-08",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/e721e4f3-fed2-464f-b7ce-57ca3c3866f3.mp3",
+   "label": "The FP&A Guy network: Introducing the ModSquad: Testing AI Financial Modeling Tools, So you Don't Have To... with Ian and Giles.",
+   "kind": "podcast",
+   "date": "2025-10-07",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/ecf429da-e32a-410e-8203-aecc82fd6e87.mp3",
+   "label": "The FP&A Guy network: From FP&A Analyst to Private Equity Operator with Alex Fabry: The Day-2 Lunch That Changed Everything",
+   "kind": "podcast",
+   "date": "2025-10-03",
+   "people": [
+    "paul-barnhurst",
+    "alex-fabry"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/0a659117-7545-4130-96bd-5cef1572e352.mp3",
+   "label": "The FP&A Guy network: AI Hype in Finance for Executives to Avoid Failure from Poor Data, Hype and Top-Down Rollouts",
+   "kind": "podcast",
+   "date": "2025-10-01",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/f00979f1-4fe3-4c6b-be2c-3f705357a4c5.mp3",
+   "label": "The FP&A Guy network: What FP&A Pros need to know to be successful working in Private Equity with Jamie and Nate",
+   "kind": "podcast",
+   "date": "2025-09-25",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/ec3bf08a-954a-4a56-9354-9f51682723a5.mp3",
+   "label": "The FP&A Guy network: AI ERP Innovation for Financial Executives to Disrupt Legacy Software with Franz Faerber",
+   "kind": "podcast",
+   "date": "2025-09-24",
+   "people": [
+    "paul-barnhurst",
+    "franz-faerber",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/696ad2c7-367f-4f49-aab7-88df1e0c056a.mp3",
+   "label": "The FP&A Guy network: Why Finance Students Must Learn Discipline Before AI Replaces Their Jobs with David Stangeland",
+   "kind": "podcast",
+   "date": "2025-09-23",
+   "people": [
+    "paul-barnhurst",
+    "david-stangeland"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/6f026298-f826-426a-b7ae-f55487bff9e9.mp3",
+   "label": "The FP&A Guy network: How FP&A Teams Can Enhance Visuals and Improve Dashboards: Practical Tips from Zebra BI CEO Andrej Lapajne",
+   "kind": "podcast",
+   "date": "2025-09-18",
+   "people": [
+    "paul-barnhurst",
+    "andrej-lapajne"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/4b991ce8-bfe9-4634-8f4d-1593ca797858.mp3",
+   "label": "The FP&A Guy network: AI Accounting for FP&A Professionals to Deliver Real-Time Finance Insights with Jeff Seibert",
+   "kind": "podcast",
+   "date": "2025-09-17",
+   "people": [
+    "paul-barnhurst",
+    "jeff-seibert",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/a16b94c0-063c-4a51-a9f1-f9e9fea5a68c.mp3",
+   "label": "The FP&A Guy network: From Classic Cars to Aircraft: The Art of Modeling Distressed Companies with Vaughan Grandin",
+   "kind": "podcast",
+   "date": "2025-09-16",
+   "people": [
+    "paul-barnhurst",
+    "vaughan-grandin"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/d4a7d881-b7be-4023-b05d-37f6f6787b33.mp3",
+   "label": "The FP&A Guy network: The Future of FP&A and How the Association For Finance Professionals (AFP) is Leading the Way with Pat and Bryan",
+   "kind": "podcast",
+   "date": "2025-09-11",
+   "people": [
+    "paul-barnhurst",
+    "patrick-culkin",
+    "bryan-lapidus"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/8e02d7c7-5b55-48a1-a26f-e08d979f3511.mp3",
+   "label": "The FP&A Guy network: Modern AI-ledgers for Accounting and Finance Teams to Replace QuickBooks and Automate the Books with Jeff Seibert",
+   "kind": "podcast",
+   "date": "2025-09-10",
+   "people": [
+    "paul-barnhurst",
+    "jeff-seibert",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/c0dcfe0d-d7b7-477e-bec3-f8aa1f53933c.mp3",
+   "label": "The FP&A Guy network: Why Spreadsheets Will Stay, but Financial Modeling Workflow and Version Control Must Be Rebuilt with Matt Lee",
+   "kind": "podcast",
+   "date": "2025-09-09",
+   "people": [
+    "paul-barnhurst",
+    "matthew-lee"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/e258f25f-3d43-4147-aead-439ce82966f3.mp3",
+   "label": "The FP&A Guy network: People First Leadership Lessons for building High-Performing finance teams from one of the TOP 10 Most Admired CEOs in the world, Garry Ridge",
+   "kind": "podcast",
+   "date": "2025-09-04",
+   "people": [
+    "paul-barnhurst",
+    "garry-ridge"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/ec052f5a-841f-4f0d-8fca-ccd49f7e3af6.mp3",
+   "label": "The FP&A Guy network: How Finance Modelers and Professionals Align Stakeholders and Support M&A Success with Morten",
+   "kind": "podcast",
+   "date": "2025-09-03",
+   "people": [
+    "paul-barnhurst",
+    "morten-lykke-pedersen"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/9531e089-ef29-4367-b60a-1a81ae4d0a43.mp3",
+   "label": "The FP&A Guy network: Why 95 Percent of AI Projects Fail and What FP&A Teams Must Fix in their data and Workflows",
+   "kind": "podcast",
+   "date": "2025-09-03",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/c397ac69-6c77-4a10-9350-d20bcda921e9.mp3",
+   "label": "The FP&A Guy network: The Top Skills FP&A Hiring Managers Want from Finance Analysts to Get Hired Fast with William Spengler",
+   "kind": "podcast",
+   "date": "2025-08-28",
+   "people": [
+    "paul-barnhurst",
+    "william-spengler"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/3d697ec5-abde-49a8-b997-1c604c033434.mp3",
+   "label": "The FP&A Guy network: What the Excel workflow of the future will look like with Rosie AI CEO and Excel expert Dennis Jiang",
+   "kind": "podcast",
+   "date": "2025-08-27",
+   "people": [
+    "paul-barnhurst",
+    "dennis-jiang",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/27b8f562-4981-46bb-8830-79a357a81546.mp3",
+   "label": "The FP&A Guy network: AI ERP for FP&A Teams to Replace Legacy Systems and Automate 300 Workflows Fast with Nicolas Kopp",
+   "kind": "podcast",
+   "date": "2025-08-20",
+   "people": [
+    "paul-barnhurst",
+    "nicolas-kopp",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/bc0bb38d-a8a1-4e25-ad62-d758b93aae9a.mp3",
+   "label": "The FP&A Guy network: Top Budgeting Tips for FP&A Professionals to Build a Strategic & Smooth Planning Process - Glenn Snyder",
+   "kind": "podcast",
+   "date": "2025-08-14",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/c25b693f-90f6-497a-a5ab-70e6f490b7ef.mp3",
+   "label": "The FP&A Guy network: AI ERP for Finance & Accounting teams to Replace NetSuite and Automate Close in 4 Weeks With Nicolas Kopp",
+   "kind": "podcast",
+   "date": "2025-08-13",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "nicolas-kopp"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/89142b7c-cec8-4220-b39b-41c02f6d0c0e.mp3",
+   "label": "The FP&A Guy network: How FP&A Teams Turn Confusing Budgets into Strategic Tools That Drive Alignment with Sarah Schlott",
+   "kind": "podcast",
+   "date": "2025-08-12",
+   "people": [
+    "paul-barnhurst",
+    "sarah-schlott"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/d4797a96-8ae4-496f-b9f6-8d7f451e2ded.mp3",
+   "label": "The FP&A Guy network: FP&A Framework for Finance Leaders to Drive $15B Growth with AI & Forecasting Tools - Brian McGrath",
+   "kind": "podcast",
+   "date": "2025-08-07",
+   "people": [
+    "paul-barnhurst",
+    "brian-mcgrath"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/78416acc-41c0-4a2f-9982-1604ff1af1d2.mp3",
+   "label": "The FP&A Guy network: From Hype to Workflow: How AI in Excel Is Actually Helping Finance Teams Today",
+   "kind": "podcast",
+   "date": "2025-08-06",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/a1512a28-c40a-4cfc-8a9d-289e38d5d562.mp3",
+   "label": "The FP&A Guy network: An AI Excel Tool for Finance Teams to Speed Up DCFs and Scenario Modelling with Nico Christie",
+   "kind": "podcast",
+   "date": "2025-08-05",
+   "people": [
+    "paul-barnhurst",
+    "nico-christie"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/9baef5ae-f2cf-4f04-bc77-93fd22f43bfb.mp3",
+   "label": "The FP&A Guy network: From PepsiCo to AI Expert: Lessons for FP&A Pros to Lead with Mindset over Tech with Tariq Munir",
+   "kind": "podcast",
+   "date": "2025-07-30",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/c7f9ee76-0112-4e24-84ee-7b5bf470ba3e.mp3",
+   "label": "The FP&A Guy network: CEO Mindset for Finance Pros to Scale Firms, Avoid Failure & Replace Technical Focus - Chris Ortega",
+   "kind": "podcast",
+   "date": "2025-07-24",
+   "people": [
+    "paul-barnhurst",
+    "chris-ortega"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/714b9f7a-5474-4395-a929-832dd4d67eac.mp3",
+   "label": "The FP&A Guy network: How Runway Helps Startup Leaders Simplify Finance with Design-First FP&A Tools with Siqi Chen",
+   "kind": "podcast",
+   "date": "2025-07-23",
+   "people": [
+    "paul-barnhurst",
+    "siqi-chen",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/6d47ddcb-3383-4ec9-a657-18e3e6b99c96.mp3",
+   "label": "The FP&A Guy network: The Budgeting Process Fix for FP&A Leaders to End Chaos and Improve Team Impact with Adam Rakich",
+   "kind": "podcast",
+   "date": "2025-07-17",
+   "people": [
+    "paul-barnhurst",
+    "adam-rakich"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/c3951c70-944e-4c7c-b64a-72d1276957e5.mp3",
+   "label": "The FP&A Guy network: Why Siqi Chen is building an AI Thinking Platform for finance leaders at Runway",
+   "kind": "podcast",
+   "date": "2025-07-16",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "siqi-chen"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/c07ce285-a0d9-46da-a0f1-afd7d1514144.mp3",
+   "label": "The FP&A Guy network: Being a First Time CFO in The Restaurant Industry, Lessons Learned with Alex Holt",
+   "kind": "podcast",
+   "date": "2025-07-10",
+   "people": [
+    "paul-barnhurst",
+    "alex-holt"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/546eed1c-f4e3-4c6e-bf5e-2f8d7f5fbdb8.mp3",
+   "label": "The FP&A Guy network: AI Solution for CFOs to Replace Outdated ERP and Accelerate Financial Operations with John Glasgow",
+   "kind": "podcast",
+   "date": "2025-07-09",
+   "people": [
+    "paul-barnhurst",
+    "john-glasgow",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/84bc09c3-7cc5-4cbc-aa1d-77f7f4b65fcb.mp3",
+   "label": "The FP&A Guy network: How SaaS FP&A Teams Leverage AI to Manage Cloud Costs & Transform Decision-Making with Raheli Sasson",
+   "kind": "podcast",
+   "date": "2025-07-03",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/ac77f28d-029f-4f09-98f6-4a977b7080e6.mp3",
+   "label": "The FP&A Guy network: How Finance Leaders Use AI to Kill Legacy ERP and Achieve Day Zero Close with John Glasgow",
+   "kind": "podcast",
+   "date": "2025-07-02",
+   "people": [
+    "paul-barnhurst",
+    "john-glasgow",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/0cfc00c5-25bc-429e-ae1d-9b02a6ed22d5.mp3",
+   "label": "The FP&A Guy network: CFM Certification Tips for Financial Modelers to Pass Without 100 Hours with Carolina Lago",
+   "kind": "podcast",
+   "date": "2025-07-01",
+   "people": [
+    "paul-barnhurst",
+    "carolina-lago"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/5aa24a20-3ec3-4dda-8994-039b3af5fd3d.mp3",
+   "label": "The FP&A Guy network: How Generative AI Helps FP&A Pros Replace Legacy Systems and Boost Accuracy with Natalia Toronyi",
+   "kind": "podcast",
+   "date": "2025-06-25",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/b9c7d76a-ac35-4129-b4b7-8e130c7d1aaf.mp3",
+   "label": "The FP&A Guy network: AI Strategies for Finance Leaders to Streamline Audits and SOPs Using GenAI with Natalia Toronyi",
+   "kind": "podcast",
+   "date": "2025-06-18",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/8ee6af87-f057-4b93-b600-05682b44de4e.mp3",
+   "label": "The FP&A Guy network: The CFI Certification for Finance Professionals to Master Excel and Power Query with Landon & Clarke",
+   "kind": "podcast",
+   "date": "2025-06-12",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/6518e60a-4427-4a81-853f-e8c737d1df6e.mp3",
+   "label": "The FP&A Guy network: How Digital Avatars and GenAI Tools Help Strategic Operators Save Time without Losing Trust",
+   "kind": "podcast",
+   "date": "2025-06-11",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/6a01baea-7f24-4fc9-a25d-4ae5ad30de5b.mp3",
+   "label": "The FP&A Guy network: How SaaS CFOs Can Fix FP&A Gaps to Scale Performance and Boost Profitability with Paul Lynch",
+   "kind": "podcast",
+   "date": "2025-06-05",
+   "people": [
+    "paul-barnhurst",
+    "paul-lynch"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/30683984-0d84-4d2e-84f1-d52d378fe54a.mp3",
+   "label": "The FP&A Guy network: How To Simplify Complex Financial Models And Save Time with Scott Powell",
+   "kind": "podcast",
+   "date": "2025-06-03",
+   "people": [
+    "paul-barnhurst",
+    "scott-powell"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/64b18c84-a9fc-4944-88fe-7c772208d882.mp3",
+   "label": "The FP&A Guy network: The Excel Copilot Features Finance Pros Need To Boost Productivity using AI with David Fortin",
+   "kind": "podcast",
+   "date": "2025-05-28",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/dfcea630-12a1-4e97-9af6-7d16c74a3b8c.mp3",
+   "label": "The FP&A Guy network: Excel Automations to Save Hours with Microsoft Copilot & Python the easy way with David Fortin",
+   "kind": "podcast",
+   "date": "2025-05-21",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/950bce37-ad4d-4d8c-be96-b78dd0b7defb.mp3",
+   "label": "The FP&A Guy network: A Finance Horror Story: The Currency Conversion Catastrophe with Lauren Pearl",
+   "kind": "podcast",
+   "date": "2025-05-20",
+   "people": [
+    "paul-barnhurst",
+    "lauren-pearl"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/8326ec32-ce7a-4e53-b983-2aefc0fcf9cf.mp3",
+   "label": "The FP&A Guy network: How Finance Teams Can Eliminate Data Errors and Automate Accounting with AI Parker Gilbert",
+   "kind": "podcast",
+   "date": "2025-05-08",
+   "people": [
+    "paul-barnhurst",
+    "parker-gilbert"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/episodes.captivate.fm/episode/52560d5f-6116-45b6-99d7-ef0e0328f2b2.mp3",
+   "label": "The FP&A Guy network: How AI Could Have Saved Macy's $150M and Prevented Financial Disasters – Ahikam Kaufman",
+   "kind": "podcast",
+   "date": "2025-05-07",
+   "people": [
+    "paul-barnhurst",
+    "ahikam-kaufman",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/episodes.captivate.fm/episode/0f0a99d2-3fad-4956-9df5-d15f8401b2d5.mp3",
+   "label": "The FP&A Guy network: How FP&A Pros Can Fix Poor Executive Communication Using a 5-Step Framework with Anders Liu-Lindberg",
+   "kind": "podcast",
+   "date": "2025-05-01",
+   "people": [
+    "paul-barnhurst",
+    "anders-liu-lindberg"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/81670352-5209-4a52-99df-0a50caa8afd1/Highlights-Carlos-Vega-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How Cash Flow Data Helps CFOs Fix Forecasting Using AI-Powered Order to Cash Tools with Carlos Vega",
+   "kind": "podcast",
+   "date": "2025-04-30",
+   "people": [
+    "paul-barnhurst",
+    "carlos-vega",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/6cbf552b-b9a8-4cdc-9ae8-7310af4eeff7/AFP-FPAC-Program-Audio-Intro-V0-1-MP3.mp3",
+   "label": "The FP&A Guy network: How the FPAC Certification Helps FP&A Professionals Get Promoted and Earn Strategic Credibility",
+   "kind": "podcast",
+   "date": "2025-04-24",
+   "people": [
+    "paul-barnhurst",
+    "vice-president"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/c7c63afa-6041-49cc-ac2a-47dfc3f432a7/Joyce-Li-Highlights-New-V0-MP3.mp3",
+   "label": "The FP&A Guy network: ChatGPT Strategy for CFOs to Build Trust in AI Tools and Win Faster ROI in 2025 with Joyce Li",
+   "kind": "podcast",
+   "date": "2025-04-09",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/8acd3b2f-7ec9-4318-b0e2-d3cd2392f48f/Joyce-Li-Audio-intro-V0-1-MP3.mp3",
+   "label": "The FP&A Guy network: AI (Like ChatGPT) Is Disrupting Finance and Reshaping Investment Decisions with Joyce Li",
+   "kind": "podcast",
+   "date": "2025-04-02",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/a944a845-84ef-42da-b33e-26dfd4021475/Elias-Apel-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: Scaling An Office of CFO SaaS Software Powerhouse with AI, Acquisitions & Finance Innovation - Elias Apel",
+   "kind": "podcast",
+   "date": "2025-03-27",
+   "people": [
+    "paul-barnhurst",
+    "elias-apel"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/85f9426e-584c-43c3-8218-4f15777da0f9/Highlights-Geoff-Robinson-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How AI Digital Avatars in Banking Will Revolutionize Financial Advisory with Geoff Robinson",
+   "kind": "podcast",
+   "date": "2025-03-27",
+   "people": [
+    "paul-barnhurst",
+    "geoff-robinson",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/922ecc06-da15-48d0-892f-454d56637b8c/Myles-Arnott-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: Financial Modelers Simplify Spreadsheets to Reduce Errors and Succeed in 2025 with Myles Arnott",
+   "kind": "podcast",
+   "date": "2025-03-25",
+   "people": [
+    "paul-barnhurst",
+    "myles-arnott"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/fe63fc1c-a22b-4397-a21e-ab2c639b7e2e/Glenn-Synder-New-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How FP&A Teams can Influence CEOs and CFOs and drive the business forward with Glenn Snyder",
+   "kind": "podcast",
+   "date": "2025-03-20",
+   "people": [
+    "paul-barnhurst",
+    "glenn-snyder"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/79467aa4-3c11-4fc1-8fb4-5ed8b01e5cb9/Geoff-Robinson-New-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How AI, Avatars and Voice Cloning Can Be Used to Improve Finance Education and Content with Geoff Robinson",
+   "kind": "podcast",
+   "date": "2025-03-19",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/73134cdb-3537-4576-89b8-9675fa1bb1ea/Emma-Cheippor-Audio-Intro-V1-MP3.mp3",
+   "label": "The FP&A Guy network: How Excel Transformed a Beginner into a 9 Million Follower Educator with Emma Chieppor",
+   "kind": "podcast",
+   "date": "2025-03-18",
+   "people": [
+    "paul-barnhurst",
+    "emma-chieppor"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/c39a1157-2df9-4226-81b4-11ac4bcbf7a1/Jeff-Casale-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How FP&A Can Use External Data to Improve Forecasting with Jeff Casale and Rich Wagner",
+   "kind": "podcast",
+   "date": "2025-03-13",
+   "people": [
+    "paul-barnhurst",
+    "rich-wagner"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/7306bbb7-9f79-4390-9e89-3d0898594cdf/AI-News-Audio-only-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How AI Search Wars Are Changing Business for Professionals to Master Perplexity and ChatGPT 4.5",
+   "kind": "podcast",
+   "date": "2025-03-12",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/8bde7dac-56a9-47c0-9f24-54a456df9430/Tom-Hinkle-Audio-Intro-V1-MP3.mp3",
+   "label": "The FP&A Guy network: AI and ChatGPT Skills Every Finance Expert Needs to Automate Data Analysis and Reporting |Tom Hinkle",
+   "kind": "podcast",
+   "date": "2025-03-05",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/87267407-2acb-45ce-98ea-3a2e461fb47a/Hugh-Cummming-Audio-V3.mp3",
+   "label": "The FP&A Guy network: How AI is Being Used by FP&A professionals & Implemented by Software Vendors with Vena CTO Hugh Cumming",
+   "kind": "podcast",
+   "date": "2025-02-27",
+   "people": [
+    "paul-barnhurst",
+    "hugh-cumming"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/1bc98a99-83a2-43e1-b706-2d51cbc1cb36/Highlights-Adam-Shilton-MP3.mp3",
+   "label": "The FP&A Guy network: How AI Training on Fake Data is Creating Automation Failures for Tech Leaders with Adam Shilton",
+   "kind": "podcast",
+   "date": "2025-02-26",
+   "people": [
+    "paul-barnhurst",
+    "adam-shilton",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/52305d5e-ccb1-4597-ac1b-55f3f3c3d9f4/Andres-Klaric-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: Financial Modeling Insights for Startups Seeking Venture Capital with Andres Klaric",
+   "kind": "podcast",
+   "date": "2025-02-18",
+   "people": [
+    "paul-barnhurst",
+    "andres-klaric"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/aa2e2f8a-d122-41ca-be79-ab0bec54a192/New-AI-Tools.mp3",
+   "label": "The FP&A Guy network: DeepSeek AI Shakes Finance as China Challenges OpenAI and Nvidia’s Market Lead",
+   "kind": "podcast",
+   "date": "2025-02-12",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/3b0ad438-00e4-4eaa-9713-1fc9a17e5b9a/Ben-Debow-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How CFOs Can Slash IT Waste and Maximize ROI with an Efficiency Mindset with Ben DeBow",
+   "kind": "podcast",
+   "date": "2025-02-05",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/ee7f4d85-b72d-476c-80ee-f20c1e801b14/Andrew-Hull-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: 80/20 Rule for FP&A Experts to Transform Decision-Making Through Analytics with Andrew Hull",
+   "kind": "podcast",
+   "date": "2025-01-30",
+   "people": [
+    "paul-barnhurst",
+    "vice-president"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/b7915e34-c956-4ad6-86ff-aefaa6d30446/Highlights-Jason-Pikoos-MP3.mp3",
+   "label": "The FP&A Guy network: Why Auditors Struggle to Adopt Generative AI and How to Fix It with Jason Pikoos",
+   "kind": "podcast",
+   "date": "2025-01-29",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/d307f986-9d29-4604-9e42-7298db8bc153/Jason-Pikoos-Audio-with-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: Generative AI in Auditing for Accountants to Master Compliance and Efficiency with Jason Pikoos",
+   "kind": "podcast",
+   "date": "2025-01-22",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/a8b601ee-cd29-446a-95e4-1bba22bee32c/Lauren-Pearl-Audio-Intro-with-New-Ad-V0-MP3.mp3",
+   "label": "The FP&A Guy network: Financial Modeling for Startups to Drive Growth and Make Better Decisions with Lauren Pearl",
+   "kind": "podcast",
+   "date": "2025-01-16",
+   "people": [
+    "paul-barnhurst",
+    "lauren-pearl"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/142c9806-7dbe-4be3-9f34-137a3408f4fd/End-Year-Recap-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: Future of AI and Quantum Computing for Finance Leaders to Scale Fast in 2025 with Glenn Hopper and Paul Barnhurst",
+   "kind": "podcast",
+   "date": "2025-01-08",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/b19587c0-39ff-4c4d-b48c-90917fe7434a/The-Great-Debate-Part-2-Audio-Intro-New-MP3.mp3",
+   "label": "The FP&A Guy network: AI vs. Human Insights in Financial Modeling to Build Accurate Models for Decision-Making",
+   "kind": "podcast",
+   "date": "2025-01-07",
+   "people": [
+    "paul-barnhurst",
+    "giles-male",
+    "carolina-lago"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/6038778b-88c8-4522-8e17-5c90efc4b8ec/Bryan-Lapidus-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How Generative AI is Revolutionizing FP&A Processes for Financial Leaders with Bryan Lapidus",
+   "kind": "podcast",
+   "date": "2025-01-02",
+   "people": [
+    "paul-barnhurst",
+    "bryan-lapidus"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/f618e2b7-d9ba-4180-af25-18aff675e1f4/Jon-Brewton-Interview-Audio-MP3.mp3",
+   "label": "The FP&A Guy network: Understanding AI Challenges and Opportunities in Financial Decision-Making with Jon Brewton",
+   "kind": "podcast",
+   "date": "2025-01-01",
+   "people": [
+    "paul-barnhurst",
+    "jon-brewton",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/214dff7b-a9a8-4160-ba99-ee15d391443f/Carl-Seidman-Audio-Re-release-New-MP3.mp3",
+   "label": "The FP&A Guy network: Effective Communication and Strategic Thinking for FP&A Professionals with Carl Seidman",
+   "kind": "podcast",
+   "date": "2024-12-26",
+   "people": [
+    "paul-barnhurst",
+    "carl-seidman"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/6774f540-daa2-4b0c-96e7-e89cbde2a23b/Jon-Brewton-Audio-with-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: The Impact of AI on Finance and Business Decision Making with Jon Brewton",
+   "kind": "podcast",
+   "date": "2024-12-25",
+   "people": [
+    "paul-barnhurst",
+    "jon-brewton",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/ecf86485-c033-427c-a97c-8938c9e002af/FMWC-Part-2-Audio-intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How Excel Competitions Transform Data Professionals into Experts Using Power Query and VBA",
+   "kind": "podcast",
+   "date": "2024-12-24",
+   "people": [
+    "paul-barnhurst",
+    "josh-aharonoff"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/5c7238b1-693e-4331-9981-cbb5de72f736/FMWC-Audio-Intro-V1-MP3.mp3",
+   "label": "The FP&A Guy network: Transforming Excel Competitions into Million-Dollar Events with Andrew Grigolyunovich",
+   "kind": "podcast",
+   "date": "2024-12-20",
+   "people": [
+    "paul-barnhurst",
+    "michael-jarman"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/c786eb64-e468-4f76-97a6-80b9723ddc74/Gabi-Steele-Interview-Audio-MP3.mp3",
+   "label": "The FP&A Guy network: AI-Powered Metrics and Data Visualization for Transforming Finance with Gabi Steele",
+   "kind": "podcast",
+   "date": "2024-12-18",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/91d4952b-5cc5-4782-9581-48cd85b599d9/Gabi-Steele-Audio-with-Intro-V0-converted.mp3",
+   "label": "The FP&A Guy network: How AI Automation Saves FP&A Teams 70 Hours Monthly with Gabi Steele",
+   "kind": "podcast",
+   "date": "2024-12-11",
+   "people": [
+    "paul-barnhurst",
+    "gabi-steele",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/515c9ca7-42cf-46b5-b1dc-fb0a438f8eea/Mark-Hansen-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: SaaS Metrics for CFOs to Elevate Strategic Growth with Mark Hansen",
+   "kind": "podcast",
+   "date": "2024-12-05",
+   "people": [
+    "paul-barnhurst",
+    "mark-hansen"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/7fd7872c-d9b9-470c-903e-0ff970275c6c/Nathan-Bell-Interview-audio-MP3.mp3",
+   "label": "The FP&A Guy network: Mastering Data Governance and Analytics for Finance Leaders with Nathan Bell",
+   "kind": "podcast",
+   "date": "2024-12-04",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/16e0ab92-96de-41f4-b072-0f8b411cc125/The-Great-Debate-Part-1-audio-with-Intro-V0-converted.mp3",
+   "label": "The FP&A Guy network: The Great Debate on AI, Excel, and the Future of Financial Modeling",
+   "kind": "podcast",
+   "date": "2024-12-03",
+   "people": [
+    "paul-barnhurst",
+    "lance-rubin"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/1e690ce8-a4cd-427f-aa00-c677c0e61481/Nathan-Bell-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How CFOs Can Master Data Governance to Scale Their Companies with Nathan Bell",
+   "kind": "podcast",
+   "date": "2024-11-27",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/140d8b02-b2a0-4de5-b848-b3acba8d5811/FATE-Ep-Interview-Audio-Only-MP3.mp3",
+   "label": "The FP&A Guy network: Insights from the FATE Conference to navigate Success in Finance and Technology",
+   "kind": "podcast",
+   "date": "2024-11-20",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "alex-brower"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/cc9ce2b3-c684-4fc8-8e66-86a1b6eeca4d/Liam-Bastick-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: Excel Problem-Solving Strategies for Financial Modelers to Build Robust Models with Liam Bastick",
+   "kind": "podcast",
+   "date": "2024-11-19",
+   "people": [
+    "paul-barnhurst",
+    "liam-bastick"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/43a39cca-682d-43bf-877c-0545e43e42c5/FATE-Ep-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: Finance & Technology Trends from FATE Conference with Paul & Glenn",
+   "kind": "podcast",
+   "date": "2024-11-13",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/06baacb2-bf97-4bae-9f57-0cda9e7c1367/Joe-Maganelli-Interview-Audio-Only-V1-MP3.mp3",
+   "label": "The FP&A Guy network: Why Finance Teams Resist Change And How to Fix It with Joe Manganelli",
+   "kind": "podcast",
+   "date": "2024-11-06",
+   "people": [
+    "paul-barnhurst",
+    "joe-manganelli",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/6797e5c1-b726-4701-a4a9-e32945f432ba/Carl-Seidman-Audio-Intro-V0-1-MP3.mp3",
+   "label": "The FP&A Guy network: Fractional CFO Insights on Financial Modeling and Business Turnaround with Carl Seidman",
+   "kind": "podcast",
+   "date": "2024-11-05",
+   "people": [
+    "paul-barnhurst",
+    "carl-seidman"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/44a6b666-0fa6-430b-9e77-89b0666ebb7a/Joe-Manganelli-Audio-Intro-V1-MP3.mp3",
+   "label": "The FP&A Guy network: Empowering Fractional CFOs with AI and Automation for Better Financial Solutions with Joe Manganelli",
+   "kind": "podcast",
+   "date": "2024-10-30",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/f1ea64b5-e1fe-490d-bdb7-d0ded26bc3e2/Nicolas-Extra-Audio-MP3.mp3",
+   "label": "The FP&A Guy network: AI Tools for Finance Professionals to Automate Reporting & Forecasting Today with Nicolas Boucher",
+   "kind": "podcast",
+   "date": "2024-10-23",
+   "people": [
+    "paul-barnhurst",
+    "nicolas-boucher",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/e1943501-093b-4098-877b-2e78e4ab2338/Chase-Wright-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: Next-Level Financial Modeling with AI and Automation for CFOs with Chase Wright",
+   "kind": "podcast",
+   "date": "2024-10-22",
+   "people": [
+    "paul-barnhurst",
+    "red-hat"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/fe9ce566-59da-452b-a8a5-4885685a43ff/Andrew-Einhorn-Audio-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: AI Investment Strategies for Retail Investors to Outperform the Market with Andrew Einhorn",
+   "kind": "podcast",
+   "date": "2024-10-16",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/25cf864c-015f-4156-ba94-280867ab9301/AI-Episode-Audio-with-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: A Ground Breaking AI Generated Podcast on Financial Modeling with Paul Barnhurst",
+   "kind": "podcast",
+   "date": "2024-10-15",
+   "people": [
+    "paul-barnhurst",
+    "scott-rostan"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/ddfbbfd4-6a1d-44e2-a100-5bee86890459/Soufyan-Hamid-Audio-with-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: How to Communicate Complex Financial Data Like a Pro with Soufyan Hamid",
+   "kind": "podcast",
+   "date": "2024-10-10",
+   "people": [
+    "paul-barnhurst",
+    "soufyan-hamid"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/11a22beb-3190-4dda-b308-01d82952c761/Nicholas-Boucher-Audio-with-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: The Role of AI in Shaping the Future of Finance Automation and Innovation with Nicolas Boucher",
+   "kind": "podcast",
+   "date": "2024-10-02",
+   "people": [
+    "paul-barnhurst",
+    "nicolas-boucher",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/c9ddc4e9-c4d2-43a7-8324-8468cba4bf8a/Ruby-Liu-Audio-with-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: The Future of Financial Modeling with AI Usability and Best Practices featuring Ruby Liu",
+   "kind": "podcast",
+   "date": "2024-10-01",
+   "people": [
+    "paul-barnhurst",
+    "ruby-liu"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/8c996b46-1234-4418-aab3-37921bdb5e70/Jack-McCullough-Audio-with-Intro-V1-MP3.mp3",
+   "label": "The FP&A Guy network: Leadership, Strategy, and the Evolving CFO Role in Modern Finance with Jack McCullough",
+   "kind": "podcast",
+   "date": "2024-09-19",
+   "people": [
+    "paul-barnhurst",
+    "jack-mccullough"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/72222a4d-adc8-4d8d-b412-3569588a81b2/Conor-Grennan-Audio-with-Intro-V0-converted.mp3",
+   "label": "The FP&A Guy network: The Future of AI in Business Mastering Effective Interaction and Resource Planning with Conor Grennan",
+   "kind": "podcast",
+   "date": "2024-09-18",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/4f6deb13-4c26-4491-8166-d37b6cce8839/Gabriela-Audio-with-Intro-V1-MP3.mp3",
+   "label": "The FP&A Guy network: Revolutionizing Finance through AI and Data Science with Gabriela Gutierrez",
+   "kind": "podcast",
+   "date": "2024-09-04",
+   "people": [
+    "paul-barnhurst",
+    "gabriela-gutierrez",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/72773c9b-2d2e-4771-8531-f84954ffaa04/Adam-Rikch-Audio-with-Intro-V0-MP3.mp3",
+   "label": "The FP&A Guy network: The Art of Financial Modeling and Data Management with Adam Rakich",
+   "kind": "podcast",
+   "date": "2024-08-13",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/d041e86c-0e3c-4d74-b341-d2a8028ee79e/Podswao-Carl-Seidman.mp3",
+   "label": "The FP&A Guy network: The Importance of Predicting and Influencing in FP&A with Carl Seidman",
+   "kind": "podcast",
+   "date": "2024-07-12",
+   "people": [
+    "paul-barnhurst",
+    "carl-seidman"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/b54ca0bd-3d7b-4529-a9d5-f09acb974e0e/Andrew-Jepson-Audio-Intro-V0.mp3",
+   "label": "The FP&A Guy network: The Power of Partnerships in Finance With Andrew Jepson",
+   "kind": "podcast",
+   "date": "2024-07-11",
+   "people": [
+    "paul-barnhurst",
+    "andrew-jepson"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/0717685b-8c01-4887-af1a-5e8320e61cdd/Jim-O-Neill-Audio-V2-2.mp3",
+   "label": "The FP&A Guy network: The Role of AI in Modern Finance With Jim O'Neill",
+   "kind": "podcast",
+   "date": "2024-07-10",
+   "people": [
+    "paul-barnhurst",
+    "jim-o-neill"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/41586208-1899-44e8-9461-8a45ae10e1db/Ben-Dooley-Intro-V0-2-MP3.mp3",
+   "label": "The FP&A Guy network: Ensuring Fairness and Privacy in the Digital Age With Ben Dooley",
+   "kind": "podcast",
+   "date": "2024-06-26",
+   "people": [
+    "paul-barnhurst",
+    "ben-dooley",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/1a2e6c25-8307-4ea0-8ca3-319e14890e81/Julio-Martinez-New-Audio-V2.mp3",
+   "label": "The FP&A Guy network: Revolutionizing Mid-Market FP&A with Advanced Data Solutions With Julio Martinez",
+   "kind": "podcast",
+   "date": "2024-06-20",
+   "people": [
+    "paul-barnhurst",
+    "julio-martinez"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/33b88f07-3cca-4092-9f55-17dabb114071/sasha-podswap-V1-Without-sponsor-MP3.mp3",
+   "label": "The FP&A Guy network: Discovering New Dimensions In Accounting with Sasha Orloff",
+   "kind": "podcast",
+   "date": "2024-06-18",
+   "people": [
+    "paul-barnhurst",
+    "sasha-orloff",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/e4858ae4-40e9-47d5-a40c-ce4e776375ed/Future-Finance-Mitchell-Episode-Full-Audio-V3.mp3",
+   "label": "The FP&A Guy network: How AI and Automation Is Bridging The Accountant Shortage with Mitchell Troyanovsky",
+   "kind": "podcast",
+   "date": "2024-05-29",
+   "people": [
+    "paul-barnhurst",
+    "mitchell-troyanovsky",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/86123f3e-3e1c-48ea-aeda-8fc01a2d0798/Stephen-Alridge-Episode-V1-MP3.mp3",
+   "label": "The FP&A Guy network: Unlocking Financial Model Secrets and Advanced Techniques with Stephen Aldridge",
+   "kind": "podcast",
+   "date": "2024-05-21",
+   "people": [
+    "paul-barnhurst",
+    "stephen-aldridge"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/5ecb43cd-0573-4cb5-804f-3180d3a71c55/Julian-Casteli-Audio-with-Trailer-V3-MP3.mp3",
+   "label": "The FP&A Guy network: Harnessing FP&A For Enhanced Business Growth & Success with Julian Castelli",
+   "kind": "podcast",
+   "date": "2024-05-16",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/5ee6dbfa-a6da-4463-ad29-1df4410698f9/0516-MP3.mp3",
+   "label": "The FP&A Guy network: Discovering New Dimensions In Accounting with Sasha Orloff",
+   "kind": "podcast",
+   "date": "2024-05-15",
+   "people": [
+    "paul-barnhurst",
+    "sasha-orloff",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/c9b2b7e9-bae7-4499-b9d4-4f48eca28188/Carolina-Lago-Audio-V1.mp3",
+   "label": "The FP&A Guy network: Financial Modeling Techniques for Global FP&A Success with Carolina Lago",
+   "kind": "podcast",
+   "date": "2024-05-07",
+   "people": [
+    "paul-barnhurst",
+    "carolina-lago"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/8bf5a6bb-4431-4d77-ab26-ef6188d979ac/Christian-Wattig-Audio-V2-MP3.mp3",
+   "label": "The FP&A Guy network: Evolution of FP&A and Insights on Wharton Online Program With Christian Wattig",
+   "kind": "podcast",
+   "date": "2024-05-02",
+   "people": [
+    "paul-barnhurst",
+    "christian-wattig"
+   ]
+  },
+  {
+   "url": "https://p.podderapp.com/4728109098/op3.dev/e/podcasts.captivate.fm/media/260cb15d-4340-45ab-957a-e536f9663258/Carl-Seidman-Full-Audio-MP3.mp3",
+   "label": "The FP&A Guy network: Future-Proof Your FP&A Career with Carl Seidman",
+   "kind": "podcast",
+   "date": "2024-04-11",
+   "people": [
+    "paul-barnhurst",
+    "carl-seidman"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/4ae89232-8ece-42b3-9375-d5ea943cdb3b/Scott-Full-Audio-MP3.mp3",
+   "label": "The FP&A Guy network: How Simplicity In Financial Modeling Enhances Decision Making",
+   "kind": "podcast",
+   "date": "2024-04-09",
+   "people": [
+    "paul-barnhurst",
+    "scott-rostan"
+   ]
+  },
+  {
+   "url": "https://op3.dev/e/podcasts.captivate.fm/media/bd967229-1fb3-4d1b-85cd-a3f4c1d216b1/Roderick-Audio-MP3.mp3",
+   "label": "The FP&A Guy network: Unraveling the Mystery: Roderick Mckinley's Guide to Navigating Tokenomics",
+   "kind": "podcast",
+   "date": "2024-03-28",
+   "people": [
+    "paul-barnhurst",
+    "roderick-mckinley"
+   ]
+  },
+  {
+   "url": "https://saspod.com/thefpandaguy/73/2445",
+   "label": "The FP&A Guy network: Beyond the Numbers: Lance Rubin's Insights on AI, Power BI, and the Future of Financial Modeling ",
+   "kind": "podcast",
+   "date": "2024-02-15",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://saspod.com/thefpandaguy/73/2340",
+   "label": "The FP&A Guy network: Exclusive Talk: Dave Hallwood, Giles Male, and Rafaël Le Saux Explore Being a Better Financial Modeler and Financial Modeling Certifications",
+   "kind": "podcast",
+   "date": "2023-12-21",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://saspod.com/thefpandaguy/73/2323",
+   "label": "The FP&A Guy network: From Classroom to Certification: Andy Temte's Unique Perspective on Financial Modeling",
+   "kind": "podcast",
+   "date": "2023-12-07",
+   "people": [
+    "paul-barnhurst",
+    "andrew-temte"
+   ]
+  },
+  {
+   "url": "https://saspod.com/thefpandaguy/73/2308",
+   "label": "The FP&A Guy network: Special Bonus Episode: Run the Numbers by CJ Gustafson",
+   "kind": "podcast",
+   "date": "2023-11-30",
+   "people": [
+    "paul-barnhurst",
+    "sebastian-duesterhoeft"
+   ]
+  },
+  {
+   "url": "https://saspod.com/thefpandaguy/73/606",
+   "label": "The FP&A Guy network: Becoming a Better Financial Modeler with Chris Reilly ",
+   "kind": "podcast",
+   "date": "2023-08-17",
+   "people": [
+    "paul-barnhurst"
+   ]
+  },
+  {
+   "url": "https://saspod.com/thefpandaguy/73/325",
+   "label": "The FP&A Guy network: David Brown: The Future of Financial Modeling",
+   "kind": "podcast",
+   "date": "2023-07-06",
+   "people": [
+    "paul-barnhurst",
+    "david-brown"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/the-human-skills-ai-cant-replace-in-finance-becky-glover/",
+   "label": "FP&A Today podcast: The Human Skills AI Can't Replace in Finance | Becky Glover",
+   "kind": "podcast",
+   "date": "2026-11-10",
+   "people": [
+    "becky-glover"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/is-your-forecast-just-a-target-in-disguise-alejandro-hellmund/",
+   "label": "FP&A Today podcast: Is Your Forecast Just a Target in Disguise? | Alejandro Hellmund",
+   "kind": "podcast",
+   "date": "2026-10-29",
+   "people": [
+    "alejandro-hellmund"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/50-of-your-job-needs-to-be-finance-transformation-anders-liu-lindberg/",
+   "label": "FP&A Today podcast: 50% of your job needs to be finance transformation: Anders Liu-Lindberg",
+   "kind": "podcast",
+   "date": "2026-09-08",
+   "people": [
+    "anders-liu-lindberg"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/goodbye-to-glenn-meet-the-new-host-of-fpa-today/",
+   "label": "FP&A Today podcast: Goodbye to Glenn: Meet the new Host of FP&A Today",
+   "kind": "podcast",
+   "date": "2026-08-11",
+   "people": [
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/sales-vs-finance-what-great-business-partnership-really-looks-like/",
+   "label": "FP&A Today podcast: Sales vs. Finance: What Great Business Partnership Really Looks Like",
+   "kind": "podcast",
+   "date": "2026-05-07",
+   "people": [
+    "stephanie-troy",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/if-the-datas-wrong-it-doesnt-matter-how-advanced-your-model-is-tom-hinkle-on-ai-and-data-strategy-in-fpa/",
+   "label": "FP&A Today podcast: “If the data's wrong, it doesn't matter how advanced your model is\" - Tom Hinkle on AI and data strategy in FP&A",
+   "kind": "podcast",
+   "date": "2026-04-21",
+   "people": [
+    "tom-hinkle"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/the-secret-fpa-recipe-how-coca-cola-centralised-80-of-its-fpa-operations/",
+   "label": "FP&A Today podcast: From Rice Paper to AI: FP&A Lessons from 30 Years at the Top of Global Finance - Sébastien Privel",
+   "kind": "podcast",
+   "date": "2026-04-13",
+   "people": [
+    "sebastien-privel"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/more-than-12-erp-implementations-later%e2%80%a6cindy-vindasius/",
+   "label": "FP&A Today podcast: More than 12 ERP implementations later…Cindy Vindasius",
+   "kind": "podcast",
+   "date": "2026-04-01",
+   "people": [
+    "cindy-vindasius"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/fpa-vs-accountants-in-an-ai-era-with-accountant-emily-feinstone/",
+   "label": "FP&A Today podcast: FP&A vs Accountants in an AI era - with Accountant Emily Feinstone",
+   "kind": "podcast",
+   "date": "2026-03-12",
+   "people": [
+    "emily-feinstone"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/after-the-gold-rush-the-75m-operation-behind-americas-hockey-champions/",
+   "label": "FP&A Today podcast: After the Gold Rush: The $75M Operation behind America's Hockey Champions",
+   "kind": "podcast",
+   "date": "2026-02-23",
+   "people": [
+    "kelly-mahncke",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/35-years-in-finance-and-constant-change-troy-anderson-cfo-at-kelly-services/",
+   "label": "FP&A Today podcast: 35 Years in Finance and constant change: Troy Anderson CFO at Kelly Services",
+   "kind": "podcast",
+   "date": "2026-01-29",
+   "people": [
+    "troy-anderson"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/the-future-of-the-ai-native-erp-stephen-hedlund-rillet/",
+   "label": "FP&A Today podcast: The Future of the AI-Native ERP Stephen Hedlund, Rillet",
+   "kind": "podcast",
+   "date": "2026-01-21",
+   "people": [
+    "stephen-hedlund"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/building-back-trust-between-cfos-and-cros-eddie-reynolds/",
+   "label": "FP&A Today podcast: Building back Trust Between CFOs and CROs: Eddie Reynolds",
+   "kind": "podcast",
+   "date": "2026-01-11",
+   "people": [
+    "eddie-reynolds"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/demystifying-the-role-of-the-cfo-in-growth-stage-companies-rick-smith/",
+   "label": "FP&A Today podcast: Demystifying the Role of the CFO in Growth Stage Companies: Rick Smith",
+   "kind": "podcast",
+   "date": "2025-12-22",
+   "people": [
+    "rick-smith"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/aligning-sales-and-fpa-adam-shilton/",
+   "label": "FP&A Today podcast: Aligning Sales and FP&A: Adam Shilton",
+   "kind": "podcast",
+   "date": "2025-12-04",
+   "people": [
+    "adam-shilton"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/cfo-of-awa-studios-on-building-a-hits-driven-business/",
+   "label": "FP&A Today podcast: CFO of AWA Studios on Building a Hits-Driven Business",
+   "kind": "podcast",
+   "date": "2025-11-25",
+   "people": [
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/chikako-tyler-fpa-lessons-getting-from-cfo-to-coo-at-california-bank-trust/",
+   "label": "FP&A Today podcast: Chikako Tyler FP&A lessons getting from CFO to COO at California Bank & Trust",
+   "kind": "podcast",
+   "date": "2025-10-23",
+   "people": [
+    "chikako-tyler"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/fire-drills-fractional-work-and-ai-reality-check-carl-seidman/",
+   "label": "FP&A Today podcast: Fire Drills, Fractional Work, and AI Reality Check: Carl Seidman",
+   "kind": "podcast",
+   "date": "2025-10-16",
+   "people": [
+    "carl-seidman"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/secrets-to-a-simple-model-peter-lynch/",
+   "label": "FP&A Today podcast: Secrets to a Simple Model: Peter Lynch",
+   "kind": "podcast",
+   "date": "2025-10-08",
+   "people": [
+    "peter-lynch"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/300-and-a-suitcase-to-ai-powered-finance-mariya-guttoh/",
+   "label": "FP&A Today podcast: $300 and a Suitcase to AI-Powered Finance: Mariya Guttoh",
+   "kind": "podcast",
+   "date": "2025-09-21",
+   "people": [
+    "mariya-guttoh"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/building-a-high-functioning-partnership-between-bi-fpa/",
+   "label": "FP&A Today podcast: Building a high functioning partnership between BI & FP&A",
+   "kind": "podcast",
+   "date": "2025-08-25",
+   "people": [
+    "marcos-bento"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/a-systems-thinking-mindset-for-fpa-success-daniel-gardner/",
+   "label": "FP&A Today podcast: A \"Systems Thinking\" Mindset for FP&A Success - Daniel Gardner",
+   "kind": "podcast",
+   "date": "2025-08-14",
+   "people": [
+    "daniel-gardner"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/i-am-done-pretending%e2%80%a6my-honest-take-on-finance-and-fpa-%e2%80%93-sarah-schlott/",
+   "label": "FP&A Today podcast: “I am done pretending\" - my honest take on finance and FP&A” – Sarah Schlott",
+   "kind": "podcast",
+   "date": "2025-07-31",
+   "people": [
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/why-financial-models-are-essential-even-at-early-stages-of-a-company-%e2%80%93-lauren-pearl/",
+   "label": "FP&A Today podcast: Why Financial models are essential even at early stages of a company – Lauren Pearl",
+   "kind": "podcast",
+   "date": "2025-07-13",
+   "people": [
+    "lauren-pearl"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/data-analytics-and-ai-for-fpa-teams/",
+   "label": "FP&A Today podcast: Data Analytics and AI for FP&A Teams",
+   "kind": "podcast",
+   "date": "2025-06-12",
+   "people": [
+    "anna-yamashita"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/data-science-masterclass-with-shifra-isaacs/",
+   "label": "FP&A Today podcast: Data Science masterclass with Shifra Isaacs",
+   "kind": "podcast",
+   "date": "2025-05-28",
+   "people": [
+    "shifra-isaacs"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/big-shifts-in-fpa-%e2%80%93-bryan-lapidus/",
+   "label": "FP&A Today podcast: Big shifts in FP&A – Bryan Lapidus",
+   "kind": "podcast",
+   "date": "2025-05-02",
+   "people": [
+    "bryan-lapidus",
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/fpa-from-fortune-100-to-scrappy-startups-%e2%80%93-mike-dion/",
+   "label": "FP&A Today podcast: FP&A from Fortune 100 to Scrappy Startups – Mike Dion",
+   "kind": "podcast",
+   "date": "2025-04-09",
+   "people": [
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/tech-talent-tariffs-and-taxes/",
+   "label": "FP&A Today podcast: Tech, Talent, Tariffs, and Taxes",
+   "kind": "podcast",
+   "date": "2025-04-01",
+   "people": [
+    "jack-mccullough",
+    "michael-bayer"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/finance-and-passion-always-in-fashion-for-175-year-old-company/",
+   "label": "FP&A Today podcast: Finance and passion always in fashion for 175-year old company",
+   "kind": "podcast",
+   "date": "2025-01-21",
+   "people": [
+    "evgenia-elezova"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/ceo-of-cfi-become-a-world-class-financial-analyst/",
+   "label": "FP&A Today podcast: CEO of CFI: Become a World Class Financial Analyst",
+   "kind": "podcast",
+   "date": "2025-01-01",
+   "people": [
+    "anna-talerico"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/nord-security-s-3b-growth-the-fpa-vision/",
+   "label": "FP&A Today podcast: Nord Security’s $3B Growth: The FP&A Vision",
+   "kind": "podcast",
+   "date": "2024-12-03",
+   "people": [
+    "laurynas-zabulis"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/brent-dykes-people-hear-statistics-but-they-feel-stories/",
+   "label": "FP&A Today podcast: Brent Dykes: People Hear Statistics, But they Feel Stories",
+   "kind": "podcast",
+   "date": "2024-11-13",
+   "people": [
+    "brent-dykes"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/top-senior-data-scientist-on-ai-and-future-proofing-fpa/",
+   "label": "FP&A Today podcast: Top Senior Data Scientist on AI and Future proofing FP&A",
+   "kind": "podcast",
+   "date": "2024-10-15",
+   "people": [
+    "tobias-zwingmann"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/an-excel-mvp-walks-into-a-podcast/",
+   "label": "FP&A Today podcast: An Excel MVP walks into a podcast",
+   "kind": "podcast",
+   "date": "2024-10-08",
+   "people": [
+    "george-mount"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/ibm-cfo-s-powerful-lessons-for-getting-fpa-into-owner-mode/",
+   "label": "FP&A Today podcast: IBM CFO’s powerful lessons for getting FP&A into Owner Mode",
+   "kind": "podcast",
+   "date": "2024-09-24",
+   "people": [
+    "glenn-hopper"
+   ]
+  },
+  {
+   "url": "https://FPAtoday.podbean.com/e/the-last-frontier-getting-fpa-from-back-office-to-brilliant-daniel-paik/",
+   "label": "FP&A Today podcast: The last frontier: Getting FP&A from Back Office to Brilliant - Daniel Paik",
+   "kind": "podcast",
+   "date": "2024-08-29",
+   "people": [
+    "daniel-paik"
+   ]
+  }
+ ]
+}
