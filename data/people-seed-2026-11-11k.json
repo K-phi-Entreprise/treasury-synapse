@@ -1,0 +1,318 @@
+{
+ "people": [
+  {
+   "id": "heather-polivka",
+   "name": "Heather Polivka",
+   "headline": "Founder & CEO, Awesome People Leaders",
+   "org": "Awesome People Leaders",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#why-strategy-fails-at-execution-and-what-leaders-can-do-about-it"
+  },
+  {
+   "id": "amy-yip",
+   "name": "Amy Yip",
+   "headline": "CEO, Amy Yip LLC",
+   "org": "Amy Yip LLC",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#3-strategies-to-turn-siloed-teams-into-collaborative-powerhouses"
+  },
+  {
+   "id": "christopher-r-salem",
+   "name": "Christopher R. Salem",
+   "headline": "Business Acceleration Strategist, Sustainable Success Coaching and Consulting",
+   "org": "Sustainable Success Coaching and Consulting",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#data-storytelling-to-raise-your-profile-with-the-c-suite"
+  },
+  {
+   "id": "natasha-todorovic",
+   "name": "Natasha Todorovic",
+   "headline": "Founder, Spiral Dynamics",
+   "org": "Spiral Dynamics",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#building-change-ready-cultures-in-the-age-of-ai"
+  },
+  {
+   "id": "david-suson",
+   "name": "David Suson",
+   "headline": "Author, Speaker, Trainer, Coach, Proliance Group LLC",
+   "org": "Proliance Group LLC",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-high-performers-handle-people-problems-pressure"
+  },
+  {
+   "id": "tammy-fitzpatrick",
+   "name": "Tammy Fitzpatrick",
+   "headline": "Founder/Strategic Advisor, The Fitzpatrick Collective",
+   "org": "The Fitzpatrick Collective",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-identity-advantage-how-leaders-shape-trust-judgement-results"
+  },
+  {
+   "id": "josh-bottum",
+   "name": "Josh Bottum",
+   "headline": "Acting CFO, Indemnify AI, Inc.",
+   "org": "Indemnify AI, Inc.",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-and-why-cfos-should-price-ai-risk"
+  },
+  {
+   "id": "mitch-max",
+   "name": "Mitch Max",
+   "headline": "Principal Consultant, BetterVu",
+   "org": "BetterVu",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#finance-as-accelerator-building-the-agile-organization"
+  },
+  {
+   "id": "lance-tylor",
+   "name": "Lance Tylor",
+   "headline": "CEO, ActionKPI Ltd.",
+   "org": "ActionKPI Ltd.",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#house-rules-for-metrics-how-to-build-metrics-leaders-can-trust"
+  },
+  {
+   "id": "peter-geiler",
+   "name": "Peter Geiler",
+   "headline": "Owner, Vingolo Vineyards",
+   "org": "Vingolo Vineyards",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#house-rules-for-metrics-how-to-build-metrics-leaders-can-trust"
+  },
+  {
+   "id": "josh-owens",
+   "name": "Josh Owens",
+   "headline": "Partner & Chief Financial Officer, AmPhil",
+   "org": "AmPhil",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-so-what-problem-treating-data-as-communication"
+  },
+  {
+   "id": "skip-kastroll",
+   "name": "Skip Kastroll",
+   "headline": "Senior Director, Insights & Analytics, AmPhil",
+   "org": "AmPhil",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-so-what-problem-treating-data-as-communication"
+  },
+  {
+   "id": "angella-jiang",
+   "name": "Angella Jiang",
+   "headline": "Principal Consultant, Oliver Wyman Limited",
+   "org": "Oliver Wyman Limited",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#make-every-dollar-count-increasing-your-return-on-strategic-initiatives"
+  },
+  {
+   "id": "mykol-fero",
+   "name": "Mykol Fero",
+   "headline": "Vice President, Enterprise Planning & Program Delivery, TruStage",
+   "org": "TruStage",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#make-every-dollar-count-increasing-your-return-on-strategic-initiatives"
+  },
+  {
+   "id": "thomas-lenahan",
+   "name": "Thomas Lenahan",
+   "headline": "AVP - Global Treasury, MetLife",
+   "org": "MetLife",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#digital-assets-in-treasury-prioritizing-use-cases-and-building-the-capability-stack"
+  },
+  {
+   "id": "marc-boiron",
+   "name": "Marc Boiron",
+   "headline": "CEO, Polygon Labs",
+   "org": "Polygon Labs",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#stablecoins-offer-faster-settlement-better-liquidity-cleaner-cross-border-flows"
+  },
+  {
+   "id": "maximillian-chen",
+   "name": "Maximillian Chen",
+   "headline": "Assistant Treasurer, Lumen Technologies, Inc.",
+   "org": "Lumen Technologies, Inc.",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-forecasting-to-foresight-how-lumen-uses-ai-to-transform-enterprise-treasury"
+  },
+  {
+   "id": "idilio-moncivais",
+   "name": "Idilio Monciváis",
+   "headline": "Director of Financial Intelligence and Data Architecture, Lumen Technologies, Inc.",
+   "org": "Lumen Technologies, Inc.",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-forecasting-to-foresight-how-lumen-uses-ai-to-transform-enterprise-treasury"
+  },
+  {
+   "id": "george-poppen",
+   "name": "George Poppen",
+   "headline": "Director - Treasury, Cash Management, Lumen Technologies, Inc.",
+   "org": "Lumen Technologies, Inc.",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-forecasting-to-foresight-how-lumen-uses-ai-to-transform-enterprise-treasury"
+  },
+  {
+   "id": "akhil-sharath",
+   "name": "Akhil Sharath",
+   "headline": "Senior Manager, PwC",
+   "org": "PwC",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-forecasting-to-foresight-how-lumen-uses-ai-to-transform-enterprise-treasury"
+  }
+ ],
+ "stages": [
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#why-strategy-fails-at-execution-and-what-leaders-can-do-about-it",
+   "label": "AFP 2026 conference: Why Strategy Fails at Execution and What Leaders Can Do About It",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "heather-polivka"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#3-strategies-to-turn-siloed-teams-into-collaborative-powerhouses",
+   "label": "AFP 2026 conference: 3 Strategies to Turn Siloed Teams into Collaborative Powerhouses",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "amy-yip"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#data-storytelling-to-raise-your-profile-with-the-c-suite",
+   "label": "AFP 2026 conference: Data Storytelling to Raise Your Profile with the C-Suite",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "christopher-r-salem"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#building-change-ready-cultures-in-the-age-of-ai",
+   "label": "AFP 2026 conference: Building Change-Ready Cultures in the Age of AI",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "natasha-todorovic"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#how-high-performers-handle-people-problems-pressure",
+   "label": "AFP 2026 conference: How High Performers Handle People, Problems, & Pressure",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "david-suson"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#the-identity-advantage-how-leaders-shape-trust-judgement-results",
+   "label": "AFP 2026 conference: The Identity Advantage: How Leaders Shape Trust, Judgement & Results",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "tammy-fitzpatrick"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#how-and-why-cfos-should-price-ai-risk",
+   "label": "AFP 2026 conference: How (and Why) CFOs Should Price AI Risk",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "josh-bottum"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#finance-as-accelerator-building-the-agile-organization",
+   "label": "AFP 2026 conference: Finance as Accelerator: Building the Agile Organization",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "mitch-max"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#house-rules-for-metrics-how-to-build-metrics-leaders-can-trust",
+   "label": "AFP 2026 conference: House Rules for Metrics: How to Build Metrics Leaders Can Trust",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "lance-tylor",
+    "peter-geiler"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#the-so-what-problem-treating-data-as-communication",
+   "label": "AFP 2026 conference: The \"So What?\" Problem: Treating Data as Communication",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "josh-owens",
+    "skip-kastroll"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#make-every-dollar-count-increasing-your-return-on-strategic-initiatives",
+   "label": "AFP 2026 conference: Make Every Dollar Count: Increasing your Return on Strategic Initiatives",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "angella-jiang",
+    "mykol-fero"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#digital-assets-in-treasury-prioritizing-use-cases-and-building-the-capability-stack",
+   "label": "AFP 2026 conference: Digital Assets in Treasury: Prioritizing Use Cases and Building the Capability Stack",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "thomas-lenahan"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#stablecoins-offer-faster-settlement-better-liquidity-cleaner-cross-border-flows",
+   "label": "AFP 2026 conference: Stablecoins Offer Faster Settlement, Better Liquidity, Cleaner Cross-Border Flows",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "marc-boiron"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#from-forecasting-to-foresight-how-lumen-uses-ai-to-transform-enterprise-treasury",
+   "label": "AFP 2026 conference: From Forecasting to Foresight: How Lumen Uses AI to Transform Enterprise Treasury",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "maximillian-chen",
+    "idilio-moncivais",
+    "george-poppen",
+    "akhil-sharath"
+   ]
+  }
+ ]
+}
