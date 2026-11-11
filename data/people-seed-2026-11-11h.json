@@ -1,0 +1,1852 @@
+{
+ "people": [
+  {
+   "id": "guillaume-lapierre",
+   "name": "Guillaume Lapierre",
+   "headline": "responsable des relations investisseurs corporates, BFT Investment Managers",
+   "org": "BFT Investment Managers",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/2025-la-bce-reste-la-manoeuvre-strategies-pour-optimiser-vos-placements"
+  },
+  {
+   "id": "lucas-quinio",
+   "name": "Lucas Quinio",
+   "headline": "responsable des moyens de paiement, Conforama",
+   "org": "Conforama",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/atelier-orchestration-des-paiements"
+  },
+  {
+   "id": "xavier-foure",
+   "name": "Xavier Foure",
+   "headline": "responsable des moyens de paiement internationaux, Kiabi",
+   "org": "Kiabi",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/atelier-orchestration-des-paiements"
+  },
+  {
+   "id": "stephane-rousseaux",
+   "name": "Stéphane Rousseaux",
+   "headline": "responsable des moyens de paiement, Kering",
+   "org": "Kering",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/atelier-orchestration-des-paiements"
+  },
+  {
+   "id": "benjamin-conort",
+   "name": "Benjamin Conort",
+   "headline": "vice-président de la commission \"fiscalité\", AFTE",
+   "org": "AFTE",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/atelier-prix-de-transfert-et-transactions-financieres-intragroupes"
+  },
+  {
+   "id": "olivier-le-goff",
+   "name": "Olivier Le Goff",
+   "headline": "président de la commission \"fiscalité\", AFTE",
+   "org": "AFTE",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/atelier-prix-de-transfert-et-transactions-financieres-intragroupes"
+  },
+  {
+   "id": "yosra-jarraya",
+   "name": "Yosra Jarraya",
+   "headline": "Co-founder & CEO, Astran",
+   "org": "Astran",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/batir-un-plan-de-continuite-dactivite-pour-le-departement-tresorerie"
+  },
+  {
+   "id": "hugo-simon-chautemp",
+   "name": "Hugo Simon-Chautemp",
+   "headline": "s, Co-fondateur, Directeur Général & CTO, Conformittee",
+   "org": "Conformittee",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/batir-un-plan-de-continuite-dactivite-pour-le-departement-tresorerie"
+  },
+  {
+   "id": "gaelle-guillot",
+   "name": "Gaëlle Guillot",
+   "headline": "directrice financière, Exail",
+   "org": "Exail",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/carriere-et-tresorerie-au-coeur-du-leadership-feminin-recits-authentiques"
+  },
+  {
+   "id": "alena-svirydava",
+   "name": "Alena Svirydava",
+   "headline": "responsable de la trésorerie, FIPAM",
+   "org": "FIPAM",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/carriere-et-tresorerie-au-coeur-du-leadership-feminin-recits-authentiques"
+  },
+  {
+   "id": "nicolas-marchais",
+   "name": "Nicolas Marchais",
+   "headline": "CEO, Phacet",
+   "org": "Phacet",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://www.afte.com/evenements/cas-dusage-des-agents-ia-opportunites-pour-le-tresorier"
+  },
+  {
+   "id": "guillaume-lasserre",
+   "name": "Guillaume Lasserre",
+   "headline": "adjoint au directeur des gestions, LBP AM - La Banque Postale",
+   "org": "LBP AM - La Banque Postale",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/comment-lia-va-transformer-la-qualite-de-credit-des-entreprises"
+  },
+  {
+   "id": "christophe-bourjac",
+   "name": "Christophe Bourjac",
+   "headline": "directeur financier, Ponticelli",
+   "org": "Ponticelli",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/comment-transmettre-un-metier-qui-ne-sapprend-pas-dans-les-livres"
+  },
+  {
+   "id": "valerie-hecquet",
+   "name": "Valérie Hecquet",
+   "headline": "adjointe du directeur financier, Ponticelli",
+   "org": "Ponticelli",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/comment-transmettre-un-metier-qui-ne-sapprend-pas-dans-les-livres"
+  },
+  {
+   "id": "fatoumata-bah",
+   "name": "Fatoumata Bah",
+   "headline": "trésorière groupe, Ponticelli",
+   "org": "Ponticelli",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/comment-transmettre-un-metier-qui-ne-sapprend-pas-dans-les-livres"
+  },
+  {
+   "id": "isabelle-catusse",
+   "name": "Isabelle Catusse",
+   "headline": "présidente de la commission \" lutte contre la fraude financière \", AFTE (intervention en qualité de Mentor)",
+   "org": "AFTE (intervention en qualité de Mentor)",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/comment-transmettre-un-metier-qui-ne-sapprend-pas-dans-les-livres"
+  },
+  {
+   "id": "jean-francois-adelle",
+   "name": "Jean-Francois Adelle",
+   "headline": "Avocat associé, Finance, Jeantet AARPI",
+   "org": "Jeantet AARPI",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/comprendre-et-mettre-en-place-un-programme-daffacturage-et-titrisation"
+  },
+  {
+   "id": "sabrina-cluzel",
+   "name": "Sabrina Cluzel",
+   "headline": "Structureur - Titrisation, CIC",
+   "org": "CIC",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/comprendre-et-mettre-en-place-un-programme-daffacturage-et-titrisation"
+  },
+  {
+   "id": "flora-dauphin",
+   "name": "Flora Dauphin",
+   "headline": "Structureur - Titrisation, CIC",
+   "org": "CIC",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/comprendre-et-mettre-en-place-un-programme-daffacturage-et-titrisation"
+  },
+  {
+   "id": "corinne-gallion",
+   "name": "Corinne Gallion",
+   "headline": "responsable de département, Crédit Agricole Leasing & Factoring",
+   "org": "Crédit Agricole Leasing & Factoring",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/comprendre-et-mettre-en-place-un-programme-daffacturage-et-titrisation"
+  },
+  {
+   "id": "oliver-ringard",
+   "name": "Oliver RINGARD",
+   "headline": "Directeur de missions - Projets communication bancaire et paiements, UTSIT",
+   "org": "UTSIT",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/contrat-dechange-le-reseau-swiftnet-v6"
+  },
+  {
+   "id": "trader-commodities",
+   "name": "Trader Commodities",
+   "headline": "IRD et FX, CIC",
+   "org": "CIC",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/couverture-de-matieres-premieres-0"
+  },
+  {
+   "id": "pierre-creusy",
+   "name": "Pierre CREUSY",
+   "headline": "directeur administratif et financier France, Kiloutou",
+   "org": "Kiloutou",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/couverture-de-matieres-premieres-0"
+  },
+  {
+   "id": "blandine-raynaud",
+   "name": "Blandine RAYNAUD",
+   "headline": "responsable trésorerie groupe, Kiloutou",
+   "org": "Kiloutou",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/couverture-de-matieres-premieres-0"
+  },
+  {
+   "id": "charles-durand",
+   "name": "Charles Durand",
+   "headline": "Managing Director, Value Creation, Cash & Working Capital chez Interpath",
+   "org": "Cash & Working Capital chez Interpath",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/culture-cash-et-kpi-bfr"
+  },
+  {
+   "id": "isabelle-alvernhe",
+   "name": "Isabelle Alvernhe",
+   "headline": "Director, Value Creation, Cash & Working Capital chez Interpath",
+   "org": "Cash & Working Capital chez Interpath",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/culture-cash-et-kpi-bfr"
+  },
+  {
+   "id": "senior-manager",
+   "name": "Senior Manager",
+   "headline": "département Debt & Treasury Advisory, Forvis Mazars",
+   "org": "Forvis Mazars",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/decryptage-et-enjeux-du-free-cash-flow-du-cash-forecast-et-du-bfr"
+  },
+  {
+   "id": "anne-alexis",
+   "name": "Anne Alexis",
+   "headline": "directrice de la trésorerie et du financement, Terrena",
+   "org": "Terrena",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/decryptage-et-enjeux-du-free-cash-flow-du-cash-forecast-et-du-bfr"
+  },
+  {
+   "id": "alexandre-le-rol",
+   "name": "Alexandre Le Rol",
+   "headline": "directeur de la trésorerie et des financements, Groupe Legendre",
+   "org": "Groupe Legendre",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/decryptage-et-enjeux-du-free-cash-flow-du-cash-forecast-et-du-bfr"
+  },
+  {
+   "id": "marc-sesboue",
+   "name": "Marc Sesboüé",
+   "headline": "directeur des financements et de la trésorerie, Maisons du Monde",
+   "org": "Maisons du Monde",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/decryptage-et-enjeux-du-free-cash-flow-du-cash-forecast-et-du-bfr"
+  },
+  {
+   "id": "corinne-siret",
+   "name": "Corinne Siret",
+   "headline": "directrice Associée, Apsys Rydge",
+   "org": "Apsys Rydge",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/diner-debat-vop-montpellier"
+  },
+  {
+   "id": "reda-charai",
+   "name": "Reda Charai",
+   "headline": "Co-fondateur, Fintecture",
+   "org": "Fintecture",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/encaissements-comprendre-linitiation-de-paiement-le-request-pay-et-wero"
+  },
+  {
+   "id": "victor-champiot",
+   "name": "Victor Champiot",
+   "headline": "consultant senior paiements - Référent monnaies numériques, Syrtals",
+   "org": "Syrtals",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/euro-numerique-lecheance-approche"
+  },
+  {
+   "id": "vanessa-irigoyen",
+   "name": "Vanessa Irigoyen",
+   "headline": "associée TVA, douanes, export control, Deloitte Société d’Avocats",
+   "org": "Deloitte Société d’Avocats",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/facturation-electronique-un-tournant-fiscal-et-digital"
+  },
+  {
+   "id": "olivier-dias",
+   "name": "Olivier Dias",
+   "headline": "responsable du pôle contrôle fiscal dématérialisé, Deloitte Société d’Avocats",
+   "org": "Deloitte Société d’Avocats",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/facturation-electronique-un-tournant-fiscal-et-digital"
+  },
+  {
+   "id": "charlotte-gounot",
+   "name": "Charlotte Gounot",
+   "headline": "directrice générale déléguée, Defacto",
+   "org": "Defacto",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://www.afte.com/evenements/financement-du-poste-clients-panorama-des-solutions-et-cas-dusages"
+  },
+  {
+   "id": "cecile-dobras",
+   "name": "Cécile Dobras",
+   "headline": "directrice associée conseil en trésorerie et financements, Emerson Audit & Conseil",
+   "org": "Emerson Audit & Conseil",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/financement-du-poste-clients-panorama-des-solutions-et-cas-dusages"
+  },
+  {
+   "id": "clara-maignan",
+   "name": "Clara Maignan",
+   "headline": "Tax lawyer - Directeur, Deloitte Société d’Avocats",
+   "org": "Deloitte Société d’Avocats",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/financement-intragroupe-un-juge-toujours-plus-exigeant-en-matiere-de-preuve"
+  },
+  {
+   "id": "warren-bellaloum",
+   "name": "Warren Bellaloum",
+   "headline": "vice-président de la commission \" placements \", AFTE",
+   "org": "AFTE",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/fonds-monetaires-en-2025-approche-face-aux-taux-et-perspectives"
+  },
+  {
+   "id": "sebastien-dumay",
+   "name": "Sébastien Dumay",
+   "headline": "directeur associé, Exclusive Partners",
+   "org": "Exclusive Partners",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/fonds-monetaires-en-2025-approche-face-aux-taux-et-perspectives"
+  },
+  {
+   "id": "clement-pochard",
+   "name": "Clément Pochard",
+   "headline": "CEO, Exclusive Partners",
+   "org": "Exclusive Partners",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/fonds-monetaires-en-2025-approche-face-aux-taux-et-perspectives"
+  },
+  {
+   "id": "thibault-malin",
+   "name": "Thibault Malin",
+   "headline": "responsable adjoint de la gestion monétaire, BNP Paribas Asset Management",
+   "org": "BNP Paribas Asset Management",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/fonds-monetaires-en-2025-approche-face-aux-taux-et-perspectives"
+  },
+  {
+   "id": "mael-menez",
+   "name": "Mael Menez",
+   "headline": "Gérant monétaire & collatéral, Arkea Asset Management",
+   "org": "Arkea Asset Management",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/fonds-monetaires-tendance-de-marches"
+  },
+  {
+   "id": "sophie-le-maire",
+   "name": "Sophie Le Maire",
+   "headline": "Responsable fundraising et investisseurs solidaires, Association Fratries",
+   "org": "Association Fratries",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/fonds-monetaires-tendance-de-marches"
+  },
+  {
+   "id": "justine-le-goas",
+   "name": "Justine LE GOAS",
+   "headline": "Consultante senior spécialisée dans les paiements, Cabinet Oaklen",
+   "org": "Cabinet Oaklen",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/fraude-la-carte-bancaire-et-traitement-des-litiges-commercial-dispute"
+  },
+  {
+   "id": "lea-dauphas",
+   "name": "Léa Dauphas",
+   "headline": "Chief Economist, Tac Economics",
+   "org": "Tac Economics",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/geopolitique-des-devises-cartographie-des-risques-dans-un-monde-fragmente"
+  },
+  {
+   "id": "sandrine-lunven",
+   "name": "Sandrine Lunven",
+   "headline": "Directrice Générale, Tac Economics",
+   "org": "Tac Economics",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/geopolitique-des-devises-cartographie-des-risques-dans-un-monde-fragmente"
+  },
+  {
+   "id": "delphine-mazieres",
+   "name": "Delphine Mazières",
+   "headline": "trésorière groupe, ABEO",
+   "org": "ABEO",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/grand-rendez-vous-perspectives-economiques-et-couverture-de-taux"
+  },
+  {
+   "id": "caroline-celle",
+   "name": "Caroline Celle",
+   "headline": "directrice de la trésorerie et des financements, ADDEV Materials",
+   "org": "ADDEV Materials",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/grand-rendez-vous-perspectives-economiques-et-couverture-de-taux"
+  },
+  {
+   "id": "frederic-pretet",
+   "name": "Frédéric Pretet",
+   "headline": "head of thematic economics France, BNP Paribas",
+   "org": "BNP Paribas",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/grand-rendez-vous-perspectives-economiques-et-couverture-de-taux"
+  },
+  {
+   "id": "gilles-savary",
+   "name": "Gilles Savary",
+   "headline": "directeur des salles des marchés, BNP Paribas",
+   "org": "BNP Paribas",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/grand-rendez-vous-perspectives-economiques-et-couverture-de-taux"
+  },
+  {
+   "id": "thomas-mehani",
+   "name": "Thomas Mehani",
+   "headline": "expert-comptable / commissaire aux comptes, formateur AFTE aux technologiques sur Excel, Power BI et les usages concrets de l'IA pour le trésorier",
+   "org": "Power BI et les usages concrets de l'IA pour le trésorier",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/ia-et-tresorerie-de-lautomatisation-lassistance-intelligente-du-tresorier"
+  },
+  {
+   "id": "antoine-de-lachapelle",
+   "name": "Antoine De Lachapelle",
+   "headline": "chargé de normes et procédures comptables, Vinci",
+   "org": "Vinci",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/ifrs-18-ifrs-9-preparation-des-clotures-2025"
+  },
+  {
+   "id": "gwenael-metais",
+   "name": "Gwenael Metais",
+   "headline": "associé, BM&A Rhône-Alpes",
+   "org": "BM&A Rhône-Alpes",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/intelligence-artificielle-opportunite-dans-le-quotidien-du-tresorier"
+  },
+  {
+   "id": "brice-allignon",
+   "name": "Brice Allignon",
+   "headline": "directeur de mission, Utsit",
+   "org": "Utsit",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://www.afte.com/evenements/iso-20022-de-multiples-ajustements-pour-bien-passer-lannee-2025"
+  },
+  {
+   "id": "stanislas-barthelemi",
+   "name": "Stanislas Barthelemi",
+   "headline": "président, Adan",
+   "org": "Adan",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/je-ne-suis-pas-un-speculateur-mais-jutilise-le-stablecoin"
+  },
+  {
+   "id": "business-development",
+   "name": "Business Development",
+   "headline": "Kinexys, J.P. Morgan Enterprise Blockchain",
+   "org": "J.P. Morgan Enterprise Blockchain",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/la-blockchain-et-les-stablecoins-au-service-du-tresorier-decryptage-et-enjeux"
+  },
+  {
+   "id": "marion-mohan",
+   "name": "Marion Mohan",
+   "headline": "Alliances Manager, Sis ID",
+   "org": "Sis ID",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/le-tresorier-face-la-fraude-au-paiement"
+  },
+  {
+   "id": "frederic-darbot",
+   "name": "Frédéric Darbot",
+   "headline": "responsable cash management & corporate desk sud est, BNP Paribas",
+   "org": "BNP Paribas",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/le-tresorier-face-la-fraude-au-paiement"
+  },
+  {
+   "id": "pascal-pallaluelo",
+   "name": "Pascal Pallaluelo",
+   "headline": "cadre financier, ONET",
+   "org": "ONET",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/le-tresorier-face-la-fraude-au-paiement"
+  },
+  {
+   "id": "christophe-pizet",
+   "name": "Christophe Pizet",
+   "headline": "responsable des affaires spéciales et de la négociation amiable, région Grand Ouest, Société Générale",
+   "org": "Société Générale",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/les-affaires-speciales-dans-les-banques"
+  },
+  {
+   "id": "gilles-adam",
+   "name": "Gilles Adam",
+   "headline": "directeur de la trésorerie et du crédit management, Eram",
+   "org": "Eram",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/les-affaires-speciales-dans-les-banques"
+  },
+  {
+   "id": "edouard-lepelletier",
+   "name": "Edouard Lepelletier",
+   "headline": "conseiller en investissements financiers, Investeam",
+   "org": "Investeam",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/les-avantages-dun-fond-obligataire-ouvert"
+  },
+  {
+   "id": "louis-de-longeaux",
+   "name": "Louis de Longeaux",
+   "headline": "associé avocat au barreau de Paris, Herbert Smith Freehills Kramer",
+   "org": "Herbert Smith Freehills Kramer",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/les-innovations-pour-la-gestion-numerique-des-garanties-bancaires"
+  },
+  {
+   "id": "xavier-aublet",
+   "name": "Xavier Aublet",
+   "headline": "responsable cash management et back office, Vinci",
+   "org": "Vinci",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/les-innovations-pour-la-gestion-numerique-des-garanties-bancaires"
+  },
+  {
+   "id": "laure-nguyen",
+   "name": "Laure Nguyen",
+   "headline": "directrice du projet garanties, Diapason",
+   "org": "Diapason",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://www.afte.com/evenements/les-innovations-pour-la-gestion-numerique-des-garanties-bancaires"
+  },
+  {
+   "id": "alexandre-stervinou",
+   "name": "Alexandre Stervinou",
+   "headline": "Directeur des études et surveillance des paiements, La Banque de France",
+   "org": "La Banque de France",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/leuro-numerique-une-opportunite-pour-les-entreprises"
+  },
+  {
+   "id": "carine-jupin",
+   "name": "Carine Jupin",
+   "headline": "Directrice régionale Hauts-de-France, La Banque de France",
+   "org": "La Banque de France",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/leuro-numerique-une-opportunite-pour-les-entreprises"
+  },
+  {
+   "id": "laurent-kocinski",
+   "name": "Laurent Kocinski",
+   "headline": "fondateur, Meelo",
+   "org": "Meelo",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/lintelligence-artificielle-audace-entrepreneuriale"
+  },
+  {
+   "id": "christine-lamoise",
+   "name": "Christine Lamoise",
+   "headline": "manager, Fiabilisation Clients et Lutte contre la Fraude, BPGO",
+   "org": "BPGO",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/lutte-contre-la-fraude-restons-tous-informes"
+  },
+  {
+   "id": "christophe-lesobre",
+   "name": "Christophe Lesobre",
+   "headline": "directeur des projets de l'innovation, Crédit Mutuel Alliance Fédérale",
+   "org": "Crédit Mutuel Alliance Fédérale",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/mixint-carriere-et-tresorerie"
+  },
+  {
+   "id": "bernard-descreux",
+   "name": "Bernard Descreux",
+   "headline": "directeur des financements et de la trésorerie, EDF",
+   "org": "EDF",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/mixint-carriere-et-tresorerie"
+  },
+  {
+   "id": "donia-harriz",
+   "name": "Donia Harriz",
+   "headline": "trésorière internationale au front office, Compagnie de Saint-Gobain",
+   "org": "Compagnie de Saint-Gobain",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/negocier-avec-son-banquier"
+  },
+  {
+   "id": "isabelle-strassburger",
+   "name": "Isabelle Strassburger",
+   "headline": "Corporate Treasury & Financing Director, Alstom",
+   "org": "Alstom",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/obligations-vertes-hybrides-perpetuelles-temoignage-alstom-actualite-mar"
+  },
+  {
+   "id": "martin-grange",
+   "name": "Martin Grange",
+   "headline": "Legal Director, Alstom",
+   "org": "Alstom",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/obligations-vertes-hybrides-perpetuelles-temoignage-alstom-actualite-mar"
+  },
+  {
+   "id": "alexandra-delsol-vintin",
+   "name": "Alexandra Delsol-Vintin",
+   "headline": "responsable régionale activités flux et cash management, Arkéa",
+   "org": "Arkéa",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/paiements-20-lutte-contre-la-fraude-vop-et-reinvention-des-bases-de-donnees-0"
+  },
+  {
+   "id": "gael-vidal",
+   "name": "Gael Vidal",
+   "headline": "expert en gestion des comptes et négociations, Altares",
+   "org": "Altares",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/paiements-20-lutte-contre-la-fraude-vop-et-reinvention-des-bases-de-donnees-0"
+  },
+  {
+   "id": "adrien-regnier-laurent",
+   "name": "Adrien REGNIER-LAURENT",
+   "headline": "Economiste, CIC Market Solutions",
+   "org": "CIC Market Solutions",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/perspectives-economiques-0"
+  },
+  {
+   "id": "melanie-casalis",
+   "name": "Mélanie Casalis",
+   "headline": "Research Director, Coalition Greenwich",
+   "org": "Coalition Greenwich",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/petit-dejeuner-afte-x-coalition-greenwich-0"
+  },
+  {
+   "id": "alexia-venet",
+   "name": "Alexia Venet",
+   "headline": "Relationship Management France, Coalition Greenwich",
+   "org": "Coalition Greenwich",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/petit-dejeuner-afte-x-coalition-greenwich-0"
+  },
+  {
+   "id": "pascal-noaillon",
+   "name": "Pascal Noaillon",
+   "headline": "gérant de portefeuille, BFT IM",
+   "org": "BFT IM",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/placements-2025-toujours-lannee-du-rendement-mais-comment"
+  },
+  {
+   "id": "jean-francois-valentin",
+   "name": "Jean-francois Valentin",
+   "headline": "Senior Business Development Manager, Fund Channel",
+   "org": "Fund Channel",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/plateformes-digitales-pour-les-fonds-monetaires"
+  },
+  {
+   "id": "julien-ortin",
+   "name": "Julien Ortin",
+   "headline": "trésorier Front-Office, Criteo",
+   "org": "Criteo",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/plateformes-digitales-pour-les-fonds-monetaires"
+  },
+  {
+   "id": "charles-sicaud",
+   "name": "Charles Sicaud",
+   "headline": "Head of Font Office & Short term liquidity, Engie",
+   "org": "Engie",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/plateformes-digitales-pour-les-fonds-monetaires"
+  },
+  {
+   "id": "cedric-pinet",
+   "name": "Cédric Pinet",
+   "headline": "directeur agence grandes entreprises Auvergne Rhône Loire, Banque Populaire Auvergne Rhône Alpes",
+   "org": "Banque Populaire Auvergne Rhône Alpes",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/point-de-marche-perspectives-economiques"
+  },
+  {
+   "id": "nicolas-rose",
+   "name": "Nicolas Rose",
+   "headline": "directeur de clientèle grandes entreprises, Banque Populaire Auvergne Rhône Alpes",
+   "org": "Banque Populaire Auvergne Rhône Alpes",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/point-de-marche-perspectives-economiques"
+  },
+  {
+   "id": "valerie-bour",
+   "name": "Valérie Bour",
+   "headline": "directrice, Banque de France",
+   "org": "Banque de France",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/point-economique-2026-avec-la-banque-de-france-et-la-dfcg"
+  },
+  {
+   "id": "claude-rivat",
+   "name": "Claude Rivat",
+   "headline": "responsable du service entreprises, Banque de France",
+   "org": "Banque de France",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/point-economique-2026-avec-la-banque-de-france-et-la-dfcg"
+  },
+  {
+   "id": "violaine-averous",
+   "name": "Violaine Avérous",
+   "headline": "Managing Director, Acquisition Finance and Loan Origination",
+   "org": "Acquisition Finance and Loan Origination",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/point-sur-le-marche-obligataire-et-le-marche-bancaire"
+  },
+  {
+   "id": "laurent-bonhomme",
+   "name": "Laurent Bonhomme",
+   "headline": "directeur du financement et de la trésorerie, Les Mousquetaires",
+   "org": "Les Mousquetaires",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/prendre-part-lessor-des-agences-de-notation-europeennes-deux-temoignages"
+  },
+  {
+   "id": "thomas-lemee",
+   "name": "Thomas Lemée",
+   "headline": "directeur des financements et des agences de notation, Air Liquide",
+   "org": "Air Liquide",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/prendre-part-lessor-des-agences-de-notation-europeennes-deux-temoignages"
+  },
+  {
+   "id": "benjamin-madjar",
+   "name": "Benjamin Madjar",
+   "headline": "président, Cashlab",
+   "org": "Cashlab",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/previsions-de-tresorerie-reprendre-la-main-sur-les-chiffres"
+  },
+  {
+   "id": "cecilia-mignucci",
+   "name": "Cécilia Mignucci",
+   "headline": "Sales & Relationship Manager for Corporates Investors, CPR Asset Management",
+   "org": "CPR Asset Management",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/remontee-des-taux-jusquou-quelles-consequences-pour-vos-placements"
+  },
+  {
+   "id": "mabrouk-chetouane",
+   "name": "Mabrouk Chetouane",
+   "headline": "Head of Global Market Strategy, Natixis Investment Managers",
+   "org": "Natixis Investment Managers",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/rencontre-afte-certitudes-et-surprises-pour-2025"
+  },
+  {
+   "id": "caroline-delerable",
+   "name": "Caroline Delerable",
+   "headline": "associée changement climatique et durabilité, EY",
+   "org": "EY",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/rencontres-des-professionnels-des-marches-de-la-dette-et-du-change-2024"
+  },
+  {
+   "id": "yann-dreves",
+   "name": "Yann Dreves",
+   "headline": "responsable du service pilotage finance durable, Crédit Mutuel Arkéa",
+   "org": "Crédit Mutuel Arkéa",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/rencontres-des-professionnels-des-marches-de-la-dette-et-du-change-2024"
+  },
+  {
+   "id": "viet-linh-nguyen",
+   "name": "Viet-Linh Nguyen",
+   "headline": "responsable de l’unité stratégie et finance durable, Autorité des Marchés Financiers (AMF)",
+   "org": "Autorité des Marchés Financiers (AMF)",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/rencontres-des-professionnels-des-marches-de-la-dette-et-du-change-2024"
+  },
+  {
+   "id": "corinne-socha-michel",
+   "name": "Corinne Socha-Michel",
+   "headline": "directeur du contrôle dépositaire, CACEIS Bank",
+   "org": "CACEIS Bank",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/rencontres-des-professionnels-des-marches-de-la-dette-et-du-change-2024"
+  },
+  {
+   "id": "keven-boiteau",
+   "name": "Keven Boiteau",
+   "headline": "manager, Robert Walters",
+   "org": "Robert Walters",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/restitution-barometre-2026-des-salaires-en-tresorerie"
+  },
+  {
+   "id": "stephanie-corbiere",
+   "name": "Stéphanie Corbière",
+   "headline": "partner, avocate à la cour, Freshfields",
+   "org": "Freshfields",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/restructuration-de-dette-anticiper-et-gerer-les-situations-difficiles"
+  },
+  {
+   "id": "antoine-rueda",
+   "name": "Antoine Rueda",
+   "headline": "counsel, avocat à la cour, Freshfields",
+   "org": "Freshfields",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/restructuration-de-dette-anticiper-et-gerer-les-situations-difficiles"
+  },
+  {
+   "id": "pascal-baudier",
+   "name": "Pascal Baudier",
+   "headline": "délégué général, AFTE",
+   "org": "AFTE",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/roadshow-diapason-le-rendez-vous-de-la-transformation-de-votre-tresorerie-paris"
+  },
+  {
+   "id": "jerome-pouvreau",
+   "name": "Jérôme Pouvreau",
+   "headline": "directeur de la trésorerie, Groupe France TV",
+   "org": "Groupe France TV",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/roadshow-diapason-le-rendez-vous-de-la-transformation-de-votre-tresorerie-paris"
+  },
+  {
+   "id": "thibault-guipet",
+   "name": "Thibault Guipet",
+   "headline": "directeur de clientèle grands comptes, AU Group",
+   "org": "AU Group",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/securiser-son-poste-client"
+  },
+  {
+   "id": "charly-gomila",
+   "name": "Charly Gomila",
+   "headline": "responsable du bureau, AU Group",
+   "org": "AU Group",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/securiser-son-poste-client"
+  },
+  {
+   "id": "nicolas-millet",
+   "name": "Nicolas MILLET",
+   "headline": "Ingénieur Commercial, Crédit Agricole Leasing & Factoring",
+   "org": "Crédit Agricole Leasing & Factoring",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/soyons-cash-comment-diffuser-une-culture-cash-au-sein-de-nos-organisations"
+  },
+  {
+   "id": "francois-dutilleul",
+   "name": "François Dutilleul",
+   "headline": "président, Rabot Dutilleul",
+   "org": "Rabot Dutilleul",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/success-story-dune-entreprise-centenaire-de-notre-region-rabot-dutilleul"
+  },
+  {
+   "id": "laurent-rouillac",
+   "name": "Laurent Rouillac",
+   "headline": "président directeur général, Syrtals",
+   "org": "Syrtals",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/tokenisation-et-crypto-actifs-font-leur-entree-dans-le-monde-des-tresoriers"
+  },
+  {
+   "id": "hugo-aupetit",
+   "name": "Hugo Aupetit",
+   "headline": "senior manager, Forvis Mazars",
+   "org": "Forvis Mazars",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/treasury-icetea-time-iso-20022-decryptage-et-points-dattention"
+  },
+  {
+   "id": "guillaume-bideau",
+   "name": "Guillaume Bideau",
+   "headline": "senior manager, Forvis Mazars",
+   "org": "Forvis Mazars",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/treasury-icetea-time-iso-20022-decryptage-et-points-dattention"
+  },
+  {
+   "id": "thibaut-sion",
+   "name": "Thibaut Sion",
+   "headline": "fondateur, Projection",
+   "org": "Projection",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/tresorier-autrement-se-reinventer-en-freelance"
+  },
+  {
+   "id": "philippe-testier",
+   "name": "Philippe Testier",
+   "headline": "président, Seizh Conseil",
+   "org": "Seizh Conseil",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.afte.com/evenements/tresorier-autrement-se-reinventer-en-freelance"
+  },
+  {
+   "id": "silvana-garcia-fakih",
+   "name": "Silvana Garcia Fakih",
+   "headline": "Référente Achats responsables Corporate, Legrand",
+   "org": "Legrand",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/tresoriers-acheteurs-banquiers-lalliance-pour-optimiser-vos-engagements-esg"
+  },
+  {
+   "id": "alex-lheritier",
+   "name": "Alex Lhéritier",
+   "headline": "Co-fondateur & CEO, Koaloo.Fi",
+   "org": "Koaloo.Fi",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/tresoriers-acheteurs-banquiers-lalliance-pour-optimiser-vos-engagements-esg"
+  },
+  {
+   "id": "caroline-richard",
+   "name": "Caroline Richard",
+   "headline": "directrice du financement, de la trésorerie et des assurances, Groupe Rocher",
+   "org": "Groupe Rocher",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/tresoriers-deti-tout-savoir-pour-bien-gerer-vos-flux-monetiques"
+  },
+  {
+   "id": "frederic-lallemand",
+   "name": "Frédéric Lallemand",
+   "headline": "responsable des relations avec les systèmes de paiement, Crédit agricole Payment services",
+   "org": "Crédit agricole Payment services",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://www.afte.com/evenements/verification-du-beneficiaire-2-mois-apres-son-entree-en-vigueur"
+  },
+  {
+   "id": "jacques-vanhautere",
+   "name": "Jacques Vanhautère",
+   "headline": "Directeur général, SEPAmail.eu",
+   "org": "SEPAmail.eu",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.afte.com/evenements/verification-du-beneficiaire-2-mois-apres-son-entree-en-vigueur"
+  }
+ ],
+ "stages": [
+  {
+   "url": "https://www.afte.com/evenements/2025-la-bce-reste-la-manoeuvre-strategies-pour-optimiser-vos-placements",
+   "label": "AFTE: 2025 la BCE reste à la manœuvre, stratégies pour optimiser vos placements | AFTE",
+   "kind": "talk",
+   "date": "2025-06-11",
+   "people": [
+    "cyril-merkel",
+    "guillaume-lapierre",
+    "david-guyot"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/afterwork-tresorerie-une-immersion-dans-une-fonction-cle-de-lentreprise",
+   "label": "AFTE: Afterwork - Trésorerie : une immersion dans une fonction clé de l'entreprise | AFTE",
+   "kind": "talk",
+   "date": "2026-06-25",
+   "people": [
+    "karine-hegbor-de-souza",
+    "charles-puissant",
+    "benoit-rousseau"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/atelier-comprendre-liso-20022-et-la-vop-impacts-tresorerie-et-tms",
+   "label": "AFTE: Atelier : Comprendre l'ISO 20022 et la VoP : impacts trésorerie et TMS | AFTE",
+   "kind": "talk",
+   "date": "2026-11-05",
+   "people": [
+    "cyrille-oudard"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/atelier-orchestration-des-paiements",
+   "label": "AFTE: Atelier orchestration des paiements | AFTE",
+   "kind": "talk",
+   "date": "2025-07-03",
+   "people": [
+    "lucas-quinio",
+    "xavier-foure",
+    "stephane-rousseaux"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/atelier-prix-de-transfert-et-transactions-financieres-intragroupes",
+   "label": "AFTE: Atelier : Prix de transfert et transactions financières intragroupes | AFTE",
+   "kind": "talk",
+   "date": "2025-03-31",
+   "people": [
+    "benjamin-conort",
+    "olivier-le-goff"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/batir-un-plan-de-continuite-dactivite-pour-le-departement-tresorerie",
+   "label": "AFTE: Bâtir un plan de continuité d’activité pour le département trésorerie | AFTE",
+   "kind": "talk",
+   "date": "2025-06-19",
+   "people": [
+    "ignacio-sanchez-miret",
+    "guillaume-peslin",
+    "yosra-jarraya",
+    "hugo-simon-chautemp"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/carriere-et-tresorerie-au-coeur-du-leadership-feminin-recits-authentiques",
+   "label": "AFTE: Carrière et trésorerie - Au cœur du leadership féminin : récits authentiques | AFTE",
+   "kind": "talk",
+   "date": "2025-06-19",
+   "people": [
+    "gaelle-guillot",
+    "alena-svirydava"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/cas-dusage-des-agents-ia-opportunites-pour-le-tresorier",
+   "label": "AFTE: Cas d'usage des agents IA : opportunités pour le trésorier | AFTE",
+   "kind": "talk",
+   "date": "2026-10-05",
+   "people": [
+    "nicolas-marchais"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/comment-lia-va-transformer-la-qualite-de-credit-des-entreprises",
+   "label": "AFTE: Comment l’IA va transformer la qualité de crédit des entreprises ? | AFTE",
+   "kind": "talk",
+   "date": "2024-09-18",
+   "people": [
+    "guillaume-lasserre"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/comment-transmettre-un-metier-qui-ne-sapprend-pas-dans-les-livres",
+   "label": "AFTE: Comment transmettre un métier qui ne s’apprend pas dans les livres ? | AFTE",
+   "kind": "talk",
+   "date": "2026-06-23",
+   "people": [
+    "christophe-bourjac",
+    "valerie-hecquet",
+    "fatoumata-bah",
+    "isabelle-catusse"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/comprendre-et-mettre-en-place-un-programme-daffacturage-et-titrisation",
+   "label": "AFTE: Comprendre et mettre en place un programme d'affacturage et titrisation | AFTE",
+   "kind": "talk",
+   "date": "2025-04-29",
+   "people": [
+    "jean-francois-adelle",
+    "sabrina-cluzel",
+    "flora-dauphin",
+    "corinne-gallion"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/comprendre-les-placements-structures",
+   "label": "AFTE: Comprendre les placements structurés | AFTE",
+   "kind": "talk",
+   "date": "2025-01-13",
+   "people": [
+    "cyril-merkel"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/contrat-dechange-le-reseau-swiftnet-v6",
+   "label": "AFTE: Contrat d'échange via le réseau SwiftNet V6 | AFTE",
+   "kind": "talk",
+   "date": "2024-03-13",
+   "people": [
+    "oliver-ringard"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/couverture-de-matieres-premieres-0",
+   "label": "AFTE: Couverture de matières premières | AFTE",
+   "kind": "talk",
+   "date": "2025-11-06",
+   "people": [
+    "trader-commodities",
+    "pierre-creusy",
+    "blandine-raynaud"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/culture-cash-et-kpi-bfr",
+   "label": "AFTE: Culture Cash et KPI BFR | AFTE",
+   "kind": "talk",
+   "date": "2024-11-06",
+   "people": [
+    "charles-durand",
+    "isabelle-alvernhe"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/decryptage-et-enjeux-du-free-cash-flow-du-cash-forecast-et-du-bfr",
+   "label": "AFTE: Décryptage et enjeux du free cash-flow, du cash forecast et du BFR | AFTE",
+   "kind": "talk",
+   "date": "2025-09-25",
+   "people": [
+    "senior-manager",
+    "anne-alexis",
+    "alexandre-le-rol",
+    "frederic-saunier",
+    "marc-sesboue"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/diner-debat-vop-montpellier",
+   "label": "AFTE: Diner Débat VoP Montpellier | AFTE",
+   "kind": "talk",
+   "date": "2026-04-22",
+   "people": [
+    "corinne-siret"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/encaissements-comprendre-linitiation-de-paiement-le-request-pay-et-wero",
+   "label": "AFTE: Encaissements : comprendre l'initiation de paiement, le request to pay et Wero | AFTE",
+   "kind": "talk",
+   "date": "2025-03-05",
+   "people": [
+    "reda-charai"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/euro-numerique-lecheance-approche",
+   "label": "AFTE: Euro numérique, l'échéance approche | AFTE",
+   "kind": "talk",
+   "date": "2026-02-19",
+   "people": [
+    "victor-champiot"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/facturation-electronique-un-tournant-fiscal-et-digital",
+   "label": "AFTE: Facturation électronique : un tournant fiscal et digital | AFTE",
+   "kind": "talk",
+   "date": "2026-09-01",
+   "people": [
+    "vanessa-irigoyen",
+    "olivier-dias"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/financement-du-poste-clients-panorama-des-solutions-et-cas-dusages",
+   "label": "AFTE: Financement du poste clients : Panorama des solutions et cas d’usages | AFTE",
+   "kind": "talk",
+   "date": "2026-04-01",
+   "people": [
+    "charlotte-gounot",
+    "cecile-dobras"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/financement-intragroupe-un-juge-toujours-plus-exigeant-en-matiere-de-preuve",
+   "label": "AFTE: Financement intragroupe : un juge toujours plus exigeant en matière de preuve | AFTE",
+   "kind": "talk",
+   "date": "2025-12-18",
+   "people": [
+    "clara-maignan"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/fonds-monetaires-en-2025-approche-face-aux-taux-et-perspectives",
+   "label": "AFTE: Fonds monétaires en 2025, approche face aux taux et perspectives | AFTE",
+   "kind": "talk",
+   "date": "2025-05-13",
+   "people": [
+    "cyril-merkel",
+    "warren-bellaloum",
+    "sebastien-dumay",
+    "clement-pochard",
+    "thibault-malin"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/fonds-monetaires-tendance-de-marches",
+   "label": "AFTE: Fonds monétaires, tendance de marchés | AFTE",
+   "kind": "talk",
+   "date": "2026-03-31",
+   "people": [
+    "mael-menez",
+    "sophie-le-maire"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/fraude-la-carte-bancaire-et-traitement-des-litiges-commercial-dispute",
+   "label": "AFTE: Fraude à la carte bancaire et traitement des litiges \"commercial dispute\" | AFTE",
+   "kind": "talk",
+   "date": "2025-02-12",
+   "people": [
+    "justine-le-goas"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/geopolitique-des-devises-cartographie-des-risques-dans-un-monde-fragmente",
+   "label": "AFTE: Géopolitique des devises : cartographie des risques dans un monde fragmenté | AFTE",
+   "kind": "talk",
+   "date": "2026-06-16",
+   "people": [
+    "lea-dauphas",
+    "sandrine-lunven"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/grand-rendez-vous-perspectives-economiques-et-couverture-de-taux",
+   "label": "AFTE: Grand rendez-vous - Perspectives économiques et couverture de taux | AFTE",
+   "kind": "talk",
+   "date": "2024-09-19",
+   "people": [
+    "delphine-mazieres",
+    "caroline-celle",
+    "frederic-pretet",
+    "gilles-savary"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/ia-et-tresorerie-de-lautomatisation-lassistance-intelligente-du-tresorier",
+   "label": "AFTE: IA et trésorerie : de l’automatisation à l’assistance intelligente du trésorier | AFTE",
+   "kind": "talk",
+   "date": "2026-10-01",
+   "people": [
+    "thomas-mehani"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/ifrs-18-ifrs-9-preparation-des-clotures-2025",
+   "label": "AFTE: IFRS 18, IFRS 9 : préparation des clôtures 2025 | AFTE",
+   "kind": "talk",
+   "date": "",
+   "people": [
+    "antoine-de-lachapelle"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/intelligence-artificielle-opportunite-dans-le-quotidien-du-tresorier",
+   "label": "AFTE: Intelligence artificielle, opportunité dans le quotidien du trésorier | AFTE",
+   "kind": "talk",
+   "date": "2025-12-03",
+   "people": [
+    "jean-francois-galea",
+    "gwenael-metais"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/iso-20022-de-multiples-ajustements-pour-bien-passer-lannee-2025",
+   "label": "AFTE: ISO 20022 – de multiples ajustements pour bien passer l’année 2025 | AFTE",
+   "kind": "talk",
+   "date": "2025-05-14",
+   "people": [
+    "brice-allignon"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/iso-20022-enjeux-benefices-et-impacts-pour-votre-organisation",
+   "label": "AFTE: ISO 20022 : enjeux, bénéfices et impacts pour votre organisation | AFTE",
+   "kind": "talk",
+   "date": "2026-03-12",
+   "people": [
+    "brice-allignon"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/je-ne-suis-pas-un-speculateur-mais-jutilise-le-stablecoin",
+   "label": "AFTE: Je ne suis pas un spéculateur mais j'utilise le stablecoin | AFTE",
+   "kind": "talk",
+   "date": "2025-09-22",
+   "people": [
+    "stanislas-barthelemi"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/la-blockchain-et-les-stablecoins-au-service-du-tresorier-decryptage-et-enjeux",
+   "label": "AFTE: La blockchain et les stablecoins au service du trésorier. Décryptage et enjeux | AFTE",
+   "kind": "talk",
+   "date": "2026-06-11",
+   "people": [
+    "business-development"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/le-tresorier-face-la-fraude-au-paiement",
+   "label": "AFTE: Le trésorier face à la fraude au paiement | AFTE",
+   "kind": "talk",
+   "date": "2025-04-29",
+   "people": [
+    "marion-mohan",
+    "frederic-darbot",
+    "pascal-pallaluelo"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/les-affaires-speciales-dans-les-banques",
+   "label": "AFTE: Les affaires spéciales dans les banques | AFTE",
+   "kind": "talk",
+   "date": "2025-05-13",
+   "people": [
+    "christophe-pizet",
+    "gilles-adam"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/les-avantages-dun-fond-obligataire-ouvert",
+   "label": "AFTE: Les avantages d'un fond obligataire ouvert | AFTE",
+   "kind": "talk",
+   "date": "2025-03-21",
+   "people": [
+    "edouard-lepelletier",
+    "cyril-merkel"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/les-innovations-pour-la-gestion-numerique-des-garanties-bancaires",
+   "label": "AFTE: Les innovations pour la gestion numérique des garanties bancaires | AFTE",
+   "kind": "talk",
+   "date": "2026-06-15",
+   "people": [
+    "louis-de-longeaux",
+    "xavier-aublet",
+    "laure-nguyen"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/leuro-numerique-une-opportunite-pour-les-entreprises",
+   "label": "AFTE: L’Euro Numérique : une opportunité pour les entreprises | AFTE",
+   "kind": "talk",
+   "date": "2024-10-03",
+   "people": [
+    "alexandre-stervinou",
+    "carine-jupin"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/lintelligence-artificielle-audace-entrepreneuriale",
+   "label": "AFTE: L'intelligence artificielle & audace entrepreneuriale | AFTE",
+   "kind": "talk",
+   "date": "2025-06-19",
+   "people": [
+    "laurent-kocinski"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/lutte-contre-la-fraude-restons-tous-informes",
+   "label": "AFTE: Lutte contre la fraude : restons tous informés ! | AFTE",
+   "kind": "talk",
+   "date": "2024-12-10",
+   "people": [
+    "christine-lamoise"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/mixint-carriere-et-tresorerie",
+   "label": "AFTE: Mix.In.T - Carrière et Trésorerie | AFTE",
+   "kind": "talk",
+   "date": "2025-04-08",
+   "people": [
+    "christophe-lesobre",
+    "bernard-descreux"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/negocier-avec-son-banquier",
+   "label": "AFTE: Négocier avec son banquier | AFTE",
+   "kind": "talk",
+   "date": "2025-10-01",
+   "people": [
+    "donia-harriz"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/norme-iso-20022-derniere-ligne-droite-pour-se-mettre-en-conformite",
+   "label": "AFTE: Norme Iso 20022, dernière ligne droite pour se mettre en conformité | AFTE",
+   "kind": "talk",
+   "date": "",
+   "people": [
+    "brice-allignon"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/norme-iso-20022-vop-et-fiabilisation-des-bases-de-donnees",
+   "label": "AFTE: Norme ISO 20022, VOP et fiabilisation des bases de données | AFTE",
+   "kind": "talk",
+   "date": "",
+   "people": [
+    "brice-allignon"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/obligations-vertes-hybrides-perpetuelles-temoignage-alstom-actualite-mar",
+   "label": "AFTE: Obligations vertes hybrides perpétuelles : témoignage Alstom / Actualité MAR | AFTE",
+   "kind": "talk",
+   "date": "2026-11-04",
+   "people": [
+    "isabelle-strassburger",
+    "martin-grange"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/paiements-20-lutte-contre-la-fraude-vop-et-reinvention-des-bases-de-donnees-0",
+   "label": "AFTE: Paiements 2.0 : lutte contre la fraude, VOP et réinvention des bases de données | AFTE",
+   "kind": "talk",
+   "date": "2025-05-20",
+   "people": [
+    "alexandra-delsol-vintin",
+    "gael-vidal"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/paiements-20-lutte-contre-la-fraude-vop-et-reinvention-des-bases-de-donnees",
+   "label": "AFTE: Paiements 2.0 : lutte contre la fraude, VOP et réinvention des bases de données | AFTE",
+   "kind": "talk",
+   "date": "2025-05-13",
+   "people": [
+    "alexandra-delsol-vintin",
+    "gael-vidal"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/perspectives-economiques-0",
+   "label": "AFTE: Perspectives économiques | AFTE",
+   "kind": "talk",
+   "date": "2024-11-19",
+   "people": [
+    "adrien-regnier-laurent"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/petit-dejeuner-afte-x-coalition-greenwich-0",
+   "label": "AFTE: Petit-déjeuner AFTE x Coalition Greenwich | AFTE",
+   "kind": "talk",
+   "date": "2026-03-18",
+   "people": [
+    "melanie-casalis",
+    "alexia-venet"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/placements-2025-toujours-lannee-du-rendement-mais-comment-0",
+   "label": "AFTE: Placements - 2025, toujours l'année du rendement, mais comment ? | AFTE",
+   "kind": "talk",
+   "date": "2025-03-13",
+   "people": [
+    "cyril-merkel",
+    "guillaume-lapierre",
+    "david-guyot"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/placements-2025-toujours-lannee-du-rendement-mais-comment",
+   "label": "AFTE: Placements - 2025, toujours l'année du rendement, mais comment ? | AFTE",
+   "kind": "talk",
+   "date": "2025-01-28",
+   "people": [
+    "cyril-merkel",
+    "warren-bellaloum",
+    "pascal-noaillon",
+    "guillaume-lapierre",
+    "david-guyot"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/placer-ses-excedents-de-tresorerie-par-ou-commencer-dans-une-eti",
+   "label": "AFTE: Placer ses excédents de trésorerie, par où commencer dans une ETI | AFTE",
+   "kind": "talk",
+   "date": "2024-09-17",
+   "people": [
+    "cyril-merkel",
+    "warren-bellaloum"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/plateformes-digitales-pour-les-fonds-monetaires",
+   "label": "AFTE: Plateformes digitales pour les fonds monétaires | AFTE",
+   "kind": "talk",
+   "date": "2026-05-27",
+   "people": [
+    "jean-francois-valentin",
+    "julien-ortin",
+    "charles-sicaud"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/point-de-marche-perspectives-economiques",
+   "label": "AFTE: Point de marché / Perspectives économiques | AFTE",
+   "kind": "talk",
+   "date": "2026-01-27",
+   "people": [
+    "cedric-pinet",
+    "nicolas-rose"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/point-economique-2026-avec-la-banque-de-france-et-la-dfcg",
+   "label": "AFTE: Point économique 2026 avec la Banque de France et la DFCG | AFTE",
+   "kind": "talk",
+   "date": "2026-11-05",
+   "people": [
+    "valerie-bour",
+    "claude-rivat"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/point-sur-le-marche-des-taux-change-et-matieres-premieres",
+   "label": "AFTE: Point sur le marché des taux, change et matières premières | AFTE",
+   "kind": "talk",
+   "date": "2025-04-02",
+   "people": [
+    "sandrine-lunven",
+    "lea-dauphas"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/point-sur-le-marche-obligataire-et-le-marche-bancaire",
+   "label": "AFTE: Point sur le marché obligataire et le marché bancaire | AFTE",
+   "kind": "talk",
+   "date": "2025-09-17",
+   "people": [
+    "violaine-averous"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/prendre-part-lessor-des-agences-de-notation-europeennes-deux-temoignages",
+   "label": "AFTE: Prendre part à l’essor des agences de notation européennes : deux témoignages | AFTE",
+   "kind": "talk",
+   "date": "2025-06-03",
+   "people": [
+    "laurent-bonhomme",
+    "thomas-lemee"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/previsions-de-tresorerie-reprendre-la-main-sur-les-chiffres",
+   "label": "AFTE: Prévisions de trésorerie : reprendre la main sur les chiffres | AFTE",
+   "kind": "talk",
+   "date": "2026-09-23",
+   "people": [
+    "benjamin-madjar"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/remontee-des-taux-jusquou-quelles-consequences-pour-vos-placements",
+   "label": "AFTE: Remontée des taux jusqu'où ? Quelles conséquences pour vos placements ? | AFTE",
+   "kind": "talk",
+   "date": "2026-10-15",
+   "people": [
+    "david-guyot",
+    "guillaume-lapierre",
+    "cecilia-mignucci"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/rencontre-afte-certitudes-et-surprises-pour-2025",
+   "label": "AFTE: Rencontre AFTE | Certitudes et surprises pour 2025 | AFTE",
+   "kind": "talk",
+   "date": "2025-03-06",
+   "people": [
+    "lea-dauphas",
+    "mabrouk-chetouane"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/rencontres-des-professionnels-des-marches-de-la-dette-et-du-change-2024",
+   "label": "AFTE: Rencontres des professionnels des marchés de la dette et du change 2024 | AFTE",
+   "kind": "talk",
+   "date": "2024-09-24",
+   "people": [
+    "matthieu-bouchery",
+    "caroline-delerable",
+    "yann-dreves",
+    "viet-linh-nguyen",
+    "corinne-socha-michel"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/restitution-barometre-2025-des-salaires-en-tresorerie",
+   "label": "AFTE: Restitution baromètre 2025 des salaires en trésorerie | AFTE",
+   "kind": "talk",
+   "date": "2025-11-13",
+   "people": [
+    "florence-saliba",
+    "cyrille-bellanger"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/restitution-barometre-2026-des-salaires-en-tresorerie",
+   "label": "AFTE: Restitution baromètre 2026 des salaires en trésorerie | AFTE",
+   "kind": "talk",
+   "date": "2026-10-20",
+   "people": [
+    "louis-rousseau",
+    "keven-boiteau"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/restitution-du-cahier-technique-securiser-la-mise-en-oeuvre-dun-tms",
+   "label": "AFTE: Restitution du cahier technique : sécuriser la mise en oeuvre d'un TMS | AFTE",
+   "kind": "talk",
+   "date": "2026-07-07",
+   "people": [
+    "anne-sophie-gobert"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/restructuration-de-dette-anticiper-et-gerer-les-situations-difficiles",
+   "label": "AFTE: Restructuration de dette, anticiper et gérer les situations difficiles | AFTE",
+   "kind": "talk",
+   "date": "2026-07-06",
+   "people": [
+    "stephanie-corbiere",
+    "antoine-rueda"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/roadshow-diapason-le-rendez-vous-de-la-transformation-de-votre-tresorerie-paris",
+   "label": "AFTE: Roadshow Diapason - Le rendez-vous de la transformation de votre trésorerie | AFTE",
+   "kind": "talk",
+   "date": "2026-04-14",
+   "people": [
+    "pascal-baudier",
+    "jerome-pouvreau",
+    "guillaume-peslin"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/securiser-son-poste-client",
+   "label": "AFTE: Sécuriser son poste client | AFTE",
+   "kind": "talk",
+   "date": "2025-04-14",
+   "people": [
+    "thibault-guipet",
+    "charly-gomila"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/soyons-cash-comment-diffuser-une-culture-cash-au-sein-de-nos-organisations",
+   "label": "AFTE: Soyons cash, comment diffuser une culture cash au sein de nos organisations | AFTE",
+   "kind": "talk",
+   "date": "2024-11-05",
+   "people": [
+    "nicolas-millet",
+    "charles-durand",
+    "isabelle-alvernhe"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/stablecoins-reglementations-et-transactions-internationales",
+   "label": "AFTE: Stablecoins, règlementations et transactions internationales | AFTE",
+   "kind": "talk",
+   "date": "2026-03-26",
+   "people": [
+    "hubert-de-vauplane"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/success-story-dune-entreprise-centenaire-de-notre-region-rabot-dutilleul",
+   "label": "AFTE: Success story d'une entreprise centenaire de notre région : Rabot Dutilleul | AFTE",
+   "kind": "talk",
+   "date": "2026-06-30",
+   "people": [
+    "francois-dutilleul"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/tokenisation-et-crypto-actifs-font-leur-entree-dans-le-monde-des-tresoriers",
+   "label": "AFTE: Tokenisation et crypto actifs font leur entrée dans le monde des trésoriers | AFTE",
+   "kind": "talk",
+   "date": "2025-06-10",
+   "people": [
+    "julien-lasalle",
+    "laurent-rouillac"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/treasury-icetea-time-iso-20022-decryptage-et-points-dattention",
+   "label": "AFTE: Treasury IceTea Time ISO 20022 : décryptage et points d'attention | AFTE",
+   "kind": "talk",
+   "date": "2025-07-08",
+   "people": [
+    "hugo-aupetit",
+    "guillaume-bideau"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/tresorier-autrement-se-reinventer-en-freelance",
+   "label": "AFTE: Trésorier autrement : se réinventer en freelance | AFTE",
+   "kind": "talk",
+   "date": "2025-10-02",
+   "people": [
+    "thibaut-sion",
+    "philippe-testier"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/tresoriers-acheteurs-banquiers-lalliance-pour-optimiser-vos-engagements-esg",
+   "label": "AFTE: Trésoriers, acheteurs, banquiers, l'alliance pour optimiser vos engagements ESG | AFTE",
+   "kind": "talk",
+   "date": "2025-02-06",
+   "people": [
+    "silvana-garcia-fakih",
+    "alex-lheritier"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/tresoriers-deti-tout-savoir-pour-bien-gerer-vos-flux-monetiques",
+   "label": "AFTE: Trésoriers d'ETI : tout savoir pour bien gérer vos flux monétiques | AFTE",
+   "kind": "talk",
+   "date": "2025-09-11",
+   "people": [
+    "caroline-richard",
+    "jean-christophe-sautereau"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/verification-du-beneficiaire-2-mois-apres-son-entree-en-vigueur",
+   "label": "AFTE: Vérification du bénéficiaire, 2 mois après son entrée en vigueur | AFTE",
+   "kind": "talk",
+   "date": "2025-12-09",
+   "people": [
+    "frederic-lallemand",
+    "jacques-vanhautere"
+   ]
+  },
+  {
+   "url": "https://www.afte.com/evenements/webinaire-verification-obligatoire-du-beneficiaire-se-preparer-pour-le-9-octobre",
+   "label": "AFTE: Webinaire Vérification obligatoire du bénéficiaire se préparer pour le 9 octobre | AFTE",
+   "kind": "talk",
+   "date": "2025-06-17",
+   "people": [
+    "frederic-lallemand"
+   ]
+  }
+ ]
+}
