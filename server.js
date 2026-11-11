@@ -2,6 +2,7 @@
 /* Treasury & FP&A Synapses server: serves the map, the graph API (three angles from one set of facts),
  * visitor declarations and submissions (never instant: the owner validates), and an admin review API. */
 const path = require('path');
+const fs = require('fs');
 const crypto = require('crypto');
 const express = require('express');
 const compression = require('compression');
@@ -431,6 +432,18 @@ if (pool) require('./chat').mount(app, {
 });
 
 /* ---------- static ---------- */
+/* one link per person: the map opens on them, and the link preview shows their own network */
+const share = require('./scripts/share');
+const SITE = PUBLIC_URL;
+let indexHtml = { at: 0, body: '' };
+function readIndex() { const f = path.join(__dirname, 'public', 'index.html'); const m = fs.statSync(f).mtimeMs; if (m !== indexHtml.at) indexHtml = { at: m, body: fs.readFileSync(f, 'utf8') }; return indexHtml.body; }
+app.get('/p/:id', async (req, res, next) => {
+  try {
+    const s = await share.personShare(pool, req.params.id);
+    if (!s) return res.status(404).set('Cache-Control', 'no-cache').type('html').send('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not on the map</title><body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#07070f;color:#ecedf7;font:16px system-ui,sans-serif;text-align:center;padding:24px"><div><p>This person is not on the map.</p><p><a style="color:#e6ff00" href="/">Open Treasury &amp; FP&amp;A Synapses</a></p></div>');
+    res.set('Cache-Control', 'no-cache').type('html').send(share.sharePage(readIndex(), share.shareMeta(s, SITE)));
+  } catch (e) { next(e); }
+});
 app.get(['/', '/index.html'], (req, res) => { res.set('Cache-Control', 'no-cache'); res.sendFile(path.join(__dirname, 'public', 'index.html')); });
 app.get(['/review', '/review/'], (req, res) => { res.set({ 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' }); res.sendFile(path.join(__dirname, 'public', 'review.html')); });
 app.get('/robots.txt', (req, res) => res.type('text/plain').send('User-agent: *\nAllow: /\nDisallow: /review\nDisallow: /api/\n'));

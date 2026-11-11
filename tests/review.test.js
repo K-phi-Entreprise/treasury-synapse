@@ -261,3 +261,21 @@ test('"sells" only for the vendor someone works at now: a former employer goes o
   assert.deepStrictEqual(roles, { Kyriba: 'worked at', 'K-phi': 'sells' });
   await pool.query("delete from person_systems where person_id = 'ex-vendor-person'; delete from people where id = 'ex-vendor-person'");
 });
+
+test('a person link serves the map with that person in the link preview, and 404 once they are off the map', async () => {
+  const p = (await pool.query("select s.a as id, p.name from v_social s join people p on p.id = s.a and not p.hidden limit 1")).rows[0];
+  const r = await fetch(base + '/p/' + p.id);
+  assert.strictEqual(r.status, 200);
+  const html = await r.text();
+  const esc = s => s.replace(/&/g, '&amp;');
+  assert.ok(html.includes('<meta property="og:title" content="' + esc(p.name) + ' on Treasury &amp; FP&amp;A Synapses">'));
+  assert.ok(html.includes('<meta property="og:image" content="https://synapse.example/p/' + p.id + '.png">'));
+  assert.ok(html.includes('<link rel="canonical" href="https://synapse.example/p/' + p.id + '">'));
+  assert.ok(/public stage/.test(html.match(/<meta property="og:description" content="([^"]*)"/)[1]));
+  assert.strictEqual((html.match(/<meta property="og:title"/g) || []).length, 1);
+  assert.strictEqual((await fetch(base + '/p/nobody-at-all')).status, 404);
+  assert.strictEqual((await fetch(base + '/p/' + encodeURIComponent('../server.js'))).status, 404);
+  await pool.query('update people set hidden = true where id = $1', [p.id]);
+  try { assert.strictEqual((await fetch(base + '/p/' + p.id)).status, 404); }
+  finally { await pool.query('update people set hidden = false where id = $1', [p.id]); }
+});

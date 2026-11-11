@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Which company runs which treasury system, and whom to ask: a 3D map of the treasury technology market and its people, built from public sources only.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <meta name="description" content="A 3D map of who runs which treasury and FP&amp;A system, and of the people who talk about it. More than 2,200 organisations, every dot from a public page.">
@@ -20,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="450c4d2888";</script>
+<script>window.SYNAPSE_BUILD="ea4dee412e";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -725,7 +724,7 @@ function setAngle(a,first){
   if(first)return;
   /* "find me" belongs to People and Topics; Connections has its own Find my name card; never Market */
   if(a==='market'||a==='connections'){if(welcoming)showWelcome(false)}
-  else if(!meId&&!welcomeDone&&G.n){let skip=false;try{skip=!!localStorage.getItem('synapse.skipWelcome')}catch(e){}if(!skip&&!welcoming)showWelcome(true)}
+  else if(!meId&&!welcomeDone&&G.n&&!/^\/p\//.test(location.pathname)){let skip=false;try{skip=!!localStorage.getItem('synapse.skipWelcome')}catch(e){}if(!skip&&!welcoming)showWelcome(true)}
   G.e=0;G.eidx=new Map();for(let i=0;i<G.n;i++)G.adj[i]=[];
   const at=performance.now()-1e4;E[a].forEach(r=>upsertEdge(G,r,at));
   G.hot=1;sel=-1;hl=null;nbr=null;hov=-1;setCenter(G,-1);
@@ -1105,7 +1104,7 @@ $('d-more').addEventListener('click',()=>{$('detail').classList.toggle('open');r
 $('d-me').addEventListener('click',()=>{if(sel<0)return;const id=G.nodes[sel].id;meId=meId===id?'':id;try{if(meId)localStorage.setItem('synapse.me',meId);else localStorage.removeItem('synapse.me')}catch(e){}renderDetail();if(window.synapseOnMe)window.synapseOnMe(meId)});
 window.synapseFindMe=()=>{welcomeDone=true;showWelcome(false);pendingMe=true;const f=$('find-in');f.value='';f.placeholder='Type your own name…';f.focus()};
 function showWelcome(on){welcoming=on;$('welcome').hidden=!on;if(on){pendingMe=true;$('hint').classList.add('off')}}
-let welcomeDone=false;
+let welcomeDone=/^\/p\//.test(location.pathname);
 $('w-find').addEventListener('click',()=>{welcomeDone=true;showWelcome(false);$('find-in').focus()});
 $('w-skip').addEventListener('click',()=>{welcomeDone=true;showWelcome(false);pendingMe=false;try{localStorage.setItem('synapse.skipWelcome','1')}catch(e){}});
 $('d-list').addEventListener('click',e=>{const a=e.target.closest('.lk');if(!a)return;if(a.dataset.pid){e.preventDefault();goPerson(a.dataset.pid)}else if(a.dataset.i!=null){e.preventDefault();select(+a.dataset.i,true)}else if(a.getAttribute('href')==='#')e.preventDefault()});
@@ -1618,7 +1617,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       const mi=meId?G.idx.get(meId):undefined;
       let skip=false;try{skip=!!localStorage.getItem('synapse.skipWelcome')}catch(e){}
       if(angle!=='market'){if(mi!=null)setTimeout(()=>{if(sel<0)select(mi,true)},reduce?0:Math.min(2500,stepMs*k+400));
-      else if(!skip)showWelcome(true)}
+      else if(!skip&&!welcomeDone)showWelcome(true)}
     }
     if(angle==='market'&&coIn.length&&!firstBoot){}
     else if(angle==='market'&&coIn.length){
@@ -2794,6 +2793,20 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   addEventListener('resize',()=>{if(root.classList.contains('m-on'))measure()});
   mq.addEventListener?mq.addEventListener('change',on):mq.addListener(on);
   on();
+})();
+</script>
+
+<script>
+/* a person's own link (/p/<id>): open People and centre the map on them */
+(function(){
+  const m=location.pathname.match(/^\/p\/([a-z0-9][a-z0-9-]{0,119})\/?$/);if(!m)return;
+  const id=m[1];let tries=0;
+  (function go(){
+    const a=document.querySelector('#angles .angle[data-a="social"]');
+    if(a&&a.getAttribute('aria-pressed')!=='true')a.click();
+    if(window.synapseFocus&&window.synapseFocus(id))return;
+    if(++tries<80)setTimeout(go,250);
+  })();
 })();
 </script>
 
