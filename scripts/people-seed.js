@@ -59,6 +59,26 @@ async function loadFile(pool, data) {
   return out;
 }
 
+/* data/people-updates.json: the newest dated title seen for each person, from every hand-researched page.
+ * Applied on every deploy; it only ever moves a title forward in time, and never touches a title a reviewer locked. */
+async function applyTitleUpdates(pool, file) {
+  if (!fs.existsSync(file)) return 0;
+  let n = 0;
+  for (const u of JSON.parse(fs.readFileSync(file, 'utf8'))) {
+    if (!ID.test(str(u.id)) || !str(u.headline) || !/^\d{4}(-\d{2}){0,2}$/.test(str(u.date))) continue;
+    if (u.confirm_only) {   /* same organisation: the title stands, now dated */
+      n += (await pool.query(`update people set headline_date = $2, headline_source = $3 where id = $1 and not headline_locked and $2 >= '2025' and headline_date < $2`, [u.id, str(u.date), str(u.source)])).rowCount;
+      continue;
+    }
+    const r = await pool.query(
+      `update people set headline = $2, org = case when $3 = '' then org else $3 end, headline_date = $4, headline_source = $5, updated_at = now()
+        where id = $1 and not headline_locked and $4 >= '2025' and headline_date < $4 and (headline is distinct from $2 or headline_date = '')`,
+      [u.id, str(u.headline), str(u.org), str(u.date), str(u.source)]);
+    n += r.rowCount;
+  }
+  return n;
+}
+
 async function seedPeople(pool, dir = path.join(__dirname, '..', 'data')) {
   if (process.env.PEOPLE_SEED === 'off') return {};   /* the tests compare the store with the dump alone */
   const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => /^people-seed.*\.json$/.test(f)).sort() : [];
@@ -70,6 +90,8 @@ async function seedPeople(pool, dir = path.join(__dirname, '..', 'data')) {
     await pool.query('insert into people_seed_files (file, rows) values ($1,$2) on conflict do nothing', [f, r.stages]);
     all[f] = r;
   }
+  const t = await applyTitleUpdates(pool, path.join(dir, 'people-updates.json'));
+  if (t) all['titles moved forward'] = t;
   return all;
 }
 
@@ -77,4 +99,4 @@ if (require.main === module) {
   const pool = require('./db').makePool();
   seedPeople(pool).then(async r => { console.log('people seed:', JSON.stringify(r)); await pool.end(); }).catch(async e => { console.error(e); await pool.end(); process.exit(1); });
 }
-module.exports = { seedPeople, loadFile };
+module.exports = { seedPeople, loadFile, applyTitleUpdates };

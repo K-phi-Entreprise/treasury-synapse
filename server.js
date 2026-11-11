@@ -67,7 +67,8 @@ async function loadGraph(since) {
     people: people.rows.filter(p => !p.hidden).map(p => ({
       id: p.id, name: p.name, headline: p.headline, org: p.org, city: p.city, region: p.region, segment: p.segment, seed: p.seed,
       foundVia: p.found_via, source: p.source, knownFor: p.known_for, publishers: p.publishers, followers: p.followers,
-      addedAt: iso(p.added_at), topics: p.topics, systems: sellsNow(p.systems, p.org), roles: p.roles
+      addedAt: iso(p.added_at), topics: p.topics, systems: sellsNow(p.systems, p.org), roles: p.roles,
+      headlineDate: p.headline_date || '', headlineSource: p.headline_source || ''
     })),
     hidden: people.rows.filter(p => p.hidden).map(p => p.id),
     edges: edges.rows.map(recentEdge).filter(Boolean).map(e => ({ id: e.a + '__' + e.b, a: e.a, b: e.b, kind: e.kind, label: e.label, url: e.url, confidence: e.confidence, evidence: e.evidence, addedAt: iso(e.added_at) })),
@@ -346,7 +347,7 @@ app.post('/api/admin/submissions/:id', admin, async (req, res, next) => {
     if (sub.kind === 'correction' && status === 'approved' && FIELDS[p.field]) {
       const value = req.body.value != null ? clip(req.body.value, 300) : p.value; /* the reviewer may adjust the wording */
       if (p.field === 'region' && !REGIONS.includes(value)) throw Object.assign(new Error('bad region'), { http: 400 });
-      await client.query(`update people set ${FIELDS[p.field]} = $2, updated_at = now() where id = $1`, [sub.person_id, value]);
+      await client.query(`update people set ${FIELDS[p.field]} = $2, updated_at = now()${p.field === 'headline' || p.field === 'org' ? ", headline_locked = true, headline_date = to_char(now(), 'YYYY-MM-DD'), headline_source = 'reviewed correction'" : ''} where id = $1`, [sub.person_id, value]);
     }
     let signIn = '';
     if (sub.kind === 'claim' && status === 'approved') {

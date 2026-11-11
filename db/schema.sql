@@ -360,3 +360,8 @@ create table if not exists people_seed_files (
   rows integer not null default 0,
   loaded_at timestamptz not null default now()
 );
+
+-- A title is dated by the page it came from; a newer dated stage replaces it, unless a reviewed correction locked it.
+alter table people add column if not exists headline_date text not null default '';
+alter table people add column if not exists headline_source text not null default '';
+alter table people add column if not exists headline_locked boolean not null default false;

@@ -338,3 +338,24 @@ test('leadership and about pages draw no line: colleagues are not a stage', asyn
   const g = await fetch(base + '/api/graph').then(r => r.json());
   assert.ok(!g.edges.some(e => e.kind === 'executive' || e.kind === 'colleague'));
 });
+
+test('titles move forward in time only, keep reviewed corrections, and carry their date', async () => {
+  const { applyTitleUpdates } = require('../scripts/people-seed');
+  const fs = require('fs'), os = require('os'), path = require('path');
+  const p = (await pool.query("select id from people where not hidden and not headline_locked limit 2")).rows;
+  await pool.query("update people set headline = 'Old title, Oldco', headline_date = '' where id = $1", [p[0].id]);
+  await pool.query("update people set headline = 'Reviewed title', headline_locked = true where id = $1", [p[1].id]);
+  const f = path.join(os.tmpdir(), 'upd-' + Date.now() + '.json');
+  fs.writeFileSync(f, JSON.stringify([
+    { id: p[0].id, headline: 'New title, Newco', org: 'Newco', date: '2026-05-01', source: 'https://example.org/a' },
+    { id: p[0].id, headline: 'Older title, Midco', org: 'Midco', date: '2025-02-01', source: 'https://example.org/b' },
+    { id: p[1].id, headline: 'Overwrite?', org: 'X', date: '2026-06-01', source: 'https://example.org/c' }]));
+  await applyTitleUpdates(pool, f);
+  const a = (await pool.query('select headline, headline_date from people where id = $1', [p[0].id])).rows[0];
+  assert.deepStrictEqual(a, { headline: 'New title, Newco', headline_date: '2026-05-01' });
+  assert.strictEqual((await pool.query('select headline from people where id = $1', [p[1].id])).rows[0].headline, 'Reviewed title');
+  /* the graph is cached for a minute; ask for the changes since a moment ago */
+  const g = await fetch(base + '/api/graph?since=' + encodeURIComponent(new Date(Date.now() - 60000).toISOString())).then(r => r.json());
+  assert.strictEqual(g.people.find(x => x.id === p[0].id).headlineDate, '2026-05-01');
+  await pool.query('update people set headline_locked = false where id = $1', [p[1].id]);
+});
