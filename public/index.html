@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="9de9956749";</script>
+<script>window.SYNAPSE_BUILD="14b1e7f593";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -318,7 +318,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .detail{display:flex;flex-direction:column;min-height:0;max-height:100%;overflow:hidden}
   .detail .links{max-height:none;flex:1 1 auto;min-height:0}
   .answer{max-height:60%;overflow:hidden}
-  .app{grid-template-columns:360px minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr);grid-template-areas:"top stage" "kpis stage" "filters stage" "regions stage"}
+  .app{grid-template-columns:360px minmax(0,1fr);grid-template-rows:auto auto minmax(0,auto) minmax(0,1fr);overflow:hidden;grid-template-areas:"top stage" "kpis stage" "filters stage" "regions stage"}
   .top{padding-top:22px;align-items:flex-start;flex-wrap:wrap}
   .sub{display:block}
   .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 0;overflow:visible;padding-block:14px 16px}
@@ -328,6 +328,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .stage{border:0;border-left:1px solid var(--line)}
   .regions{display:block}
   .filters .chips{flex-direction:column;align-items:flex-start}
+  .filters{min-height:0;overflow-y:auto;scrollbar-width:thin}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -544,7 +545,7 @@ function resize(G){
 }
 function step(G,dt){
   const A=G.act||null,N=A?A.length:G.n;if(!N)return;
-  const P=G.pos,V=G.vel,F=new Float32Array(G.n*3),on=G.on||null;
+  const P=G.pos,V=G.vel,F=(G.F&&G.F.length>=G.n*3)?G.F:(G.F=new Float32Array(Math.max(G.n*3,3072))),on=G.on||null;F.fill(0,0,G.n*3);
   for(let u=0;u<N;u++){
     const i=A?A[u]:u;
     const ix=P[i*3],iy=P[i*3+1],iz=P[i*3+2];
@@ -998,6 +999,7 @@ function refreshAll(){
     for(let i=0;i<G.n;i++)if(pass[i]&&G.adj[i].some(j=>vis[j]&&G.nodes[j].hub==='system'||vis[j]&&G.nodes[j].hub==='signal'))vis[i]=1;
   }
   G.on=vis;G.act=[];for(let i=0;i<G.n;i++)if(vis[i])G.act.push(i);
+  {let sg=G.act.length;for(const i of G.act)sg=(sg*31+i)|0;if(sg!==G.actSig){G.actSig=sg;G.hot=1}}
   if(sel>=0&&!vis[sel])sel=-1;
   if(hov>=0&&!vis[hov])hov=-1;
   nbr=sel>=0?new Set(G.adj[sel].filter(j=>vis[j])):null;
@@ -1216,13 +1218,13 @@ function initGL(){
   const world=new THREE.Group();scene.add(world);
   const tanHalf=Math.tan(48*Math.PI/360);
   const uni={uTime:{value:0},uScale:{value:800},uDist:{value:300},uR:{value:60},uTw:{value:reduce?0:.1},uLight:{value:lightMode?1:0}};
-  const BL={transparent:true,depthWrite:false,depthTest:false,blending:THREE.CustomBlending,blendEquation:THREE.AddEquation,blendSrc:THREE.SrcAlphaFactor,blendDst:THREE.OneFactor,blendSrcAlpha:THREE.ZeroFactor,blendDstAlpha:THREE.OneFactor};
+  const BL={transparent:true,depthWrite:false,depthTest:false,blending:THREE.CustomBlending,blendEquation:THREE.AddEquation,blendSrc:THREE.OneFactor,blendDst:THREE.OneFactor,blendSrcAlpha:THREE.OneFactor,blendDstAlpha:THREE.OneFactor};
   const vertNode='attribute vec3 aColor;attribute float aSize;attribute float aAlpha;attribute float aPhase;uniform float uTime;uniform float uScale;uniform float uDist;uniform float uR;uniform float uTw;varying vec3 vColor;varying float vAlpha;'+
   'void main(){vec4 mv=modelViewMatrix*vec4(position,1.0);float vz=max(-mv.z,1.0);float depth=0.35+0.65*(1.0-smoothstep(uDist-uR*1.15,uDist+uR*1.15,vz));float tw=1.0+uTw*sin(uTime*1.7+aPhase);'+
   'gl_PointSize=min(aSize*2.7*tw*uScale/vz,260.0);gl_Position=projectionMatrix*mv;vColor=aColor;vAlpha=aAlpha*depth;}';
   const fragNode='precision mediump float;uniform float uLight;varying vec3 vColor;varying float vAlpha;void main(){vec2 p=gl_PointCoord-0.5;float d=length(p)*2.0;if(d>1.0)discard;float cr=0.37;float core=1.0-smoothstep(cr-0.05,cr,d);float rim=smoothstep(cr-0.14,cr-0.03,d)*(1.0-smoothstep(cr-0.03,cr+0.02,d));float halo=pow(max(1.0-d,0.0),2.4)*0.65;'+
   'if(uLight>0.5){float a=clamp(core+rim*0.8+halo*0.22,0.0,1.0);gl_FragColor=vec4(mix(vColor,vColor*0.8,core),a*vAlpha);return;}'+
-  'vec3 col=vColor*(halo+core*0.55)+mix(vColor,vec3(1.0),0.65)*(core*0.35+rim*0.55);gl_FragColor=vec4(col,vAlpha);}';
+  'vec3 col=(vColor*(halo+core*0.55)+mix(vColor,vec3(1.0),0.65)*(core*0.35+rim*0.55))*vAlpha;gl_FragColor=vec4(col,max(max(col.r,col.g),col.b));}';
   const nodeMat=new THREE.ShaderMaterial(Object.assign({uniforms:uni,vertexShader:vertNode,fragmentShader:fragNode},BL));
 
   /* nodes */
@@ -1252,7 +1254,7 @@ function initGL(){
   eGeo.setDrawRange(0,0);
   const lineMat=new THREE.ShaderMaterial(Object.assign({uniforms:uni,
     vertexShader:'attribute vec3 aColor;uniform float uDist;uniform float uR;varying vec3 vC;void main(){vec4 mv=modelViewMatrix*vec4(position,1.0);float depth=0.3+0.7*(1.0-smoothstep(uDist-uR*1.15,uDist+uR*1.15,max(-mv.z,1.0)));vC=aColor*depth;gl_Position=projectionMatrix*mv;}',
-    fragmentShader:'precision mediump float;uniform float uLight;varying vec3 vC;void main(){if(uLight>0.5){float m=max(max(vC.r,vC.g),vC.b);gl_FragColor=vec4(vC/max(m,0.001)*0.55,clamp(m*1.5,0.0,0.85));return;}gl_FragColor=vec4(vC,1.0);}'},BL));
+    fragmentShader:'precision mediump float;uniform float uLight;varying vec3 vC;void main(){if(uLight>0.5){float m=max(max(vC.r,vC.g),vC.b);gl_FragColor=vec4(vC/max(m,0.001)*0.55,clamp(m*1.5,0.0,0.85));return;}gl_FragColor=vec4(vC,max(max(vC.r,vC.g),vC.b));}'},BL));
   const lines=new THREE.LineSegments(eGeo,lineMat);lines.frustumCulled=false;lines.renderOrder=1;world.add(lines);
 
   /* pulses */
@@ -1263,7 +1265,7 @@ function initGL(){
   pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3).setUsage(THREE.DynamicDrawUsage));pGeo.setAttribute('aColor',new THREE.BufferAttribute(pCol,3).setUsage(THREE.DynamicDrawUsage));pGeo.setAttribute('aAlpha',new THREE.BufferAttribute(pAl,1).setUsage(THREE.DynamicDrawUsage));
   const pulseMat=new THREE.ShaderMaterial(Object.assign({uniforms:uni,
     vertexShader:'attribute vec3 aColor;attribute float aAlpha;uniform float uScale;uniform float uDist;uniform float uR;varying vec3 vColor;varying float vAlpha;void main(){vec4 mv=modelViewMatrix*vec4(position,1.0);float vz=max(-mv.z,1.0);float depth=0.4+0.6*(1.0-smoothstep(uDist-uR*1.15,uDist+uR*1.15,vz));gl_PointSize=min(3.4*uScale/vz,40.0);gl_Position=projectionMatrix*mv;vColor=aColor;vAlpha=aAlpha*depth;}',
-    fragmentShader:'precision mediump float;uniform float uLight;varying vec3 vColor;varying float vAlpha;void main(){float d=length(gl_PointCoord-0.5)*2.0;if(d>1.0)discard;float a=pow(1.0-d,1.7);if(uLight>0.5){gl_FragColor=vec4(vColor,a*vAlpha);return;}gl_FragColor=vec4(mix(vColor,vec3(1.0),0.6)*a,vAlpha);}'},BL));
+    fragmentShader:'precision mediump float;uniform float uLight;varying vec3 vColor;varying float vAlpha;void main(){float d=length(gl_PointCoord-0.5)*2.0;if(d>1.0)discard;float a=pow(1.0-d,1.7);if(uLight>0.5){gl_FragColor=vec4(vColor,a*vAlpha);return;}vec3 c=mix(vColor,vec3(1.0),0.6)*a*vAlpha;gl_FragColor=vec4(c,max(max(c.r,c.g),c.b));}'},BL));
   const pulses=new THREE.Points(pGeo,pulseMat);pulses.frustumCulled=false;pulses.renderOrder=2;world.add(pulses);
   /* light or dark: the same scene, glow added on dark, solid ink on light */
   function setGLTheme(light){
@@ -1473,7 +1475,11 @@ function initGL(){
   function frame(now){
     requestAnimationFrame(frame);
     const dt=Math.min(.05,(now-last)/1000);last=now;
-    const NA=G.act?G.act.length:G.n;if(NA){if(G.hot||NA<900||(frameNo&1))step(G,dt);if(G.hot&&NA<900)step(G,dt)}
+    const NA=G.act?G.act.length:G.n;
+    /* a large map settles, then stops: new nodes, data or filters heat it again (G.hot=1) */
+    if(G.hot===1){G.hot=2;G.hotAt=now}
+    if(G.hot&&NA>=900&&now-G.hotAt>15000)G.hot=0;
+    if(NA){if(G.hot||NA<900)step(G,dt);if(G.hot&&NA<900)step(G,dt)}
     frameNo++;
     if(Math.abs(G.R-lastR)>.5||lastC!==G.center){lastR=G.R;lastC=G.center;fit();dust.scale.setScalar(G.R)}
     uni.uR.value=G.R;
