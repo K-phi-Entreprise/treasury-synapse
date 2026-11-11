@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="14b1e7f593";</script>
+<script>window.SYNAPSE_BUILD="11b65c9061";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -86,6 +86,7 @@ button{font:inherit;color:inherit}
 a{color:var(--link)}
 .band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
+.side{display:contents}
 .app{height:100%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(280px,1fr) auto;grid-template-areas:"top" "kpis" "stage" "filters";background:var(--bg)}
 .top{grid-area:top;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px 4px}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
@@ -318,7 +319,9 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .detail{display:flex;flex-direction:column;min-height:0;max-height:100%;overflow:hidden}
   .detail .links{max-height:none;flex:1 1 auto;min-height:0}
   .answer{max-height:60%;overflow:hidden}
-  .app{grid-template-columns:360px minmax(0,1fr);grid-template-rows:auto auto minmax(0,auto) minmax(0,1fr);overflow:hidden;grid-template-areas:"top stage" "kpis stage" "filters stage" "regions stage"}
+  .app{grid-template-columns:360px minmax(0,1fr);grid-template-rows:minmax(0,1fr);overflow:hidden;grid-template-areas:"side stage"}
+  .side{grid-area:side;display:flex;flex-direction:column;min-height:0;overflow-y:auto;scrollbar-width:thin}
+  .side>.regions{flex:none;overflow:visible}
   .top{padding-top:22px;align-items:flex-start;flex-wrap:wrap}
   .sub{display:block}
   .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 0;overflow:visible;padding-block:14px 16px}
@@ -328,12 +331,12 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .stage{border:0;border-left:1px solid var(--line)}
   .regions{display:block}
   .filters .chips{flex-direction:column;align-items:flex-start}
-  .filters{min-height:0;overflow-y:auto;scrollbar-width:thin}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
 <div class="app">
+<div class="side">
   <header class="top band">
     <div class="brand">
       <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M7 8l7 13M21 7l-7 14M7 8l14-1" stroke="currentColor" stroke-width="1.4" fill="none" opacity=".55"/><circle cx="7" cy="8" r="2.6" fill="currentColor"/><circle cx="21" cy="7" r="3.2" fill="currentColor"/><circle cx="14" cy="21" r="4" fill="currentColor"/></svg>
@@ -354,6 +357,32 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     <article class="kpi"><span class="k-label" id="k6l">Last 7 days</span><strong class="k-val" id="k6">0</strong><span class="k-sub" id="k6s">people added</span></article>
   </section>
 
+
+  <section class="filters band" aria-label="Angle and segments">
+    <div class="angles" id="angles" role="group" aria-label="Angle">
+      <button class="angle" type="button" data-a="market" aria-pressed="true">Market</button>
+      <button class="angle" type="button" data-a="social" aria-pressed="false">People</button>
+      <button class="angle" type="button" data-a="topics" aria-pressed="false">Topics</button>
+      <button class="angle" type="button" data-a="connections" aria-pressed="false">Connections</button>
+      <button class="seg-toggle" id="seg-toggle" type="button" aria-expanded="false" aria-controls="chips"><span id="seg-lbl">Segments</span><b id="seg-off" hidden></b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+    </div>
+    <p class="angle-note" id="angle-note"></p>
+    <div class="chips" id="chips"></div>
+    <div class="mkf" id="mkf" hidden>
+      <div class="mkf-tabs" id="mkf-tabs" role="tablist" aria-label="Filter the market by"></div>
+      <div class="mkf-tiles" id="mkf-tiles" role="group"></div>
+      <div class="mkf-foot"><button class="mkf-reset" id="mkf-reset" type="button" hidden>Show all</button><button class="mkf-reset" id="method-btn" type="button">How this is counted</button></div>
+    </div>
+  </section>
+
+  <section class="regions band" aria-label="Regions and most connected">
+    <h3 class="h" id="reg-h">Regions</h3>
+    <div id="region-list"></div>
+    <h3 class="h" id="hub-h">Most connected</h3>
+    <div id="hub-list"></div>
+    <p class="note" id="src-note">Every link points to the public page it was found on: a podcast episode, a panel, a filing. Nothing here comes from private profiles.</p>
+  </section>
+</div>
   <main class="stage" id="stage">
     <canvas id="gl" role="img" aria-label="Interactive 3D map of treasury professionals. Bubble size shows how connected a person is and lines show public co-appearances."></canvas>
     <div class="labels" id="labels"></div>
@@ -415,31 +444,6 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
       </form>
     </div>
   </main>
-
-  <section class="filters band" aria-label="Angle and segments">
-    <div class="angles" id="angles" role="group" aria-label="Angle">
-      <button class="angle" type="button" data-a="market" aria-pressed="true">Market</button>
-      <button class="angle" type="button" data-a="social" aria-pressed="false">People</button>
-      <button class="angle" type="button" data-a="topics" aria-pressed="false">Topics</button>
-      <button class="angle" type="button" data-a="connections" aria-pressed="false">Connections</button>
-      <button class="seg-toggle" id="seg-toggle" type="button" aria-expanded="false" aria-controls="chips"><span id="seg-lbl">Segments</span><b id="seg-off" hidden></b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-    </div>
-    <p class="angle-note" id="angle-note"></p>
-    <div class="chips" id="chips"></div>
-    <div class="mkf" id="mkf" hidden>
-      <div class="mkf-tabs" id="mkf-tabs" role="tablist" aria-label="Filter the market by"></div>
-      <div class="mkf-tiles" id="mkf-tiles" role="group"></div>
-      <div class="mkf-foot"><button class="mkf-reset" id="mkf-reset" type="button" hidden>Show all</button><button class="mkf-reset" id="method-btn" type="button">How this is counted</button></div>
-    </div>
-  </section>
-
-  <section class="regions band" aria-label="Regions and most connected">
-    <h3 class="h" id="reg-h">Regions</h3>
-    <div id="region-list"></div>
-    <h3 class="h" id="hub-h">Most connected</h3>
-    <div id="hub-list"></div>
-    <p class="note" id="src-note">Every link points to the public page it was found on: a podcast episode, a panel, a filing. Nothing here comes from private profiles.</p>
-  </section>
 </div>
 
 <script src="/vendor/three.min.js"></script>
