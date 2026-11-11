@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const express = require('express');
 const compression = require('compression');
 const { makePool } = require('./scripts/db');
-const { loadMarket } = require('./scripts/market');
+const { loadMarket, upsertInstall } = require('./scripts/market');
 
 const app = express();
 const pool = process.env.DATABASE_URL ? makePool() : null;
@@ -181,22 +181,50 @@ function cleanPayload(kind, p) {
     return { url: u.toString().slice(0, 600), note: clip(p.note, 600) };
   }
   if (kind === 'removal') return { reason: clip(p.reason, 600), self: !!p.self };
+  /* additions: a public page that shows it, never a LinkedIn page; nothing appears before review */
+  if (kind === 'add_person' || kind === 'add_install') {
+    const url = publicPage(p.url); if (!url) return null; if (url.refused) return url;
+    if (kind === 'add_person') {
+      const name = clip(p.name, 120).replace(/\s+/g, ' ').trim();
+      if (name.length < 3 || !/\S\s+\S/.test(name)) return null;
+      return { name, title: clip(p.title, 160).trim(), org: clip(p.org, 120).trim(), region: REGIONS.includes(p.region) ? p.region : 'Unknown',
+        segment: SEGMENTS.includes(p.segment) ? p.segment : 'Corporate treasury', url, self: !!p.self, note: clip(p.note, 600) };
+    }
+    const org = clip(p.org, 120).replace(/\s+/g, ' ').trim(), system = clip(p.system, 80).replace(/\s+/g, ' ').trim();
+    if (org.length < 2 || system.length < 2) return null;
+    return { org, system, status: ['live', 'implementing', 'selecting'].includes(p.status) ? p.status : 'live', url, note: clip(p.note, 600) };
+  }
   return null;
 }
+const SEGMENTS = ['Corporate treasury', 'Banks', 'TMS & fintech', 'Advisors', 'Media', 'EPM & FP&A software'];
+function publicPage(v) {
+  let u; try { u = new URL(String(v || '').trim()); } catch (e) { return null; }
+  if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
+  if (/(^|\.)linkedin\.com$/i.test(u.hostname)) return { refused: 'linkedin' };
+  return u.toString().slice(0, 600);
+}
+const personKey = n => String(n || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 120);
 
 app.post('/api/submissions', async (req, res, next) => {
   try {
     const kind = String(req.body.kind || '');
-    if (!['correction', 'link', 'removal'].includes(kind)) return res.status(400).json({ error: 'unknown submission kind' });
-    const personId = slug(req.body.personId) || null;
-    if (!personId) return res.status(400).json({ error: 'which person is this about?' });
+    if (!['correction', 'link', 'removal', 'add_person', 'add_install'].includes(kind)) return res.status(400).json({ error: 'unknown submission kind' });
+    const adding = kind === 'add_person' || kind === 'add_install';
+    const personId = adding ? null : (slug(req.body.personId) || null);
+    if (!adding && !personId) return res.status(400).json({ error: 'which person is this about?' });
     const payload = cleanPayload(kind, req.body.payload);
-    if (!payload) return res.status(400).json({ error: kind === 'link' ? 'a public web address is needed' : 'something is missing in the form' });
+    if (!payload) return res.status(400).json({ error: kind === 'link' ? 'a public web address is needed'
+      : kind === 'add_person' ? 'a full name and a public page that shows the person are needed'
+      : kind === 'add_install' ? 'the organisation, the system and a public page that says so are needed' : 'something is missing in the form' });
     if (payload.refused) return res.status(400).json({ error: 'LinkedIn pages are not used on this map; please send another public page' });
     const email = clip(String(req.body.email || '').replace(/\s+/g, ''), 200);
     if (email && !EMAIL_RE.test(email)) return res.status(400).json({ error: 'that email address does not look right' });
     if (kind === 'removal' && !email) return res.status(400).json({ error: 'an email is needed for a removal request, to confirm it and tell you the outcome' });
-    const person = await pool.query('select id, name from people where id = $1', [personId]);
+    if (kind === 'add_person') {
+      const dup = await pool.query('select name from people where (id = $1 or lower(name) = lower($2)) and not hidden limit 1', [personKey(payload.name), payload.name]);
+      if (dup.rows.length) return res.status(409).json({ error: dup.rows[0].name + ' is already on the map: search the name, then use Suggest a change on the card' });
+    }
+    const person = adding ? { rows: [{ name: payload.name || payload.org }] } : await pool.query('select id, name from people where id = $1', [personId]);
     if (!person.rows.length) return res.status(404).json({ error: 'unknown person' });
     if (!(await underQuota(req, 'submission'))) return res.status(429).json({ error: 'daily limit reached, try again tomorrow' });
     const token = email ? crypto.randomBytes(18).toString('base64url') : null;
@@ -210,7 +238,9 @@ app.post('/api/submissions', async (req, res, next) => {
     }
     let mailed = false;
     if (email) {
-      const what = kind === 'removal' ? 'remove ' + person.rows[0].name + ' from the map. The card is hidden now; deletion is final once the request is reviewed.'
+      const what = kind === 'add_person' ? 'add ' + payload.name + ' to the map.'
+        : kind === 'add_install' ? 'add to the map that ' + payload.org + ' ' + (payload.status === 'selecting' ? 'is selecting ' : payload.status === 'implementing' ? 'is implementing ' : 'runs ') + payload.system + '.'
+        : kind === 'removal' ? 'remove ' + person.rows[0].name + ' from the map. The card is hidden now; deletion is final once the request is reviewed.'
         : kind === 'link' ? 'add a public page to ' + person.rows[0].name + "'s card."
         : 'correct ' + person.rows[0].name + "'s card.";
       const m = await mail.send({ to: email, subject: 'Treasury Synapse: please confirm your request',
@@ -291,6 +321,16 @@ app.post('/api/admin/submissions/:id', admin, async (req, res, next) => {
     if (sub.kind === 'removal') {
       if (status === 'approved') await client.query('delete from people where id = $1', [sub.person_id]);
       if (status === 'rejected') await client.query("update people set hidden = false, hidden_reason = '', updated_at = now() where id = $1", [sub.person_id]);
+    }
+    /* an approved addition goes on the map with the page it was sent with as its source */
+    if (sub.kind === 'add_person' && status === 'approved') {
+      await client.query(`insert into people (id, name, headline, org, region, segment, source, added_at, updated_at) values ($1,$2,$3,$4,$5,$6,$7,now(),now()) on conflict (id) do nothing`,
+        [personKey(p.name), p.name, p.title || '', p.org || '', p.region || 'Unknown', SEGMENTS.includes(p.segment) ? p.segment : 'Corporate treasury', p.url]);
+    }
+    if (sub.kind === 'add_install' && status === 'approved') {
+      const x = await upsertInstall(client, { company: p.org, system: p.system, status: p.status, url: p.url, kind: 'article',
+        date: p.status === 'selecting' ? new Date().toISOString().slice(0, 10) : '', note: 'Sent through the map and reviewed' + (p.note ? ': ' + p.note : '') }, 'submission');
+      if (!x.ok) throw Object.assign(new Error('not added: ' + x.reason), { http: 400 });
     }
     if (sub.kind === 'correction' && status === 'approved' && FIELDS[p.field]) {
       const value = req.body.value != null ? clip(req.body.value, 300) : p.value; /* the reviewer may adjust the wording */

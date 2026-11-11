@@ -224,3 +224,29 @@ test('catch-up import from /review: adds people, links and evidence, never undoe
   const review = fs.readFileSync(path.join(__dirname, '..', 'public', 'review.html'), 'utf8');
   assert.ok(review.includes("fetch('/api/admin/import'") && review.includes('id="imp-file"'));
 });
+
+test('Add to the map: a person or what an organisation runs, with a public page, appears only once approved', async () => {
+  await pool.query("delete from quotas");
+  const bad = [
+    [{ kind: 'add_person', payload: { name: 'Solo', url: 'https://example.org/talk' } }, /full name/],
+    [{ kind: 'add_person', payload: { name: 'Ada Example', url: 'https://www.linkedin.com/in/ada' } }, /LinkedIn/],
+    [{ kind: 'add_install', payload: { org: 'Acme', system: 'Kyriba' } }, /public page/],
+    [{ kind: 'add_person', payload: { name: 'Craig Jeffery', url: 'https://example.org/talk' } }, /already on the map/]
+  ];
+  for (const [b, re] of bad) { const r = await send(b); assert.ok(r.status >= 400, JSON.stringify(r)); assert.match(r.body.error, re); }
+  const p = await send({ kind: 'add_person', payload: { name: 'Ada Example', title: 'Group treasurer', org: 'Acme Foods', region: 'France', segment: 'Corporate treasury', self: true, url: 'https://example.org/panel-2026' } });
+  assert.strictEqual(p.status, 200); assert.strictEqual(p.body.status, 'pending');
+  assert.strictEqual(await person('ada-example'), undefined, 'nothing appears before review');
+  const i = await send({ kind: 'add_install', payload: { org: 'Acme Foods', system: 'Kyriba', status: 'implementing', url: 'https://example.org/press/acme-kyriba' } });
+  assert.strictEqual(i.status, 200);
+  const q = await queue();
+  const sp = q.submissions.find(s => s.kind === 'add_person'), si = q.submissions.find(s => s.kind === 'add_install');
+  assert.ok(sp && si);
+  assert.strictEqual((await adminPost('/api/admin/submissions/' + sp.id, { status: 'approved' })).status, 200);
+  assert.strictEqual((await adminPost('/api/admin/submissions/' + si.id, { status: 'approved' })).status, 200);
+  const a = await person('ada-example');
+  assert.deepStrictEqual({ name: a.name, headline: a.headline, org: a.org, region: a.region, source: a.source }, { name: 'Ada Example', headline: 'Group treasurer', org: 'Acme Foods', region: 'France', source: 'https://example.org/panel-2026' });
+  const row = (await pool.query("select status, url, source from installs where company_id = 'acme-foods' and system = 'Kyriba'")).rows[0];
+  assert.deepStrictEqual(row, { status: 'implementing', url: 'https://example.org/press/acme-kyriba', source: 'submission' });
+  await pool.query("delete from installs where company_id = 'acme-foods'; delete from companies where id = 'acme-foods'; delete from people where id = 'ada-example'");
+});

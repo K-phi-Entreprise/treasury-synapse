@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="bebe1fbd71";</script>
+<script>window.SYNAPSE_BUILD="6c936f5afa";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -2538,6 +2538,106 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   btn.addEventListener('click',()=>{if(cur)open(cur)});
   document.addEventListener('synapse:detail',e=>{cur=e.detail;const me=window.synapseMe&&window.synapseMe();btn.hidden=!cur||cur===me});
   document.addEventListener('synapse:hub',()=>{cur='';btn.hidden=true});
+})();
+</script>
+
+<style>
+.add-btn{margin-right:8px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg);font:500 12.5px/1.2 var(--font-body);cursor:pointer}
+.add-btn:hover{border-color:var(--accent)}
+.add-btn{white-space:nowrap}.add-btn .ab-s{display:none}
+@media (max-width:899px){.add-btn .ab-l{display:none}.add-btn .ab-s{display:inline}}
+@media (max-width:899px){.add-btn{padding:3px 10px;font-size:11.5px;margin-right:6px}}
+@media (min-width:900px){.top .add-btn{order:3;margin:8px 0 0 8px}}
+.ad .kinds{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.ad .kinds button,.ad .st button{padding:6px 11px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-dim);font:500 12.5px/1.25 var(--font-body);cursor:pointer}
+.ad .kinds button[aria-pressed=true],.ad .st button[aria-pressed=true]{color:var(--fg);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.ad .st{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 10px}
+.ad .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:480px){.ad .grid{grid-template-columns:1fr}}
+.ad .check{margin:0 0 8px}
+.ad h4{margin:4px 0 6px;font:600 12.5px/1.3 var(--font-body);color:var(--fg-dim)}
+</style>
+<div class="sbm-wrap" id="ad-wrap" hidden>
+  <form class="sbm ad" id="ad" novalidate autocomplete="on">
+    <h3>Add to the map</h3>
+    <button class="close x" id="ad-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="who">Everything on the map comes from a public page, so send the page that shows it: a talk, a podcast, an article, a case study, a press release. LinkedIn pages are not used. A person reads every addition before it appears.</p>
+    <div class="kinds" id="ad-kinds" role="group" aria-label="What to add">
+      <button type="button" data-k="add_person" aria-pressed="true">A person</button>
+      <button type="button" data-k="add_install" aria-pressed="false">What an organisation runs</button>
+    </div>
+    <div id="ad-person">
+      <label class="check"><input type="checkbox" id="ad-self"><span>This is me</span></label>
+      <div class="grid">
+        <label><span>Full name</span><input type="text" id="ad-name" maxlength="120" autocomplete="name"></label>
+        <label><span>Title</span><input type="text" id="ad-title" maxlength="160" autocomplete="organization-title" placeholder="Group treasurer"></label>
+        <label><span>Organisation</span><input type="text" id="ad-org" maxlength="120" autocomplete="organization"></label>
+        <label><span>Region</span><select id="ad-region"><option value="">Choose</option></select></label>
+      </div>
+      <label><span>Works in</span><select id="ad-seg"></select></label>
+    </div>
+    <div id="ad-install" hidden>
+      <div class="grid">
+        <label><span>Organisation</span><input type="text" id="ad-co" maxlength="120" autocomplete="organization"></label>
+        <label><span>System</span><input type="text" id="ad-sys" maxlength="80" list="ed-systems" placeholder="Kyriba, Anaplan, SAP…"></label>
+      </div>
+      <h4>Status</h4>
+      <div class="st" id="ad-st" role="group" aria-label="Status">
+        <button type="button" data-s="live" aria-pressed="true">Runs it</button>
+        <button type="button" data-s="implementing" aria-pressed="false">Implementing it</button>
+        <button type="button" data-s="selecting" aria-pressed="false">Selecting one now</button>
+      </div>
+    </div>
+    <label><span>Public page that shows it</span><input type="url" id="ad-url" maxlength="600" inputmode="url" placeholder="https://…"></label>
+    <label><span>Anything we should know (optional)</span><textarea id="ad-note" maxlength="600"></textarea></label>
+    <label><span>Your email (optional, to confirm and hear back)</span><input type="email" id="ad-email" maxlength="200" autocomplete="email"></label>
+    <button class="go" id="ad-go" type="submit">Send for review</button>
+    <p class="msg" id="ad-msg" role="status" aria-live="polite"></p>
+  </form>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const REGIONS=['United States','United Kingdom','France','DACH','Benelux','Nordics','Southern Europe','Asia-Pacific','Other'];
+  const SEGMENTS=['Corporate treasury','Banks','TMS & fintech','Advisors','Media','EPM & FP&A software'];
+  REGIONS.forEach(r=>{const o=document.createElement('option');o.textContent=r;$('ad-region').appendChild(o)});
+  SEGMENTS.forEach(r=>{const o=document.createElement('option');o.textContent=r;$('ad-seg').appendChild(o)});
+  let kind='add_person',status='live';
+  function setKind(k){kind=k;$('ad-kinds').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)));$('ad-person').hidden=k!=='add_person';$('ad-install').hidden=k!=='add_install'}
+  $('ad-kinds').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setKind(b.dataset.k)});
+  $('ad-st').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;status=b.dataset.s;$('ad-st').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
+  function open(pre){
+    pre=pre||{};setKind(pre.kind||'add_person');
+    if(pre.org){$('ad-co').value=pre.org;$('ad-org').value=pre.org}
+    if(pre.system)$('ad-sys').value=pre.system;
+    if(pre.name)$('ad-name').value=pre.name;
+    const dl=$('ed-systems');if(dl&&!dl.children.length&&window.synapseSystems)window.synapseSystems().forEach(n=>{const o=document.createElement('option');o.value=n;dl.appendChild(o)});
+    $('ad-msg').textContent='';$('ad-msg').className='msg';$('ad-go').hidden=false;$('ad-go').disabled=false;$('ad-wrap').hidden=false;
+  }
+  const close=()=>{$('ad-wrap').hidden=true};
+  window.synapseAdd=open;
+  $('ad-close').addEventListener('click',close);
+  $('ad-wrap').addEventListener('click',e=>{if(e.target===$('ad-wrap'))close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('ad-wrap').hidden)close()});
+  /* in the header, next to Get help */
+  const top=document.querySelector('.top'),badge=$('status');
+  const ab=document.createElement('button');ab.type='button';ab.className='add-btn';ab.id='add-btn';ab.innerHTML='+ <span class="ab-l">Add to the map</span><span class="ab-s">Add</span>';ab.setAttribute('aria-label','Add to the map');
+  const help=$('help-btn');top.insertBefore(ab,help&&help.parentNode===top?help:badge);
+  ab.addEventListener('click',()=>open());
+  $('ad').addEventListener('submit',async e=>{
+    e.preventDefault();const msg=$('ad-msg'),go=$('ad-go');
+    const payload=kind==='add_person'
+      ?{name:$('ad-name').value,title:$('ad-title').value,org:$('ad-org').value,region:$('ad-region').value,segment:$('ad-seg').value,self:$('ad-self').checked,url:$('ad-url').value,note:$('ad-note').value}
+      :{org:$('ad-co').value,system:$('ad-sys').value,status:status,url:$('ad-url').value,note:$('ad-note').value};
+    go.disabled=true;msg.className='msg';msg.textContent='Sending…';
+    try{
+      const r=await fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({kind:kind,payload:payload,email:$('ad-email').value})});
+      const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'That did not go through. Try again.');
+      msg.className='msg ok';
+      msg.textContent=(j.confirmation==='sent'?'Sent. Check your inbox to confirm; ':'Sent. ')+'it appears on the map once a person has checked the page.';
+      go.hidden=true;
+    }catch(err){msg.className='msg err';msg.textContent=err.message;go.disabled=false}
+  });
 })();
 </script>
 

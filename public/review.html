@@ -87,7 +87,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
   const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
   let token='';try{token=localStorage.getItem('synapse.admin')||''}catch(e){}
   let data=null,tab='removal';
-  const TABS=[['request','Requests'],['removal','Removals'],['correction','Corrections'],['link','Links'],['claim','Claims'],['connection','Connections'],['lead','Unreadable pages'],['decl','Declared'],['run','Crawler']];
+  const TABS=[['request','Requests'],['add_person','People to add'],['add_install','Systems to add'],['removal','Removals'],['correction','Corrections'],['link','Links'],['claim','Claims'],['connection','Connections'],['lead','Unreadable pages'],['decl','Declared'],['run','Crawler']];
   const FIELD={headline:'Title and company',org:'Organisation',city:'City',region:'Region',knownFor:'Known for',other:'Something else'};
   const CUR={headline:'person_headline',org:'person_org',city:'person_city',region:'person_region',knownFor:'person_known_for'};
   const ago=t=>{if(!t)return '';const m=Math.round((Date.now()-Date.parse(t))/60000);return m<60?m+' min ago':m<1440?Math.round(m/60)+' h ago':Math.round(m/1440)+' d ago'};
@@ -130,13 +130,15 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     if(s.status==='discuss')top.appendChild(el('span','tag warn','in discussion'));
     if(s.email)top.appendChild(el('span','tag'+(s.confirmed_at?'':' warn'),s.confirmed_at?'email confirmed':'email not confirmed'));
     top.appendChild(el('span','when',ago(s.added_at)));it.appendChild(top);
-    const who=el('div','who',s.person_name||s.person_id);who.appendChild(el('small','',s.person_headline||''));it.appendChild(who);
-    const b=el('div','body');const p=s.payload||{};
+    const p=s.payload||{};
+    const who=el('div','who',s.kind==='add_person'?p.name:s.kind==='add_install'?p.org:(s.person_name||s.person_id));who.appendChild(el('small','',s.kind==='add_person'?[p.title,p.org,p.segment,p.region].filter(Boolean).join(' · '):s.kind==='add_install'?({live:'runs ',implementing:'is implementing ',selecting:'is selecting '}[p.status]||'')+p.system:(s.person_headline||'')));it.appendChild(who);
+    const b=el('div','body');
     if(s.kind==='correction'){
       b.appendChild(el('div','',FIELD[p.field]||p.field));
       if(p.field!=='other'){const now=s[CUR[p.field]]||'(empty)';const l=el('div');l.append(el('span','from',now),document.createTextNode('  →  '),el('span','to',p.value));b.appendChild(l)}
       if(p.note)b.appendChild(el('div','','“'+p.note+'”'));
     }else if(s.kind==='link'){const a=el('a','',p.url);a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';b.appendChild(a);if(p.note)b.appendChild(el('div','','“'+p.note+'”'))}
+    else if(s.kind==='add_person'||s.kind==='add_install'){b.appendChild(el('div','',s.kind==='add_person'?(p.self?'Adding themselves.':'Added by someone else.'):'Check that the page names the organisation and the system.'));const a=el('a','',p.url);a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';b.appendChild(a);if(p.note)b.appendChild(el('div','','“'+p.note+'”'))}
     else if(s.kind==='claim'){b.appendChild(el('div','','Wants to claim this card. Why it was not automatic: '+(p.reason||'unknown')+'.'));if(p.note)b.appendChild(el('div','','“'+p.note+'”'))}
     else{b.appendChild(el('div','',(p.self?'Sent by the person or on their behalf. ':'Sender did not say they are this person. ')+'Card hidden since '+ago(s.added_at)+'.'));if(p.reason)b.appendChild(el('div','','“'+p.reason+'”'))}
     if(s.email)b.appendChild(el('div','',s.email));
@@ -145,6 +147,7 @@ nav b{font:500 11px var(--mono);color:var(--faint);margin-left:4px}
     const send=st=>(note,val)=>call('/api/admin/submissions/'+s.id,Object.assign({status:st,note},val!=null&&val!==''?{value:val}:{}));
     const labels=s.kind==='removal'?[['ok','Approve · delete for good',send('approved')],['no','Reject · show again',send('rejected')],['ask','Discuss',send('discuss')]]
       :s.kind==='claim'?[['ok','Approve · send a sign-in link',send('approved')],['no','Reject',send('rejected')],['ask','Discuss',send('discuss')]]
+      :s.kind==='add_person'||s.kind==='add_install'?[['ok','Approve · add to the map',send('approved')],['no','Reject',send('rejected')],['ask','Discuss',send('discuss')]]
       :s.kind==='link'?[['ok','Approve · queue for the crawler',send('approved')],['no','Reject',send('rejected')],['ask','Discuss',send('discuss')]]
       :[['ok',p.field==='other'?'Approve (edit by hand)':'Approve · apply',send('approved')],['no','Reject',send('rejected')],['ask','Discuss',send('discuss')]];
     it.appendChild(actions(s,{buttons:labels,editable:s.kind==='correction'&&p.field!=='other'&&p.field!=='region'?p.value:null}));

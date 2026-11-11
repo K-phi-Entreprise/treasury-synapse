@@ -201,7 +201,7 @@ create table if not exists claim_tokens (
   added_at timestamptz not null default now()
 );
 alter table submissions drop constraint if exists submissions_kind_check;
-alter table submissions add constraint submissions_kind_check check (kind in ('correction','link','removal','connection','claim'));
+alter table submissions add constraint submissions_kind_check check (kind in ('correction','link','removal','connection','claim','add_person','add_install'));
 
 -- Declarations on claimed cards: what the person says they did. Never evidence: no links, no bubble size.
 create table if not exists declarations (
