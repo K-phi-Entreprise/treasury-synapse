@@ -1,0 +1,89 @@
+<style>
+/* Phone: the map gets the whole screen; the panel becomes a bottom drawer (collapsed, peek, open). Desktop is untouched. */
+.m-handle,.m-pill,.m-search,.m-tip{display:none}
+@media (max-width:899px){
+  html.m-on .app{display:block;height:auto}
+  html.m-on .stage{position:fixed;inset:0;border:0;z-index:1}
+  html.m-on .find{top:calc(8px + env(safe-area-inset-top,0px))}
+  html.m-on .tools{top:calc(8px + env(safe-area-inset-top,0px))}
+  html.m-on .side{display:flex;flex-direction:column;position:fixed;left:0;right:0;bottom:0;z-index:40;max-height:88dvh;overflow:hidden;
+    background:var(--sheet);border-top:1px solid var(--line);border-radius:18px 18px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.28);
+    padding-bottom:env(safe-area-inset-bottom,0px);transition:transform .26s cubic-bezier(.2,.8,.2,1),max-height .26s;will-change:transform;overscroll-behavior:contain}
+  html.m-on .side>*{flex:none}
+  html.m-on .m-handle{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;height:40px;padding:7px 0 0;border:0;background:transparent;color:var(--fg-dim);font:500 11px/1 var(--font-body);cursor:grab;touch-action:none}
+  html.m-on .m-handle i{display:block;width:36px;height:4px;border-radius:2px;background:var(--fg-faint)}
+  html.m-on.m-col .side{transform:translateY(calc(100% - 40px - env(safe-area-inset-bottom,0px)))}
+  html.m-on.m-peek .side{max-height:min(46dvh,340px)}
+  html.m-on.m-open .side{max-height:88dvh;overflow-y:auto}
+  html.m-on.m-open .side>.regions{display:block}
+  html.m-on.m-open .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 0}
+  html.m-on.m-open .kpi:nth-child(n+4){display:flex}
+  /* collapsed: nothing over the map but a name pill and a search button */
+  html.m-on.m-col .find,html.m-on.m-col .tools,html.m-on.m-col .hint,html.m-on.m-col .growth,html.m-on.m-col .sugg,html.m-on.m-col .ask{display:none}
+  html.m-on .dock{bottom:var(--m-h,40px);transition:bottom .26s}
+  html.m-on.m-open .sugg,html.m-on.m-open .ask,html.m-on.m-open .growth,html.m-on.m-open .hint{display:none}
+  html.m-on.m-col .m-pill,html.m-on.m-col .m-search{display:flex}
+  html.m-on .m-pill{position:fixed;left:12px;top:calc(10px + env(safe-area-inset-top,0px));z-index:30;align-items:center;gap:8px;padding:8px 12px;border-radius:99px;
+    background:color-mix(in srgb,var(--bg) 82%,transparent);border:1px solid var(--line);color:var(--fg);font:600 13px/1 var(--font-body);cursor:pointer}
+  html.m-on .m-pill small{font:400 11px/1 var(--font-mono);color:var(--fg-dim)}
+  html.m-on .m-search{position:fixed;right:12px;top:calc(8px + env(safe-area-inset-top,0px));z-index:30;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;
+    background:color-mix(in srgb,var(--bg) 82%,transparent);border:1px solid var(--line);color:var(--fg);cursor:pointer}
+  html.m-on .m-search svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
+  html.m-on .m-tip{display:block;position:fixed;left:0;right:0;bottom:calc(52px + env(safe-area-inset-bottom,0px));z-index:30;text-align:center;font:400 11px var(--font-mono);color:var(--fg-dim);pointer-events:none;transition:opacity .4s}
+  html.m-on .m-tip.off{opacity:0}
+}
+</style>
+<script>
+(function(){
+  const mq=window.matchMedia('(max-width:899px)');
+  const root=document.documentElement,side=document.querySelector('.side'),stage=document.getElementById('stage'),canvas=document.getElementById('gl');
+  if(!side||!stage||!canvas)return;
+  const filtersEl=document.querySelector('.filters'),detail=document.getElementById('detail');
+  const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+  const handle=el('button','m-handle');handle.type='button';handle.setAttribute('aria-label','Menu');handle.append(el('i'),el('span','',''));side.insertBefore(handle,side.firstChild);
+  const pill=el('button','m-pill');pill.type='button';pill.setAttribute('aria-label','Open the menu');document.body.appendChild(pill);
+  const search=el('button','m-search');search.type='button';search.setAttribute('aria-label','Search');search.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';document.body.appendChild(search);
+  const tip=el('p','m-tip off','Tap the map for the menu · drag to rotate');document.body.appendChild(tip);
+  let state='col',idle=0;
+  const label=()=>{const a=document.querySelector('#angles .angle[aria-pressed="true"]');return a?a.textContent.trim():'Menu'};
+  function paintPill(){const n=(document.getElementById('k1')||{}).textContent||'';const l=((document.getElementById('k1l')||{}).textContent||'').toLowerCase();
+    pill.textContent='';pill.append('Synapse',el('small','',n?Number(n).toLocaleString('en')+' '+(l==='organisations'?'orgs':l):''));handle.lastChild.textContent=label()}
+  function measure(){const r=side.getBoundingClientRect();root.style.setProperty('--m-h',Math.max(40,Math.round(innerHeight-r.top))+'px')}
+  function set(s){
+    if(!root.classList.contains('m-on'))return;
+    state=s;root.classList.remove('m-col','m-peek','m-open');root.classList.add('m-'+s);
+    if(s==='open'&&filtersEl&&!filtersEl.classList.contains('open')){filtersEl.classList.add('open');const t=document.getElementById('seg-toggle');if(t)t.setAttribute('aria-expanded','true')}
+    if(s!=='open')side.scrollTop=0;
+    clearTimeout(idle);if(s==='peek')idle=setTimeout(()=>{if(state==='peek'&&!side.contains(document.activeElement)&&document.activeElement!==document.getElementById('find-in'))set('col')},6000);
+    setTimeout(measure,280);measure();
+  }
+  function on(){
+    if(mq.matches){if(!root.classList.contains('m-on')){root.classList.add('m-on');set('col');paintPill();window.dispatchEvent(new Event('resize'));
+      let seen=false;try{seen=!!localStorage.getItem('synapse.mtip')}catch(e){}if(!seen){tip.classList.remove('off');setTimeout(()=>tip.classList.add('off'),4500);try{localStorage.setItem('synapse.mtip','1')}catch(e){}}}}
+    else if(root.classList.contains('m-on')){root.classList.remove('m-on','m-col','m-peek','m-open');root.style.removeProperty('--m-h');window.dispatchEvent(new Event('resize'))}
+  }
+  /* a tap on empty map toggles the drawer; a drag (rotate, zoom) puts everything away; a tap on a bubble opens its card */
+  let down=null;
+  canvas.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY,t:Date.now(),card:!!(detail&&!detail.hidden)}},true);
+  canvas.addEventListener('pointermove',e=>{if(down&&state!=='col'&&Math.hypot(e.clientX-down.x,e.clientY-down.y)>10){set('col')}},true);
+  canvas.addEventListener('pointerup',e=>{
+    if(!down||!root.classList.contains('m-on'))return;const d=down;down=null;
+    if(Math.hypot(e.clientX-d.x,e.clientY-d.y)>10||Date.now()-d.t>450)return;
+    setTimeout(()=>{const card=!!(detail&&!detail.hidden);if(card){if(state!=='col')set('col');return}if(d.card)return;set(state==='col'?'peek':'col')},80);
+  });
+  handle.addEventListener('click',()=>set(state==='col'?'peek':state==='peek'?'open':'col'));
+  let hy=null;
+  handle.addEventListener('pointerdown',e=>{hy=e.clientY});
+  handle.addEventListener('pointerup',e=>{if(hy==null)return;const dy=e.clientY-hy;hy=null;if(Math.abs(dy)<24)return;e.preventDefault();
+    set(dy<0?(state==='col'?'peek':'open'):(state==='open'?'peek':'col'))});
+  pill.addEventListener('click',()=>set('peek'));
+  search.addEventListener('click',()=>{set('peek');setTimeout(()=>{const f=document.getElementById('find-in');if(f)f.focus()},60)});
+  ['pointerdown','scroll','input'].forEach(t=>side.addEventListener(t,()=>{if(state==='peek')set('peek')},{passive:true}));
+  const seg=document.getElementById('seg-toggle');if(seg)seg.addEventListener('click',()=>{if(state!=='open')set('open')});
+  const k1=document.getElementById('k1');if(k1)new MutationObserver(paintPill).observe(k1,{childList:true,characterData:true,subtree:true});
+  document.getElementById('angles')&&document.getElementById('angles').addEventListener('click',()=>setTimeout(()=>{paintPill();measure()},50));
+  addEventListener('resize',()=>{if(root.classList.contains('m-on'))measure()});
+  mq.addEventListener?mq.addEventListener('change',on):mq.addListener(on);
+  on();
+})();
+</script>
