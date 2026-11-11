@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="f81b07c14c";</script>
+<script>window.SYNAPSE_BUILD="a8415ca94d";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -326,6 +326,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .sub{display:block}
   .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 0;overflow:visible;padding-block:14px 16px}
   .kpi{min-width:0;border-left:0;padding:0}
+  .kpi.tap{cursor:pointer}.kpi.tap .k-sub{text-decoration:underline;text-underline-offset:3px}.kpi.tap:hover .k-val{color:var(--accent)}
   .kpi:nth-child(even){border-left:1px solid var(--line);padding-left:16px}
   .k-val{font-size:28px}
   .stage{border:0;border-left:1px solid var(--line)}
@@ -743,13 +744,18 @@ function nodeColor(i){const n=G.nodes[i];if(n.hub==='system'){const f=FAMILIES.f
 function setStatus(cls,text){const b=$('status');b.className='badge '+cls;$('status-t').textContent=text}
 function renderKPIs(){
   const k=computeKPIs(G,vis);
-  const L=k.market?[['Organisations',''],['Systems in use',K2_SUB.market],['Systems','named'],['Off spreadsheets','moves found'],['Sources','public pages'],['Selecting now','from job posts and releases']]
+  const L=k.market?[['Organisations',''],['Systems in use',K2_SUB.market],['Systems','named'],['Moved off Excel','named in the source'],['Sources','public pages'],['Selecting now','from job posts and releases']]
     :[['People',''],['Links',K2_SUB[angle]],['Organisations','represented'],['Regions','covered'],['Sources','public pages'],['Last 7 days','people added']];
   L.forEach((x,j)=>{$('k'+(j+1)+'l').textContent=x[0];if(j>0)$('k'+(j+1)+'s').textContent=x[1]});
   let tot=0;for(let i=0;i<G.n;i++)if(k.market?G.nodes[i].hub==='company':!G.nodes[i].hub)tot++;
   $('k1').textContent=k.n;$('k1s').textContent=k.n===tot?'on the map':'of '+tot+' shown';
   $('k2').textContent=k.links;$('k3').textContent=k.orgs;$('k4').textContent=k.regs;$('k5').textContent=k.sources;$('k6').textContent=k.week;
+  const k4=$('k4').closest('.kpi'),tap=!!(k.market&&k.regs);k4.classList.toggle('tap',tap);k4.tabIndex=tap?0:-1;k4.setAttribute('role',tap?'button':'group');if(tap)$('k4s').textContent='named in the source · show';
 }
+/* Moved off Excel: tap to light up those organisations on the map, tap again to clear */
+function showMoved(){if(angle!=='market')return;const ids=[];for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='company'&&movedOffSheets(G.nodes[i]))ids.push(i);if(!ids.length)return;if(hl&&ids.every(i=>hl.has(i))){setHL(null);return}setHL(ids)}
+$('k4').closest('.kpi').addEventListener('click',showMoved);
+$('k4').closest('.kpi').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showMoved()}});
 /* Market filters: a company shows when none of its values is unchecked; ERP and systems are lists, a company shows when one of them is checked */
 const SIZE_ORDER=['Under 250','250 to 1,000','1,000 to 5,000','5,000 to 20,000','20,000 and more','Unknown'];
 const FACETS=[
