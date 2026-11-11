@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="8d3b11030d";</script>
+<script>window.SYNAPSE_BUILD="5b0d318814";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -804,23 +804,24 @@ $('mkf-tabs').addEventListener('click',e=>{const b=e.target.closest('.mkf-tab');
 $('mkf-tiles').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const s2=mkOff[mkTab],v=b.dataset.v;if(s2.has(v))s2.delete(v);else{const all=facetCounts(FACETS.find(x=>x.id===mkTab));if(s2.size>=all.length-1)return;s2.add(v)}refreshAll()});
 $('mkf-reset').addEventListener('click',()=>{FACETS.forEach(f=>mkOff[f.id].clear());refreshAll()});
 $('method-btn').addEventListener('click',()=>{if(window.synapseMethod)window.synapseMethod()});
-const chartFam={'Treasury':true,'EPM & FP&A':true};
+/* the TMS and EPM tiles are the Systems filter itself: switching one off takes those systems, and the organisations that only run them, off the map too */
+const famOn=id=>!mkOff.family.has(id);
 let famAnim=null;
-function topSys(uses,fam){return Object.keys(uses).map(Number).filter(i=>uses[i]>0&&fam[familyOf(G.nodes[i].name)]).sort((a,b)=>uses[b]-uses[a]).slice(0,8)}
+function topSys(uses,fam){return Object.keys(uses).map(Number).filter(i=>uses[i]>0&&fam(familyOf(G.nodes[i].name))).sort((a,b)=>uses[b]-uses[a]).slice(0,8)}
 function countUp(c,a,b,ms,delay){if(a===b)return;c.textContent=String(a);const t0=performance.now()+(delay||0);const step=t=>{const k=Math.min(1,Math.max(0,(t-t0)/ms)),e=1-Math.pow(1-k,3);c.textContent=String(Math.round(a+(b-a)*e));if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
 function renderMarketLists(){
   const box=$('region-list');box.textContent='';
   /* counts follow the filters: only organisations still shown */
   const uses={};for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='system')uses[i]=G.adj[i].filter(j=>vis[j]&&G.nodes[j].hub==='company').length;
   /* TMS and EPM tiles: both on by default; switch one off to rank only the other */
-  const tl=el('div','sysfam');[['Treasury','TMS'],['EPM & FP&A','EPM']].forEach(([id,lb])=>{const fm=FAMILIES.find(x=>x.id===id);const t=el('button','sf');t.type='button';t.setAttribute('aria-pressed',String(chartFam[id]));const d=el('i');d.style.background=document.documentElement.dataset.theme==='light'?fm.light:fm.dark;t.append(d,lb);
-    t.addEventListener('click',()=>{const other=id==='Treasury'?'EPM & FP&A':'Treasury';if(chartFam[id]&&!chartFam[other]){t.animate([{transform:'translateX(0)'},{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'translateX(0)'}],{duration:260});return}
-      const next=Object.assign({},chartFam,{[id]:!chartFam[id]}),keep=new Set(topSys(uses,next).map(String)),prev=new Map(),calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const tl=el('div','sysfam');[['Treasury','TMS'],['EPM & FP&A','EPM']].forEach(([id,lb])=>{const fm=FAMILIES.find(x=>x.id===id);const t=el('button','sf');t.type='button';t.setAttribute('aria-pressed',String(famOn(id)));const d=el('i');d.style.background=document.documentElement.dataset.theme==='light'?fm.light:fm.dark;t.append(d,lb);
+    t.addEventListener('click',()=>{const other=id==='Treasury'?'EPM & FP&A':'Treasury';if(famOn(id)&&!famOn(other)){t.animate([{transform:'translateX(0)'},{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'translateX(0)'}],{duration:260});return}
+      const next=x=>x===id?!famOn(x):famOn(x),keep=new Set(topSys(uses,next).map(String)),prev=new Map(),calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
       t.animate([{transform:'scale(1)'},{transform:'scale(.9)'},{transform:'scale(1.06)'},{transform:'scale(1)'}],{duration:320,easing:'ease-out'});
       box.querySelectorAll('.rrow').forEach((r,k)=>{prev.set(r.dataset.i,{top:r.getBoundingClientRect().top,w:parseFloat(r.querySelector('.bar b').style.width)||0,c:Number(r.querySelector('.rc').textContent)||0});
         if(!keep.has(r.dataset.i)&&!calm)r.animate([{opacity:1,transform:'none',filter:'blur(0)'},{opacity:0,transform:'translateX(18px) scale(.96)',filter:'blur(2px)'}],{duration:200,delay:k*18,easing:'ease-in',fill:'forwards'})});
-      setTimeout(()=>{chartFam[id]=!chartFam[id];famAnim=calm?null:prev;renderMarketLists()},calm?0:220)});tl.appendChild(t)});box.appendChild(tl);
-  const sys=topSys(uses,chartFam);
+      setTimeout(()=>{if(famOn(id))mkOff.family.add(id);else mkOff.family.delete(id);famAnim=calm?null:prev;refreshAll()},calm?0:220)});tl.appendChild(t)});box.appendChild(tl);
+  const sys=topSys(uses,famOn);
   const mx=sys.length?uses[sys[0]]:1;
   sys.slice(0,8).forEach(i=>{
     const b=el('button','rrow');b.type='button';b.dataset.i=i;
