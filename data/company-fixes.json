@@ -62,5 +62,41 @@
   "id": "ingram-micro",
   "size": "20,000 and more",
   "note": "IT distribution"
+ },
+ {
+  "split": {
+   "source": "ncc",
+   "id": "ncc-group",
+   "name": "NCC Group",
+   "system": "GTreasury"
+  },
+  "note": "NCC Group (cyber security, UK) is not NCC (construction, Sweden)"
+ },
+ {
+  "split": {
+   "source": "agf",
+   "id": "agf-management",
+   "name": "AGF Management",
+   "system": "Workday Adaptive Planning"
+  },
+  "note": "AGF Management (investments) is not AGF Group (construction)"
+ },
+ {
+  "split": {
+   "source": "vita",
+   "id": "the-vita-group",
+   "name": "The Vita Group",
+   "system": "CCH Tagetik"
+  },
+  "note": "The Vita Group is not VITA"
+ },
+ {
+  "split": {
+   "source": "flex",
+   "id": "flex-ltd",
+   "name": "Flex Ltd",
+   "system": "Workday Adaptive Planning"
+  },
+  "note": "Flex Ltd (electronics) is not Flex (fintech)"
  }
 ]

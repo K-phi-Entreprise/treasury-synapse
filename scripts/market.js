@@ -147,6 +147,19 @@ async function seed(pool, dir = path.join(__dirname, '..', 'data')) {
   /* corrections by hand (data/company-fixes.json): applied on every deploy, and the profile is no longer redone from Wikidata */
   const fx = path.join(dir, 'company-fixes.json');
   if (fs.existsSync(fx)) for (const f of JSON.parse(fs.readFileSync(fx, 'utf8'))) {
+    /* two different organisations that share a name key: one system's line moves to an organisation of its own */
+    if (f.split) {
+      const x = f.split;
+      const has = (await pool.query('select 1 from installs where company_id = $1 and system = $2', [x.source, x.system])).rowCount;
+      if (has) {
+        await pool.query("insert into companies (id, name, enrich_note) values ($1,$2,$3) on conflict (id) do nothing", [x.id, x.name, 'split by hand: ' + (f.note || '')]);
+        /* a line already on the right organisation wins; the stray copy is dropped */
+        await pool.query(`delete from installs s using installs t where s.company_id = $1 and s.system = $2 and t.company_id = $3 and t.system = s.system and t.status = s.status`, [x.source, x.system, x.id]);
+        await pool.query('update installs set company_id = $3, updated_at = now() where company_id = $1 and system = $2', [x.source, x.system, x.id]);
+        await pool.query('update companies set updated_at = now() where id = $1', [x.source]);
+      }
+      continue;
+    }
     const cols = ['vertical', 'size', 'country', 'region', 'wikidata'].filter(k => f[k] !== undefined);
     if (!cols.length) continue;
     const set = cols.map((k, i) => k + ' = $' + (i + 2)).join(', ');

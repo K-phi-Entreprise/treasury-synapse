@@ -163,3 +163,12 @@ test('hand corrections win over Wikidata and are not redone', async () => {
   const sq = (await pool.query("select country, region, wikidata from companies where id = 'square'")).rows[0];
   assert.deepStrictEqual(sq, { country: 'United States', region: 'United States', wikidata: '' });
 });
+
+test('two organisations sharing a name key are split by hand', async () => {
+  await upsertInstall(pool, { company: 'NCC', system: 'Nomentia', status: 'live', url: 'https://nomentia.com/references' });
+  await upsertInstall(pool, { company: 'NCC Group', system: 'GTreasury', status: 'live', url: 'https://www.casestudies.com/company/gtreasury' });
+  await require('../scripts/market').seed(pool);
+  const rows = (await pool.query("select company_id, system from installs where company_id in ('ncc', 'ncc-group') order by 1")).rows;
+  assert.deepStrictEqual(rows, [{ company_id: 'ncc', system: 'Nomentia' }, { company_id: 'ncc-group', system: 'GTreasury' }]);
+  assert.strictEqual((await pool.query("select name from companies where id = 'ncc-group'")).rows[0].name, 'NCC Group');
+});
