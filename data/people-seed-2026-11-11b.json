@@ -1,0 +1,1359 @@
+{
+ "people": [
+  {
+   "id": "david-pierce",
+   "name": "David Pierce",
+   "headline": "FinSavvy",
+   "org": "FinSavvy",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/from-invisible-to-visible-how-ai-can-help-reveal-fx-exposure-finsavvy"
+  },
+  {
+   "id": "hartman-nissle",
+   "name": "Hartman Nissle",
+   "headline": "SouthState Bank",
+   "org": "SouthState Bank",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/reserve-currency-shifts-and-fx-risk-what-treasurers-should-do-now-southstate"
+  },
+  {
+   "id": "ramesh-menon",
+   "name": "Ramesh Menon",
+   "headline": "Eftsure",
+   "org": "Eftsure",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/payment-scamming-exploitation-and-defense-eftsure"
+  },
+  {
+   "id": "craig-calle",
+   "name": "Craig Callé",
+   "headline": "Source Callé",
+   "org": "Source Callé",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-consultants"
+  },
+  {
+   "id": "kim-isaacs",
+   "name": "Kim Isaacs",
+   "headline": "J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-special-bank-partners"
+  },
+  {
+   "id": "lauren-bergsland",
+   "name": "Lauren Bergsland",
+   "headline": "Wells Fargo",
+   "org": "Wells Fargo",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-special-bank-partners"
+  },
+  {
+   "id": "sue-caras",
+   "name": "Sue Caras",
+   "headline": "Bank of America",
+   "org": "Bank of America",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-special-bank-partners"
+  },
+  {
+   "id": "rod-young",
+   "name": "Rod Young",
+   "headline": "Deluxe",
+   "org": "Deluxe",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-special-fintech-guests-part-2"
+  },
+  {
+   "id": "debbie-cunningham",
+   "name": "Debbie Cunningham",
+   "headline": "Federated Hermes",
+   "org": "Federated Hermes",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-special-fintech-guests-part-2"
+  },
+  {
+   "id": "stephane-lintner",
+   "name": "Stephane Lintner",
+   "headline": "Jiko",
+   "org": "Jiko",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/how-t-bill-management-automation-became-possible-jiko"
+  },
+  {
+   "id": "michel-d-abranches",
+   "name": "Michel D'Abranches",
+   "headline": "Monkey",
+   "org": "Monkey",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-special-fintech-guests-part-1"
+  },
+  {
+   "id": "john-mosko",
+   "name": "John Mosko",
+   "headline": "Federated Hermes",
+   "org": "Federated Hermes",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/expectations-for-2026-fed-monetary-policy-economy-federated-hermes"
+  },
+  {
+   "id": "dhawal-parvatikar",
+   "name": "Dhawal Parvatikar",
+   "headline": "Co-Founder, FP&A Professionals Institute",
+   "org": "FP&A Professionals Institute",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/309-how-ai-is-changing-fp038a-and-the-skills-cfos-need-dhawal-parvatikar-co-founder-fp038a-professionals-institute-b925230c31"
+  },
+  {
+   "id": "lyndon-stickley",
+   "name": "Lyndon Stickley",
+   "headline": "CEO, iplicit",
+   "org": "iplicit",
+   "region": "United Kingdom",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/308-buying-ai-for-finance-what-you-need-to-know-before-you-commit-lyndon-stickley-038-rob-steele-ceo-038-cfo-iplicit-23ca0ae919"
+  },
+  {
+   "id": "rob-steele",
+   "name": "Rob Steele",
+   "headline": "CFO, iplicit",
+   "org": "iplicit",
+   "region": "United Kingdom",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/308-buying-ai-for-finance-what-you-need-to-know-before-you-commit-lyndon-stickley-038-rob-steele-ceo-038-cfo-iplicit-23ca0ae919"
+  },
+  {
+   "id": "carolina-lago",
+   "name": "Carolina Lago",
+   "headline": "Managing Director, Tactic Financial",
+   "org": "Tactic Financial",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/307-what-should-cfos-fix-before-using-ai-in-forecasting-carolina-lago-managing-director-tactic-financial-c04b636fbf"
+  },
+  {
+   "id": "gavin-mcgahey",
+   "name": "Gavin McGahey",
+   "headline": "CTO & Co-Founder, AccountsIQ",
+   "org": "AccountsIQ",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/306-feel-behind-on-ai-where-cfos-should-start-gavin-mcgahey-cto-038-co-founder-at-accountsiq-271a08bd0f"
+  },
+  {
+   "id": "bruce-mullan",
+   "name": "Bruce Mullan",
+   "headline": "Managing Partner, AI Governance Partners",
+   "org": "AI Governance Partners",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/305-what-cfos-need-to-know-before-scaling-ai-bruce-mullan-managing-partner-ai-governance-partners-a6869aa149"
+  },
+  {
+   "id": "pauline-healey",
+   "name": "Pauline Healey",
+   "headline": "Founder, Logical BI",
+   "org": "Logical BI",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/304-why-your-most-profitable-product-might-be-losing-you-money-pauline-healey-founder-logical-bi-7586578ec5"
+  },
+  {
+   "id": "ed-barrow",
+   "name": "Ed Barrow",
+   "headline": "Founder & CEO, Cloud Capital",
+   "org": "Cloud Capital",
+   "region": "United Kingdom",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/303-the-true-cost-of-ai-what-cfos-need-to-know-ed-barrow-founder-038-ceo-cloud-capital-68a01a31d3"
+  },
+  {
+   "id": "ademola-odewade",
+   "name": "Ademola Odewade",
+   "headline": "CEO, K-Dems Consulting",
+   "org": "K-Dems Consulting",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/302-is-ai-creating-a-finance-jobs-crisis-ademola-odewade-ceo-k-dems-consulting-ltd-2e7498e1b0"
+  },
+  {
+   "id": "jeanne-els",
+   "name": "Jeanné Els",
+   "headline": "Mentor, GrowCFO",
+   "org": "GrowCFO",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/301-could-your-high-standards-be-hurting-your-team-jeanne-els-growcfo-mentor-ad01426841"
+  },
+  {
+   "id": "dan-wells",
+   "name": "Dan Wells",
+   "headline": "Founder & CEO, GrowCFO",
+   "org": "GrowCFO",
+   "region": "United Kingdom",
+   "segment": "Media",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/300-will-ai-reduce-finance-team-headcount-dan-wells-founder-038-ceo-growcfo-9a858f7662"
+  },
+  {
+   "id": "becky-glover",
+   "name": "Becky Glover",
+   "headline": "CFO, Mazuma",
+   "org": "Mazuma",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/298-how-can-you-fast-track-your-career-to-cfo-becky-glover-chief-financial-officer-mazuma-d995ca59ea"
+  },
+  {
+   "id": "scott-winters",
+   "name": "Scott Winters",
+   "headline": "CEO & Chairman, Financial Gravity",
+   "org": "Financial Gravity",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/297-how-tax-professionals-can-become-fractional-cfos-with-scott-winters-ceo-038-chairman-of-the-board-financial-gravity-85d01b43f1"
+  },
+  {
+   "id": "don-rogers",
+   "name": "Don Rogers",
+   "headline": "Managing Partner & Founder, Invictus Global Advisors",
+   "org": "Invictus Global Advisors",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/296-ai-is-giving-cfos-confidently-wrong-answers-don-rogers-managing-partner-038-founder-invictus-global-advisors-llc-9fa414a7e2"
+  },
+  {
+   "id": "rick-sanchez",
+   "name": "Rick Sanchez",
+   "headline": "Managing Principal and CEO, Robyn Consulting Group",
+   "org": "Robyn Consulting Group",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/295-can-ai-replace-the-cfo-rick-sanchez-managing-principal-and-ceo-robyn-consulting-group-a24db3b155"
+  },
+  {
+   "id": "scotty-palmer",
+   "name": "Scotty Palmer",
+   "headline": "Fractional CFO and Founder, Palmers Advisors",
+   "org": "Palmers Advisors",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/293-why-profitable-businesses-still-run-out-of-cash-scotty-palmer-fractional-cfo-and-founder-palmers-advisors-83accdf460"
+  },
+  {
+   "id": "sinohe-terrero",
+   "name": "Sinohe Terrero",
+   "headline": "CFO and COO, Envoy",
+   "org": "Envoy",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/291-why-most-ai-projects-fail-to-deliver-roi-sinohe-terrero-cfo-and-coo-envoy-3d9ac12844"
+  },
+  {
+   "id": "michael-anderson",
+   "name": "Michael Anderson",
+   "headline": "Mentor, GrowCFO",
+   "org": "GrowCFO",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/290-what-first-time-cfos-need-to-know-about-board-leadership-michael-anderson-growcfo-mentor-eeffc565be"
+  },
+  {
+   "id": "guy-weaver",
+   "name": "Guy Weaver",
+   "headline": "Facilitator, GrowCFO",
+   "org": "GrowCFO",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/289-the-ai-skills-gap-every-finance-leader-needs-to-close-with-guy-weaver-growcfo-facilitator-c5bf18a04a"
+  },
+  {
+   "id": "todd-mcelhatton",
+   "name": "Todd McElhatton",
+   "headline": "Chief Operating and Financial Officer, Zuora",
+   "org": "Zuora",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/287-why-ai-hesitation-could-cost-cfos-more-than-bad-decisions-todd-mcelhatton-cofo-zuora-b35196370d"
+  },
+  {
+   "id": "darren-cran",
+   "name": "Darren Cran",
+   "headline": "CEO, AccountsIQ",
+   "org": "AccountsIQ",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/286-what-cfos-should-do-next-cfo-mindset-20-darren-cran-ceo-accountsiq-9a51587b61"
+  },
+  {
+   "id": "jason-brisbane",
+   "name": "Jason Brisbane",
+   "headline": "Founder, Finhelm",
+   "org": "Finhelm",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/285-how-ai-is-turning-finance-into-a-probability-game-jason-brisbane-founder-finhelm-a985e56811"
+  },
+  {
+   "id": "david-hudson",
+   "name": "David Hudson",
+   "headline": "Group Financial Controller, Empiric Student Property",
+   "org": "Empiric Student Property",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/284-how-to-step-into-the-cfo-role-when-youre-not-ready-david-hudson-group-financial-controller-empiric-student-property--30ed865534"
+  },
+  {
+   "id": "rishi-oberoi",
+   "name": "Rishi Oberoi",
+   "headline": "Deputy CFO and CAO, Varo Bank",
+   "org": "Varo Bank",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/283-how-to-build-a-finance-function-that-scales-for-5-years-rishi-oberoi-deputy-cfo-and-cao-varo-bank-3789d5b081"
+  },
+  {
+   "id": "rob-nicholls",
+   "name": "Rob Nicholls",
+   "headline": "Mentor, GrowCFO",
+   "org": "GrowCFO",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/282-how-to-build-a-high-income-fractional-cfo-career-with-rob-nicholls-growcfo-mentor-2789945d7f"
+  },
+  {
+   "id": "michael-pytel",
+   "name": "Michael Pytel",
+   "headline": "Technology Leader & Director, VASS",
+   "org": "VASS",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/280-what-every-cfo-should-know-before-implementing-ai-michael-pytel-technology-leader-038-director-vass-6cf5577642"
+  },
+  {
+   "id": "david-tuck",
+   "name": "David Tuck",
+   "headline": "Founder, Mayday",
+   "org": "Mayday",
+   "region": "United Kingdom",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/277-how-cfos-scale-to-100m-without-leaving-xero-david-tuck-founder-mayday-and-kate-hayward-managing-director-uk-xero"
+  },
+  {
+   "id": "kate-hayward",
+   "name": "Kate Hayward",
+   "headline": "Managing Director UK, Xero",
+   "org": "Xero",
+   "region": "United Kingdom",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/277-how-cfos-scale-to-100m-without-leaving-xero-david-tuck-founder-mayday-and-kate-hayward-managing-director-uk-xero"
+  },
+  {
+   "id": "matteo-turi",
+   "name": "Matteo Turi",
+   "headline": "Chief Operating Financial Officer, Letoon Holding",
+   "org": "Letoon Holding",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/273-how-cfos-can-increase-company-valuation-matteo-turi-chief-operating-financial-officer-letoon-holding-ltd"
+  },
+  {
+   "id": "richard-turner",
+   "name": "Richard Turner",
+   "headline": "Mentor, GrowCFO",
+   "org": "GrowCFO",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/272-how-to-move-from-finance-leader-to-cfo-richard-turner-growcfo-mentor"
+  },
+  {
+   "id": "manu-diwakar",
+   "name": "Manu Diwakar",
+   "headline": "CFO, Virta Health",
+   "org": "Virta Health",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/271-how-to-scale-without-burning-cash-with-manu-diwakar-chief-financial-officer-virta-health"
+  },
+  {
+   "id": "alan-scholnick",
+   "name": "Alan Scholnick",
+   "headline": "Mentor, GrowCFO",
+   "org": "GrowCFO",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/270-why-almost-every-new-cfo-feels-like-a-fraud-alan-scholnick-growcfo-mentor"
+  },
+  {
+   "id": "shadid-talukder",
+   "name": "Shadid Talukder",
+   "headline": "Strategic Finance Lead, Posh AI",
+   "org": "Posh AI",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/268-why-scaling-faster-is-the-most-dangerous-phase-for-finance-shadid-talukder-strategic-finance-lead-posh-ai"
+  },
+  {
+   "id": "david-whitcombe",
+   "name": "David Whitcombe",
+   "headline": "Founder and Managing Director, Data Vision Services",
+   "org": "Data Vision Services",
+   "region": "United Kingdom",
+   "segment": "Advisors",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/266-the-cfos-secret-weapon-behind-higher-business-valuations-the-data-cube-with-david-whitcombe-founder-and-managing-dir"
+  },
+  {
+   "id": "eric-reyhle",
+   "name": "Eric Reyhle",
+   "headline": "SVP Global Alliances, Acterys",
+   "org": "Acterys",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/265-the-six-defining-challenges-for-the-office-of-the-cfo-in-2026-with-eric-reyhle-and-manuel-marcos-acterys"
+  },
+  {
+   "id": "manuel-marcos",
+   "name": "Manuel Marcos",
+   "headline": "Regional Director EMEA/LATAM, Acterys",
+   "org": "Acterys",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/265-the-six-defining-challenges-for-the-office-of-the-cfo-in-2026-with-eric-reyhle-and-manuel-marcos-acterys"
+  },
+  {
+   "id": "dan-fletcher",
+   "name": "Dan Fletcher",
+   "headline": "CFO, Planful",
+   "org": "Planful",
+   "region": "United States",
+   "segment": "EPM & FP&A software",
+   "source": "https://playpodcasts.com/podcasts/growcfo-show/260-how-to-get-ai-roi-in-30-days-the-playbook-finance-leaders-miss-dan-fletcher-cfo-planful"
+  },
+  {
+   "id": "ahikam-kaufman",
+   "name": "Ahikam Kaufman",
+   "headline": "Co-founder and CEO, Safe AI",
+   "org": "Safe AI",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2025-05-14-how-finance-teams-can-automate-internal-controls-with-ai"
+  },
+  {
+   "id": "carlos-vega",
+   "name": "Carlos Vega",
+   "headline": "Co-founder and CEO, Tesorio",
+   "org": "Tesorio",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2025-04-23-how-ai-cash-flow-automation-helps-cfos-reduce-late-payments"
+  },
+  {
+   "id": "david-perla",
+   "name": "David Perla",
+   "headline": "Vice Chair, Burford Capital",
+   "org": "Burford Capital",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2025-04-22-litigation-risk-modeling-for-finance-professionals"
+  },
+  {
+   "id": "paul-medici",
+   "name": "Paul Medici",
+   "headline": "Founder and CEO, Medici Financial Modeling",
+   "org": "Medici Financial Modeling",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-09-17-the-power-of-data-automation-in-financial-models"
+  },
+  {
+   "id": "leslie-stuart",
+   "name": "Leslie Stuart",
+   "headline": "Director of FP&A, Walmart Canada",
+   "org": "Walmart Canada",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-09-05-what-every-fp-a-leader-must-know-about-driving-change"
+  },
+  {
+   "id": "giles-male",
+   "name": "Giles Male",
+   "headline": "Co-founder, Full Stack Modeler",
+   "org": "Full Stack Modeler",
+   "region": "United Kingdom",
+   "segment": "Advisors",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-09-03-the-power-of-simplicity-in-financial-modeling"
+  },
+  {
+   "id": "renato-villanueva",
+   "name": "Renato Villanueva",
+   "headline": "CEO, Parallel",
+   "org": "Parallel",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-22-essential-financial-tips-for-entrepreneurs"
+  },
+  {
+   "id": "drew-fallon",
+   "name": "Drew Fallon",
+   "headline": "Co-founder and CEO, Iris",
+   "org": "Iris",
+   "region": "Unknown",
+   "segment": "EPM & FP&A software",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-20-e-commerce-growth-vs-profit"
+  },
+  {
+   "id": "zach-rial",
+   "name": "Zach Rial",
+   "headline": "Senior Director of Finance and Strategy, Peak",
+   "org": "Peak",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-15-how-to-become-a-finance-athlete"
+  },
+  {
+   "id": "ryan-sanders",
+   "name": "Ryan Sanders",
+   "headline": "Growth Investor, Mercato Partners",
+   "org": "Mercato Partners",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-08-the-critical-role-of-fp-a-in-today-s-market"
+  },
+  {
+   "id": "josh-aharonoff",
+   "name": "Josh Aharonoff",
+   "headline": "Mighty Digits",
+   "org": "Mighty Digits",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-01-strategic-fp-a-moves-that-transform-businesses"
+  },
+  {
+   "id": "jon-brewton",
+   "name": "Jon Brewton",
+   "headline": "Founder and CEO, Data2",
+   "org": "Data2",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-07-24-unlock-financial-success-with-ai"
+  },
+  {
+   "id": "ken-puls",
+   "name": "Ken Puls",
+   "headline": "Founder, Excel Guru",
+   "org": "Excel Guru",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-07-23-power-query-magic-to-become-a-financial-modeling-master"
+  }
+ ],
+ "stages": [
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/supply-chain-finance-and-cash-conversion-cycle-explained",
+   "label": "Treasury Update Podcast: Supply chain finance and cash conversion cycle explained",
+   "kind": "podcast",
+   "date": "2026-03-30",
+   "people": [
+    "craig-jeffery",
+    "paul-galloway"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/from-invisible-to-visible-how-ai-can-help-reveal-fx-exposure-finsavvy",
+   "label": "Treasury Update Podcast: From invisible to visible: how AI can help reveal FX exposure",
+   "kind": "podcast",
+   "date": "2026-03-23",
+   "people": [
+    "craig-jeffery",
+    "david-pierce"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/the-hidden-risks-in-your-bank-fee-analysis-and-how-to-fix-them",
+   "label": "Treasury Update Podcast: The hidden risks in your bank fee analysis",
+   "kind": "podcast",
+   "date": "2026-03-16",
+   "people": [
+    "craig-jeffery",
+    "paul-galloway"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/reserve-currency-shifts-and-fx-risk-what-treasurers-should-do-now-southstate",
+   "label": "Treasury Update Podcast: Reserve currency shifts and FX risk",
+   "kind": "podcast",
+   "date": "2026-03-09",
+   "people": [
+    "craig-jeffery",
+    "hartman-nissle"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/payment-scamming-exploitation-and-defense-eftsure",
+   "label": "Treasury Update Podcast: Payment scamming: exploitation and defense",
+   "kind": "podcast",
+   "date": "2026-03-02",
+   "people": [
+    "craig-jeffery",
+    "ramesh-menon"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/treasury-aggregators-simplifying-complexity-with-connectivity",
+   "label": "Treasury Update Podcast: Treasury aggregators: simplifying complexity with connectivity",
+   "kind": "podcast",
+   "date": "2026-02-23",
+   "people": [
+    "craig-jeffery",
+    "paul-galloway"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/why-treasury-projects-stall-and-how-to-restart-them",
+   "label": "Treasury Update Podcast: Why treasury projects stall and how to restart them",
+   "kind": "podcast",
+   "date": "2026-02-16",
+   "people": [
+    "craig-jeffery",
+    "paul-galloway"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/tms-and-trms-choosing-the-right-treasury-system-in-2026",
+   "label": "Treasury Update Podcast: TMS and TRMS: choosing the right treasury system in 2026",
+   "kind": "podcast",
+   "date": "2026-02-09",
+   "people": [
+    "craig-jeffery",
+    "paul-galloway"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-consultants",
+   "label": "Treasury Update Podcast: 2026 outlook series with consultants",
+   "kind": "podcast",
+   "date": "2026-02-02",
+   "people": [
+    "craig-jeffery",
+    "craig-calle",
+    "paul-galloway"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-special-bank-partners",
+   "label": "Treasury Update Podcast: 2026 outlook series with special bank partners",
+   "kind": "podcast",
+   "date": "2026-01-26",
+   "people": [
+    "craig-jeffery",
+    "tom-gregory",
+    "kim-isaacs",
+    "lauren-bergsland",
+    "sue-caras"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-special-fintech-guests-part-2",
+   "label": "Treasury Update Podcast: 2026 outlook series with special fintech guests, part 2",
+   "kind": "podcast",
+   "date": "2026-01-19",
+   "people": [
+    "craig-jeffery",
+    "bob-stark",
+    "rod-young",
+    "debbie-cunningham"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/how-t-bill-management-automation-became-possible-jiko",
+   "label": "Treasury Update Podcast: How T-bill management automation became possible",
+   "kind": "podcast",
+   "date": "2026-01-12",
+   "people": [
+    "craig-jeffery",
+    "stephane-lintner"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/2026-outlook-series-with-special-fintech-guests-part-1",
+   "label": "Treasury Update Podcast: 2026 outlook series with special fintech guests, part 1",
+   "kind": "podcast",
+   "date": "2026-01-05",
+   "people": [
+    "craig-jeffery",
+    "stephane-lintner",
+    "michel-d-abranches",
+    "leo-gil"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/new-nacha-rules-what-treasurers-need-to-know",
+   "label": "Treasury Update Podcast: New Nacha rules: what treasurers need to know",
+   "kind": "podcast",
+   "date": "2025-12-29",
+   "people": [
+    "craig-jeffery",
+    "paul-galloway"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/expectations-for-2026-fed-monetary-policy-economy-federated-hermes",
+   "label": "Treasury Update Podcast: Expectations for 2026: Fed, monetary policy, economy",
+   "kind": "podcast",
+   "date": "2025-12-22",
+   "people": [
+    "craig-jeffery",
+    "debbie-cunningham",
+    "john-mosko"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/the-treasury-update-podcast-2/payment-fraud-is-morphing-how-to-stay-ahead-of-the-threat-bottomline",
+   "label": "Treasury Update Podcast: Payment fraud is morphing",
+   "kind": "podcast",
+   "date": "2025-12-01",
+   "people": [
+    "craig-jeffery",
+    "paul-mcmeekin"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/309-how-ai-is-changing-fp038a-and-the-skills-cfos-need-dhawal-parvatikar-co-founder-fp038a-professionals-institute-b925230c31",
+   "label": "GrowCFO Show: How AI is changing FP&A and the skills CFOs need",
+   "kind": "podcast",
+   "date": "2026-11-10",
+   "people": [
+    "kevin-appleby",
+    "dhawal-parvatikar"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/308-buying-ai-for-finance-what-you-need-to-know-before-you-commit-lyndon-stickley-038-rob-steele-ceo-038-cfo-iplicit-23ca0ae919",
+   "label": "GrowCFO Show: Buying AI for finance? What you need to know before you commit",
+   "kind": "podcast",
+   "date": "2026-11-03",
+   "people": [
+    "kevin-appleby",
+    "lyndon-stickley",
+    "rob-steele"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/307-what-should-cfos-fix-before-using-ai-in-forecasting-carolina-lago-managing-director-tactic-financial-c04b636fbf",
+   "label": "GrowCFO Show: What should CFOs fix before using AI in forecasting?",
+   "kind": "podcast",
+   "date": "2026-10-27",
+   "people": [
+    "kevin-appleby",
+    "carolina-lago"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/306-feel-behind-on-ai-where-cfos-should-start-gavin-mcgahey-cto-038-co-founder-at-accountsiq-271a08bd0f",
+   "label": "GrowCFO Show: Feel behind on AI? Where CFOs should start",
+   "kind": "podcast",
+   "date": "2026-10-20",
+   "people": [
+    "kevin-appleby",
+    "gavin-mcgahey"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/305-what-cfos-need-to-know-before-scaling-ai-bruce-mullan-managing-partner-ai-governance-partners-a6869aa149",
+   "label": "GrowCFO Show: What CFOs need to know before scaling AI",
+   "kind": "podcast",
+   "date": "2026-10-13",
+   "people": [
+    "kevin-appleby",
+    "bruce-mullan"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/304-why-your-most-profitable-product-might-be-losing-you-money-pauline-healey-founder-logical-bi-7586578ec5",
+   "label": "GrowCFO Show: Why your most profitable product might be losing you money",
+   "kind": "podcast",
+   "date": "2026-10-06",
+   "people": [
+    "kevin-appleby",
+    "pauline-healey"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/303-the-true-cost-of-ai-what-cfos-need-to-know-ed-barrow-founder-038-ceo-cloud-capital-68a01a31d3",
+   "label": "GrowCFO Show: The true cost of AI: what CFOs need to know",
+   "kind": "podcast",
+   "date": "2026-09-29",
+   "people": [
+    "kevin-appleby",
+    "ed-barrow"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/302-is-ai-creating-a-finance-jobs-crisis-ademola-odewade-ceo-k-dems-consulting-ltd-2e7498e1b0",
+   "label": "GrowCFO Show: Is AI creating a finance jobs crisis?",
+   "kind": "podcast",
+   "date": "2026-09-22",
+   "people": [
+    "kevin-appleby",
+    "ademola-odewade"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/301-could-your-high-standards-be-hurting-your-team-jeanne-els-growcfo-mentor-ad01426841",
+   "label": "GrowCFO Show: Could your high standards be hurting your team?",
+   "kind": "podcast",
+   "date": "2026-09-15",
+   "people": [
+    "kevin-appleby",
+    "jeanne-els"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/300-will-ai-reduce-finance-team-headcount-dan-wells-founder-038-ceo-growcfo-9a858f7662",
+   "label": "GrowCFO Show: Will AI reduce finance team headcount?",
+   "kind": "podcast",
+   "date": "2026-09-08",
+   "people": [
+    "kevin-appleby",
+    "dan-wells"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/299-what-it-takes-to-become-cfo-by-33-audrey-lagresle-cfo-automobile-en-direct-41ecf92db6",
+   "label": "GrowCFO Show: What it takes to become CFO by 33",
+   "kind": "podcast",
+   "date": "2026-09-01",
+   "people": [
+    "kevin-appleby",
+    "audrey-lagresle"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/298-how-can-you-fast-track-your-career-to-cfo-becky-glover-chief-financial-officer-mazuma-d995ca59ea",
+   "label": "GrowCFO Show: How can you fast-track your career to CFO?",
+   "kind": "podcast",
+   "date": "2026-08-25",
+   "people": [
+    "kevin-appleby",
+    "becky-glover"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/297-how-tax-professionals-can-become-fractional-cfos-with-scott-winters-ceo-038-chairman-of-the-board-financial-gravity-85d01b43f1",
+   "label": "GrowCFO Show: How tax professionals can become fractional CFOs",
+   "kind": "podcast",
+   "date": "2026-08-18",
+   "people": [
+    "kevin-appleby",
+    "scott-winters"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/296-ai-is-giving-cfos-confidently-wrong-answers-don-rogers-managing-partner-038-founder-invictus-global-advisors-llc-9fa414a7e2",
+   "label": "GrowCFO Show: AI is giving CFOs confidently wrong answers",
+   "kind": "podcast",
+   "date": "2026-08-11",
+   "people": [
+    "kevin-appleby",
+    "don-rogers"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/295-can-ai-replace-the-cfo-rick-sanchez-managing-principal-and-ceo-robyn-consulting-group-a24db3b155",
+   "label": "GrowCFO Show: Can AI replace the CFO?",
+   "kind": "podcast",
+   "date": "2026-08-04",
+   "people": [
+    "kevin-appleby",
+    "rick-sanchez"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/294-the-skills-every-cfo-will-need-by-2030-myles-corson-ey-global-financial-accounting-advisory-services-strategy-and-ma-9b9e261e41",
+   "label": "GrowCFO Show: The skills every CFO will need by 2030",
+   "kind": "podcast",
+   "date": "2026-07-28",
+   "people": [
+    "kevin-appleby",
+    "myles-corson"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/293-why-profitable-businesses-still-run-out-of-cash-scotty-palmer-fractional-cfo-and-founder-palmers-advisors-83accdf460",
+   "label": "GrowCFO Show: Why profitable businesses still run out of cash",
+   "kind": "podcast",
+   "date": "2026-07-21",
+   "people": [
+    "kevin-appleby",
+    "scotty-palmer"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/292-the-reporting-change-every-cfo-needs-to-prepare-for-paula-kensington-growcfo-mentor-cec820a147",
+   "label": "GrowCFO Show: The reporting change every CFO needs to prepare for",
+   "kind": "podcast",
+   "date": "2026-07-14",
+   "people": [
+    "kevin-appleby",
+    "paula-kensington"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/291-why-most-ai-projects-fail-to-deliver-roi-sinohe-terrero-cfo-and-coo-envoy-3d9ac12844",
+   "label": "GrowCFO Show: Why most AI projects fail to deliver ROI",
+   "kind": "podcast",
+   "date": "2026-07-07",
+   "people": [
+    "kevin-appleby",
+    "sinohe-terrero"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/290-what-first-time-cfos-need-to-know-about-board-leadership-michael-anderson-growcfo-mentor-eeffc565be",
+   "label": "GrowCFO Show: What first-time CFOs need to know about board leadership",
+   "kind": "podcast",
+   "date": "2026-06-30",
+   "people": [
+    "kevin-appleby",
+    "michael-anderson"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/289-the-ai-skills-gap-every-finance-leader-needs-to-close-with-guy-weaver-growcfo-facilitator-c5bf18a04a",
+   "label": "GrowCFO Show: The AI skills gap every finance leader needs to close",
+   "kind": "podcast",
+   "date": "2026-06-23",
+   "people": [
+    "kevin-appleby",
+    "guy-weaver"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/287-why-ai-hesitation-could-cost-cfos-more-than-bad-decisions-todd-mcelhatton-cofo-zuora-b35196370d",
+   "label": "GrowCFO Show: Why AI hesitation could cost CFOs more than bad decisions",
+   "kind": "podcast",
+   "date": "2026-06-09",
+   "people": [
+    "kevin-appleby",
+    "todd-mcelhatton"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/286-what-cfos-should-do-next-cfo-mindset-20-darren-cran-ceo-accountsiq-9a51587b61",
+   "label": "GrowCFO Show: What CFOs should do next: CFO mindset 2.0",
+   "kind": "podcast",
+   "date": "2026-06-02",
+   "people": [
+    "kevin-appleby",
+    "darren-cran"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/285-how-ai-is-turning-finance-into-a-probability-game-jason-brisbane-founder-finhelm-a985e56811",
+   "label": "GrowCFO Show: How AI is turning finance into a probability game",
+   "kind": "podcast",
+   "date": "2026-05-26",
+   "people": [
+    "kevin-appleby",
+    "jason-brisbane"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/284-how-to-step-into-the-cfo-role-when-youre-not-ready-david-hudson-group-financial-controller-empiric-student-property--30ed865534",
+   "label": "GrowCFO Show: How to step into the CFO role when you are not ready",
+   "kind": "podcast",
+   "date": "2026-05-19",
+   "people": [
+    "kevin-appleby",
+    "david-hudson"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/283-how-to-build-a-finance-function-that-scales-for-5-years-rishi-oberoi-deputy-cfo-and-cao-varo-bank-3789d5b081",
+   "label": "GrowCFO Show: How to build a finance function that scales for 5+ years",
+   "kind": "podcast",
+   "date": "2026-05-12",
+   "people": [
+    "kevin-appleby",
+    "rishi-oberoi"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/282-how-to-build-a-high-income-fractional-cfo-career-with-rob-nicholls-growcfo-mentor-2789945d7f",
+   "label": "GrowCFO Show: How to build a high-income fractional CFO career",
+   "kind": "podcast",
+   "date": "2026-05-05",
+   "people": [
+    "kevin-appleby",
+    "rob-nicholls"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/281-the-worst-acquisition-i-ever-did-and-what-it-cost-me-jeremy-earnshaw-growcfo-mentor-68572c2887",
+   "label": "GrowCFO Show: The worst acquisition I ever did and what it cost me",
+   "kind": "podcast",
+   "date": "2026-04-28",
+   "people": [
+    "kevin-appleby",
+    "jeremy-earnshaw"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/280-what-every-cfo-should-know-before-implementing-ai-michael-pytel-technology-leader-038-director-vass-6cf5577642",
+   "label": "GrowCFO Show: What every CFO should know before implementing AI",
+   "kind": "podcast",
+   "date": "2026-04-21",
+   "people": [
+    "kevin-appleby",
+    "michael-pytel"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/279-is-ai-making-cfos-less-strategic-susana-serrano-davey-growcfo-mentor-0f2e11be62",
+   "label": "GrowCFO Show: Is AI making CFOs less strategic?",
+   "kind": "podcast",
+   "date": "2026-04-14",
+   "people": [
+    "kevin-appleby",
+    "susana-serrano-davey"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/278-the-skills-missing-when-you-step-into-a-cfo-role-ian-goodkind-chief-financial-officer-smarsh",
+   "label": "GrowCFO Show: The skills missing when you step into a CFO role",
+   "kind": "podcast",
+   "date": "2026-04-07",
+   "people": [
+    "kevin-appleby",
+    "ian-goodkind"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/277-how-cfos-scale-to-100m-without-leaving-xero-david-tuck-founder-mayday-and-kate-hayward-managing-director-uk-xero",
+   "label": "GrowCFO Show: How CFOs scale to $100M+ without leaving Xero",
+   "kind": "podcast",
+   "date": "2026-03-31",
+   "people": [
+    "kevin-appleby",
+    "david-tuck",
+    "kate-hayward"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/275-how-to-choose-between-ai-native-tools-and-proven-finance-platforms-gavin-mcgahey-cto-038-co-founder-accountsiq",
+   "label": "GrowCFO Show: How to choose between AI-native tools and proven finance platforms",
+   "kind": "podcast",
+   "date": "2026-03-17",
+   "people": [
+    "kevin-appleby",
+    "gavin-mcgahey"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/273-how-cfos-can-increase-company-valuation-matteo-turi-chief-operating-financial-officer-letoon-holding-ltd",
+   "label": "GrowCFO Show: How CFOs can increase company valuation",
+   "kind": "podcast",
+   "date": "2026-03-03",
+   "people": [
+    "kevin-appleby",
+    "matteo-turi"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/272-how-to-move-from-finance-leader-to-cfo-richard-turner-growcfo-mentor",
+   "label": "GrowCFO Show: How to move from finance leader to CFO",
+   "kind": "podcast",
+   "date": "2026-02-24",
+   "people": [
+    "kevin-appleby",
+    "richard-turner"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/271-how-to-scale-without-burning-cash-with-manu-diwakar-chief-financial-officer-virta-health",
+   "label": "GrowCFO Show: How to scale without burning cash",
+   "kind": "podcast",
+   "date": "2026-02-17",
+   "people": [
+    "kevin-appleby",
+    "manu-diwakar"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/270-why-almost-every-new-cfo-feels-like-a-fraud-alan-scholnick-growcfo-mentor",
+   "label": "GrowCFO Show: Why almost every new CFO feels like a fraud",
+   "kind": "podcast",
+   "date": "2026-02-10",
+   "people": [
+    "kevin-appleby",
+    "alan-scholnick"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/269-why-cfos-who-stay-offline-get-overlooked-with-wassia-kamon-chief-financial-officer-ace",
+   "label": "GrowCFO Show: Why CFOs who stay offline get overlooked",
+   "kind": "podcast",
+   "date": "2026-02-03",
+   "people": [
+    "kevin-appleby",
+    "wassia-kamon"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/268-why-scaling-faster-is-the-most-dangerous-phase-for-finance-shadid-talukder-strategic-finance-lead-posh-ai",
+   "label": "GrowCFO Show: Why scaling faster is the most dangerous phase for finance",
+   "kind": "podcast",
+   "date": "2026-01-27",
+   "people": [
+    "kevin-appleby",
+    "shadid-talukder"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/266-the-cfos-secret-weapon-behind-higher-business-valuations-the-data-cube-with-david-whitcombe-founder-and-managing-dir",
+   "label": "GrowCFO Show: The data cube behind higher business valuations",
+   "kind": "podcast",
+   "date": "2026-01-13",
+   "people": [
+    "kevin-appleby",
+    "david-whitcombe"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/265-the-six-defining-challenges-for-the-office-of-the-cfo-in-2026-with-eric-reyhle-and-manuel-marcos-acterys",
+   "label": "GrowCFO Show: The six defining challenges for the office of the CFO in 2026",
+   "kind": "podcast",
+   "date": "2026-01-06",
+   "people": [
+    "kevin-appleby",
+    "eric-reyhle",
+    "manuel-marcos"
+   ]
+  },
+  {
+   "url": "https://playpodcasts.com/podcasts/growcfo-show/260-how-to-get-ai-roi-in-30-days-the-playbook-finance-leaders-miss-dan-fletcher-cfo-planful",
+   "label": "GrowCFO Show: How to get AI ROI in 30 days",
+   "kind": "podcast",
+   "date": "2025-11-18",
+   "people": [
+    "kevin-appleby",
+    "dan-fletcher"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2025-05-15-the-influence-skills-for-fp-a-pros-to-build-boardroom-trust",
+   "label": "FP&A Tomorrow podcast: The influence skills for FP&A pros to build boardroom trust",
+   "kind": "podcast",
+   "date": "2025-05-15",
+   "people": [
+    "paul-barnhurst",
+    "wassia-kamon"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2025-05-14-how-finance-teams-can-automate-internal-controls-with-ai",
+   "label": "Future Finance podcast: How finance teams can automate internal controls with AI",
+   "kind": "podcast",
+   "date": "2025-05-14",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "ahikam-kaufman"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2025-04-23-how-ai-cash-flow-automation-helps-cfos-reduce-late-payments",
+   "label": "Future Finance podcast: How AI cash flow automation helps CFOs reduce late payments",
+   "kind": "podcast",
+   "date": "2025-04-23",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "carlos-vega"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2025-04-22-litigation-risk-modeling-for-finance-professionals",
+   "label": "Financial Modeler's Corner podcast: Litigation risk modeling for finance professionals",
+   "kind": "podcast",
+   "date": "2025-04-22",
+   "people": [
+    "paul-barnhurst",
+    "david-perla"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-09-17-the-power-of-data-automation-in-financial-models",
+   "label": "Financial Modeler's Corner podcast: The power of data automation in financial models",
+   "kind": "podcast",
+   "date": "2024-09-17",
+   "people": [
+    "paul-barnhurst",
+    "paul-medici"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-09-05-what-every-fp-a-leader-must-know-about-driving-change",
+   "label": "FP&A Tomorrow podcast: What every FP&A leader must know about driving change",
+   "kind": "podcast",
+   "date": "2024-09-05",
+   "people": [
+    "paul-barnhurst",
+    "leslie-stuart"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-09-03-the-power-of-simplicity-in-financial-modeling",
+   "label": "Financial Modeler's Corner podcast: The power of simplicity in financial modeling",
+   "kind": "podcast",
+   "date": "2024-09-03",
+   "people": [
+    "paul-barnhurst",
+    "giles-male"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-22-essential-financial-tips-for-entrepreneurs",
+   "label": "FP&A Tomorrow podcast: Essential financial tips for entrepreneurs",
+   "kind": "podcast",
+   "date": "2024-08-22",
+   "people": [
+    "paul-barnhurst",
+    "renato-villanueva"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-21-a-bold-prediction-for-the-future-of-accounting-in-the-ai-era",
+   "label": "Future Finance podcast: A bold prediction for the future of accounting in the AI era",
+   "kind": "podcast",
+   "date": "2024-08-21",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "tom-hood"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-20-e-commerce-growth-vs-profit",
+   "label": "Financial Modeler's Corner podcast: E-commerce growth vs. profit",
+   "kind": "podcast",
+   "date": "2024-08-20",
+   "people": [
+    "paul-barnhurst",
+    "drew-fallon"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-15-how-to-become-a-finance-athlete",
+   "label": "FP&A Tomorrow podcast: How to become a finance athlete",
+   "kind": "podcast",
+   "date": "2024-08-15",
+   "people": [
+    "paul-barnhurst",
+    "zach-rial"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-08-the-critical-role-of-fp-a-in-today-s-market",
+   "label": "FP&A Tomorrow podcast: The critical role of FP&A in today's market",
+   "kind": "podcast",
+   "date": "2024-08-08",
+   "people": [
+    "paul-barnhurst",
+    "ryan-sanders"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-07-why-ai-is-a-game-changer-for-finance-professionals",
+   "label": "Future Finance podcast: Why AI is a game-changer for finance professionals",
+   "kind": "podcast",
+   "date": "2024-08-07",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "christian-martinez"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-08-01-strategic-fp-a-moves-that-transform-businesses",
+   "label": "FP&A Tomorrow podcast: Strategic FP&A moves that transform businesses",
+   "kind": "podcast",
+   "date": "2024-08-01",
+   "people": [
+    "paul-barnhurst",
+    "josh-aharonoff"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-07-24-unlock-financial-success-with-ai",
+   "label": "Future Finance podcast: Unlock financial success with AI",
+   "kind": "podcast",
+   "date": "2024-07-24",
+   "people": [
+    "paul-barnhurst",
+    "glenn-hopper",
+    "jon-brewton"
+   ]
+  },
+  {
+   "url": "https://www.mypodcastdata.com/podcast/show/the-fpanda-guy-network-paul-barnhurst-1qdc/episodes#2024-07-23-power-query-magic-to-become-a-financial-modeling-master",
+   "label": "Financial Modeler's Corner podcast: Power Query magic to become a financial modeling master",
+   "kind": "podcast",
+   "date": "2024-07-23",
+   "people": [
+    "paul-barnhurst",
+    "ken-puls"
+   ]
+  },
+  {
+   "url": "https://podcastai.com/shows/bwbkf8-treasury-storyteller#2025-07-24-stepping-into-the-spotlight-owning-your-treasury-story",
+   "label": "Treasury Storyteller podcast: Stepping into the spotlight: owning your treasury story",
+   "kind": "podcast",
+   "date": "2025-07-24",
+   "people": [
+    "eleanor-hill",
+    "mike-richards"
+   ]
+  },
+  {
+   "url": "https://podcastai.com/shows/bwbkf8-treasury-storyteller#2025-06-27-don-t-panic-rethinking-cashflow-priorities",
+   "label": "Treasury Storyteller podcast: Don't panic! Rethinking cashflow priorities",
+   "kind": "podcast",
+   "date": "2025-06-27",
+   "people": [
+    "eleanor-hill"
+   ]
+  },
+  {
+   "url": "https://podcastai.com/shows/bwbkf8-treasury-storyteller#2025-06-25-real-time-or-right-time-digital-treasury-talent-and-transformation",
+   "label": "Treasury Storyteller podcast: Real-time or right time? Digital treasury, talent and transformation",
+   "kind": "podcast",
+   "date": "2025-06-25",
+   "people": [
+    "eleanor-hill"
+   ]
+  },
+  {
+   "url": "https://podcastai.com/shows/bwbkf8-treasury-storyteller#2025-02-23-cut-the-cr-p-separating-ai-fact-from-fiction",
+   "label": "Treasury Storyteller podcast: Cut the cr*p! Separating AI fact from fiction",
+   "kind": "podcast",
+   "date": "2025-02-23",
+   "people": [
+    "eleanor-hill",
+    "james-kelly"
+   ]
+  }
+ ]
+}
