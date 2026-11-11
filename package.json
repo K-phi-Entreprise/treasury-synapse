@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "description": "Treasury & FP&A Synapses: a 3D map of treasury and finance professionals built from public sources. Postgres store, map server, crawler jobs.",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node server.js",
     "migrate": "node scripts/migrate.js",
@@ -11,6 +13,7 @@
     "test": "node --test --test-concurrency=1 tests/store.test.js tests/chat.test.js tests/review.test.js tests/crawl.test.js tests/claims.test.js tests/requests.test.js tests/market.test.js tests/enrich.test.js"
   },
   "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "compression": "^1.7.4",
     "express": "^4.19.2",
     "pg": "^8.12.0"

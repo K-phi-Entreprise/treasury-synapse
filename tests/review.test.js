@@ -279,3 +279,16 @@ test('a person link serves the map with that person in the link preview, and 404
   try { assert.strictEqual((await fetch(base + '/p/' + p.id)).status, 404); }
   finally { await pool.query('update people set hidden = false where id = $1', [p.id]); }
 });
+
+test('a person link has its own 1200x628 picture', async () => {
+  const p = (await pool.query("select s.a as id from v_social s join people p on p.id = s.a and not p.hidden limit 1")).rows[0];
+  const r = await fetch(base + '/p/' + p.id + '.png');
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(r.headers.get('content-type'), 'image/png');
+  const b = Buffer.from(await r.arrayBuffer());
+  assert.strictEqual(b.readUInt32BE(16), 1200);
+  assert.strictEqual(b.readUInt32BE(20), 628);
+  const lone = (await pool.query("select id from people p where not hidden and not exists (select 1 from v_social s where s.a = p.id or s.b = p.id) limit 1")).rows[0];
+  if (lone) assert.strictEqual((await fetch(base + '/p/' + lone.id + '.png')).status, 200);
+  assert.strictEqual((await fetch(base + '/p/nobody-at-all.png')).status, 404);
+});

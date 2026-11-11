@@ -437,6 +437,22 @@ const share = require('./scripts/share');
 const SITE = PUBLIC_URL;
 let indexHtml = { at: 0, body: '' };
 function readIndex() { const f = path.join(__dirname, 'public', 'index.html'); const m = fs.statSync(f).mtimeMs; if (m !== indexHtml.at) indexHtml = { at: m, body: fs.readFileSync(f, 'utf8') }; return indexHtml.body; }
+/* the link preview picture: drawn on demand, kept an hour */
+const shots = new Map();
+app.get('/p/:id.png', async (req, res, next) => {
+  try {
+    const id = req.params.id, hit = shots.get(id);
+    let png = hit && Date.now() - hit.at < 3600000 ? hit.png : null;
+    if (!png) {
+      const s = await share.personShare(pool, id);
+      if (!s) return res.status(404).json({ error: 'not on the map' });
+      png = share.shareImage(s);
+      if (shots.size > 800) shots.delete(shots.keys().next().value);
+      shots.set(id, { at: Date.now(), png });
+    }
+    res.set('Cache-Control', 'public, max-age=3600').type('png').send(png);
+  } catch (e) { next(e); }
+});
 app.get('/p/:id', async (req, res, next) => {
   try {
     const s = await share.personShare(pool, req.params.id);
