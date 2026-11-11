@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="61a4a677ac";</script>
+<script>window.SYNAPSE_BUILD="1f5509cf2c";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -741,7 +741,8 @@ function nodeRGB(i){if(!lightMode)return nodeRGB0(i);const n=G.nodes[i];if(!n.hu
 function nodeColor(i){const n=G.nodes[i];if(n.hub==='system'){const f=FAMILIES.find(x=>x.id===(n.fam||(n.fam=familyOf(n.name))));return lightMode?f.light:f.dark}return n.hub?(n.hub==='company'&&n.selecting?HUBHEX.signal:HUBHEX[n.hub]):n.seed?'#ffffff':SEGS[n.seg].color}
 
 /* ---------- DOM ---------- */
-function setStatus(cls,text){const b=$('status');b.className='badge '+cls;$('status-t').textContent=text}
+/* the badge only speaks up when something is wrong: no "Live" or "Loading" pill */
+function setStatus(cls,text){const b=$('status');b.className='badge '+cls;$('status-t').textContent=text;b.hidden=text!=='Disconnected'}
 function renderKPIs(){
   const k=computeKPIs(G,vis);
   const L=k.market?[['Organisations',''],['Systems in use',K2_SUB.market],['Systems','named'],['Moved off Excel','named in the source'],['Sources','public pages'],['Selecting now','from job posts and releases']]
@@ -2621,7 +2622,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('ad-wrap').hidden)close()});
   /* in the header, next to Get help */
   const top=document.querySelector('.top'),badge=$('status');
-  const ab=document.createElement('button');ab.type='button';ab.className='add-btn';ab.id='add-btn';ab.innerHTML='+ <span class="ab-l">Add to the map</span><span class="ab-s">Add</span>';ab.setAttribute('aria-label','Add to the map');
+  const ab=document.createElement('button');ab.type='button';ab.className='add-btn';ab.id='add-btn';ab.textContent='+ Add';ab.setAttribute('aria-label','Add to the map');
   const help=$('help-btn');top.insertBefore(ab,help&&help.parentNode===top?help:badge);
   ab.addEventListener('click',()=>open());
   $('ad').addEventListener('submit',async e=>{

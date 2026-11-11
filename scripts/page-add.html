@@ -78,7 +78,7 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('ad-wrap').hidden)close()});
   /* in the header, next to Get help */
   const top=document.querySelector('.top'),badge=$('status');
-  const ab=document.createElement('button');ab.type='button';ab.className='add-btn';ab.id='add-btn';ab.innerHTML='+ <span class="ab-l">Add to the map</span><span class="ab-s">Add</span>';ab.setAttribute('aria-label','Add to the map');
+  const ab=document.createElement('button');ab.type='button';ab.className='add-btn';ab.id='add-btn';ab.textContent='+ Add';ab.setAttribute('aria-label','Add to the map');
   const help=$('help-btn');top.insertBefore(ab,help&&help.parentNode===top?help:badge);
   ab.addEventListener('click',()=>open());
   $('ad').addEventListener('submit',async e=>{
