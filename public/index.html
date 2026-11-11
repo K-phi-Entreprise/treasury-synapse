@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="ea4dee412e";</script>
+<script>window.SYNAPSE_BUILD="0309bf71d3";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -2807,6 +2807,28 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
     if(window.synapseFocus&&window.synapseFocus(id))return;
     if(++tries<80)setTimeout(go,250);
   })();
+})();
+</script>
+<style>
+.d-share{display:flex;gap:8px;margin:10px 0 0}
+.d-share button{flex:1;padding:7px 10px;border-radius:9px;border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--fg);font:500 12.5px/1.2 var(--font-body);cursor:pointer}
+.d-share button.pri{background:var(--accent);color:#0a0a14;border-color:var(--accent);font-weight:600}
+</style>
+<script>
+/* on your own claimed card: your link, ready to post */
+(function(){
+  const $=id=>document.getElementById(id),edit=$('d-edit');if(!edit)return;
+  const box=document.createElement('div');box.className='d-share';box.id='d-share';box.hidden=true;
+  const li=document.createElement('button');li.type='button';li.className='pri';li.textContent='Share my map on LinkedIn';
+  const cp=document.createElement('button');cp.type='button';cp.textContent='Copy my link';
+  box.append(li,cp);edit.parentNode.insertBefore(box,edit);
+  let cur='';
+  const link=()=>location.origin+'/p/'+cur;
+  li.addEventListener('click',()=>{const a=document.createElement('a');a.href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(link());a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove()});
+  cp.addEventListener('click',async()=>{const u=link();try{await navigator.clipboard.writeText(u);cp.textContent='Copied'}catch(e){cp.textContent=u}setTimeout(()=>{cp.textContent='Copy my link'},2400)});
+  function paint(){const me=window.synapseCard&&window.synapseCard();box.hidden=!(cur&&me&&me.personId===cur)}
+  document.addEventListener('synapse:detail',e=>{cur=e.detail||'';paint();setTimeout(paint,600)});
+  document.addEventListener('synapse:hub',()=>{cur='';box.hidden=true});
 })();
 </script>
 
