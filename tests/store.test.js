@@ -63,12 +63,14 @@ test('the owner is on the map with his topics, roles and the Nordic battle links
   assert.ok(me.topics.includes('Liquidity'));
   assert.ok(me.roles.length >= 2);
   const links = g.edges.filter(e => e.a === 'vincent-donnat' || e.b === 'vincent-donnat');
-  assert.ok(links.some(e => e.id === 'jouni-kirjola__vincent-donnat' && e.evidence.length === 2));
+  /* the Feb 2024 Nordic battle predates the 2025 cut and leaves the map; the May 2025 training day stays */
+  assert.ok(!links.some(e => e.id === 'jouni-kirjola__vincent-donnat'));
+  assert.ok(links.some(e => e.id === 'morne-rossouw__vincent-donnat'));
 });
 
 test('/api/graph has the shapes the page expects and /api/health counts', async () => {
   const g = (await api('/api/graph')).body;
-  assert.ok(g.people.length > 1900 && g.edges.length > 3000);
+  assert.ok(g.people.length > 1900 && g.edges.length > 1500);
   for (const k of ['id', 'name', 'headline', 'org', 'region', 'segment', 'seed', 'addedAt', 'topics', 'systems', 'roles']) assert.ok(k in g.people[0], k);
   for (const k of ['a', 'b', 'kind', 'label', 'url', 'confidence', 'evidence']) assert.ok(k in g.edges[0], k);
   const h = (await api('/api/health')).body;

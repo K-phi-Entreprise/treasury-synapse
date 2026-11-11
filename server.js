@@ -3,6 +3,7 @@
  * visitor declarations and submissions (never instant: the owner validates), and an admin review API. */
 const path = require('path');
 const fs = require('fs');
+const { recentEdge } = require('./scripts/recency');
 const crypto = require('crypto');
 const express = require('express');
 const compression = require('compression');
@@ -69,7 +70,7 @@ async function loadGraph(since) {
       addedAt: iso(p.added_at), topics: p.topics, systems: sellsNow(p.systems, p.org), roles: p.roles
     })),
     hidden: people.rows.filter(p => p.hidden).map(p => p.id),
-    edges: edges.rows.map(e => ({ id: e.a + '__' + e.b, a: e.a, b: e.b, kind: e.kind, label: e.label, url: e.url, confidence: e.confidence, evidence: e.evidence, addedAt: iso(e.added_at) })),
+    edges: edges.rows.map(recentEdge).filter(Boolean).map(e => ({ id: e.a + '__' + e.b, a: e.a, b: e.b, kind: e.kind, label: e.label, url: e.url, confidence: e.confidence, evidence: e.evidence, addedAt: iso(e.added_at) })),
     connections: conns.rows.map(c => ({ id: c.from_id + '__' + c.to_id, from: c.from_id, to: c.to_id, status: c.status, addedAt: iso(c.added_at) }))
   };
 }

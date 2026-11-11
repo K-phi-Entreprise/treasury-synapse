@@ -12,11 +12,15 @@ async function personShare(pool, id) {
   const person = p.rows[0];
   /* co-appearances: the stages they were on, and who shared them */
   const e = await pool.query(
-    `select case when s.a = $1 then s.b else s.a end as other, s.label, s.url
+    `select case when s.a = $1 then s.b else s.a end as other, s.label, s.url, s.kind, s.evidence
        from v_social s join people o on o.id = case when s.a = $1 then s.b else s.a end and not o.hidden
       where (s.a = $1 or s.b = $1)`, [id]);
   const stages = new Set(), others = new Map();
-  e.rows.forEach(r => { stages.add(r.url || r.label || ''); others.set(r.other, (others.get(r.other) || 0) + 1); });
+  const { recentEdge, recent } = require('./recency');
+  e.rows.map(recentEdge).filter(Boolean).forEach(r => {
+    (r.evidence && r.evidence.length ? r.evidence : [r]).filter(recent).forEach(x => stages.add(x.url || x.label || ''));
+    others.set(r.other, (others.get(r.other) || 0) + 1);
+  });
   const ids = [...others.keys()];
   const names = ids.length ? (await pool.query('select id, name, segment from people where id = any($1)', [ids])).rows : [];
   const byId = new Map(names.map(r => [r.id, r]));

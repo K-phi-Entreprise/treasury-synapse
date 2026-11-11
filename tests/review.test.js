@@ -317,3 +317,15 @@ test('hand-researched stages: solo talks count, existing people are never overwr
   assert.strictEqual(again.people, 0);
   await pool.query("delete from submissions where person_id = 'zz-seed-solo'");
 });
+
+test('the People view keeps sources from 2025 on and undated ones, and drops older ones', async () => {
+  const { recentEdge, evidenceYear } = require('../scripts/recency');
+  assert.strictEqual(evidenceYear({ label: 'Treasury Update Podcast, 5 episodes (2019-2022)' }), 2022);
+  assert.strictEqual(evidenceYear({ date: '2025-03-02', label: 'Outlook 2019' }), 2025);
+  assert.strictEqual(recentEdge({ url: 'u1', label: 'Panel (May 2024)', evidence: [{ url: 'u1', label: 'Panel (May 2024)', date: '' }] }), null);
+  const mixed = recentEdge({ url: 'old', label: 'old (2023)', evidence: [{ url: 'old', label: 'old (2023)', date: '' }, { url: 'new', label: 'Webinar', date: '2026-02-01' }] });
+  assert.deepStrictEqual([mixed.url, mixed.evidence.length], ['new', 1]);
+  assert.ok(recentEdge({ url: 'x', label: 'An undated page', evidence: [{ url: 'x', label: 'An undated page', date: '' }] }));
+  const g = await fetch(base + '/api/graph').then(r => r.json());
+  assert.ok(g.edges.every(e => (e.evidence || []).every(x => { const y = evidenceYear(x); return y == null || y >= 2025; })));
+});
