@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="c0ab71d6fa";</script>
+<script>window.SYNAPSE_BUILD="bebe1fbd71";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1055,6 +1055,8 @@ $('d-know').addEventListener('click',async()=>{
   }catch(err){b.disabled=false;b.textContent=String(err.message||'').indexOf('limit')>=0?'Daily limit reached':'Could not send, try again'}
 });
 setAngle(angle,true);
+/* the left column never scrolls sideways, even when a focus or a wide font asks it to */
+{const sd=document.querySelector('.side');if(sd)sd.addEventListener('scroll',()=>{if(sd.scrollLeft)sd.scrollLeft=0},{passive:true})}
 $('d-more').addEventListener('click',()=>{$('detail').classList.toggle('open');renderDetail()});
 $('d-me').addEventListener('click',()=>{if(sel<0)return;const id=G.nodes[sel].id;meId=meId===id?'':id;try{if(meId)localStorage.setItem('synapse.me',meId);else localStorage.removeItem('synapse.me')}catch(e){}renderDetail();if(window.synapseOnMe)window.synapseOnMe(meId)});
 window.synapseFindMe=()=>{welcomeDone=true;showWelcome(false);pendingMe=true;const f=$('find-in');f.value='';f.placeholder='Type your own name…';f.focus()};
@@ -2348,7 +2350,6 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       <label><span>Topic</span><select id="cs-topic"><option value="">Any</option></select></label>
       <label><span>Region</span><select id="cs-region"><option value="">Any</option></select></label>
     </div>
-    <p class="sbm-hint" id="cs-net" hidden>Find yourself on the map (type your name, then "this is me") to see who in your network knows them.</p>
     <p class="cs-count" id="cs-count" role="status" aria-live="polite"></p>
     <div class="cs-list" id="cs-list"></div>
   </div>
@@ -2374,7 +2375,6 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       const me=window.synapseMe&&window.synapseMe();let paths={};
       if(me&&j.consultants.length){try{paths=(await fetch('/api/paths?from='+encodeURIComponent(me)+'&to='+j.consultants.map(c=>c.id).join(','),{cache:'no-store'}).then(r=>r.json())).paths||{}}catch(e){}}
       if(my!==seq)return;
-      $('cs-net').hidden=!!me;
       j.consultants.forEach(c=>{
         const path=paths[c.id];
         const it=el('article','cs-item');it.appendChild(el('h5','',c.name));it.appendChild(el('p','meta',[c.headline||c.org,c.region&&c.region!=='Unknown'?c.region:''].filter(Boolean).join(' · ')));
