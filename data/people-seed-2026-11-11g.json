@@ -1,0 +1,236 @@
+{
+ "people": [
+  {
+   "id": "kevin-rice",
+   "name": "Kevin Rice",
+   "headline": "TIS",
+   "org": "TIS",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://strategictreasurer.com/webinar-bank-account-management/"
+  },
+  {
+   "id": "sue-hill",
+   "name": "Sue Hill",
+   "headline": "Federated Hermes",
+   "org": "Federated Hermes",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://strategictreasurer.com/webinar-feds-new-chapter/"
+  },
+  {
+   "id": "glen-chancy",
+   "name": "Glen Chancy",
+   "headline": "Infor",
+   "org": "Infor",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://strategictreasurer.com/webinar-optimizing-balances-and-relationships/"
+  },
+  {
+   "id": "mark-schuch",
+   "name": "Mark Schuch",
+   "headline": "SouthState",
+   "org": "SouthState",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://strategictreasurer.com/webinar-payment-essentials/"
+  },
+  {
+   "id": "dan-ambrico",
+   "name": "Dan Ambrico",
+   "headline": "eCapital",
+   "org": "eCapital",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://strategictreasurer.com/webinar-treasurers-imperative/"
+  },
+  {
+   "id": "jacob-rider",
+   "name": "Jacob Rider",
+   "headline": "Deluxe",
+   "org": "Deluxe",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://strategictreasurer.com/webinar-treasury-shifts-taking-shape-for-2027/"
+  },
+  {
+   "id": "ashish-agrawal",
+   "name": "Ashish Agrawal",
+   "headline": "Deluxe",
+   "org": "Deluxe",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://strategictreasurer.com/webinar-treasury-shifts-taking-shape-for-2027/"
+  }
+ ],
+ "stages": [
+  {
+   "url": "https://strategictreasurer.com/webinar-2027-treasury-trends/",
+   "label": "Strategic Treasurer webinar: 2027 Treasury Trends",
+   "kind": "webinar",
+   "date": "2026-12",
+   "people": [
+    "dory-malouf",
+    "bob-stark",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-ach-payment-security/",
+   "label": "Strategic Treasurer webinar: Critical ACH Payment Security",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "paul-galloway",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-ai-considerations-and-uses-in-treasury-workshop/",
+   "label": "Strategic Treasurer webinar: Workshop Series: AI Considerations and Uses in Treasury",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "kevin-grant",
+    "dean-oxley",
+    "paul-galloway",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-automation-as-an-asset/",
+   "label": "Strategic Treasurer webinar: Automation as an Asset to Attract and Retain Talent",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "craig-jeffery",
+    "tracey-knight"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-bank-account-management/",
+   "label": "Strategic Treasurer webinar: Bank Account Management: Visibility, Control, and Compliance",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "kevin-rice",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-economic-trends/",
+   "label": "Strategic Treasurer webinar: Economic Trends: What They Mean for Treasury",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "dory-malouf",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-feds-new-chapter/",
+   "label": "Strategic Treasurer webinar: Fed's New Chapter: Communication, Task Forces, Policy Stance",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "sue-hill",
+    "john-mosko",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-integrating-systems-for-your-unique-business-needs-the-impact-of-apis/",
+   "label": "Strategic Treasurer webinar: Integrating Systems for Your Unique Business Needs: The Impact of APIs",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "craig-jeffery",
+    "joseph-drambarean"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-minimizing-fraud-and-sanctions-risk/",
+   "label": "Strategic Treasurer webinar: Minimizing Fraud and Sanctions Risk: Protecting Global Payments",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "alexander-kempf",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-modernizing-treasury/",
+   "label": "Strategic Treasurer webinar: Modernizing Treasury: Improving Visibility, Forecasting, and Payments",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "dean-oxley",
+    "kevin-grant",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-optimizing-balances-and-relationships/",
+   "label": "Strategic Treasurer webinar: Optimizing Balances and Relationships Domestically and Abroad",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "glen-chancy",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-payment-essentials/",
+   "label": "Strategic Treasurer webinar: Payment Essentials: Keeping Up with Payments",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "mark-schuch",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-transaction-banking-in-2026/",
+   "label": "Strategic Treasurer webinar: Transaction Banking in 2026: What Your Peers Are Prioritizing Now",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "piraveena-tharmalingam",
+    "tom-gregory",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-treasurers-imperative/",
+   "label": "Strategic Treasurer webinar: Treasurer’s Imperative: Balancing Liquidity and Supply Chain Stability",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "dan-ambrico",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-treasury-automation/",
+   "label": "Strategic Treasurer webinar: Treasury Automation",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "craig-jeffery",
+    "tracey-knight"
+   ]
+  },
+  {
+   "url": "https://strategictreasurer.com/webinar-treasury-shifts-taking-shape-for-2027/",
+   "label": "Strategic Treasurer webinar: Treasury Shifts Taking Shape for 2027",
+   "kind": "webinar",
+   "date": "",
+   "people": [
+    "jacob-rider",
+    "ashish-agrawal",
+    "craig-jeffery"
+   ]
+  }
+ ]
+}
