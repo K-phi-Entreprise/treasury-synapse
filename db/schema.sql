@@ -353,3 +353,10 @@ alter table companies add column if not exists country text not null default '';
 alter table companies add column if not exists enriched_at timestamptz;
 alter table companies add column if not exists enrich_note text not null default '';
 alter table companies add column if not exists enrich_v integer not null default 0;
+
+-- Hand-researched additions (data/people-seed*.json), each file loaded once on deploy.
+create table if not exists people_seed_files (
+  file text primary key,
+  rows integer not null default 0,
+  loaded_at timestamptz not null default now()
+);

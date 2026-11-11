@@ -21,6 +21,8 @@ async function migrate(pool) {
   const sql = fs.readFileSync(path.join(__dirname, '..', 'db', 'schema.sql'), 'utf8');
   await pool.query(sql);
   await require('./market').seed(pool);
+  const ps = await require('./people-seed').seedPeople(pool);
+  if (Object.keys(ps).length) console.log('people seed: ' + JSON.stringify(ps));
 }
 
 if (require.main === module) {

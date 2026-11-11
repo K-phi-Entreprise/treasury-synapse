@@ -292,3 +292,28 @@ test('a person link has its own 1200x628 picture', async () => {
   if (lone) assert.strictEqual((await fetch(base + '/p/' + lone.id + '.png')).status, 200);
   assert.strictEqual((await fetch(base + '/p/nobody-at-all.png')).status, 404);
 });
+
+test('hand-researched stages: solo talks count, existing people are never overwritten, removed people never come back', async () => {
+  const { loadFile } = require('../scripts/people-seed');
+  const ex = (await pool.query('select id, name, headline from people where not hidden limit 1')).rows[0];
+  const url = 'https://example.org/stage-' + Date.now();
+  const r = await loadFile(pool, {
+    people: [{ id: ex.id, name: 'Someone Else', headline: 'overwritten?' }, { id: 'zz-seed-solo', name: 'Zz Solo', headline: 'Keynote speaker', org: 'Zz Co', segment: 'Advisors' }],
+    stages: [{ url: url + '/solo', label: 'Solo keynote', kind: 'talk', people: ['zz-seed-solo'] },
+             { url: url + '/pair', label: 'Panel', kind: 'panel', people: ['zz-seed-solo', ex.id] },
+             { url: 'https://www.linkedin.com/posts/x', label: 'refused', kind: 'article', people: ['zz-seed-solo'] }]
+  });
+  assert.strictEqual(r.people, 1);
+  assert.strictEqual(r.stages, 2);
+  const after = (await pool.query('select name, headline from people where id = $1', [ex.id])).rows[0];
+  assert.deepStrictEqual(after, { name: ex.name, headline: ex.headline });
+  const n = (await pool.query('select count(*)::int n from appearances where person_id = $1', ['zz-seed-solo'])).rows[0].n;
+  assert.strictEqual(n, 2);
+  const [a, b] = ['zz-seed-solo', ex.id].sort();
+  assert.strictEqual((await pool.query('select count(*)::int n from co_appearances where a = $1 and b = $2', [a, b])).rows[0].n, 1);
+  await pool.query("delete from people where id = 'zz-seed-solo'");
+  await pool.query("insert into submissions (kind, person_id, payload, status) values ('removal', 'zz-seed-solo', '{}', 'approved')").catch(() => {});
+  const again = await loadFile(pool, { people: [{ id: 'zz-seed-solo', name: 'Zz Solo', headline: 'x' }], stages: [] });
+  assert.strictEqual(again.people, 0);
+  await pool.query("delete from submissions where person_id = 'zz-seed-solo'");
+});

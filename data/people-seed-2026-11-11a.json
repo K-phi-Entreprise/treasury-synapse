@@ -1,0 +1,874 @@
+{
+ "people": [
+  {
+   "id": "romain-giraudeau",
+   "name": "Romain Giraudeau",
+   "headline": "Part-time treasurer for hypergrowth companies",
+   "org": "",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://aksi.fr/forecast/forecast-33-tresorier-augmente-les-5-principes-des-tresoreries-les-plus-avancees/"
+  },
+  {
+   "id": "emmanuel-de-resseguier",
+   "name": "Emmanuel de Rességuier",
+   "headline": "Fennech Financial",
+   "org": "Fennech Financial",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://aksi.fr/forecast/forecast-28-virtual-banking-peut-on-devenir-sa-propre-banque-emmanuel-de-resseguier-fennech-financial/"
+  },
+  {
+   "id": "guillaume-rejou",
+   "name": "Guillaume Rejou",
+   "headline": "Cegid",
+   "org": "Cegid",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://aksi.fr/forecast/forecast-23-redefinir-le-role-du-tresorier-avec-lia-guillaume-rejou-cegid/"
+  },
+  {
+   "id": "cedric-guarnotta",
+   "name": "Cédric Guarnotta",
+   "headline": "DataLog Finance",
+   "org": "DataLog Finance",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://aksi.fr/forecast/forecast-20-lia-peut-elle-predire-lavenir-en-tresorerie-cedric-guarnotta-datalog-finance/"
+  },
+  {
+   "id": "jean-torrens",
+   "name": "Jean Torrens",
+   "headline": "Treasurer, Havas Group",
+   "org": "Havas Group",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://aksi.fr/forecast/16-tresorerie-cryptomonnaies-et-projet-blockchain-jean-torrens-tresorier-havas-group/"
+  },
+  {
+   "id": "romain-boulvais",
+   "name": "Romain Boulvais",
+   "headline": "Grape Hospitality",
+   "org": "Grape Hospitality",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://aksi.fr/forecast/les-coulisses-du-financement-romain-boulvais-grape-hospitality/"
+  },
+  {
+   "id": "gaspard-broustine",
+   "name": "Gaspard Broustine",
+   "headline": "NFT Project Manager, Ledger",
+   "org": "Ledger",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://aksi.fr/forecast/forecast-14-tokens-nft-decryptage-par-un-expert-gaspard-broustine-nft-project-manager-ledger/"
+  },
+  {
+   "id": "christophe-lepitre",
+   "name": "Christophe Lepitre",
+   "headline": "President, Diznes",
+   "org": "Diznes",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://aksi.fr/forecast/forecast-13-la-technologie-blockchain-au-service-du-tresorier-christophe-lepitre-president-diznes/"
+  },
+  {
+   "id": "guy-wata",
+   "name": "Guy Wata",
+   "headline": "Head of Treasury, Groupe Safo",
+   "org": "Groupe Safo",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://aksi.fr/forecast/forecast-12-guy-wata-responsable-tresorerie-groupe-safo-les-enjeux-du-tresorier-en-2021/"
+  },
+  {
+   "id": "sebastien-janney",
+   "name": "Sébastien Janney",
+   "headline": "Senior Account Manager, Adyen",
+   "org": "Adyen",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://aksi.fr/forecast/forecast-10-sebastien-janney-senior-account-manager-adyen-lart-du-paiement-btoc/"
+  },
+  {
+   "id": "celine-mignaton-jalbert",
+   "name": "Céline Mignaton-Jalbert",
+   "headline": "Deputy Treasury Director, Oberthur",
+   "org": "Oberthur",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://aksi.fr/forecast/forecast-9-celine-mignaton-deputy-treasury-director-oberthur-tirer-le-meilleur-de-son-banquier/"
+  },
+  {
+   "id": "stephanie-constand",
+   "name": "Stéphanie Constand",
+   "headline": "Director of Financing and Treasury, Fnac Darty",
+   "org": "Fnac Darty",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://aksi.fr/forecast/forecast-6-stephanie-constand-directrice-financement-tresorerie-du-groupe-fnac-darty"
+  },
+  {
+   "id": "alain-deza",
+   "name": "Alain Deza",
+   "headline": "Head of Digital Consulting, Sidetrade",
+   "org": "Sidetrade",
+   "region": "France",
+   "segment": "TMS & fintech",
+   "source": "https://aksi.fr/forecast/forecast-5-alain-deza-head-of-digital-consulting-sidetrade/"
+  },
+  {
+   "id": "camille-desclaux",
+   "name": "Camille Desclaux",
+   "headline": "Interim manager",
+   "org": "",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://aksi.fr/forecast/forecast-4-camille-desclaux-manager-de-transition/"
+  },
+  {
+   "id": "julien-crespy",
+   "name": "Julien Crespy",
+   "headline": "Malakoff Humanis",
+   "org": "Malakoff Humanis",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://aksi.fr/forecast/forecast-3-julien-crespy-malakoff-humanis/"
+  },
+  {
+   "id": "pierre-lustenberger",
+   "name": "Pierre Lustenberger",
+   "headline": "Group Treasurer, Akuo Energy",
+   "org": "Akuo Energy",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://aksi.fr/forecast/forecast-2-pierre-lustenberger-tresorier-groupe-chez-akuo-energy"
+  },
+  {
+   "id": "florent-sebag",
+   "name": "Florent Sebag",
+   "headline": "Head of Treasury Financing, Daxa Group Operations",
+   "org": "Daxa Group Operations",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://aksi.fr/forecast/forecast-1-florent-sebag-head-of-treasury-financing-daxa-group-operations/"
+  },
+  {
+   "id": "guillaume-metman",
+   "name": "Guillaume Metman",
+   "headline": "VP Product, Kyriba",
+   "org": "Kyriba",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://atebforum.be/event/treasury-update/#api-connections"
+  },
+  {
+   "id": "vincent-beerman",
+   "name": "Vincent Beerman",
+   "headline": "Senior Director of Product, Platform, Integrations and Data, Taulia",
+   "org": "Taulia",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://atebforum.be/event/treasury-update/#supply-chain-financing"
+  },
+  {
+   "id": "domitille-moulas",
+   "name": "Domitille Moulas",
+   "headline": "Head of Sustainable Loan, SG CIB",
+   "org": "Societe Generale",
+   "region": "France",
+   "segment": "Banks",
+   "source": "https://atebforum.be/event/treasury-update/#sustainability-linked-financing"
+  },
+  {
+   "id": "elise-cachin",
+   "name": "Elise Cachin",
+   "headline": "Director Tech Policy & Regulatory Affairs, Nokia",
+   "org": "Nokia",
+   "region": "France",
+   "segment": "Corporate treasury",
+   "source": "https://www.forvismazars.com/fr/fr/insights/publications-et-evenements/tous-les-evenements-de-forvis-mazars-en-france/nos-evenements-passes/actualites-2026/forvis-mazars-a-participe-au-tid#tresorerie-augmentee"
+  },
+  {
+   "id": "alexandre-poser",
+   "name": "Alexandre Poser",
+   "headline": "Partner, Actuarial, Forvis Mazars",
+   "org": "Forvis Mazars",
+   "region": "France",
+   "segment": "Advisors",
+   "source": "https://www.forvismazars.com/fr/fr/insights/publications-et-evenements/tous-les-evenements-de-forvis-mazars-en-france/nos-evenements-passes/actualites-2026/forvis-mazars-a-participe-au-tid#stablecoins"
+  },
+  {
+   "id": "ben-brophy",
+   "name": "Ben Brophy",
+   "headline": "Head of EU Business Development, Solana Foundation",
+   "org": "Solana Foundation",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.forvismazars.com/fr/fr/insights/publications-et-evenements/tous-les-evenements-de-forvis-mazars-en-france/nos-evenements-passes/actualites-2026/forvis-mazars-a-participe-au-tid#stablecoins"
+  },
+  {
+   "id": "achraf-abourida",
+   "name": "Achraf Abourida",
+   "headline": "Surecomp",
+   "org": "Surecomp",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://podcasts.apple.com/ge/podcast/live-from-treasury-360-europe-the-case-for-smarter/id1480204001?i=1000794068530"
+  },
+  {
+   "id": "ashish-saraogi",
+   "name": "Ashish Saraogi",
+   "headline": "VP Treasurer, Solstice Advanced Materials",
+   "org": "Solstice Advanced Materials",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://podcasts.apple.com/fr/podcast/why-you-need-to-understand-treasury-before-you-rely-on-ai/id1436647162?i=1000800910210"
+  },
+  {
+   "id": "domenico-de-maio",
+   "name": "Domenico De Maio",
+   "headline": "Group Head of Treasury & Tax, Helsinn Group",
+   "org": "Helsinn Group",
+   "region": "DACH",
+   "segment": "Corporate treasury",
+   "source": "https://podcasts.apple.com/fr/podcast/how-treasury-leaders-build-trust-beyond-the-finance/id1436647162?i=1000799527826"
+  },
+  {
+   "id": "patrick-peters-buhler",
+   "name": "Patrick Peters-Bühler",
+   "headline": "Global Treasurer, Arcera Life Sciences",
+   "org": "Arcera Life Sciences",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://podcasts.apple.com/fr/podcast/global-treasury-leadership-centralise-data-and/id1436647162?i=1000798305789"
+  },
+  {
+   "id": "antonios-reizopoulos",
+   "name": "Antonios Reizopoulos",
+   "headline": "Head of Treasury, Nomios Group",
+   "org": "Nomios Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://podcasts.apple.com/fr/podcast/ai-in-treasury-how-people-and-processes-strengthen/id1436647162?i=1000797209625"
+  },
+  {
+   "id": "julia-donegan",
+   "name": "Julia Donegan",
+   "headline": "Senior Global Treasury Director, Newell Brands",
+   "org": "Newell Brands",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://podcasts.apple.com/fr/podcast/how-to-build-influence-in-treasury-through-results/id1436647162?i=1000796079560"
+  },
+  {
+   "id": "anika-williams",
+   "name": "Anika Williams",
+   "headline": "Head of Treasury and Customer Payment Operations, Zalando Payments",
+   "org": "Zalando",
+   "region": "DACH",
+   "segment": "Corporate treasury",
+   "source": "https://podcasts.apple.com/fr/podcast/treasury-career-growth-why-difficult-challenges-help/id1436647162?i=1000793383867"
+  },
+  {
+   "id": "james-kelly",
+   "name": "James Kelly",
+   "headline": "Co-founder, Your Treasury",
+   "org": "Your Treasury",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://podcasts.apple.com/fr/podcast/ai-in-treasury-how-teams-cut-manual-work-and-save-time/id1436647162?i=1000792141149"
+  }
+ ],
+ "stages": [
+  {
+   "url": "https://aksi.fr/forecast/forecast-33-tresorier-augmente-les-5-principes-des-tresoreries-les-plus-avancees/",
+   "label": "FORECAST podcast #33: Trésorier augmenté : les 5 principes des trésoreries les plus avancées",
+   "kind": "podcast",
+   "date": "2026-10-07",
+   "people": [
+    "jean-francois-galea",
+    "romain-giraudeau",
+    "simon-daller"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/ia-tresorerie-tms-kyriba/",
+   "label": "FORECAST podcast #32: Cash forecasting, fraude, agents : l'IA s'installe dans les TMS",
+   "kind": "podcast",
+   "date": "2026-05",
+   "people": [
+    "jean-francois-galea",
+    "felix-grevy"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/eti-risque-de-change-defthedge-diapason/",
+   "label": "FORECAST podcast #31: L'ETI face au risque de change",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "olivier-lechevalier"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-30-affacturage-automatiser-ou-sepuiser-simon-daller-afakto/",
+   "label": "FORECAST podcast #30: Affacturage : automatiser ou s'épuiser ?",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "simon-daller"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-29-qui-sont-les-daf-tresoriers-ces-grands-oublies-de-lecosysteme-pierre-antoine-dusoulier-ibanfirst/",
+   "label": "FORECAST podcast #29: Qui sont les DAF-trésoriers, ces grands oubliés de l'écosystème ?",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "pierre-antoine-dusoulier"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-28-virtual-banking-peut-on-devenir-sa-propre-banque-emmanuel-de-resseguier-fennech-financial/",
+   "label": "FORECAST podcast #28: Virtual banking : peut-on devenir sa propre banque ?",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "emmanuel-de-resseguier"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-27-optimiser-les-paiements-transfrontaliers-latout-blockchain-pour-les-tresoriers-gregoire-andrieu-guitrancourt-fipto/",
+   "label": "FORECAST podcast #27: Optimiser ses paiements internationaux : l'atout blockchain pour les trésoriers",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "gregoire-andrieu-guitrancourt"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-26-transformer-le-risque-de-change-en-avantage-competitif-conseils-et-bonnes-pratiques-nicolas-marquet-kantox/",
+   "label": "FORECAST podcast #26: Transformer le risque de change en opportunités financières",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "nicolas-marquet"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-25-repenser-les-systemes-dinformation-pour-la-finance-des-eti-pauline-glikman-payflows/",
+   "label": "FORECAST podcast #25: Repenser les systèmes d'information pour la finance des ETI",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "pauline-glikman"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-24-paiements-instantanes-en-europe-les-nouvelles-regles-de-lutte-contre-la-fraude-laurent-sarrat-sis-id/",
+   "label": "FORECAST podcast #24: Fraude et virements instantanés : les nouvelles règles du jeu en Europe",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "laurent-sarrat"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-23-redefinir-le-role-du-tresorier-avec-lia-guillaume-rejou-cegid/",
+   "label": "FORECAST podcast #23: Redéfinir le rôle du trésorier avec l'IA",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "guillaume-rejou"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-22-gerer-sa-tresorerie-a-lere-des-monnaies-numeriques-et-de-la-finance-tokenisee-frederic-saunier-diapason/",
+   "label": "FORECAST podcast #22: Gérer sa trésorerie à l'ère de l'e-euro et de la finance tokenisée",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "frederic-saunier"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-21-gestion-du-risque-avancee-nouveaux-outils-et-bonnes-pratiques-vincent-sanchez-kyriba/",
+   "label": "FORECAST podcast #21: Gestion du risque avancée : nouveaux outils et bonnes pratiques",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "vincent-sanchez"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-20-lia-peut-elle-predire-lavenir-en-tresorerie-cedric-guarnotta-datalog-finance/",
+   "label": "FORECAST podcast #20: L'IA peut-elle prédire l'avenir en trésorerie ?",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "cedric-guarnotta"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-19-placer-sa-tresorerie-en-2023/",
+   "label": "FORECAST podcast #19: Placer sa trésorerie en 2023 : tendances et opportunités",
+   "kind": "podcast",
+   "date": "2023",
+   "people": [
+    "jean-francois-galea"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-18-tresorerie-scale-up-le-choc-des-cultures-romain-giraudeau-head-of-treasury-swile/",
+   "label": "FORECAST podcast #18: Trésorerie et scale-up : le choc des cultures ?",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "romain-giraudeau"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/17-swift-tresorerie-instantanee/",
+   "label": "FORECAST podcast #17: Rendre le pouvoir aux trésoriers : SWIFT et l'instant treasury",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/16-tresorerie-cryptomonnaies-et-projet-blockchain-jean-torrens-tresorier-havas-group/",
+   "label": "FORECAST podcast #16: Trésorerie, cryptomonnaies et projet blockchain",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "jean-torrens"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/les-coulisses-du-financement-romain-boulvais-grape-hospitality/",
+   "label": "FORECAST podcast #15: Les coulisses du financement",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "romain-boulvais"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-14-tokens-nft-decryptage-par-un-expert-gaspard-broustine-nft-project-manager-ledger/",
+   "label": "FORECAST podcast #14: Tokenisation et NFT : décryptage par un expert",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "gaspard-broustine"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-13-la-technologie-blockchain-au-service-du-tresorier-christophe-lepitre-president-diznes/",
+   "label": "FORECAST podcast #13: La technologie blockchain au service du trésorier",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "christophe-lepitre"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-12-guy-wata-responsable-tresorerie-groupe-safo-les-enjeux-du-tresorier-en-2021/",
+   "label": "FORECAST podcast #12: Les enjeux du trésorier en 2021",
+   "kind": "podcast",
+   "date": "2021",
+   "people": [
+    "jean-francois-galea",
+    "guy-wata"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-11-pierre-videau-directeur-pole-parapublic-financement-comment-placer-sa-tresorerie-aujourdhui/",
+   "label": "FORECAST podcast #11: Placer son excédent en 2021",
+   "kind": "podcast",
+   "date": "2021",
+   "people": [
+    "jean-francois-galea"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-10-sebastien-janney-senior-account-manager-adyen-lart-du-paiement-btoc/",
+   "label": "FORECAST podcast #10: Tendances du paiement BtoC en 2021",
+   "kind": "podcast",
+   "date": "2021",
+   "people": [
+    "jean-francois-galea",
+    "sebastien-janney"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-9-celine-mignaton-deputy-treasury-director-oberthur-tirer-le-meilleur-de-son-banquier/",
+   "label": "FORECAST podcast #9: Tirer le meilleur de son banquier",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "celine-mignaton-jalbert"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-8-simon-daller-head-of-treasury-group-mantu-la-digitalisation-de-la-fonction-tresorerie/",
+   "label": "FORECAST podcast #8: La transformation digitale de la trésorerie",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "simon-daller"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-7-baptiste-collot-ceo-trustpair-la-fraude-au-virement/",
+   "label": "FORECAST podcast #7: La fraude au virement",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "baptiste-collot"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-6-stephanie-constand-directrice-financement-tresorerie-du-groupe-fnac-darty",
+   "label": "FORECAST podcast #6: 2021 : comment rembourser la dette de la crise ?",
+   "kind": "podcast",
+   "date": "2021",
+   "people": [
+    "jean-francois-galea",
+    "stephanie-constand"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-5-alain-deza-head-of-digital-consulting-sidetrade/",
+   "label": "FORECAST podcast #5: Les clés de l'optimisation du poste client",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "alain-deza"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-4-camille-desclaux-manager-de-transition/",
+   "label": "FORECAST podcast #4: Le trésorier et le risque de change",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "camille-desclaux"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-3-julien-crespy-malakoff-humanis/",
+   "label": "FORECAST podcast #3: L'IT au coeur de la trésorerie",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "julien-crespy"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-2-pierre-lustenberger-tresorier-groupe-chez-akuo-energy",
+   "label": "FORECAST podcast #2: Structurer la fonction trésorerie",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "pierre-lustenberger"
+   ]
+  },
+  {
+   "url": "https://aksi.fr/forecast/forecast-1-florent-sebag-head-of-treasury-financing-daxa-group-operations/",
+   "label": "FORECAST podcast #1: Créer un département trésorerie",
+   "kind": "podcast",
+   "date": "",
+   "people": [
+    "jean-francois-galea",
+    "florent-sebag"
+   ]
+  },
+  {
+   "url": "https://treasuryxl.com/blog/reminder-live-session-the-evolution-of-open-banking-connectivity-and-real-time-how-will-apis-change-the-treasurers-daily-life/",
+   "label": "treasuryXL and Kyriba webinar: How will APIs change the treasurer's daily life? (Jun 2022)",
+   "kind": "webinar",
+   "date": "2022-06-14",
+   "people": [
+    "pieter-de-kiewit",
+    "patrick-kunz",
+    "felix-grevy"
+   ]
+  },
+  {
+   "url": "https://atebforum.be/event/treasury-update/#api-connections",
+   "label": "ATEB Treasury Update 2021: How API connections can optimize your treasury operations?",
+   "kind": "webinar",
+   "date": "2021-10",
+   "people": [
+    "felix-grevy",
+    "guillaume-metman"
+   ]
+  },
+  {
+   "url": "https://atebforum.be/event/treasury-update/#supply-chain-financing",
+   "label": "ATEB Treasury Update 2021: Sustainable supply chain financing",
+   "kind": "webinar",
+   "date": "2021-10",
+   "people": [
+    "vincent-beerman"
+   ]
+  },
+  {
+   "url": "https://atebforum.be/event/treasury-update/#sustainability-linked-financing",
+   "label": "ATEB Treasury Update 2021: Building a sustainability-linked financing approach",
+   "kind": "webinar",
+   "date": "2021-10",
+   "people": [
+    "domitille-moulas"
+   ]
+  },
+  {
+   "url": "https://www.nftmorning.com/p/911-future-of-payment-6-tresorerie",
+   "label": "NFT Morning podcast, Future of Payment: trésorerie (Jan 2026)",
+   "kind": "podcast",
+   "date": "2026-01-18",
+   "people": [
+    "felix-grevy"
+   ]
+  },
+  {
+   "url": "https://www.forvismazars.com/fr/fr/insights/publications-et-evenements/tous-les-evenements-de-forvis-mazars-en-france/nos-evenements-passes/actualites-2026/forvis-mazars-a-participe-au-tid#tresorerie-augmentee",
+   "label": "Treasury Innovation Day 2026, Paris: L'IA n'est pas un outil, c'est une compétence",
+   "kind": "panel",
+   "date": "2026-03-24",
+   "people": [
+    "yann-guyomar",
+    "lionel-jouve",
+    "elise-cachin"
+   ]
+  },
+  {
+   "url": "https://www.forvismazars.com/fr/fr/insights/publications-et-evenements/tous-les-evenements-de-forvis-mazars-en-france/nos-evenements-passes/actualites-2026/forvis-mazars-a-participe-au-tid#stablecoins",
+   "label": "Treasury Innovation Day 2026, Paris: Stablecoins et paiements transfrontaliers, quels intérêts pour les corporates ?",
+   "kind": "panel",
+   "date": "2026-03-24",
+   "people": [
+    "alexandre-poser",
+    "ben-brophy",
+    "lionel-jouve"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/ge/podcast/tokenised-liquidity-rethinking-mmfs/id1480204001?i=1000800220574",
+   "label": "TMI TreasuryCast: Tokenised liquidity, rethinking MMFs (Nov 2026)",
+   "kind": "podcast",
+   "date": "2026-11",
+   "people": [
+    "ben-poole",
+    "kelvin-li",
+    "patrick-simeon",
+    "eddy-wong"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/ge/podcast/from-global-relationship-to-local-execution-ihgs-multi/id1480204001?i=1000798160639",
+   "label": "TMI TreasuryCast: IHG's multi-market banking partnership (Oct 2026)",
+   "kind": "podcast",
+   "date": "2026-10-26",
+   "people": [
+    "eleanor-hill"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/ge/podcast/live-from-treasury-360-europe-the-case-for-smarter/id1480204001?i=1000794068530",
+   "label": "TMI TreasuryCast, live from Treasury 360° Europe: smarter guarantee management (Oct 2026)",
+   "kind": "podcast",
+   "date": "2026-10-09",
+   "people": [
+    "eleanor-hill",
+    "achraf-abourida"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/de/podcast/how-does-treasury-earn-a-place-in-business-decisions/id1614315267?i=1000798692064",
+   "label": "Treasury Leaders podcast: How does treasury earn a place in business decisions?",
+   "kind": "podcast",
+   "date": "2026-11",
+   "people": [
+    "jan-willem-attevelt",
+    "philip-costa-hibberd",
+    "frank-muusse"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/de/podcast/episode-300-behind-the-treasury-headlines-a/id1614315267?i=1000790354949",
+   "label": "Treasury Leaders podcast: Episode 300: Behind the treasury headlines, a journalist's view of 20 years in treasury",
+   "kind": "podcast",
+   "date": "2026-09-17",
+   "people": [
+    "philip-costa-hibberd",
+    "ben-poole"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/de/podcast/episode-299-what-treasury-leaders-can-learn-from-startups/id1614315267?i=1000774026586",
+   "label": "Treasury Leaders podcast: Episode 299: What treasury leaders can learn from startups and corporates",
+   "kind": "podcast",
+   "date": "2026-06-24",
+   "people": [
+    "philip-costa-hibberd",
+    "jennifer-pearson"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/de/podcast/episode-298-how-treasury-teams-automate-too-late-and/id1614315267?i=1000773108633",
+   "label": "Treasury Leaders podcast: Episode 298: How treasury teams automate too late",
+   "kind": "podcast",
+   "date": "2026-06-17",
+   "people": [
+    "jan-willem-attevelt",
+    "tracey-knight"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/de/podcast/episode-297-how-bad-financial-decisions-and-poor-cash/id1614315267?i=1000772018110",
+   "label": "Treasury Leaders podcast: Episode 297: How bad financial decisions and poor cash management destroy businesses",
+   "kind": "podcast",
+   "date": "2026-06-10",
+   "people": [
+    "jan-willem-attevelt",
+    "nikos-polymenakos"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/de/podcast/episode-296-treasury-control-in-a-decentralized/id1614315267?i=1000766433071",
+   "label": "Treasury Leaders podcast: Episode 296: Treasury control in a decentralised company",
+   "kind": "podcast",
+   "date": "2026-06-03",
+   "people": [
+    "philip-costa-hibberd",
+    "matthias-depoorter"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/de/podcast/episode-295-leaders-think-ai-will-save-them-but-they/id1614315267?i=1000766434302",
+   "label": "Treasury Leaders podcast: Episode 295: Leaders think AI will save them",
+   "kind": "podcast",
+   "date": "2026-05-27",
+   "people": [
+    "philip-costa-hibberd",
+    "mariam-halfhide"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/de/podcast/episode-294-how-treasury-pros-drive-cash-flow-and/id1614315267?i=1000766430661",
+   "label": "Treasury Leaders podcast: Episode 294: How treasury pros drive cash flow and business impact",
+   "kind": "podcast",
+   "date": "2026-05-06",
+   "people": [
+    "philip-costa-hibberd",
+    "oliver-gerstberger"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/fr/podcast/why-you-need-to-understand-treasury-before-you-rely-on-ai/id1436647162?i=1000800910210",
+   "label": "The Treasury Career Corner: Why you need to understand treasury before you rely on AI",
+   "kind": "podcast",
+   "date": "2026-11-10",
+   "people": [
+    "mike-richards",
+    "ashish-saraogi"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/fr/podcast/how-treasury-leaders-build-trust-beyond-the-finance/id1436647162?i=1000799527826",
+   "label": "The Treasury Career Corner: How treasury leaders build trust beyond the finance function",
+   "kind": "podcast",
+   "date": "2026-11-03",
+   "people": [
+    "mike-richards",
+    "domenico-de-maio"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/fr/podcast/global-treasury-leadership-centralise-data-and/id1436647162?i=1000798305789",
+   "label": "The Treasury Career Corner: Global treasury leadership: centralise data and empower teams",
+   "kind": "podcast",
+   "date": "2026-10-27",
+   "people": [
+    "mike-richards",
+    "patrick-peters-buhler"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/fr/podcast/ai-in-treasury-how-people-and-processes-strengthen/id1436647162?i=1000797209625",
+   "label": "The Treasury Career Corner: AI in treasury: how people and processes strengthen fraud prevention",
+   "kind": "podcast",
+   "date": "2026-10-20",
+   "people": [
+    "mike-richards",
+    "antonios-reizopoulos"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/fr/podcast/how-to-build-influence-in-treasury-through-results/id1436647162?i=1000796079560",
+   "label": "The Treasury Career Corner: How to build influence in treasury through results and relationships",
+   "kind": "podcast",
+   "date": "2026-10-13",
+   "people": [
+    "mike-richards",
+    "julia-donegan"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/fr/podcast/treasury-career-growth-why-difficult-challenges-help/id1436647162?i=1000793383867",
+   "label": "The Treasury Career Corner: Treasury career growth: why difficult challenges help you progress",
+   "kind": "podcast",
+   "date": "2026-10-06",
+   "people": [
+    "mike-richards",
+    "anika-williams"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/fr/podcast/ai-in-treasury-how-teams-cut-manual-work-and-save-time/id1436647162?i=1000792141149",
+   "label": "The Treasury Career Corner: AI in treasury: how teams cut manual work and save time",
+   "kind": "podcast",
+   "date": "2026-09-29",
+   "people": [
+    "mike-richards",
+    "james-kelly"
+   ]
+  },
+  {
+   "url": "https://podcasts.apple.com/fr/podcast/best-of-treasury-career-corner-lessons-from-450-episodes/id1436647162?i=1000791056003",
+   "label": "The Treasury Career Corner: Best of Treasury Career Corner: lessons from 450 episodes",
+   "kind": "podcast",
+   "date": "2026-09-22",
+   "people": [
+    "mike-richards"
+   ]
+  }
+ ]
+}

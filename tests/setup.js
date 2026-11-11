@@ -1,4 +1,5 @@
 'use strict';
+process.env.PEOPLE_SEED = 'off';
 /* Each suite starts from a migrated, seeded store, whatever order the runner picks. */
 const path = require('path');
 const { makePool } = require('../scripts/db');

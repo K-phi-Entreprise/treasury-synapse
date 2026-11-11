@@ -1,4 +1,5 @@
 'use strict';
+process.env.PEOPLE_SEED = 'off';
 /* Schema, importer and API against a real Postgres (DATABASE_URL). The seed dump is the one shipped in data/seed. */
 const test = require('node:test');
 const assert = require('node:assert');
