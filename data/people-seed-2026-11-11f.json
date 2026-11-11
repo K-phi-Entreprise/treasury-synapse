@@ -1,0 +1,2328 @@
+{
+ "people": [
+  {
+   "id": "nicola-bigger",
+   "name": "Nicola Bigger",
+   "headline": "Director, Global Treasury Operations, 3M",
+   "org": "3M",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/3m-continues-the-innovation-in-house/"
+  },
+  {
+   "id": "ian-macdougall",
+   "name": "Ian MacDougall",
+   "headline": "Associate Treasury Analyst, Domino’s",
+   "org": "Domino’s",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/all-you-knead-is-ai-how-intelligent-cash-forecasting-delivered-at-dominos/"
+  },
+  {
+   "id": "vasco-grigolo",
+   "name": "Vasco Grigolo",
+   "headline": "Corporate Finance Manager, Agrosuper S.A.",
+   "org": "Agrosuper S.A.",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/chiles-agrosuper-leaps-ahead-on-transformation-journey/"
+  },
+  {
+   "id": "dan-hitchen",
+   "name": "Dan Hitchen",
+   "headline": "Group Treasury Manager, SIG Plc",
+   "org": "SIG Plc",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/construction-group-sig-builds-resilience-in-cash-management-refurb/"
+  },
+  {
+   "id": "apra-bothra",
+   "name": "Apra Bothra",
+   "headline": "Sr Finance Program Manager, Microsoft",
+   "org": "Microsoft",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/customer-profiling-microsofts-masterclass-in-receivables-management/"
+  },
+  {
+   "id": "jakub-sedy",
+   "name": "Jakub Šedý",
+   "headline": "CFO, Notino",
+   "org": "Notino",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/czech-republic-online-retailer-implements-invoice-finance-solution/"
+  },
+  {
+   "id": "julian-weber",
+   "name": "Julian Weber",
+   "headline": "Senior Specialist Treasury Risk and Investment, Delivery Hero SE",
+   "org": "Delivery Hero SE",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/delivery-hero-lands-new-investment-strategy-and-taps-mmfs/"
+  },
+  {
+   "id": "caroline-dehm",
+   "name": "Caroline Dehm",
+   "headline": "Head of Treasury, Siemens Healthineers AG",
+   "org": "Siemens Healthineers AG",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/diverse-team-effort-transforms-treasury-at-siemens-healthineers/"
+  },
+  {
+   "id": "nevin-lettens",
+   "name": "Nevin Lettens",
+   "headline": "Manager, Treasury, eBay",
+   "org": "eBay",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/ebay-buys-into-cls-to-manage-fx-settlement-risk/"
+  },
+  {
+   "id": "janko-hahn",
+   "name": "Janko Hahn",
+   "headline": "Head Treasury Operations, Autoneum",
+   "org": "Autoneum",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/frunk-it-up-autoneum-completes-its-treasury-transformation/"
+  },
+  {
+   "id": "lynda-mcgoey",
+   "name": "Lynda McGoey",
+   "headline": "Assistant Treasurer – Global Head of Trade Finance, GE Vernova",
+   "org": "GE Vernova",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/ge-vernova-powers-new-trade-finance-model-into-life/"
+  },
+  {
+   "id": "gaelle-gebus",
+   "name": "Gaëlle Gebus",
+   "headline": "Senior Cash and Project Manager, Holcim",
+   "org": "Holcim",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/holcim-cements-treasury-transformation-with-netherlands-based-mncp/"
+  },
+  {
+   "id": "kristina-henschen",
+   "name": "Kristina Henschen",
+   "headline": "Secretary General, Radiohjälpen",
+   "org": "Radiohjälpen",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/how-apis-help-a-swedish-charity-broadcast-donations-in-real-time/"
+  },
+  {
+   "id": "sharon-shachak",
+   "name": "Sharon Shachak",
+   "headline": "VP, Treasurer, CyberArk Software",
+   "org": "CyberArk Software",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/how-cyberark-transformed-its-investment-approach/"
+  },
+  {
+   "id": "wael-farouk",
+   "name": "Wael Farouk",
+   "headline": "VP Treasury, Metra Group",
+   "org": "Metra Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/how-egypts-metra-digitised-its-working-capital-processes/"
+  },
+  {
+   "id": "kevin-gaulton",
+   "name": "Kevin Gaulton",
+   "headline": "Head of Treasury, Fitch Group (Hearst Corporation)",
+   "org": "Fitch Group (Hearst Corporation)",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/how-fitch-upgraded-cash-management-processes-to-global-pool/"
+  },
+  {
+   "id": "aditi-agarwal",
+   "name": "Aditi Agarwal",
+   "headline": "Global Treasury Operations Leader and Chief of Staff, GE HealthCare",
+   "org": "GE HealthCare",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/how-ge-healthcare-spin-off-rebuilt-a-fit-for-purpose-treasury/"
+  },
+  {
+   "id": "harsh-bansal",
+   "name": "Harsh Bansal",
+   "headline": "Chief Financial Officer and Chief Growth Officer, Americana Restaurants",
+   "org": "Americana Restaurants",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/how-menas-americana-built-a-new-treasury-to-go/"
+  },
+  {
+   "id": "ilkim-saracel",
+   "name": "Ilkim Saracel",
+   "headline": "Director, Assistant Treasurer, Nextracker",
+   "org": "Nextracker",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/how-nextrackers-treasury-came-to-shine/"
+  },
+  {
+   "id": "danko-maras",
+   "name": "Danko Maras",
+   "headline": "Chief Financial Officer, Almarai Company",
+   "org": "Almarai Company",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/how-saudis-almarai-pulled-off-flagship-issuance-after-long-absence/"
+  },
+  {
+   "id": "vincent-delort",
+   "name": "Vincent Delort",
+   "headline": "Treasury Director, Japan Tobacco Inc",
+   "org": "Japan Tobacco Inc",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/how-transformation-at-japan-tobacco-created-onetreasury/"
+  },
+  {
+   "id": "elio-fonti",
+   "name": "Elio Fonti",
+   "headline": "Head of Business Development & Strategy, IVECO CAPITAL",
+   "org": "IVECO CAPITAL",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/iveco-capital-launched-the-new-online-payment-hub-a-significant-step-in-the-digital-world/"
+  },
+  {
+   "id": "stef-layne",
+   "name": "Stef Layne",
+   "headline": "VP, Treasury, Payroll and GTM Comp, Klaviyo",
+   "org": "Klaviyo",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/klaviyos-ipo-generates-buzz-despite-ipo-drought/"
+  },
+  {
+   "id": "paul-franek",
+   "name": "Paul Franek",
+   "headline": "Global Head of Treasury Services & Solutions, Apollo Global Management",
+   "org": "Apollo Global Management",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/lean-team-delivers-complete-transformation/"
+  },
+  {
+   "id": "pamela-schmidt",
+   "name": "Pamela Schmidt",
+   "headline": "Vice President Treasury & Chief Investment Officer, AmeriHealth Caritas",
+   "org": "AmeriHealth Caritas",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/liquid-wellness-how-amerihealth-revitalises-cash-forecasting/"
+  },
+  {
+   "id": "hana-harrison",
+   "name": "Hana Harrison",
+   "headline": "Deputy Group Treasurer, The Phoenix Group",
+   "org": "The Phoenix Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/phoenix-rises-after-three-year-absence-with-record-investor-interest/"
+  },
+  {
+   "id": "martin-schlageter",
+   "name": "Martin Schlageter",
+   "headline": "Treasury Operations Professional, Martin Schlageter",
+   "org": "Martin Schlageter",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/pioneering-three-decades-of-excellence-at-roche/"
+  },
+  {
+   "id": "paulo-oliveira",
+   "name": "Paulo Oliveira",
+   "headline": "Head of Treasury, Danone",
+   "org": "Danone",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/robotics-process-automation-solves-reconciliation-headache-at-danone/"
+  },
+  {
+   "id": "varsha-maharaj",
+   "name": "Varsha Maharaj",
+   "headline": "Executive, Group Treasury, Oceana Group",
+   "org": "Oceana Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/supply-chain-finance-lands-in-namibia-with-oceana-flagship-deal/"
+  },
+  {
+   "id": "patricia-gentile",
+   "name": "Patricia Gentile",
+   "headline": "Group Head of Finance and Insurance, A2A",
+   "org": "A2A",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/sustainable-finance-framework-established-to-achieve-100-sustainable-debt-by-2035/"
+  },
+  {
+   "id": "niraj-mandpe",
+   "name": "Niraj Mandpe",
+   "headline": ", J.P. Morgan., Iron Mountain",
+   "org": "Iron Mountain",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/transformation-at-iron-mountain-leaves-cash-in-peak-condition/"
+  },
+  {
+   "id": "abdulrhman-khalid-alfozan",
+   "name": "Abdulrhman Khalid Alfozan",
+   "headline": "Enterprise Resource Solutions Division Manager, Saudi Electricity Company",
+   "org": "Saudi Electricity Company",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/treasury-foresight-at-saudis-sec-supports-vision-2030/"
+  },
+  {
+   "id": "lea-chotard",
+   "name": "Léa Chotard",
+   "headline": "EMEA Product Cash Management Lead, PayPal",
+   "org": "PayPal",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/treasury-innovation-and-strategic-transformation-pay-off-at-paypal/"
+  },
+  {
+   "id": "pam-oconnell",
+   "name": "Pam O’Connell",
+   "headline": "World Bank Group Controller & Vice President for Finance, World Bank Group",
+   "org": "World Bank Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2024-winners/world-bank-enhances-payment-and-funding-capabilities-for-development/"
+  },
+  {
+   "id": "heiko-nix",
+   "name": "Heiko Nix",
+   "headline": "Global Head of Cash Management and Payments, Siemens",
+   "org": "Siemens",
+   "region": "DACH",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/24-7-and-always-on-siemens-integrates-blockchain-for-real-time-treasury/"
+  },
+  {
+   "id": "eric-humbert",
+   "name": "Eric Humbert",
+   "headline": "Head of Corporate Cash Management, Boehringer Ingelheim",
+   "org": "Boehringer Ingelheim",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/bi-transforms-intercompany-payments-in-emerging-markets-process/"
+  },
+  {
+   "id": "sarah-johannesen",
+   "name": "Sarah Johannesen",
+   "headline": "Senior Director, Cash Management, Banking and Treasury Operations, Bristol Myers Squibb",
+   "org": "Bristol Myers Squibb",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/bms-upgrades-its-cash-management-in-europe-and-the-us/"
+  },
+  {
+   "id": "amir-jaber",
+   "name": "Amir Jaber",
+   "headline": "Head of Treasury, Careem",
+   "org": "Careem",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/careem-treasury-transforms-into-a-strategic-business-enabler/"
+  },
+  {
+   "id": "netta-christensen",
+   "name": "Netta Christensen",
+   "headline": "Head of Global Cash Management, A.P. Møller-Maersk",
+   "org": "A.P. Møller-Maersk",
+   "region": "Nordics",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/cash-and-liquidity-management-a-bedrock-at-a-p-moller-maersk/"
+  },
+  {
+   "id": "hugo-rivera",
+   "name": "Hugo Rivera",
+   "headline": "Director Treasury, Celanese Corporation",
+   "org": "Celanese Corporation",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/celanese-extends-innovation-to-cash-management-transformation/"
+  },
+  {
+   "id": "angela-hobart",
+   "name": "Angela Hobart",
+   "headline": "Director of Strategic Finance, Angela Hobart",
+   "org": "Angela Hobart",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/challenging-herself-to-move-the-needle-on-climate-change/"
+  },
+  {
+   "id": "purani-pillay",
+   "name": "Purani Pillay",
+   "headline": "Treasury Cash Manager Africa, AB InBev Africa",
+   "org": "AB InBev Africa",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/complete-treasury-overhaul-for-ab-inbev-africa-comprising-12-countries/"
+  },
+  {
+   "id": "felix-braun",
+   "name": "Felix Braun",
+   "headline": "Product Owner Treasury Management System, Daimler Truck AG",
+   "org": "Daimler Truck AG",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/daimler-truck-transformation-is-nuts/"
+  },
+  {
+   "id": "esther-schmit",
+   "name": "Esther Schmit",
+   "headline": "Senior Manager Treasury & Risk, Etsy",
+   "org": "Etsy",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/etsy-implements-new-to-market-pooling-solution/"
+  },
+  {
+   "id": "judith-nabaasa",
+   "name": "Judith Nabaasa",
+   "headline": "Director General of Debt Management, Ministry of Finance and Economic Planning, Republic of Rwanda",
+   "org": "Republic of Rwanda",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/facility-addresses-sustainable-development-goals-in-rwanda/"
+  },
+  {
+   "id": "rebeca-wiadacz",
+   "name": "Rebeca Wiadacz",
+   "headline": "Director of Global Cash Management, FedEx",
+   "org": "FedEx",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/fedex-delivers-blockchain-for-24-7-365-real-time-payments/"
+  },
+  {
+   "id": "felipe-vicchiato",
+   "name": "Felipe Vicchiato",
+   "headline": "CFO, São Martinho",
+   "org": "São Martinho",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/financial-package-supports-sweet-sustainable-development-in-brazil/"
+  },
+  {
+   "id": "nigel-glenday",
+   "name": "Nigel Glenday",
+   "headline": "CFO, Masterworks",
+   "org": "Masterworks",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/fx-api-unveils-the-art-world-to-global-investors/"
+  },
+  {
+   "id": "marcelo-penteado-baldo",
+   "name": "Marcelo Penteado Baldo",
+   "headline": "Treasurer, Sylvamo do Brasil Ltda",
+   "org": "Sylvamo do Brasil Ltda",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/fx-solution-sets-benchmark-in-brazil/"
+  },
+  {
+   "id": "olivier-boutet",
+   "name": "Olivier Boutet",
+   "headline": "Group Treasurer, Head of Global Treasury Centre, Al-Futtaim",
+   "org": "Al-Futtaim",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/how-uaes-al-futtaim-transformed-a-fragmented-treasury-into-a-centralised-control-centre/"
+  },
+  {
+   "id": "odette-rodrigues",
+   "name": "Odette Rodrigues",
+   "headline": "Treasurer, Uber",
+   "org": "Uber",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/inaugural-investment-grade-rating-drives-funding-strategy-at-uber/"
+  },
+  {
+   "id": "anthony-ho",
+   "name": "Anthony Ho",
+   "headline": "Head of Global Treasury, Inchcape Shipping Services",
+   "org": "Inchcape Shipping Services",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/inchcape-transforms-liquidity-management-with-tms/"
+  },
+  {
+   "id": "ravi-patel",
+   "name": "Ravi Patel",
+   "headline": "Director Financial Risk Management, Bristol Myers Squibb",
+   "org": "Bristol Myers Squibb",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/innovation-in-response-to-macroeconomic-changes/"
+  },
+  {
+   "id": "meindert-de-vreeze",
+   "name": "Meindert de Vreeze",
+   "headline": "EMEA Treasurer, 3M",
+   "org": "3M",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/investment-strategy-overhaul-how-3m-improved-its-asset-and-liability-management-in-volatile-markets/"
+  },
+  {
+   "id": "jonathon-knuppel",
+   "name": "Jonathon Knuppel",
+   "headline": "Assistant Treasurer, Jaguar Land Rover",
+   "org": "Jaguar Land Rover",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/jlr-drives-best-practice-in-fx-management-to-support-chinese-exports/"
+  },
+  {
+   "id": "danra-forshey",
+   "name": "Danra Forshey",
+   "headline": "Finance Director, Microsoft",
+   "org": "Microsoft",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/microsoft-executes-blue-chip-swap-programme/"
+  },
+  {
+   "id": "davide-musillo",
+   "name": "Davide Musillo",
+   "headline": "Group Finance Manager, Microsoft",
+   "org": "Microsoft",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/microsoft-harnesses-traditional-ai-gen-ai-and-machine-learning/"
+  },
+  {
+   "id": "ricardo-rospi",
+   "name": "Ricardo Rospi",
+   "headline": "Finance Manager, PepsiCo",
+   "org": "PepsiCo",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/pepsico-delivers-payments-solution-for-sales-representatives-in-brazil/"
+  },
+  {
+   "id": "steven-stewart",
+   "name": "Steven Stewart",
+   "headline": "Director Treasury & Accounting, Terex",
+   "org": "Terex",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/pooling-solution-centralises-liquidity-for-terex/"
+  },
+  {
+   "id": "gerald-gassert",
+   "name": "Gerald Gassert",
+   "headline": "Group Treasurer, ABB E-mobility",
+   "org": "ABB E-mobility",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/sap-s-4hana-used-to-architect-next-generation-global-treasury/"
+  },
+  {
+   "id": "saleh-alfadhel",
+   "name": "Saleh Alfadhel",
+   "headline": "CFO, Savvy Games Group",
+   "org": "Savvy Games Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/savvy-games-transforms-cash-management-to-fuel-growth/"
+  },
+  {
+   "id": "yvonne-hurst",
+   "name": "Yvonne Hurst",
+   "headline": "Programme Director, BP",
+   "org": "BP",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/seven-year-global-transformation-journey-delivers-for-bp/"
+  },
+  {
+   "id": "stuart-madell",
+   "name": "Stuart Madell",
+   "headline": "Deputy Head of Global Cash Management, Shell",
+   "org": "Shell",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/shell-signs-new-digital-bank-account-management-into-life/"
+  },
+  {
+   "id": "miguel-lopez",
+   "name": "Miguel Lopez",
+   "headline": "Treasury Manager, Colombia, Siemens",
+   "org": "Siemens",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/siemens-transforms-operations-with-innovative-technology-in-mexico/"
+  },
+  {
+   "id": "jason-hanson",
+   "name": "Jason Hanson",
+   "headline": "Senior Treasury Analyst, Southwire",
+   "org": "Southwire",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/southwire-energises-investments-with-portal-and-tms-integration/"
+  },
+  {
+   "id": "mohamed-torayah",
+   "name": "Mohamed Torayah",
+   "headline": "Regional Treasury Lead, GE Vernova",
+   "org": "GE Vernova",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/spin-off-provides-cash-pooling-opportunity-for-ge-in-the-middle-east/"
+  },
+  {
+   "id": "boriana-farias",
+   "name": "Boriana Farias",
+   "headline": "VP Treasurer, Baylor Scott & White Health",
+   "org": "Baylor Scott & White Health",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/successful-risk-mitigation-for-one-of-the-largest-healthcare-providers-in-the-usa/"
+  },
+  {
+   "id": "steven-ellis",
+   "name": "Steven Ellis",
+   "headline": "Group Treasurer, Flutter Entertainment plc",
+   "org": "Flutter Entertainment plc",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/team-flutter-works-hard-plays-hard-and-has-fun/"
+  },
+  {
+   "id": "mihaela-mihaylova",
+   "name": "Mihaela Mihaylova",
+   "headline": "Director of Treasury, Global Cash & Investments, Mihaela Mihaylova",
+   "org": "Mihaela Mihaylova",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/the-real-thing-when-grabbing-opportunities-changes-a-life/"
+  },
+  {
+   "id": "petar-dakovic",
+   "name": "Petar Dakovic",
+   "headline": "Senior Treasury Manager, GetYourGuide",
+   "org": "GetYourGuide",
+   "region": "DACH",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/travel-experience-marketplace-getyourguide-transforms-payments-to-local-tour-guides/"
+  },
+  {
+   "id": "ep-nampoothiri",
+   "name": "EP Nampoothiri",
+   "headline": "Director of Finance, Lulu Retail Holdings PLC",
+   "org": "Lulu Retail Holdings PLC",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2025-winners/treasury-management-improvements-follow-ipo-for-lulu/"
+  },
+  {
+   "id": "alexander-mishchenkov",
+   "name": "Alexander Mishchenkov",
+   "headline": "Treasurer, Armacell",
+   "org": "Armacell",
+   "region": "Benelux",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/armacell-shows-how-the-treasury-can-support-corporate-growth/"
+  },
+  {
+   "id": "cristiane-candeloro",
+   "name": "Cristiane Candeloro",
+   "headline": "Assistant Treasurer, AstraZeneca",
+   "org": "AstraZeneca",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/astrazenecas-liquidity-forecasting-transformation/"
+  },
+  {
+   "id": "catherine-portman",
+   "name": "Catherine Portman",
+   "headline": "VP Treasurer, Palo Alto Networks",
+   "org": "Palo Alto Networks",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/betting-on-ai-for-treasury-operations-with-palo-alto-networks/"
+  },
+  {
+   "id": "marlon-singh",
+   "name": "Marlon Singh",
+   "headline": "Head of Group Treasury Operations and Risk, BHP Group Limited",
+   "org": "BHP Group Limited",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/bhp-rolls-out-virtual-accounts-with-banking-partner/"
+  },
+  {
+   "id": "freek-van-den-engel",
+   "name": "Freek van den Engel",
+   "headline": "Head of Treasury, Bolt Technology OÜ",
+   "org": "Bolt Technology OÜ",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/bolt-shows-how-modern-treasury-solutions-directly-impact-peoples-lives/"
+  },
+  {
+   "id": "olivier-smekens",
+   "name": "Olivier Smekens",
+   "headline": "Global Head of Treasury, Breitling",
+   "org": "Breitling",
+   "region": "DACH",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/breitling-automates-fx-trading-execution/"
+  },
+  {
+   "id": "gina-grant",
+   "name": "Gina Grant",
+   "headline": "EVP & Treasurer, Colgate-Palmolive",
+   "org": "Colgate-Palmolive",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/colgate-palmolive-achieves-real-cultural-change/"
+  },
+  {
+   "id": "conner-williams",
+   "name": "Conner Williams",
+   "headline": "Treasury Manager, Diamondback Energy",
+   "org": "Diamondback Energy",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/diamondback-energy-achieves-simplification-via-virtual-accounts/"
+  },
+  {
+   "id": "ilheon-park",
+   "name": "Ilheon Park",
+   "headline": "CFO, Eyewa Ltd",
+   "org": "Eyewa Ltd",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/eyewas-transformation-of-its-treasury-operations/"
+  },
+  {
+   "id": "muhammad-tauseef-ur-rehman",
+   "name": "Muhammad Tauseef Ur Rehman",
+   "headline": "Group Treasury Manager, Galadari Brothers",
+   "org": "Galadari Brothers",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/galadaris-strategic-transformation-or-rebranding-and-expansion/"
+  },
+  {
+   "id": "sofia-calvo",
+   "name": "Sofia Calvo",
+   "headline": "Head of Corporate Finance and Banking Relations, Grupo Bimbo",
+   "org": "Grupo Bimbo",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/grupo-bimbos-sofia-calvo-embodies-the-definition-and-values-of-a-rising-star/"
+  },
+  {
+   "id": "jefri-jacob-thomas",
+   "name": "Jefri Jacob Thomas",
+   "headline": "Senior Group Treasury Manager, Kent",
+   "org": "Kent",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/harnessing-teamwork-and-technology/"
+  },
+  {
+   "id": "albert-latour",
+   "name": "Albert Latour",
+   "headline": "Global Corporate Controller, Bacardi Limited",
+   "org": "Bacardi Limited",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/how-bacardi-developed-a-structured-data-driven-approach-to-improving-working-capital/"
+  },
+  {
+   "id": "theis-stig-jensen",
+   "name": "Theis Stig Jensen",
+   "headline": "VP, Head of Group Treasury, DSV A/S",
+   "org": "DSV A/S",
+   "region": "Nordics",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/how-dsvs-treasury-integrated-a-landmark-acquisition/"
+  },
+  {
+   "id": "mark-van-eersel",
+   "name": "Mark Van Eersel",
+   "headline": "Sr. Treasury Specialist, ASML Netherlands BV",
+   "org": "ASML Netherlands BV",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/implementing-a-dynamic-counterparty-exposure-management-framework-with-asml/"
+  },
+  {
+   "id": "hamish-waddell",
+   "name": "Hamish Waddell",
+   "headline": "Global Finance Process Manager, Jotun",
+   "org": "Jotun",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/jotuns-transformation-projects-are-90-humans-10-technology/"
+  },
+  {
+   "id": "anna-elphick",
+   "name": "Anna Elphick",
+   "headline": "Global Head of Tax, Treasury & Insurance, The Magnum Ice Cream Company",
+   "org": "The Magnum Ice Cream Company",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/magnum-treasury-remains-cool-under-pressure/"
+  },
+  {
+   "id": "sleiman-el-homsi",
+   "name": "Sleiman El Homsi",
+   "headline": "Treasurer, Shamal",
+   "org": "Shamal",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/maintaining-sustained-collaboration-for-a-modernised-treasury-at-shamal/"
+  },
+  {
+   "id": "sonam-donkar",
+   "name": "Sonam Donkar",
+   "headline": "CFO, Rohit Group",
+   "org": "Rohit Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/making-treasury-a-strategic-growth-enabler/"
+  },
+  {
+   "id": "kathy-brustad",
+   "name": "Kathy Brustad",
+   "headline": "Director, Treasury, Microsoft",
+   "org": "Microsoft",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/microsofts-treasury-360-qiro-delivers-a-single-trusted-view-of-treasury-risk/"
+  },
+  {
+   "id": "dominik-scheitz",
+   "name": "Dominik Scheitz",
+   "headline": "VP Finance, Northern Data Group",
+   "org": "Northern Data Group",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/northern-data-delivers-a-masterclass-in-mid-market-treasury-innovation/"
+  },
+  {
+   "id": "aniruddha-gadre",
+   "name": "Aniruddha Gadre",
+   "headline": "VP and Global Head – Treasury and Insurance, Tech Mahindra Ltd",
+   "org": "Tech Mahindra Ltd",
+   "region": "Asia-Pacific",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/overcoming-time-zone-differences-and-regulatory-complexities-with-tech-mahindra/"
+  },
+  {
+   "id": "marek-chrusciel",
+   "name": "Marek Chruściel",
+   "headline": "Director, Treasury, Investor Relations and Corporate Finance, Play",
+   "org": "Play",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/play-establishes-financing-for-critical-infrastructure/"
+  },
+  {
+   "id": "eoin-james-hugh-edwards",
+   "name": "Eoin James Hugh Edwards",
+   "headline": "Head of Front Office Group Treasury, Pluxee",
+   "org": "Pluxee",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/pluxee-creates-a-single-controlled-workflow-for-short-term-investments/"
+  },
+  {
+   "id": "rajendra-prasad-nidamarthi",
+   "name": "Rajendra Prasad Nidamarthi",
+   "headline": "Head of Group Treasury, Al Mulla Group Holding Company KSCC",
+   "org": "Al Mulla Group Holding Company KSCC",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/project-orange-how-al-mulla-group-rewrote-the-treasury-playbook/"
+  },
+  {
+   "id": "dr-robert-mcanally",
+   "name": "Dr Robert McAnally",
+   "headline": "SVP Head of Treasury and Corporate Finance, Siemens Energy",
+   "org": "Siemens Energy",
+   "region": "DACH",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/siemens-energy-stabilises-funding-structures-during-financial-stress/"
+  },
+  {
+   "id": "michael-bianco",
+   "name": "Michael Bianco",
+   "headline": "Associate Director, Treasury, SiriusXM",
+   "org": "SiriusXM",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/siriusxm-uses-machine-learning-models-to-predict-the-daily-cadence-of-cash-flows/"
+  },
+  {
+   "id": "elvira-damore",
+   "name": "Elvira D’Amore",
+   "headline": "VP & Assistant Treasurer, Global Treasury Operations, Solventum Corp.",
+   "org": "Solventum Corp.",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/solventum-creates-a-fully-independent-treasury-infrastructure-post-3m-spin-off/"
+  },
+  {
+   "id": "george-duncan",
+   "name": "George Duncan",
+   "headline": "Head of Group Funding, SSE plc",
+   "org": "SSE plc",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/ssen-delivering-on-uks-clean-power-energy-security-and-net-zero-ambitions/"
+  },
+  {
+   "id": "krishna-ghosh",
+   "name": "Krishna Ghosh",
+   "headline": "Global Head of Liquidity Management, Stripe",
+   "org": "Stripe",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/stripe-pioneers-stablecoins-for-treasury/"
+  },
+  {
+   "id": "treasury-team",
+   "name": "Treasury team",
+   "headline": "Ireland, Eaton",
+   "org": "Eaton",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/supporting-a-new-era-of-growth-at-eaton/"
+  },
+  {
+   "id": "agnes-brault",
+   "name": "Agnes Brault",
+   "headline": "Vice President of Treasury & Financing, Technip Energies",
+   "org": "Technip Energies",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/technip-energies-presents-a-great-payments-story/"
+  },
+  {
+   "id": "letian-lin",
+   "name": "Letian Lin",
+   "headline": "Senior Treasury Portfolio Manager, Treasury Unit, OPEC Fund",
+   "org": "OPEC Fund",
+   "region": "DACH",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/the-evolution-of-the-opec-fund-for-international-development/"
+  },
+  {
+   "id": "loke-blohm",
+   "name": "Loke Blohm",
+   "headline": "Senior Treasury Professional, Topsoe A/S",
+   "org": "Topsoe A/S",
+   "region": "Nordics",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/topsoe-delivers-a-strong-focus-on-simplicity-and-usability-for-suppliers/"
+  },
+  {
+   "id": "subhodeep-chakraborty",
+   "name": "Subhodeep Chakraborty",
+   "headline": "Director, Unilever Group Treasury, Unilever PLC",
+   "org": "Unilever PLC",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/unilever-embraces-sustainability-linked-supplier-finance-and-wbcsd-aligned-governance-model/"
+  },
+  {
+   "id": "antonio-deluca",
+   "name": "Antonio Deluca",
+   "headline": "Director of Treasury, Valentino SpA",
+   "org": "Valentino SpA",
+   "region": "Southern Europe",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/valentino-embraces-instant-payment-confirmation/"
+  },
+  {
+   "id": "ben-skipper",
+   "name": "Ben Skipper",
+   "headline": "Vice President of Finance, Exponential Technology Group (XTG)",
+   "org": "Exponential Technology Group (XTG)",
+   "region": "United Kingdom",
+   "segment": "Corporate treasury",
+   "source": "https://treasurytoday.com/asa-2026-winners/xtg-follows-the-sun/"
+  }
+ ],
+ "stages": [
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/3m-continues-the-innovation-in-house/",
+   "label": "Adam Smith Awards 2024: Best Cash Pooling Solution (Highly Commended Winner), 3M",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "nicola-bigger"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/a-new-brand-of-treasury-lights-up-consumer-products-group/",
+   "label": "Adam Smith Awards 2024: Best Transaction Management Solution (Overall Winner), Newell Brands",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "julia-donegan"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/all-you-knead-is-ai-how-intelligent-cash-forecasting-delivered-at-dominos/",
+   "label": "Adam Smith Awards 2024: Best Cash Flow Forecasting Solution (Overall Winner), Domino’s",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "ian-macdougall"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/asml-improves-forecasting-with-open-source-ai/",
+   "label": "Adam Smith Awards 2024: Best Foreign Exchange Solution (Overall Winner), ASML",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "daria-severina"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/bat-lights-up-bond-market-with-strategic-refinancing/",
+   "label": "Adam Smith Awards 2024: Best Funding Solution (Overall Winner), British American Tobacco",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "neil-wadey"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/bms-treasury-team-shows-its-commitment-to-excellence-innovation-and-continuous-improvement/",
+   "label": "Adam Smith Awards 2024: Treasury Today’s Top Treasury Team (Highly Commended Winner), Bristol Myers Squibb",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "sandra-ramos-alves"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/chiles-agrosuper-leaps-ahead-on-transformation-journey/",
+   "label": "Adam Smith Awards 2024: Best in Class Treasury Solution in Latin America (Highly Commended Winner), Agrosuper S.A.",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "vasco-grigolo"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/construction-group-sig-builds-resilience-in-cash-management-refurb/",
+   "label": "Adam Smith Awards 2024: Best Cash Flow Forecasting Solution (Highly Commended Winner), SIG Plc",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "dan-hitchen"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/creative-transformation-at-wpp-in-bold-bond-refinancing/",
+   "label": "Adam Smith Awards 2024: Best Funding Solution (Highly Commended Winner), WPP",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "alex-ashby"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/customer-profiling-microsofts-masterclass-in-receivables-management/",
+   "label": "Adam Smith Awards 2024: Harnessing the Power of Technology (Overall Winner), Microsoft",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "apra-bothra"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/czech-republic-online-retailer-implements-invoice-finance-solution/",
+   "label": "Adam Smith Awards 2024: Best Supply Chain Solution (Highly Commended Winner), Notino",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "jakub-sedy"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/delivery-hero-lands-new-investment-strategy-and-taps-mmfs/",
+   "label": "Adam Smith Awards 2024: Best Investing Solution (Highly Commended Winner), Delivery Hero SE",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "julian-weber"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/diverse-team-effort-transforms-treasury-at-siemens-healthineers/",
+   "label": "Adam Smith Awards 2024: Treasury Today’s Top Treasury Team (Overall Winner), Siemens Healthineers AG",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "caroline-dehm"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/ebay-buys-into-cls-to-manage-fx-settlement-risk/",
+   "label": "Adam Smith Awards 2024: Best Risk Management Solution (Highly Commended Winner), eBay",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "nevin-lettens"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/frunk-it-up-autoneum-completes-its-treasury-transformation/",
+   "label": "Adam Smith Awards 2024: Harnessing the Power of Technology (Highly Commended Winner), Autoneum",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "janko-hahn"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/ge-vernova-powers-new-trade-finance-model-into-life/",
+   "label": "Adam Smith Awards 2024: Best Risk Management Solution (Overall Winner), GE Vernova",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "lynda-mcgoey"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/holcim-cements-treasury-transformation-with-netherlands-based-mncp/",
+   "label": "Adam Smith Awards 2024: Best Cash Pooling Solution (Highly Commended Winner), Holcim",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "gaelle-gebus"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-apis-help-a-swedish-charity-broadcast-donations-in-real-time/",
+   "label": "Adam Smith Awards 2024: Best Transaction Management Solution (Highly Commended Winner), Radiohjälpen",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "kristina-henschen"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-avery-dennison-hedged-fx-risk-with-automated-var-solution/",
+   "label": "Adam Smith Awards 2024: Best Risk Management Solution (Highly Commended Winner), Avery Dennison Corporation",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "ramon-tolk"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-crocs-put-its-treasury-on-a-new-footing/",
+   "label": "Adam Smith Awards 2024: Best Treasury Transformation Project (Highly Commended Winner), Crocs",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "joe-fonseca"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-cyberark-transformed-its-investment-approach/",
+   "label": "Adam Smith Awards 2024: Best Investing Solution (Overall Winner), CyberArk Software",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "sharon-shachak"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-egypts-metra-digitised-its-working-capital-processes/",
+   "label": "Adam Smith Awards 2024: Best in Class Treasury Solution in Africa (Highly Commended Winner), Metra Group",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "wael-farouk"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-fitch-upgraded-cash-management-processes-to-global-pool/",
+   "label": "Adam Smith Awards 2024: Best Cash Pooling Solution (Highly Commended Winner), Fitch Group (Hearst Corporation)",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "kevin-gaulton"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-ge-healthcare-spin-off-rebuilt-a-fit-for-purpose-treasury/",
+   "label": "Adam Smith Awards 2024: Best Treasury Transformation Project (Overall Winner), GE HealthCare",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "aditi-agarwal"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-menas-americana-built-a-new-treasury-to-go/",
+   "label": "Adam Smith Awards 2024: Best in Class Treasury Solution in the Middle East (Overall Winner), Americana Restaurants",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "harsh-bansal"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-nextrackers-treasury-came-to-shine/",
+   "label": "Adam Smith Awards 2024: Harnessing the Power of Technology (Highly Commended Winner), Nextracker",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "ilkim-saracel"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-salesforce-brought-investment-strategy-in-house/",
+   "label": "Adam Smith Awards 2024: Best Investing Solution (Highly Commended Winner), Salesforce Inc",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "cameron-bowen"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-saudis-almarai-pulled-off-flagship-issuance-after-long-absence/",
+   "label": "Adam Smith Awards 2024: Best Funding Solution (Highly Commended Winner), Almarai Company",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "danko-maras"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-transformation-at-japan-tobacco-created-onetreasury/",
+   "label": "Adam Smith Awards 2024: Best Treasury Transformation Project (Highly Commended Winner), Japan Tobacco Inc",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "vincent-delort"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/how-viatris-nurtured-a-new-enterprise-wide-cash-culture-into-life/",
+   "label": "Adam Smith Awards 2024: Best Treasury Transformation Project (Highly Commended Winner), Viatris",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "keith-lynch"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/iveco-capital-launched-the-new-online-payment-hub-a-significant-step-in-the-digital-world/",
+   "label": "Adam Smith Awards 2024: Best Emerging Technology Solution (Highly Commended Winner), IVECO CAPITAL",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "elio-fonti"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/klaviyos-ipo-generates-buzz-despite-ipo-drought/",
+   "label": "Adam Smith Awards 2024: Best IPO Listing (Overall Winner), Klaviyo",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "stef-layne"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/leading-treasury-with-passion-and-purpose/",
+   "label": "Adam Smith Awards 2024: A Rising Star (Overall Winner), Kirsty Craig",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "kirsty-craig"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/lean-team-delivers-complete-transformation/",
+   "label": "Adam Smith Awards 2024: Treasury Today’s Top Treasury Team (Highly Commended Winner), Apollo Global Management",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "paul-franek"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/liquid-wellness-how-amerihealth-revitalises-cash-forecasting/",
+   "label": "Adam Smith Awards 2024: Best Cash Flow Forecasting Solution (Highly Commended Winner), AmeriHealth Caritas",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "pamela-schmidt"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/pearson-teaches-a-lesson-in-data-management/",
+   "label": "Adam Smith Awards 2024: Best Emerging Technology Solution (Overall Winner), Pearson",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "james-kelly"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/phoenix-rises-after-three-year-absence-with-record-investor-interest/",
+   "label": "Adam Smith Awards 2024: Best Funding Solution (Highly Commended Winner), The Phoenix Group",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "hana-harrison"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/pioneering-three-decades-of-excellence-at-roche/",
+   "label": "Adam Smith Awards 2024: Special Recognition Award (Overall Winner), Martin Schlageter",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "martin-schlageter"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/robotics-process-automation-solves-reconciliation-headache-at-danone/",
+   "label": "Adam Smith Awards 2024: Best in Class Treasury Solution in Latin America (Highly Commended Winner), Danone",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "paulo-oliveira"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/still-waters-run-deep-aliaxis-makes-waves-in-latam/",
+   "label": "Adam Smith Awards 2024: Best in Class Treasury Solution in Latin America (Overall Winner), Aliaxis",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "severine-le-blevennec"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/supply-chain-finance-lands-in-namibia-with-oceana-flagship-deal/",
+   "label": "Adam Smith Awards 2024: Best in Class Treasury Solution in Africa (Highly Commended Winner), Oceana Group",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "varsha-maharaj"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/sustainable-finance-framework-established-to-achieve-100-sustainable-debt-by-2035/",
+   "label": "Adam Smith Awards 2024: Best Sustainable Treasury Solution (Highly Commended Winner), A2A",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "patricia-gentile"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/transformation-at-iron-mountain-leaves-cash-in-peak-condition/",
+   "label": "Adam Smith Awards 2024: Best Cash Pooling Solution (Overall Winner), Iron Mountain",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "niraj-mandpe"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/treasury-foresight-at-saudis-sec-supports-vision-2030/",
+   "label": "Adam Smith Awards 2024: Best in Class Treasury Solution in the Middle East (Highly Commended Winner), Saudi Electricity Company",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "abdulrhman-khalid-alfozan"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/treasury-innovation-and-strategic-transformation-pay-off-at-paypal/",
+   "label": "Adam Smith Awards 2024: Best Transaction Management Solution (Highly Commended Winner), PayPal",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "lea-chotard"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2024-winners/world-bank-enhances-payment-and-funding-capabilities-for-development/",
+   "label": "Adam Smith Awards 2024: Judges’ Choice (Overall Winner), World Bank Group",
+   "kind": "article",
+   "date": "2024",
+   "people": [
+    "pam-oconnell"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/24-7-and-always-on-siemens-integrates-blockchain-for-real-time-treasury/",
+   "label": "Adam Smith Awards 2025: Best Payments Solution (Overall Winner), Siemens",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "heiko-nix"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/a-passion-for-change-at-sisecam/",
+   "label": "Adam Smith Awards 2025: Corporate Treasurer of the Year (Overall Winner), Şişecam",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "baris-gokalp"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/bi-transforms-intercompany-payments-in-emerging-markets-process/",
+   "label": "Adam Smith Awards 2025: Best Payments Solution (Highly Commended Winner), Boehringer Ingelheim",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "eric-humbert"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/bms-upgrades-its-cash-management-in-europe-and-the-us/",
+   "label": "Adam Smith Awards 2025: Best Cash Management Solution (Highly Commended Winner), Bristol Myers Squibb",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "sarah-johannesen"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/careem-treasury-transforms-into-a-strategic-business-enabler/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in the Middle East (Highly Commended Winner), Careem",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "amir-jaber"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/cash-and-liquidity-management-a-bedrock-at-a-p-moller-maersk/",
+   "label": "Adam Smith Awards 2025: Corporate Treasurer of the Year (Highly Commended Winner), A.P. Møller-Maersk",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "netta-christensen"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/celanese-extends-innovation-to-cash-management-transformation/",
+   "label": "Adam Smith Awards 2025: Best Cash Management Solution (Overall Winner), Celanese Corporation",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "hugo-rivera"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/challenging-herself-to-move-the-needle-on-climate-change/",
+   "label": "Adam Smith Awards 2025: A Rising Star (Overall Winner), Angela Hobart",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "angela-hobart"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/complete-treasury-overhaul-for-ab-inbev-africa-comprising-12-countries/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in Africa (Overall Winner), AB InBev Africa",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "purani-pillay"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/daimler-truck-transformation-is-nuts/",
+   "label": "Adam Smith Awards 2025: Best Treasury Transformation Project (Highly Commended Winner), Daimler Truck AG",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "felix-braun"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/etsy-implements-new-to-market-pooling-solution/",
+   "label": "Adam Smith Awards 2025: Best Cash Pooling Solution (Overall Winner), Etsy",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "esther-schmit"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/facility-addresses-sustainable-development-goals-in-rwanda/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in Africa (Highly Commended Winner), Republic of Rwanda",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "judith-nabaasa"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/fedex-delivers-blockchain-for-24-7-365-real-time-payments/",
+   "label": "Adam Smith Awards 2025: Harnessing the Power of Technology (Overall Winner), FedEx",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "rebeca-wiadacz"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/financial-package-supports-sweet-sustainable-development-in-brazil/",
+   "label": "Adam Smith Awards 2025: Best Sustainable Treasury Solution (Highly Commended Winner), São Martinho",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "felipe-vicchiato"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/fx-api-unveils-the-art-world-to-global-investors/",
+   "label": "Adam Smith Awards 2025: Best Foreign Exchange Solution (Overall Winner), Masterworks",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "nigel-glenday"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/fx-solution-mitigates-risk-for-coca-cola-hbc-in-nigeria/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in Africa (Highly Commended Winner), Coca-Cola HBC",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "dimitris-siokis"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/fx-solution-sets-benchmark-in-brazil/",
+   "label": "Adam Smith Awards 2025: Best Foreign Exchange Solution (Highly Commended Winner), Sylvamo do Brasil Ltda",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "marcelo-penteado-baldo"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/how-uaes-al-futtaim-transformed-a-fragmented-treasury-into-a-centralised-control-centre/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in the Middle East (Highly Commended Winner), Al-Futtaim",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "olivier-boutet"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/in-house-developed-solution-mitigates-fx-risk-at-roche/",
+   "label": "Adam Smith Awards 2025: Best Risk Management Solution (Highly Commended Winner), Roche",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "miguel-trapero"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/inaugural-investment-grade-rating-drives-funding-strategy-at-uber/",
+   "label": "Adam Smith Awards 2025: Best Funding Solution (Highly Commended Winner), Uber",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "odette-rodrigues"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/inchcape-transforms-liquidity-management-with-tms/",
+   "label": "Adam Smith Awards 2025: Best Cash Management Solution (Highly Commended Winner), Inchcape Shipping Services",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "anthony-ho"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/innovation-in-response-to-macroeconomic-changes/",
+   "label": "Adam Smith Awards 2025: Best Risk Management Solution (Highly Commended Winner), Bristol Myers Squibb",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "ravi-patel"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/investment-strategy-overhaul-how-3m-improved-its-asset-and-liability-management-in-volatile-markets/",
+   "label": "Adam Smith Awards 2025: Best Investing Solution (Overall Winner), 3M",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "meindert-de-vreeze"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/jlr-drives-best-practice-in-fx-management-to-support-chinese-exports/",
+   "label": "Adam Smith Awards 2025: Best Foreign Exchange Solution (Highly Commended Winner), Jaguar Land Rover",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "jonathon-knuppel"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/microsoft-executes-blue-chip-swap-programme/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in Latin America (Highly Commended Winner), Microsoft",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "danra-forshey"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/microsoft-harnesses-traditional-ai-gen-ai-and-machine-learning/",
+   "label": "Adam Smith Awards 2025: Harnessing the Power of Technology (Highly Commended Winner), Microsoft",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "davide-musillo"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/multisource-finance-package-delivers-landmark-deal-for-enerjisa-uretim-in-turkey/",
+   "label": "Adam Smith Awards 2025: Best Sustainable Treasury Solution (Highly Commended Winner), Enerjisa Üretim",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "veli-ahmed-yumuk"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/pepsico-delivers-payments-solution-for-sales-representatives-in-brazil/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in Latin America (Highly Commended Winner), PepsiCo",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "ricardo-rospi"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/pooling-solution-centralises-liquidity-for-terex/",
+   "label": "Adam Smith Awards 2025: Best Cash Pooling Solution (Highly Commended Winner), Terex",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "steven-stewart"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/sap-s-4hana-used-to-architect-next-generation-global-treasury/",
+   "label": "Adam Smith Awards 2025: Harnessing the Power of Technology (Highly Commended Winner), ABB E-mobility",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "gerald-gassert"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/savvy-games-transforms-cash-management-to-fuel-growth/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in the Middle East (Overall Winner), Savvy Games Group",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "saleh-alfadhel"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/sec-transforms-payments-with-the-power-of-iso-20022-and-real-time-tracking/",
+   "label": "Adam Smith Awards 2025: Best Payments Solution (Highly Commended Winner), Saudi Electricity Company",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "abdulrhman-khalid-alfozan"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/seven-year-global-transformation-journey-delivers-for-bp/",
+   "label": "Adam Smith Awards 2025: Best Treasury Transformation Project (Overall Winner), BP",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "yvonne-hurst"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/shell-signs-new-digital-bank-account-management-into-life/",
+   "label": "Adam Smith Awards 2025: Best Risk Management Solution (Highly Commended Winner), Shell",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "stuart-madell"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/siemens-transforms-operations-with-innovative-technology-in-mexico/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in Latin America (Overall Winner), Siemens",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "miguel-lopez"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/southwire-energises-investments-with-portal-and-tms-integration/",
+   "label": "Adam Smith Awards 2025: Best Investing Solution (Highly Commended Winner), Southwire",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "jason-hanson"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/spin-off-provides-cash-pooling-opportunity-for-ge-in-the-middle-east/",
+   "label": "Adam Smith Awards 2025: Best Cash Pooling Solution (Highly Commended Winner), GE Vernova",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "mohamed-torayah"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/successful-risk-mitigation-for-one-of-the-largest-healthcare-providers-in-the-usa/",
+   "label": "Adam Smith Awards 2025: Best Risk Management Solution (Overall Winner), Baylor Scott & White Health",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "boriana-farias"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/team-flutter-works-hard-plays-hard-and-has-fun/",
+   "label": "Adam Smith Awards 2025: Treasury Today’s Top Treasury Team (Highly Commended Winner), Flutter Entertainment plc",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "steven-ellis"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/team-of-four-challenges-status-quo-to-deliver-major-transformation/",
+   "label": "Adam Smith Awards 2025: Treasury Today’s Top Treasury Team (Highly Commended Winner), Dowlais Group Plc",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "emma-hayward"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/the-real-thing-when-grabbing-opportunities-changes-a-life/",
+   "label": "Adam Smith Awards 2025: A Rising Star (Highly Commended Winner), Mihaela Mihaylova",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "mihaela-mihaylova"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/travel-experience-marketplace-getyourguide-transforms-payments-to-local-tour-guides/",
+   "label": "Adam Smith Awards 2025: Best Payments Solution (Highly Commended Winner), GetYourGuide",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "petar-dakovic"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/treasurer-bot-takes-up-key-role-at-advertising-giant/",
+   "label": "Adam Smith Awards 2025: Judges’ Choice (Overall Winner), WPP",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "alex-ashby"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2025-winners/treasury-management-improvements-follow-ipo-for-lulu/",
+   "label": "Adam Smith Awards 2025: Best in Class Treasury Solution in the Middle East (Highly Commended Winner), Lulu Retail Holdings PLC",
+   "kind": "article",
+   "date": "2025",
+   "people": [
+    "ep-nampoothiri"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/a2a-adopts-the-first-regulated-green-bond-standard-in-europe/",
+   "label": "Adam Smith Awards 2026: Best Sustainable Treasury Solution (Highly Commended Winner), A2A S.p.A.",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "patricia-gentile"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/amazons-tony-masone-corporate-treasurer-of-the-year/",
+   "label": "Adam Smith Awards 2026: Corporate Treasurer of the Year (Overall Winner), Amazon",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "tony-masone"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/anika-williams-embodies-the-next-generation-of-treasury-leaders/",
+   "label": "Adam Smith Awards 2026: A Rising Star (Highly Commended Winner), Anika Williams",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "anika-williams"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/armacell-shows-how-the-treasury-can-support-corporate-growth/",
+   "label": "Adam Smith Awards 2026: Best SME/MME Solution (Overall Winner), Armacell",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "alexander-mishchenkov"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/astrazenecas-liquidity-forecasting-transformation/",
+   "label": "Adam Smith Awards 2026: Best Cash Management Solution (Overall Winner), AstraZeneca",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "cristiane-candeloro"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/betting-on-ai-for-treasury-operations-with-palo-alto-networks/",
+   "label": "Adam Smith Awards 2026: Harnessing the Power of Technology (Highly Commended Winner), Palo Alto Networks",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "catherine-portman"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/bhp-rolls-out-virtual-accounts-with-banking-partner/",
+   "label": "Adam Smith Awards 2026: Best in Class Treasury Solution in EMEA (Overall Winner), BHP Group Limited",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "marlon-singh"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/bolt-shows-how-modern-treasury-solutions-directly-impact-peoples-lives/",
+   "label": "Adam Smith Awards 2026: Harnessing the Power of Technology (Highly Commended Winner), Bolt Technology OÜ",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "freek-van-den-engel"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/breitling-automates-fx-trading-execution/",
+   "label": "Adam Smith Awards 2026: Best Foreign Exchange Solution (Highly Commended Winner), Breitling",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "olivier-smekens"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/bristol-myers-squibb-optimises-its-capital-structure/",
+   "label": "Adam Smith Awards 2026: Best Funding Solution (Highly Commended Winner), Bristol Myers Squibb",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "keith-gaub"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/bristol-myers-squibbs-complex-net-investment-hedging-solution/",
+   "label": "Adam Smith Awards 2026: Best Foreign Exchange Solution (Highly Commended Winner), Bristol Myers Squibb",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "ravi-patel"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/building-the-data-foundation-for-an-ai-enabled-treasury/",
+   "label": "Adam Smith Awards 2026: Harnessing the Power of Technology (Overall Winner), ServiceNow",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "tim-muindi"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/colgate-palmolive-achieves-real-cultural-change/",
+   "label": "Adam Smith Awards 2026: Best Foreign Exchange Solution (Overall Winner), Colgate-Palmolive",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "gina-grant"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/creating-a-streamlined-efficient-process-for-canary-wharf-group-tenants/",
+   "label": "Adam Smith Awards 2026: Best Cash Management Solution (Highly Commended Winner), Canary Wharf Group",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "nagam-al-kadhi"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/diamondback-energy-achieves-simplification-via-virtual-accounts/",
+   "label": "Adam Smith Awards 2026: Harnessing the Power of Technology (Highly Commended Winner), Diamondback Energy",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "conner-williams"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/eyewas-transformation-of-its-treasury-operations/",
+   "label": "Adam Smith Awards 2026: Best SME/MME Solution (Highly Commended Winner), Eyewa Ltd",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "ilheon-park"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/galadaris-strategic-transformation-or-rebranding-and-expansion/",
+   "label": "Adam Smith Awards 2026: Best Treasury Transformation Project (Highly Commended Winner), Galadari Brothers",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "muhammad-tauseef-ur-rehman"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/grupo-bimbos-sofia-calvo-embodies-the-definition-and-values-of-a-rising-star/",
+   "label": "Adam Smith Awards 2026: A Rising Star (Overall Winner), Grupo Bimbo",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "sofia-calvo"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/harnessing-teamwork-and-technology/",
+   "label": "Adam Smith Awards 2026: Top Treasury Team (Highly Commended Winner), Kent",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "jefri-jacob-thomas"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/how-bacardi-developed-a-structured-data-driven-approach-to-improving-working-capital/",
+   "label": "Adam Smith Awards 2026: Judges’ Choice (Highly Commended Winner), Bacardi Limited",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "albert-latour"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/how-dsvs-treasury-integrated-a-landmark-acquisition/",
+   "label": "Adam Smith Awards 2026: Top Treasury Team (Highly Commended Winner), DSV A/S",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "theis-stig-jensen"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/how-expedia-created-a-robust-treasury-function-to-provide-a-stable-financial-foundation/",
+   "label": "Adam Smith Awards 2026: Best Cash Management Solution (Highly Commended Winner), Expedia Group",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "jim-scurlock"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/how-roche-faced-a-complexity-ceiling/",
+   "label": "Adam Smith Awards 2026: Best Investing Solution (Overall Winner), Roche",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "aramis-buscemi"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/how-sao-martinho-is-contributing-to-brazils-energy-transition/",
+   "label": "Adam Smith Awards 2026: Best Sustainable Treasury Solution (Highly Commended Winner), São Martinho",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "felipe-vicchiato"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/how-save-the-children-uses-ai-to-deliver-critical-humanitarian-aid/",
+   "label": "Adam Smith Awards 2026: Best use of AI in Corporate Treasury (Highly Commended Winner), Save the Children International",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "saira-maniar"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/how-siemens-treasury-made-cash-management-programmable/",
+   "label": "Adam Smith Awards 2026: Best Cash Management Solution (Highly Commended Winner), Siemens",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "heiko-nix"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/implementing-a-dynamic-counterparty-exposure-management-framework-with-asml/",
+   "label": "Adam Smith Awards 2026: Best Risk Management Solution (Highly Commended Winner), ASML Netherlands BV",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "mark-van-eersel"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/jotuns-transformation-projects-are-90-humans-10-technology/",
+   "label": "Adam Smith Awards 2026: Best Payments Solution (Highly Commended Winner), Jotun",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "hamish-waddell"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/magnum-treasury-remains-cool-under-pressure/",
+   "label": "Adam Smith Awards 2026: Top Treasury Team (Overall Winner), The Magnum Ice Cream Company",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "anna-elphick"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/maintaining-sustained-collaboration-for-a-modernised-treasury-at-shamal/",
+   "label": "Adam Smith Awards 2026: Best in Class Treasury Solution in EMEA (Highly Commended Winner), Shamal",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "sleiman-el-homsi"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/making-treasury-a-strategic-growth-enabler/",
+   "label": "Adam Smith Awards 2026: Top Treasury Team (Highly Commended Winner), Rohit Group",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "sonam-donkar"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/marianna-polykrati-of-avramar-aquaculture-corporate-treasurer-of-the-year-highly-commended/",
+   "label": "Adam Smith Awards 2026: Corporate Treasurer of the Year (Highly Commended Winner), Marianna Polykrati",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "marianna-polykrati"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/medtronic-builds-a-unified-global-liquidity-platform-to-optimise-cash-reduce-fx-friction-and-support-strategic-transformation/",
+   "label": "Adam Smith Awards 2026: Best Cash Pooling Solution (Highly Commended Winner), Medtronic",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "paul-misere"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/mercks-centralisation-and-standardisation-of-its-cards-programme/",
+   "label": "Adam Smith Awards 2026: Best Payments Solution (Highly Commended Winner), Merck KGaA",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "jorg-bermuller"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/microsofts-ai-agents-set-a-touchless-first-standard-for-global-treasury-operations/",
+   "label": "Adam Smith Awards 2026: Best use of AI in Corporate Treasury (Highly Commended Winner), Microsoft",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "davide-musillo"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/microsofts-treasury-360-qiro-delivers-a-single-trusted-view-of-treasury-risk/",
+   "label": "Adam Smith Awards 2026: Best use of AI in Corporate Treasury (Overall Winner), Microsoft",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "kathy-brustad"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/northern-data-delivers-a-masterclass-in-mid-market-treasury-innovation/",
+   "label": "Adam Smith Awards 2026: Best SME/MME Solution (Highly Commended Winner), Northern Data Group",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "dominik-scheitz"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/overcoming-time-zone-differences-and-regulatory-complexities-with-tech-mahindra/",
+   "label": "Adam Smith Awards 2026: Best Cash Pooling Solution (Highly Commended Winner), Tech Mahindra Ltd",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "aniruddha-gadre"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/pinpointing-the-climate-impact-of-cash-and-investments/",
+   "label": "Adam Smith Awards 2026: Judges’ Choice (Overall Winner), Strategic Treasurers Alliance",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "royston-da-costa"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/play-establishes-financing-for-critical-infrastructure/",
+   "label": "Adam Smith Awards 2026: Best Funding Solution (Highly Commended Winner), Play",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "marek-chrusciel"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/pluxee-creates-a-single-controlled-workflow-for-short-term-investments/",
+   "label": "Adam Smith Awards 2026: Best Investing Solution (Highly Commended Winner), Pluxee",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "eoin-james-hugh-edwards"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/project-orange-how-al-mulla-group-rewrote-the-treasury-playbook/",
+   "label": "Adam Smith Awards 2026: Best in Class Treasury Solution in EMEA (Highly Commended Winner), Al Mulla Group Holding Company KSCC",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "rajendra-prasad-nidamarthi"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/redefining-how-corporate-treasury-manages-multi-dimensional-risk-at-gedeon-richter/",
+   "label": "Adam Smith Awards 2026: Best Risk Management Solution (Overall Winner), Gedeon Richter Plc",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "gabor-szucs"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/siemens-energy-stabilises-funding-structures-during-financial-stress/",
+   "label": "Adam Smith Awards 2026: Best Funding Solution (Overall Winner), Siemens Energy",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "dr-robert-mcanally"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/siriusxm-uses-machine-learning-models-to-predict-the-daily-cadence-of-cash-flows/",
+   "label": "Adam Smith Awards 2026: Best use of AI in Corporate Treasury (Highly Commended Winner), SiriusXM",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "michael-bianco"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/solstice-advanced-materials-designs-a-global-treasury-model-at-speed/",
+   "label": "Adam Smith Awards 2026: Best in Class Treasury Solution in EMEA (Highly Commended Winner), Solstice Advanced Materials",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "ashish-saraogi"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/solventum-creates-a-fully-independent-treasury-infrastructure-post-3m-spin-off/",
+   "label": "Adam Smith Awards 2026: Best Cash Pooling Solution (Overall Winner), Solventum Corp.",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "elvira-damore"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/ssen-delivering-on-uks-clean-power-energy-security-and-net-zero-ambitions/",
+   "label": "Adam Smith Awards 2026: Best Sustainable Treasury Solution (Highly Commended Winner), SSE plc",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "george-duncan"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/stripe-pioneers-stablecoins-for-treasury/",
+   "label": "Adam Smith Awards 2026: Best Foreign Exchange Solution (Highly Commended Winner), Stripe",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "krishna-ghosh"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/supporting-a-new-era-of-growth-at-eaton/",
+   "label": "Adam Smith Awards 2026: Best Treasury Transformation Project (Highly Commended Winner), Eaton",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "treasury-team"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/supporting-significant-multi-currency-volumes-at-zalando/",
+   "label": "Adam Smith Awards 2026: Best Risk Management Solution (Highly Commended Winner), Zalando Payments GmbH",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "anika-williams"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/technip-energies-presents-a-great-payments-story/",
+   "label": "Adam Smith Awards 2026: Best Payments Solution (Overall Winner), Technip Energies",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "agnes-brault"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/the-evolution-of-the-opec-fund-for-international-development/",
+   "label": "Adam Smith Awards 2026: Best Investing Solution (Highly Commended Winner), OPEC Fund",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "letian-lin"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/the-one-treasury-vision/",
+   "label": "Adam Smith Awards 2026: Best Treasury Transformation Project (Highly Commended Winner), Siemens Healthineers AG",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "caroline-dehm"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/topsoe-delivers-a-strong-focus-on-simplicity-and-usability-for-suppliers/",
+   "label": "Adam Smith Awards 2026: Best Supply Chain Solution (Highly Commended Winner), Topsoe A/S",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "loke-blohm"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/unilever-embraces-sustainability-linked-supplier-finance-and-wbcsd-aligned-governance-model/",
+   "label": "Adam Smith Awards 2026: Best Sustainable Treasury Solution (Overall Winner), Unilever PLC",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "subhodeep-chakraborty"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/valentino-embraces-instant-payment-confirmation/",
+   "label": "Adam Smith Awards 2026: Judges’ Choice (Highly Commended Winner), Valentino SpA",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "antonio-deluca"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/walmart-embarks-on-an-innovative-approach-to-supply-chain-finance/",
+   "label": "Adam Smith Awards 2026: Best Supply Chain Solution (Overall Winner), Walmart",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "brandy-newhof"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/wpp-creates-funding-solutions-for-the-next-chapter/",
+   "label": "Adam Smith Awards 2026: Best Funding Solution (Highly Commended Winner), WPP Plc",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "alex-ashby"
+   ]
+  },
+  {
+   "url": "https://treasurytoday.com/asa-2026-winners/xtg-follows-the-sun/",
+   "label": "Adam Smith Awards 2026: Best Cash Pooling Solution (Highly Commended Winner), Exponential Technology Group (XTG)",
+   "kind": "article",
+   "date": "2026",
+   "people": [
+    "ben-skipper"
+   ]
+  }
+ ]
+}

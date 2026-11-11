@@ -1,0 +1,389 @@
+[
+{
+"company": "AMD",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/amds-fab-fx-hedging-revamp-unleashes-strategic-treasury/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Best Foreign Exchange Solution): the case names Kyriba",
+"date": "2024"
+},
+{
+"company": "Bristol Myers Squibb",
+"system": "TIS",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/bms-treasury-team-shows-its-commitment-to-excellence-innovation-and-continuous-improvement/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Treasury Today’s Top Treasury Team): the case names TIS",
+"date": "2024"
+},
+{
+"company": "Autoneum",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/frunk-it-up-autoneum-completes-its-treasury-transformation/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Harnessing the Power of Technology): the case names SAP Treasury",
+"date": "2024"
+},
+{
+"company": "Avery Dennison Corporation",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/how-avery-dennison-hedged-fx-risk-with-automated-var-solution/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Best Risk Management Solution): the case names Kyriba",
+"date": "2024"
+},
+{
+"company": "Avery Dennison Corporation",
+"system": "FiREapps",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/how-avery-dennison-hedged-fx-risk-with-automated-var-solution/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Best Risk Management Solution): the case names FiREapps",
+"date": "2024"
+},
+{
+"company": "Crocs",
+"system": "GTreasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/how-crocs-put-its-treasury-on-a-new-footing/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Best Treasury Transformation Project): the case names GTreasury",
+"date": "2024"
+},
+{
+"company": "Fitch Group (Hearst Corporation)",
+"system": "GTreasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/how-fitch-upgraded-cash-management-processes-to-global-pool/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Best Cash Pooling Solution): the case names GTreasury",
+"date": "2024"
+},
+{
+"company": "GE HealthCare",
+"system": "FIS",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/how-ge-healthcare-spin-off-rebuilt-a-fit-for-purpose-treasury/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 overall winner (Best Treasury Transformation Project): the case names FIS",
+"date": "2024"
+},
+{
+"company": "Nextracker",
+"system": "GTreasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/how-nextrackers-treasury-came-to-shine/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Harnessing the Power of Technology): the case names GTreasury",
+"date": "2024"
+},
+{
+"company": "Japan Tobacco Inc",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/how-transformation-at-japan-tobacco-created-onetreasury/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Best Treasury Transformation Project): the case names SAP Treasury",
+"date": "2024"
+},
+{
+"company": "Independent Vetcare Limited (IVC)",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/independent-vet-care-ivc-unleashes-it-transformation/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Harnessing the Power of Technology): the case names Kyriba",
+"date": "2024"
+},
+{
+"company": "Apollo Global Management",
+"system": "Kyriba",
+"status": "previous",
+"url": "https://treasurytoday.com/asa-2024-winners/lean-team-delivers-complete-transformation/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Treasury Today’s Top Treasury Team): the case names Kyriba",
+"date": "2024"
+},
+{
+"company": "Saudi Electricity Company",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2024-winners/treasury-foresight-at-saudis-sec-supports-vision-2030/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2024 highly commended winner (Best in Class Treasury Solution in the Middle East): the case names SAP Treasury",
+"date": "2024"
+},
+{
+"company": "Boehringer Ingelheim",
+"system": "TIS",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/bi-transforms-intercompany-payments-in-emerging-markets-process/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Best Payments Solution): the case names TIS",
+"date": "2025"
+},
+{
+"company": "Celanese Corporation",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/celanese-extends-innovation-to-cash-management-transformation/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 overall winner (Best Cash Management Solution): the case names SAP Treasury",
+"date": "2025"
+},
+{
+"company": "GE Aerospace",
+"system": "FIS",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/cleared-for-take-off-how-ge-aerospace-reimagined-treasury-operations/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Best Treasury Transformation Project): the case names FIS",
+"date": "2025"
+},
+{
+"company": "Boston Consulting Group",
+"system": "ION Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/comprehensive-global-transformation-executed-by-bcg/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Best Treasury Transformation Project): the case names ION Treasury",
+"date": "2025"
+},
+{
+"company": "Boston Consulting Group",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/comprehensive-global-transformation-executed-by-bcg/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Best Treasury Transformation Project): the case names SAP Treasury",
+"date": "2025"
+},
+{
+"company": "Daimler Truck AG",
+"system": "ION Treasury",
+"status": "previous",
+"url": "https://treasurytoday.com/asa-2025-winners/daimler-truck-transformation-is-nuts/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Best Treasury Transformation Project): the case names ION Treasury",
+"date": "2025"
+},
+{
+"company": "Daimler Truck AG",
+"system": "FIS",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/daimler-truck-transformation-is-nuts/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Best Treasury Transformation Project): the case names FIS",
+"date": "2025"
+},
+{
+"company": "Inchcape Shipping Services",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/inchcape-transforms-liquidity-management-with-tms/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Best Cash Management Solution): the case names Kyriba",
+"date": "2025"
+},
+{
+"company": "Bristol Myers Squibb",
+"system": "ION Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/innovation-in-response-to-macroeconomic-changes/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Best Risk Management Solution): the case names ION Treasury",
+"date": "2025"
+},
+{
+"company": "3M",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/investment-strategy-overhaul-how-3m-improved-its-asset-and-liability-management-in-volatile-markets/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 overall winner (Best Investing Solution): the case names Kyriba",
+"date": "2025"
+},
+{
+"company": "ABB E-mobility",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/sap-s-4hana-used-to-architect-next-generation-global-treasury/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Harnessing the Power of Technology): the case names SAP Treasury",
+"date": "2025"
+},
+{
+"company": "Savvy Games Group",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/savvy-games-transforms-cash-management-to-fuel-growth/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 overall winner (Best in Class Treasury Solution in the Middle East): the case names Kyriba",
+"date": "2025"
+},
+{
+"company": "BP",
+"system": "Bottomline",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/seven-year-global-transformation-journey-delivers-for-bp/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 overall winner (Best Treasury Transformation Project): the case names Bottomline",
+"date": "2025"
+},
+{
+"company": "Southwire",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/southwire-energises-investments-with-portal-and-tms-integration/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Best Investing Solution): the case names Kyriba",
+"date": "2025"
+},
+{
+"company": "Dowlais Group Plc",
+"system": "FIS",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2025-winners/team-of-four-challenges-status-quo-to-deliver-major-transformation/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2025 highly commended winner (Treasury Today’s Top Treasury Team): the case names FIS",
+"date": "2025"
+},
+{
+"company": "SOCAR Türkiye Enerji A.Ş",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/a-coming-of-age-treasury-transformation-with-socar-turkiye/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 highly commended winner (Best Risk Management Solution): the case names SAP Treasury",
+"date": "2026"
+},
+{
+"company": "Armacell",
+"system": "FIS",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/armacell-shows-how-the-treasury-can-support-corporate-growth/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 overall winner (Best SME/MME Solution): the case names FIS",
+"date": "2026"
+},
+{
+"company": "AstraZeneca",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/astrazenecas-liquidity-forecasting-transformation/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 overall winner (Best Cash Management Solution): the case names SAP Treasury",
+"date": "2026"
+},
+{
+"company": "BHP Group Limited",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/bhp-rolls-out-virtual-accounts-with-banking-partner/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 overall winner (Best in Class Treasury Solution in EMEA): the case names SAP Treasury",
+"date": "2026"
+},
+{
+"company": "Breitling",
+"system": "Kantox",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/breitling-automates-fx-trading-execution/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 highly commended winner (Best Foreign Exchange Solution): the case names Kantox",
+"date": "2026"
+},
+{
+"company": "ServiceNow",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/building-the-data-foundation-for-an-ai-enabled-treasury/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 overall winner (Harnessing the Power of Technology): the case names Kyriba",
+"date": "2026"
+},
+{
+"company": "Colgate-Palmolive",
+"system": "SAP Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/colgate-palmolive-achieves-real-cultural-change/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 overall winner (Best Foreign Exchange Solution): the case names SAP Treasury",
+"date": "2026"
+},
+{
+"company": "Canary Wharf Group",
+"system": "Nomentia",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/creating-a-streamlined-efficient-process-for-canary-wharf-group-tenants/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 highly commended winner (Best Cash Management Solution): the case names Nomentia",
+"date": "2026"
+},
+{
+"company": "Kent",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/harnessing-teamwork-and-technology/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 highly commended winner (Top Treasury Team): the case names Kyriba",
+"date": "2026"
+},
+{
+"company": "Expedia Group",
+"system": "ION Treasury",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/how-expedia-created-a-robust-treasury-function-to-provide-a-stable-financial-foundation/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 highly commended winner (Best Cash Management Solution): the case names ION Treasury",
+"date": "2026"
+},
+{
+"company": "The Magnum Ice Cream Company",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/magnum-treasury-remains-cool-under-pressure/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 overall winner (Top Treasury Team): the case names Kyriba",
+"date": "2026"
+},
+{
+"company": "Northern Data Group",
+"system": "Embat",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/northern-data-delivers-a-masterclass-in-mid-market-treasury-innovation/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 highly commended winner (Best SME/MME Solution): the case names Embat",
+"date": "2026"
+},
+{
+"company": "Northern Data Group",
+"system": "SAP Treasury",
+"status": "previous",
+"url": "https://treasurytoday.com/asa-2026-winners/northern-data-delivers-a-masterclass-in-mid-market-treasury-innovation/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 highly commended winner (Best SME/MME Solution): the case names SAP Treasury",
+"date": "2026"
+},
+{
+"company": "Pluxee",
+"system": "Kyriba",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/pluxee-creates-a-single-controlled-workflow-for-short-term-investments/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 highly commended winner (Best Investing Solution): the case names Kyriba",
+"date": "2026"
+},
+{
+"company": "Al Mulla Group Holding Company KSCC",
+"system": "FIS",
+"status": "live",
+"url": "https://treasurytoday.com/asa-2026-winners/project-orange-how-al-mulla-group-rewrote-the-treasury-playbook/",
+"kind": "case_study",
+"note": "Adam Smith Awards 2026 highly commended winner (Best in Class Treasury Solution in EMEA): the case names FIS",
+"date": "2026"
+}
+]
