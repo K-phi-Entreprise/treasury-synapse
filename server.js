@@ -65,7 +65,7 @@ async function loadGraph(since) {
     people: people.rows.filter(p => !p.hidden).map(p => ({
       id: p.id, name: p.name, headline: p.headline, org: p.org, city: p.city, region: p.region, segment: p.segment, seed: p.seed,
       foundVia: p.found_via, source: p.source, knownFor: p.known_for, publishers: p.publishers, followers: p.followers,
-      addedAt: iso(p.added_at), topics: p.topics, systems: p.systems, roles: p.roles
+      addedAt: iso(p.added_at), topics: p.topics, systems: sellsNow(p.systems, p.org), roles: p.roles
     })),
     hidden: people.rows.filter(p => p.hidden).map(p => p.id),
     edges: edges.rows.map(e => ({ id: e.a + '__' + e.b, a: e.a, b: e.b, kind: e.kind, label: e.label, url: e.url, confidence: e.confidence, evidence: e.evidence, addedAt: iso(e.added_at) })),
@@ -202,6 +202,15 @@ function publicPage(v) {
   if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
   if (/(^|\.)linkedin\.com$/i.test(u.hostname)) return { refused: 'linkedin' };
   return u.toString().slice(0, 600);
+}
+/* "sells" only for the vendor someone works at now; a former employer goes out as "worked at" */
+function sellsNow(list, org) {
+  const o = String(org || '').toLowerCase();
+  return (list || []).map(x => {
+    if (!x || x.role !== 'sells') return x;
+    const a = String(x.name || '').toLowerCase();
+    return o && (o.includes(a) || a.includes(o)) ? x : Object.assign({}, x, { role: 'worked at' });
+  });
 }
 const personKey = n => String(n || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 120);
 

@@ -119,3 +119,8 @@
   document.addEventListener('synapse:hub',()=>{cur='';btn.hidden=true});
 })();
 </script>
+<script>
+/* a person's links come right after what they are known for; the card's own buttons (import, claim, edit) follow, so a long card never hides them */
+(function(){const $=id=>document.getElementById(id),ins=$('d-insight'),more=$('d-more'),list=$('d-list'),src=$('d-src');
+  if(ins&&more&&list){ins.after(more);more.after(list);if(src)list.after(src)}})();
+</script>

@@ -250,3 +250,14 @@ test('Add to the map: a person or what an organisation runs, with a public page,
   assert.deepStrictEqual(row, { status: 'implementing', url: 'https://example.org/press/acme-kyriba', source: 'submission' });
   await pool.query("delete from installs where company_id = 'acme-foods'; delete from companies where id = 'acme-foods'; delete from people where id = 'ada-example'");
 });
+
+test('"sells" only for the vendor someone works at now: a former employer goes out as "worked at"', async () => {
+  await pool.query("insert into people (id, name, org, headline) values ('ex-vendor-person', 'Ex Vendor', 'K-phi', 'K-phi; formerly at Kyriba') on conflict (id) do update set org = 'K-phi'");
+  await pool.query("insert into person_systems (person_id, system, role, url) values ('ex-vendor-person', 'Kyriba', 'sells', 'https://example.org/deck'), ('ex-vendor-person', 'K-phi', 'sells', 'https://k-phi.com/') on conflict do nothing");
+  const g = await (await fetch(base + '/api/graph?fresh=' + Date.now())).json();
+  const p = g.people.find(x => x.id === 'ex-vendor-person');
+  assert.ok(p, 'person in graph');
+  const roles = Object.fromEntries(p.systems.map(s => [s.name, s.role]));
+  assert.deepStrictEqual(roles, { Kyriba: 'worked at', 'K-phi': 'sells' });
+  await pool.query("delete from person_systems where person_id = 'ex-vendor-person'; delete from people where id = 'ex-vendor-person'");
+});

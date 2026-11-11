@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="1f5509cf2c";</script>
+<script>window.SYNAPSE_BUILD="ff9c632851";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -318,6 +318,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .dock .ask{margin-top:auto}
   .detail{display:flex;flex-direction:column;min-height:0;max-height:100%;overflow:hidden}
   .detail .links{max-height:none;flex:1 1 auto;min-height:0}
+  .detail .links:not(:empty){min-height:104px}
   .answer{max-height:60%;overflow:hidden}
   .app{grid-template-columns:360px minmax(0,1fr);grid-template-rows:minmax(0,1fr);overflow:hidden;grid-template-areas:"side stage"}
   .side{grid-area:side;display:flex;flex-direction:column;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
@@ -362,8 +363,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <section class="filters band" aria-label="Angle and segments">
     <div class="angles" id="angles" role="group" aria-label="Angle">
       <button class="angle" type="button" data-a="market" aria-pressed="true">Market</button>
-      <button class="angle" type="button" data-a="social" aria-pressed="false">People</button>
       <button class="angle" type="button" data-a="topics" aria-pressed="false">Topics</button>
+      <button class="angle" type="button" data-a="social" aria-pressed="false">People</button>
       <button class="angle" type="button" data-a="connections" aria-pressed="false">Connections</button>
       <button class="seg-toggle" id="seg-toggle" type="button" aria-expanded="false" aria-controls="chips"><span id="seg-lbl">Segments</span><b id="seg-off" hidden></b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
     </div>
@@ -472,12 +473,14 @@ function createGraph(){
     eborn:new Float64Array(MAX_E),R:60,hot:0,center:-1,hops:new Uint8Array(MAX_N).fill(9)};
 }
 function segOf(p){return SEG_IDX[p.segment]!=null?SEG_IDX[p.segment]:0}
+/* "sells" only for the vendor someone works at now; a former employer reads "worked at" */
+function sellsNow(x,d){if(x.role!=='sells')return x;const a=String(x.name).toLowerCase(),o=String(d.org||'').toLowerCase();return o&&(o.includes(a)||a.includes(o))?x:Object.assign({},x,{role:'worked at'})}
 function upsertNode(G,d,at,rnd){
   let i=G.idx.get(d.id);
   const meta={id:d.id,name:String(d.name||d.id),headline:String(d.headline||''),org:String(d.org||''),city:String(d.city||''),
     hub:null,region:String(d.region||'Unknown'),segment:String(d.segment||'Corporate treasury'),seg:segOf(d),seed:!!d.seed,
     foundVia:d.foundVia||null,source:d.source||'',
-    topics:Array.isArray(d.topics)?d.topics.map(String):[],systems:Array.isArray(d.systems)?d.systems.filter(x=>x&&x.name):[],roles:Array.isArray(d.roles)?d.roles.filter(x=>x&&(x.title||x.org)):[],knownFor:String(d.knownFor||''),publishers:Number(d.publishers)||0,followers:d.followers==null?null:Number(d.followers),addedAt:String(d.addedAt||'')};
+    topics:Array.isArray(d.topics)?d.topics.map(String):[],systems:Array.isArray(d.systems)?d.systems.filter(x=>x&&x.name).map(x=>sellsNow(x,d)):[],roles:Array.isArray(d.roles)?d.roles.filter(x=>x&&(x.title||x.org)):[],knownFor:String(d.knownFor||''),publishers:Number(d.publishers)||0,followers:d.followers==null?null:Number(d.followers),addedAt:String(d.addedAt||'')};
   if(i!=null){G.nodes[i]=meta;return i}
   if(G.n>=MAX_N)return -1;
   i=G.n++;G.idx.set(d.id,i);G.nodes[i]=meta;G.adj[i]=[];
@@ -2540,6 +2543,11 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   document.addEventListener('synapse:detail',e=>{cur=e.detail;const me=window.synapseMe&&window.synapseMe();btn.hidden=!cur||cur===me});
   document.addEventListener('synapse:hub',()=>{cur='';btn.hidden=true});
 })();
+</script>
+<script>
+/* a person's links come right after what they are known for; the card's own buttons (import, claim, edit) follow, so a long card never hides them */
+(function(){const $=id=>document.getElementById(id),ins=$('d-insight'),more=$('d-more'),list=$('d-list'),src=$('d-src');
+  if(ins&&more&&list){ins.after(more);more.after(list);if(src)list.after(src)}})();
 </script>
 
 <style>
