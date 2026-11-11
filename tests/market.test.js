@@ -42,8 +42,10 @@ test('each seed file is loaded once, with the job-post selections, and the sourc
   assert.strictEqual((await pool.query("select count(*)::int n from installs where source = 'seed'")).rows[0].n, n, 'a second migrate adds nothing');
   const sw = (await pool.query("select * from installs where company_id = 'swile'")).rows[0];
   assert.strictEqual(sw.partner, 'Absys Cyborg'); assert.strictEqual(sw.since, '2020');
-  const sel = (await pool.query("select * from installs where company_id = 'sovos' and status = 'selecting'")).rows[0];
-  assert.strictEqual(sel.system, ''); assert.strictEqual(sel.kind, 'job_post');
+  const sel = (await pool.query("select * from installs where company_id = 'arclin' and status = 'selecting' order by system")).rows;
+  assert.deepStrictEqual(sel.map(x => x.system), ['FIS', 'Kyriba']); assert.strictEqual(sel[0].kind, 'job_post');
+  /* removed by hand: a post asking for TMS experience is not a selection */
+  assert.strictEqual((await pool.query("select count(*)::int n from installs where company_id = 'sovos' and status = 'selecting'")).rows[0].n, 0);
   assert.ok((await pool.query("select count(*)::int n from market_sources where status = 'queued'")).rows[0].n >= 30);
 });
 
@@ -171,4 +173,12 @@ test('two organisations sharing a name key are split by hand', async () => {
   const rows = (await pool.query("select company_id, system from installs where company_id in ('ncc', 'ncc-group') order by 1")).rows;
   assert.deepStrictEqual(rows, [{ company_id: 'ncc', system: 'Nomentia' }, { company_id: 'ncc-group', system: 'GTreasury' }]);
   assert.strictEqual((await pool.query("select name from companies where id = 'ncc-group'")).rows[0].name, 'NCC Group');
+});
+
+test('a line removed by hand stays removed: the crawler cannot write it again', async () => {
+  const { upsertInstall } = require('../scripts/market');
+  const r = await upsertInstall(pool, { company: 'Sovos', system: '', status: 'selecting', kind: 'job_post', date: '2026-11-08',
+    url: 'https://www.careerbuilder.com/job-details/senior-treasury-analyst--7d06f4aa-db15-42fb-9269-836495eb949d' });
+  assert.deepStrictEqual(r, { ok: false, reason: 'removed by hand' });
+  assert.strictEqual((await pool.query("select count(*)::int as n from installs where company_id = 'sovos' and status = 'selecting'")).rows[0].n, 0);
 });

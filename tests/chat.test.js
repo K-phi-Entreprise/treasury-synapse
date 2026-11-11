@@ -63,7 +63,7 @@ test('a question runs the tool loop: server prompt, one tool only, key in the he
   const call = mockCalls[0];
   assert.equal(call.headers['x-api-key'], 'test-key');
   assert.equal(call.body.model, 'claude-haiku-5-5');
-  assert.match(call.body.system, /Treasury Synapse/);
+  assert.match(call.body.system, /Treasury & FP&A Synapses/);
   assert.match(call.body.system, /co-appearance, not acquaintance/);
   assert.deepEqual(call.body.tools.map(t => t.name), ['find_people']);
   assert.ok(call.body.max_tokens <= 700);

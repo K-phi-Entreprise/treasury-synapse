@@ -44,6 +44,17 @@ const s = (v, max = 300) => (v == null ? '' : String(v)).replace(/\s+/g, ' ').tr
 const dateish = v => (/^(19|20)\d\d(-\d\d){0,2}$/.test(s(v)) ? s(v) : '');
 const httpUrl = u => { try { const x = new URL(String(u)); return /^https?:$/.test(x.protocol) ? x.toString() : ''; } catch (e) { return ''; } };
 
+/* lines removed by hand (data/company-fixes.json "drop"): never written again, whoever finds the page */
+let DROPS = null;
+function drops() {
+  if (DROPS) return DROPS;
+  DROPS = new Set();
+  try {
+    for (const f of JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'company-fixes.json'), 'utf8')))
+      for (const d of f.drop || []) DROPS.add(f.id + '|' + (d.status || 'live') + '|' + d.url);
+  } catch (e) { /* no fixes file */ }
+  return DROPS;
+}
 /* one fact in; merges with what is there: evidence is added by URL, empty fields are filled, nothing is overwritten */
 async function upsertInstall(db, r, source = 'harvest') {
   const name = s(r.company, 120), key = compKey(name);
@@ -51,6 +62,7 @@ async function upsertInstall(db, r, source = 'harvest') {
   const status = STATUS.includes(r.status) ? r.status : 'live';
   const url = httpUrl(r.url);
   if (!key || !url) return { ok: false, reason: 'company and url are required' };
+  if (drops().has(key + '|' + status + '|' + url)) return { ok: false, reason: 'removed by hand' };
   if (!c.system && status !== 'selecting') return { ok: false, reason: 'no system' };
   if (NOT_A_USER.test(key)) return { ok: false, reason: 'an adviser, not a user' };
   if (c.system && compKey(c.system) === key) return { ok: false, reason: 'the vendor itself' };
@@ -160,6 +172,7 @@ async function seed(pool, dir = path.join(__dirname, '..', 'data')) {
       }
       continue;
     }
+    for (const d of f.drop || []) await pool.query('delete from installs where company_id = $1 and status = $2 and url = $3', [f.id, d.status || 'live', d.url]);
     const cols = ['vertical', 'size', 'country', 'region', 'wikidata'].filter(k => f[k] !== undefined);
     if (!cols.length) continue;
     const set = cols.map((k, i) => k + ' = $' + (i + 2)).join(', ');
@@ -222,7 +235,7 @@ const SUBMIT = {
       installs: { type: 'array', items: { type: 'object', properties: {
         company: { type: 'string', description: 'The organisation that uses the system for its own finance or treasury. Never the vendor, a consultancy or an integrator.' },
         system: { type: 'string', description: 'Product or vendor name (Kyriba, GTreasury, ION Treasury Reval, SAP Treasury, Excel). Empty only for a selection where no product is named.' },
-        status: { type: 'string', enum: STATUS, description: 'live: runs it; implementing: project under way; selecting: choosing a system now or a shortlist; previous: what the organisation replaced.' },
+        status: { type: 'string', enum: STATUS, description: 'live: runs it; implementing: project under way; selecting: the page says the organisation is choosing a new system now, or names a shortlist (a job post asking for experience with a system, or to support, maintain or administer one, is not a selection); previous: what the organisation replaced.' },
         product: { type: 'string' }, since: { type: 'string', description: 'Go-live year if the page states it.' },
         date: { type: 'string', description: 'Date of the page or post, YYYY, YYYY-MM or YYYY-MM-DD.' },
         partner: { type: 'string', description: 'Implementation partner named by the page.' },
@@ -238,7 +251,7 @@ const SUBMIT = {
   }
 };
 function systemPrompt(cfg) {
-  return 'You collect facts for the Market view of "Treasury Synapse": which organisation runs which treasury, cash, payments or FP&A system, from public pages only. ' +
+  return 'You collect facts for the Market view of "Treasury & FP&A Synapses": which organisation runs which treasury, cash, payments or FP&A system, from public pages only. ' +
     'Report an organisation only for its own use of the system. A vendor, a consultancy or an integrator is never the user; a bank is a user only when it runs the system for its own treasury. ' +
     'A job post shows the system the employer runs ("our Kyriba platform") or a selection in progress ("select and implement a new TMS"); a post that only asks for experience with a product says nothing about the employer, skip it. ' +
     'Also report the ERP, the planning (EPM, FP&A) and the bank or payment platforms the page names for the same organisation, each as its own live line (SAP S/4HANA, Oracle NetSuite, Microsoft Dynamics 365, Anaplan, OneStream). ' +

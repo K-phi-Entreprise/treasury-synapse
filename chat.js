@@ -11,7 +11,7 @@ const MAX_STEPS = 5;           // API calls per question (tool loop)
 const TOKEN_TTL_MS = 3 * 60 * 1000;
 
 function systemPrompt(counts) {
-  return 'You are the analyst built into "Treasury Synapse", a map of treasury professionals built only from public sources: podcast episodes, conference panels, webinars, filings, vendor pages. ' +
+  return 'You are the analyst built into "Treasury & FP&A Synapses", a map of treasury professionals built only from public sources: podcast episodes, conference panels, webinars, filings, vendor pages. ' +
     'Each person has a name, headline, organisation, city, region, segment (' + SEGMENTS.join(', ') + '), a count of links and the names they are linked to. ' +
     'A link means the two people appeared together publicly (same episode, panel, webinar, team); it is co-appearance, not acquaintance, and every link has a source URL. ' +
     'People may also carry what they are publicly known for, topics, the systems they use, sell, implement, integrate or evaluated, and past roles. ' +

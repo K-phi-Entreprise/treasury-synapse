@@ -2,7 +2,7 @@
   "name": "treasury-synapse",
   "version": "0.1.0",
   "private": true,
-  "description": "Treasury Synapse: a 3D map of treasury and finance professionals built from public sources. Postgres store, map server, crawler jobs.",
+  "description": "Treasury & FP&A Synapses: a 3D map of treasury and finance professionals built from public sources. Postgres store, map server, crawler jobs.",
   "engines": { "node": ">=20" },
   "scripts": {
     "start": "node server.js",

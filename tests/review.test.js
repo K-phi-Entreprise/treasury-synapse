@@ -119,7 +119,7 @@ test('admin endpoints refuse a wrong token; leads can be dismissed', async () =>
 test('the digest counts what waits and what the crawler did', async () => {
   const { digest } = require('../scripts/digest');
   const d = await digest(pool);
-  assert.match(d.subject, /Treasury Synapse: /);
+  assert.match(d.subject, /Treasury & FP&A Synapses: /);
   assert.match(d.text, /Review: https:\/\/synapse\.example\/review/);
   assert.equal(typeof d.counts.leads, 'number');
 });

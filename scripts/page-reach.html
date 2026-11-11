@@ -124,3 +124,20 @@
 (function(){const $=id=>document.getElementById(id),ins=$('d-insight'),more=$('d-more'),list=$('d-list'),src=$('d-src');
   if(ins&&more&&list){ins.after(more);more.after(list);if(src)list.after(src)}})();
 </script>
+<script>
+/* on a person's card outside Connections: their declared connections, one tap away */
+(function(){
+  const $=id=>document.getElementById(id),edit=$('d-edit');if(!edit)return;
+  const b=document.createElement('button');b.type='button';b.className='d-reach';b.id='d-conns';b.hidden=true;edit.parentNode.insertBefore(b,edit);
+  let cur='';
+  b.addEventListener('click',()=>{const a=document.querySelector('#angles .angle[data-a="connections"]');if(a)a.click();setTimeout(()=>window.synapseFocus&&window.synapseFocus(cur),120)});
+  document.addEventListener('synapse:detail',e=>{
+    cur=e.detail;const raw=window.synapseRaw&&window.synapseRaw();const on=document.querySelector('#angles .angle[aria-pressed="true"]');
+    if(!raw||!cur||(on&&on.dataset.a==='connections')){b.hidden=true;return}
+    const n=raw.E.connections.filter(r=>r.status!=='rejected'&&(r.a===cur||r.b===cur)).length;
+    const me=window.synapseMe&&window.synapseMe();
+    b.hidden=!n;b.textContent=(cur===me?'Your ':'')+n+' declared connection'+(n===1?'':'s')+' →';
+  });
+  document.addEventListener('synapse:hub',()=>{b.hidden=true});
+})();
+</script>

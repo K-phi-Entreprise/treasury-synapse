@@ -44,9 +44,9 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, emailRe, admin,
       const r = await pool.query(`insert into requests (kind, email, name, role, company, region, size, erp, systems, topics, timing, details, routing, ip_hash, confirm_token, outcome_token, target_id, via_ids)
         values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18) returning id`,
         [c.kind, email, c.name, c.role, c.company, c.region, c.size, c.erp, c.systems, c.topics, c.timing, c.details, JSON.stringify(c.routing), ipHash(req), token, outcome, c.targetId, c.viaIds]);
-      const sent = await mail.send({ to: email, subject: 'Treasury Synapse: please confirm your request',
+      const sent = await mail.send({ to: email, subject: 'Treasury & FP&A Synapses: please confirm your request',
         text: 'Hello' + (c.name ? ' ' + c.name : '') + ',\n\nThanks for asking: ' + KINDS[c.kind].toLowerCase() + (c.systems.length ? ' (' + c.systems.join(', ') + ')' : '') + '.\n\nConfirm it here so we can get to work:\n' + publicUrl + '/api/requests/confirm/' + token +
-          '\n\nYour request stays private: it is never shown on the map, and nobody is introduced to you without your contact details being shared on purpose, by email, to both sides.\n\nTreasury Synapse, by K-phi\n' });
+          '\n\nYour request stays private: it is never shown on the map, and nobody is introduced to you without your contact details being shared on purpose, by email, to both sides.\n\nTreasury & FP&A Synapses, by K-phi\n' });
       res.json({ id: r.rows[0].id, status: 'received', mail: sent.sent ? 'sent' : 'not sent' });
     } catch (e) { next(e); }
   });
@@ -125,12 +125,12 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, emailRe, admin,
       const note = clip(req.body.note, 800);
       const who = (rq.name || 'Someone') + (rq.role ? ', ' + rq.role : '') + (rq.company ? ' at ' + rq.company : '');
       const what = KINDS[rq.kind] + (rq.systems.length ? ' (' + rq.systems.join(', ') + ')' : '') + (rq.topics.length ? ', on ' + rq.topics.join(', ') : '');
-      const a = await mail.send({ to: rq.email, subject: 'Treasury Synapse: an introduction to ' + p.name,
+      const a = await mail.send({ to: rq.email, subject: 'Treasury & FP&A Synapses: an introduction to ' + p.name,
         text: 'Hello' + (rq.name ? ' ' + rq.name : '') + ',\n\nAbout your request (' + what + '), you may want to talk to ' + p.name + (p.headline ? ', ' + p.headline : '') + '.\n\n' + (note ? note + '\n\n' : '') +
-          'Their address: ' + p.email + '\nThey have your address too and know what you are looking for.\n\nTreasury Synapse, by K-phi\n' });
-      const b = await mail.send({ to: p.email, subject: 'Treasury Synapse: someone would like to talk to you',
+          'Their address: ' + p.email + '\nThey have your address too and know what you are looking for.\n\nTreasury & FP&A Synapses, by K-phi\n' });
+      const b = await mail.send({ to: p.email, subject: 'Treasury & FP&A Synapses: someone would like to talk to you',
         text: 'Hello ' + p.name.split(' ')[0] + ',\n\n' + who + ' is looking for: ' + what + '.' + (rq.details ? '\n\nIn their words:\n' + rq.details : '') + '\n\n' + (note ? note + '\n\n' : '') +
-          'Their address: ' + rq.email + '\nYou are receiving this because your card says you are open to it. You can change that on your card at any time.\n\nTreasury Synapse, by K-phi\n' });
+          'Their address: ' + rq.email + '\nYou are receiving this because your card says you are open to it. You can change that on your card at any time.\n\nTreasury & FP&A Synapses, by K-phi\n' });
       await pool.query("insert into introductions (request_id, person_id) values ($1,$2) on conflict do nothing", [rq.id, p.id]);
       await pool.query("update requests set status = 'introduced' where id = $1 and status in ('new','in_progress')", [rq.id]);
       res.json({ ok: true, mailed: a.sent && b.sent });
@@ -168,9 +168,9 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, emailRe, admin,
       and added_at < now() - ($1 || ' days')::interval`, [String(FOLLOW_DAYS)])).rows;
     let n = 0;
     for (const rq of due) {
-      const m = await mail.send({ to: rq.email, subject: 'Treasury Synapse: how did it go?',
+      const m = await mail.send({ to: rq.email, subject: 'Treasury & FP&A Synapses: how did it go?',
         text: 'Hello' + (rq.name ? ' ' + rq.name : '') + ',\n\nTwo months ago you asked for help: ' + KINDS[rq.kind].toLowerCase() + (rq.systems.length ? ' (' + rq.systems.join(', ') + ')' : '') + '.\n\nWhat did you choose, and why? Five questions, one minute:\n' + publicUrl + '/outcome/' + rq.outcome_token +
-          '\n\nOnly K-phi reads your answer; it is never published with your name.\n\nTreasury Synapse, by K-phi\n' });
+          '\n\nOnly K-phi reads your answer; it is never published with your name.\n\nTreasury & FP&A Synapses, by K-phi\n' });
       if (m.sent) { await pool.query('update requests set followup_sent_at = now() where id = $1', [rq.id]); n++; }
     }
     return n;
@@ -180,7 +180,7 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, emailRe, admin,
 
 const FIELD = 'width:100%;box-sizing:border-box;margin-top:4px;padding:10px;border-radius:9px;border:1px solid #2a3158;background:#0e1328;color:#e8ecff;font:15px system-ui';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-const page = (title, body) => '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Treasury Synapse</title>' +
+const page = (title, body) => '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Treasury & FP&A Synapses</title>' +
   '<body style="background:#080b17;color:#e8ecff;font:16px system-ui;padding:40px 20px;max-width:560px;margin:auto"><h1 style="font-size:22px">' + title + '</h1>' + body + '<p><a style="color:#6ee7f0" href="/">Back to the map</a></p>';
 
 module.exports = { mount, clean, KINDS, SIZES, TIMING, FOLLOW_DAYS };

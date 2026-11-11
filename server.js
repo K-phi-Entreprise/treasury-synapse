@@ -1,5 +1,5 @@
 'use strict';
-/* Treasury Synapse server: serves the map, the graph API (three angles from one set of facts),
+/* Treasury & FP&A Synapses server: serves the map, the graph API (three angles from one set of facts),
  * visitor declarations and submissions (never instant: the owner validates), and an admin review API. */
 const path = require('path');
 const crypto = require('crypto');
@@ -252,9 +252,9 @@ app.post('/api/submissions', async (req, res, next) => {
         : kind === 'removal' ? 'remove ' + person.rows[0].name + ' from the map. The card is hidden now; deletion is final once the request is reviewed.'
         : kind === 'link' ? 'add a public page to ' + person.rows[0].name + "'s card."
         : 'correct ' + person.rows[0].name + "'s card.";
-      const m = await mail.send({ to: email, subject: 'Treasury Synapse: please confirm your request',
+      const m = await mail.send({ to: email, subject: 'Treasury & FP&A Synapses: please confirm your request',
         text: 'Hello,\n\nSomeone (hopefully you) asked to ' + what + '\n\nConfirm the request here:\n' + PUBLIC_URL + '/api/confirm/' + token +
-          '\n\nNothing else changes until it has been reviewed. If you did not send this, ignore this message.\n\nTreasury Synapse, by K-phi\n' });
+          '\n\nNothing else changes until it has been reviewed. If you did not send this, ignore this message.\n\nTreasury & FP&A Synapses, by K-phi\n' });
       mailed = m.sent;
     }
     res.json({ id: r.rows[0].id, status: 'pending', confirmation: email ? (mailed ? 'sent' : 'not sent') : 'none' });
@@ -264,7 +264,7 @@ app.post('/api/submissions', async (req, res, next) => {
 app.get('/api/confirm/:token', async (req, res, next) => {
   try {
     const r = await pool.query('update submissions set confirmed_at = coalesce(confirmed_at, now()) where confirm_token = $1 returning id', [String(req.params.token).slice(0, 64)]);
-    res.set('X-Robots-Tag', 'noindex').type('html').send('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Treasury Synapse</title>' +
+    res.set('X-Robots-Tag', 'noindex').type('html').send('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Treasury & FP&A Synapses</title>' +
       '<body style="background:#080b17;color:#e8ecff;font:16px system-ui;padding:40px 20px;max-width:560px;margin:auto">' +
       (r.rows.length ? '<h1 style="font-size:22px">Request confirmed</h1><p>Thank you. It will be reviewed, and you will hear back at this address.</p>'
         : '<h1 style="font-size:22px">Link not recognised</h1><p>This confirmation link is not valid or has already been used.</p>') +
@@ -366,7 +366,7 @@ app.post('/api/admin/submissions/:id', admin, async (req, res, next) => {
       const verdict = status === 'approved' ? (sub.kind === 'removal' ? 'The card has been deleted from the map.' : sub.kind === 'link' ? 'The page will be read by the next crawl and its facts added with their source.'
           : sub.kind === 'claim' ? 'The card is now yours. Sign in with this link (valid 7 days):\n' + signIn : 'The card has been updated.')
         : status === 'rejected' ? (sub.kind === 'removal' ? 'The request was not accepted and the card is visible again.' : 'The change was not accepted.') : 'A question about your request:';
-      await mail.send({ to: sub.email, subject: 'Treasury Synapse: your request', text: 'Hello,\n\n' + verdict + (note ? '\n\n' + note : '') + '\n\nTreasury Synapse, by K-phi\n' });
+      await mail.send({ to: sub.email, subject: 'Treasury & FP&A Synapses: your request', text: 'Hello,\n\n' + verdict + (note ? '\n\n' + note : '') + '\n\nTreasury & FP&A Synapses, by K-phi\n' });
     }
     res.json({ ok: true });
   } catch (e) {

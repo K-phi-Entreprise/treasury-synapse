@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="ff9c632851";</script>
+<script>window.SYNAPSE_BUILD="04cd4f618a";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,7 +19,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
-<title>Treasury Synapse</title>
+<title>Treasury &amp; FP&amp;A Synapses</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -343,7 +343,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     <div class="brand">
       <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M7 8l7 13M21 7l-7 14M7 8l14-1" stroke="currentColor" stroke-width="1.4" fill="none" opacity=".55"/><circle cx="7" cy="8" r="2.6" fill="currentColor"/><circle cx="21" cy="7" r="3.2" fill="currentColor"/><circle cx="14" cy="21" r="4" fill="currentColor"/></svg>
       <div>
-        <h1>Treasury Synapse</h1>
+        <h1>Treasury &amp; FP&amp;A Synapses</h1>
         <p class="sub">Which company runs which treasury system, and whom to ask. Public sources only; grows as the crawler runs.</p>
       </div>
     </div>
@@ -995,6 +995,8 @@ function renderHubDetail(n){
 function select(i,focus){
   if(i!==sel)$('detail').classList.remove('open');
   sel=i;
+  /* whoever you open is drawn now, with the people and lines around them, even while the map is still growing in */
+  if(i>=0){const t=performance.now();[i].concat(G.adj[i]).forEach(j=>{if(G.born[j]>t)G.born[j]=t-600});for(let e=0;e<G.e;e++){const x=G.edges[e];if(x&&(x.a===i||x.b===i)&&G.eborn[e]>t)G.eborn[e]=t-600}}
   if(i>=0){hl=null;chatHideAnswer()}
   nbr=sel>=0?new Set(G.adj[sel].filter(j=>vis[j])):null;
   topNbr=new Set(nbr?[...nbr].sort((a,b)=>G.adj[b].length-G.adj[a].length).slice(0,7):[]);
@@ -1135,7 +1137,7 @@ let setFindValue=function(){};
   const askForm=$('ask'),askIn=$('ask-in'),askGo=$('ask-go'),askStop=$('ask-stop'),sugg=$('sugg'),ans=$('answer');
   const aQ=$('a-q'),aBody=$('a-body'),aMeta=$('a-meta'),aChips=$('a-chips'),reopen=$('a-reopen'),detailEl=$('detail');
   let sampleFn=null,canTools=false,turns=[],ctl=null,lastIds=[],lastQ='',busy=false;
-  const BASE=()=>'You are the analyst built into "Treasury Synapse", a map of treasury professionals built only from public sources: podcast episodes, conference panels, webinars, filings. Each person has a name, headline, organisation, city, region, segment ('+SEGS.map(s=>s.id).join(', ')+'), a count of links and the names they are linked to. A link means the two people appeared together publicly; every link has a source URL. People may also carry what they are publicly known for, topics, the systems they use, sell or implement, and past roles. Seeds are the people the map started from. The map currently holds '+G.n+' people and '+G.e+' links. ';
+  const BASE=()=>'You are the analyst built into "Treasury &amp; FP&amp;A Synapses", a map of treasury professionals built only from public sources: podcast episodes, conference panels, webinars, filings. Each person has a name, headline, organisation, city, region, segment ('+SEGS.map(s=>s.id).join(', ')+'), a count of links and the names they are linked to. A link means the two people appeared together publicly; every link has a source URL. People may also carry what they are publicly known for, topics, the systems they use, sell or implement, and past roles. Seeds are the people the map started from. The map currently holds '+G.n+' people and '+G.e+' links. ';
   const STYLE=' Reply in plain text with no markdown, 2 to 5 short lines, readable on a phone. Name people by name and organisation. Say how many match and what stands out. If nothing matches, say so and suggest the nearest alternative. If the question is not about this map, say you can only answer about the map.';
   const RULES_TOOLS=()=>BASE()+'Answer every factual question by calling find_people first and never invent people, links or numbers. The page highlights the matches on the map for you.'+STYLE;
   const RULES_DATA=()=>BASE()+'Answer only from the data below and never invent people or numbers. The page highlights the ids you return on the map.'+STYLE;
@@ -2549,6 +2551,23 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
 (function(){const $=id=>document.getElementById(id),ins=$('d-insight'),more=$('d-more'),list=$('d-list'),src=$('d-src');
   if(ins&&more&&list){ins.after(more);more.after(list);if(src)list.after(src)}})();
 </script>
+<script>
+/* on a person's card outside Connections: their declared connections, one tap away */
+(function(){
+  const $=id=>document.getElementById(id),edit=$('d-edit');if(!edit)return;
+  const b=document.createElement('button');b.type='button';b.className='d-reach';b.id='d-conns';b.hidden=true;edit.parentNode.insertBefore(b,edit);
+  let cur='';
+  b.addEventListener('click',()=>{const a=document.querySelector('#angles .angle[data-a="connections"]');if(a)a.click();setTimeout(()=>window.synapseFocus&&window.synapseFocus(cur),120)});
+  document.addEventListener('synapse:detail',e=>{
+    cur=e.detail;const raw=window.synapseRaw&&window.synapseRaw();const on=document.querySelector('#angles .angle[aria-pressed="true"]');
+    if(!raw||!cur||(on&&on.dataset.a==='connections')){b.hidden=true;return}
+    const n=raw.E.connections.filter(r=>r.status!=='rejected'&&(r.a===cur||r.b===cur)).length;
+    const me=window.synapseMe&&window.synapseMe();
+    b.hidden=!n;b.textContent=(cur===me?'Your ':'')+n+' declared connection'+(n===1?'':'s')+' →';
+  });
+  document.addEventListener('synapse:hub',()=>{b.hidden=true});
+})();
+</script>
 
 <style>
 .add-btn{margin-right:8px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg);font:500 12.5px/1.2 var(--font-body);cursor:pointer}
@@ -2699,7 +2718,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   let state='col',idle=0;
   const label=()=>{const a=document.querySelector('#angles .angle[aria-pressed="true"]');return a?a.textContent.trim():'Menu'};
   function paintPill(){const n=(document.getElementById('k1')||{}).textContent||'';const l=((document.getElementById('k1l')||{}).textContent||'').toLowerCase();
-    pill.textContent='';pill.append('Synapse',el('small','',n?Number(n).toLocaleString('en')+' '+(l==='organisations'?'orgs':l):''));handle.lastChild.textContent=label()}
+    pill.textContent='';pill.append('Synapses',el('small','',n?Number(n).toLocaleString('en')+' '+(l==='organisations'?'orgs':l):''));handle.lastChild.textContent=label()}
   function measure(){const r=side.getBoundingClientRect();root.style.setProperty('--m-h',Math.max(40,Math.round(innerHeight-r.top))+'px')}
   function set(s){
     if(!root.classList.contains('m-on'))return;

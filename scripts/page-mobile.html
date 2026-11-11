@@ -47,7 +47,7 @@
   let state='col',idle=0;
   const label=()=>{const a=document.querySelector('#angles .angle[aria-pressed="true"]');return a?a.textContent.trim():'Menu'};
   function paintPill(){const n=(document.getElementById('k1')||{}).textContent||'';const l=((document.getElementById('k1l')||{}).textContent||'').toLowerCase();
-    pill.textContent='';pill.append('Synapse',el('small','',n?Number(n).toLocaleString('en')+' '+(l==='organisations'?'orgs':l):''));handle.lastChild.textContent=label()}
+    pill.textContent='';pill.append('Synapses',el('small','',n?Number(n).toLocaleString('en')+' '+(l==='organisations'?'orgs':l):''));handle.lastChild.textContent=label()}
   function measure(){const r=side.getBoundingClientRect();root.style.setProperty('--m-h',Math.max(40,Math.round(innerHeight-r.top))+'px')}
   function set(s){
     if(!root.classList.contains('m-on'))return;

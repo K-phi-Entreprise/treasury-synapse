@@ -88,18 +88,18 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, secret, emailRe
       let m = cur && cur.email !== email ? { ok: false, reason: 'card already claimed by another address' } : domainMatches(email, p, await hostsFor(personId));
       if (m.ok) {
         const t = await token(personId, email, 'claim');
-        const sent = await mail.send({ to: email, subject: 'Treasury Synapse: confirm this is your card',
-          text: 'Hello,\n\nSomeone (hopefully you) asked to claim the card of ' + p.name + ' on Treasury Synapse.\n\nConfirm it here (valid 24 hours):\n' + publicUrl + '/api/claim/' + t +
-            '\n\nOnce confirmed, you can say on your card what you have worked on, which systems you know and whether you are open to a reference call. Nothing changes on the map until you confirm.\n\nIf this was not you, ignore this message.\n\nTreasury Synapse, by K-phi\n' });
+        const sent = await mail.send({ to: email, subject: 'Treasury & FP&A Synapses: confirm this is your card',
+          text: 'Hello,\n\nSomeone (hopefully you) asked to claim the card of ' + p.name + ' on Treasury & FP&A Synapses.\n\nConfirm it here (valid 24 hours):\n' + publicUrl + '/api/claim/' + t +
+            '\n\nOnce confirmed, you can say on your card what you have worked on, which systems you know and whether you are open to a reference call. Nothing changes on the map until you confirm.\n\nIf this was not you, ignore this message.\n\nTreasury & FP&A Synapses, by K-phi\n' });
         return res.json({ status: 'sent', mail: sent.sent ? 'sent' : 'not sent' });
       }
       /* not provable by domain: a person reviews it; the email is still confirmed first */
       const t = crypto.randomBytes(18).toString('base64url');
       const r = await pool.query("insert into submissions (kind, person_id, payload, email, ip_hash, confirm_token) values ('claim',$1,$2,$3,$4,$5) returning id",
         [personId, JSON.stringify({ reason: m.reason, note: String(req.body.note || '').slice(0, 600) }), email, ipHash(req), t]);
-      const sent = await mail.send({ to: email, subject: 'Treasury Synapse: please confirm your request',
+      const sent = await mail.send({ to: email, subject: 'Treasury & FP&A Synapses: please confirm your request',
         text: 'Hello,\n\nSomeone (hopefully you) asked to claim the card of ' + p.name + ' with this address. It needs a quick check by a person (' + m.reason + ').\n\nConfirm the request here:\n' + publicUrl + '/api/confirm/' + t +
-          '\n\nYou will get a sign-in link once it has been reviewed.\n\nTreasury Synapse, by K-phi\n' });
+          '\n\nYou will get a sign-in link once it has been reviewed.\n\nTreasury & FP&A Synapses, by K-phi\n' });
       res.json({ status: 'review', reason: m.reason, id: r.rows[0].id, mail: sent.sent ? 'sent' : 'not sent' });
     } catch (e) { next(e); }
   });
@@ -110,7 +110,7 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, secret, emailRe
       const t = String(req.params.token).slice(0, 64);
       const r = await pool.query("update claim_tokens set used_at = now() where token = $1 and used_at is null and expires_at > now() returning *", [t]);
       const row = r.rows[0];
-      const page = (title, body) => res.set('X-Robots-Tag', 'noindex').type('html').send('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Treasury Synapse</title>' +
+      const page = (title, body) => res.set('X-Robots-Tag', 'noindex').type('html').send('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Treasury & FP&A Synapses</title>' +
         '<body style="background:#080b17;color:#e8ecff;font:16px system-ui;padding:40px 20px;max-width:560px;margin:auto"><h1 style="font-size:22px">' + title + '</h1>' + body + '<p><a style="color:#6ee7f0" href="/">Back to the map</a></p>');
       if (!row) return page('Link not recognised', '<p>This link is not valid, has expired or has already been used. Ask for a new one from your card.</p>');
       const p = (await pool.query('select id from people where id = $1 and not hidden', [row.person_id])).rows[0];
@@ -135,8 +135,8 @@ function mount(app, { pool, mail, ipHash, underQuota, publicUrl, secret, emailRe
       const rows = (await pool.query('select c.person_id, p.name from claims c join people p on p.id = c.person_id where c.email = $1 and c.confirmed_at is not null and not p.hidden', [email])).rows;
       for (const r of rows.slice(0, 3)) {
         const t = await token(r.person_id, email, 'login');
-        await mail.send({ to: email, subject: 'Treasury Synapse: your sign-in link',
-          text: 'Hello,\n\nHere is your link to sign in to the card of ' + r.name + ' (valid 1 hour):\n' + publicUrl + '/api/claim/' + t + '\n\nIf you did not ask for it, ignore this message.\n\nTreasury Synapse, by K-phi\n' });
+        await mail.send({ to: email, subject: 'Treasury & FP&A Synapses: your sign-in link',
+          text: 'Hello,\n\nHere is your link to sign in to the card of ' + r.name + ' (valid 1 hour):\n' + publicUrl + '/api/claim/' + t + '\n\nIf you did not ask for it, ignore this message.\n\nTreasury & FP&A Synapses, by K-phi\n' });
       }
       res.json({ status: 'sent-if-known' });
     } catch (e) { next(e); }

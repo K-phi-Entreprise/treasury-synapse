@@ -117,5 +117,15 @@
   "id": "ncc-group",
   "vertical": "Technology & software",
   "note": "Cyber security"
+ },
+ {
+  "id": "sovos",
+  "drop": [
+   {
+    "status": "selecting",
+    "url": "https://www.careerbuilder.com/job-details/senior-treasury-analyst--7d06f4aa-db15-42fb-9269-836495eb949d"
+   }
+  ],
+  "note": "Job post asks for TMS experience and to lead or support implementation and maintenance: not a selection"
  }
 ]

@@ -40,7 +40,7 @@ async function digest(pool) {
     '',
     'Review: ' + base + '/review'
   ].filter((l, i, a) => l !== '' || (a[i - 1] !== '' && i > 0));
-  return { counts: r, waiting, subject: 'Treasury Synapse: ' + (waiting ? waiting + ' waiting for review' : 'nothing to review'), text: lines.join('\n') + '\n' };
+  return { counts: r, waiting, subject: 'Treasury & FP&A Synapses: ' + (waiting ? waiting + ' waiting for review' : 'nothing to review'), text: lines.join('\n') + '\n' };
 }
 
 if (require.main === module) {

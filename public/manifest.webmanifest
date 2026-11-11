@@ -1,6 +1,6 @@
 {
-  "name": "Treasury Synapse",
-  "short_name": "Synapse",
+  "name": "Treasury & FP&A Synapses",
+  "short_name": "Synapses",
   "description": "Who appears with whom in treasury and finance, from public sources: people, topics and the systems they use, sell or implement.",
   "id": "/",
   "start_url": "/?source=app",
