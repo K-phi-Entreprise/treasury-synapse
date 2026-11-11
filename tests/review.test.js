@@ -329,3 +329,12 @@ test('the People view keeps sources from 2025 on and undated ones, and drops old
   const g = await fetch(base + '/api/graph').then(r => r.json());
   assert.ok(g.edges.every(e => (e.evidence || []).every(x => { const y = evidenceYear(x); return y == null || y >= 2025; })));
 });
+
+test('leadership and about pages draw no line: colleagues are not a stage', async () => {
+  const { recentEdge } = require('../scripts/recency');
+  assert.strictEqual(recentEdge({ kind: 'executive', url: 'https://example.com/leadership', label: 'Executive team', evidence: [{ url: 'https://example.com/leadership', label: 'Executive team', date: '' }] }), null);
+  const mixed = recentEdge({ kind: 'executive', url: 'l', label: 'Executive team', evidence: [{ url: 'l', label: 'Executive team', kind: 'executive' }, { url: 'p', label: 'Panel', kind: 'panel', date: '2025-06-01' }] });
+  assert.deepStrictEqual([mixed.url, mixed.kind], ['p', 'panel']);
+  const g = await fetch(base + '/api/graph').then(r => r.json());
+  assert.ok(!g.edges.some(e => e.kind === 'executive' || e.kind === 'colleague'));
+});

@@ -70,7 +70,7 @@ test('the owner is on the map with his topics, roles and the Nordic battle links
 
 test('/api/graph has the shapes the page expects and /api/health counts', async () => {
   const g = (await api('/api/graph')).body;
-  assert.ok(g.people.length > 1900 && g.edges.length > 1500);
+  assert.ok(g.people.length > 1900 && g.edges.length > 800);
   for (const k of ['id', 'name', 'headline', 'org', 'region', 'segment', 'seed', 'addedAt', 'topics', 'systems', 'roles']) assert.ok(k in g.people[0], k);
   for (const k of ['a', 'b', 'kind', 'label', 'url', 'confidence', 'evidence']) assert.ok(k in g.edges[0], k);
   const h = (await api('/api/health')).body;

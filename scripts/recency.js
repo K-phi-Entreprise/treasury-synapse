@@ -9,14 +9,16 @@ function evidenceYear(x) {
   const ys = String(x.label || '').match(/\b(?:19|20)\d{2}\b/g);
   return ys ? Math.max(...ys.map(Number)) : null;
 }
-const recent = x => { const y = evidenceYear(x); return y == null || y >= FROM_YEAR; };
+/* a company's leadership or about page is a list of colleagues, not a stage: it carries no date and goes stale, so it draws no line */
+const NOT_A_STAGE = new Set(['executive', 'colleague']);
+const recent = x => { if (x && NOT_A_STAGE.has(x.kind)) return false; const y = evidenceYear(x); return y == null || y >= FROM_YEAR; };
 /* an edge row ({kind,label,url,evidence,...}) trimmed to its recent evidence, or null when none is left */
 function recentEdge(e) {
-  const ev = Array.isArray(e.evidence) && e.evidence.length ? e.evidence : [{ url: e.url, label: e.label, date: '', kind: e.kind }];
+  const ev = (Array.isArray(e.evidence) && e.evidence.length ? e.evidence : [{ url: e.url, label: e.label, date: '', kind: e.kind }]).map(x => Object.assign({ kind: e.kind }, x));
   const keep = ev.filter(recent);
   if (!keep.length) return null;
   if (keep.length === ev.length) return e;
   const head = keep.find(x => x.url === e.url) || keep[0];
   return Object.assign({}, e, { evidence: keep, url: head.url || e.url, label: head.label || e.label, kind: head.kind || e.kind });
 }
-module.exports = { FROM_YEAR, evidenceYear, recent, recentEdge };
+module.exports = { NOT_A_STAGE, FROM_YEAR, evidenceYear, recent, recentEdge };
