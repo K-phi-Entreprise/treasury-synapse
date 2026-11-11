@@ -1,0 +1,66 @@
+[
+ {
+  "id": "bolt",
+  "vertical": "Transport & logistics",
+  "note": "Mobility platform; Wikidata lists food delivery first"
+ },
+ {
+  "id": "pernod-ricard",
+  "vertical": "Food & beverage",
+  "note": "Wine and spirits"
+ },
+ {
+  "id": "upvest",
+  "vertical": "Financial services",
+  "country": "Germany",
+  "region": "DACH",
+  "note": "Headquartered in Berlin"
+ },
+ {
+  "id": "getyourguide",
+  "country": "Germany",
+  "region": "DACH",
+  "note": "Headquartered in Berlin"
+ },
+ {
+  "id": "square",
+  "vertical": "Financial services",
+  "country": "United States",
+  "region": "United States",
+  "wikidata": "",
+  "note": "Square (Block, Inc.), not the Japanese company of the same name"
+ },
+ {
+  "id": "kramp",
+  "vertical": "Industrials & manufacturing",
+  "note": "Distributor of agricultural and machinery parts"
+ },
+ {
+  "id": "uber",
+  "vertical": "Transport & logistics",
+  "country": "United States",
+  "region": "United States",
+  "size": "20,000 and more",
+  "note": "Uber Technologies"
+ },
+ {
+  "id": "europcar",
+  "vertical": "Transport & logistics",
+  "note": "Car rental"
+ },
+ {
+  "id": "mangopay",
+  "vertical": "Financial services",
+  "note": "Payment infrastructure"
+ },
+ {
+  "id": "aiven",
+  "size": "250 to 1,000",
+  "note": "Cloud data platform"
+ },
+ {
+  "id": "ingram-micro",
+  "size": "20,000 and more",
+  "note": "IT distribution"
+ }
+]

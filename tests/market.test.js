@@ -154,3 +154,12 @@ test('the page knows its build and the server tells it; the service worker cache
   assert.match(fs.readFileSync(path.join(__dirname, '..', 'public', 'sw.js'), 'utf8'), new RegExp("const CACHE = 'synapse-" + b + "'"));
   assert.match(html, /function newVersion/);
 });
+
+test('hand corrections win over Wikidata and are not redone', async () => {
+  await pool.query("update companies set vertical = 'Food & beverage', enrich_v = 3 where id = 'bolt'");
+  await require('../scripts/market').seed(pool);
+  const b = (await pool.query("select vertical, enrich_v, enrich_note from companies where id = 'bolt'")).rows[0];
+  assert.strictEqual(b.vertical, 'Transport & logistics'); assert.strictEqual(b.enrich_v, 99); assert.match(b.enrich_note, /corrected by hand/);
+  const sq = (await pool.query("select country, region, wikidata from companies where id = 'square'")).rows[0];
+  assert.deepStrictEqual(sq, { country: 'United States', region: 'United States', wikidata: '' });
+});

@@ -144,6 +144,15 @@ async function seed(pool, dir = path.join(__dirname, '..', 'data')) {
   for (const x of SOURCES) await pool.query('insert into market_sources (url, label, kind) values ($1,$2,$3) on conflict (url) do nothing', [x.url, x.label, x.kind]);
   /* searches outside the method (an earlier, uneven list) are dropped */
   await pool.query("delete from market_sources where kind = 'search' and not (url = any($1))", [SOURCES.filter(x => x.kind === 'search').map(x => x.url)]);
+  /* corrections by hand (data/company-fixes.json): applied on every deploy, and the profile is no longer redone from Wikidata */
+  const fx = path.join(dir, 'company-fixes.json');
+  if (fs.existsSync(fx)) for (const f of JSON.parse(fs.readFileSync(fx, 'utf8'))) {
+    const cols = ['vertical', 'size', 'country', 'region', 'wikidata'].filter(k => f[k] !== undefined);
+    if (!cols.length) continue;
+    const set = cols.map((k, i) => k + ' = $' + (i + 2)).join(', ');
+    await pool.query('update companies set ' + set + ", enrich_v = 99, enrich_note = $" + (cols.length + 2) + ", enriched_at = coalesce(enriched_at, now()), updated_at = now() where id = $1 and (" +
+      cols.map((k, i) => k + ' is distinct from $' + (i + 2)).join(' or ') + " or enrich_v <> 99)", [f.id].concat(cols.map(k => f[k]), ['corrected by hand: ' + (f.note || '')]));
+  }
   /* a vertical for companies whose industry is known but not yet mapped */
   const { verticalOf } = require('./enrich');
   for (const c of (await pool.query("select id, industry from companies where vertical = '' and industry <> ''")).rows) {

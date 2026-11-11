@@ -9,8 +9,12 @@ def rep(old,new,count=1):
 # data source: the API instead of the artifact store
 start_old=src[src.index('  async function start(){'):src.index('  refreshAll();\n  start();')]
 start_new='''  async function start(){
-    setStatus('live','Live');dbRef={api:true};
-    timer=setTimeout(()=>{if(!booted){setStatus('','Waiting for data');$('empty').hidden=false;$('empty-t').textContent='The store is not answering yet';$('empty-s').textContent='Keep the page open; it fills in when the connection comes back.'}},10000);
+    setStatus('','Loading');dbRef={api:true};
+    let firstDone=false,firstFailed=false;
+    /* a slow phone connection is not an outage: say "loading" while the first answer is on its way */
+    timer=setTimeout(()=>{if(!booted){$('empty').hidden=false;
+      if(firstFailed){setStatus('','Disconnected');$('empty-t').textContent='The map is not answering yet';$('empty-s').textContent='Keep the page open; it fills in when the connection comes back.'}
+      else{$('empty-t').textContent='Loading the map';$('empty-s').textContent='About 400 KB of public facts; on a slow connection this takes a few more seconds.'}}},6000);
     let since='';
     async function poll(){
       try{
@@ -20,9 +24,9 @@ start_new='''  async function start(){
         (g.people||[]).forEach(d=>pendingP.push(d));(g.edges||[]).forEach(d=>pendingE.push(d));
         (g.connections||[]).forEach(d=>{if(d.status!=='rejected')pendingC.push(d)});
         (g.companies||[]).forEach(d=>pendingCo.push(d));(g.installs||[]).forEach(d=>pendingI.push(d));if(g.companyPeople)staffIn=g.companyPeople;
-        since=g.now||since;gotP=true;gotE=true;setStatus('live','Live');queueIngest();
+        since=g.now||since;gotP=true;gotE=true;firstDone=true;setStatus('live','Live');queueIngest();
         if(g.build&&g.build!==window.SYNAPSE_BUILD)newVersion(g.build);
-      }catch(e){setStatus('','Disconnected')}
+      }catch(e){setStatus('','Disconnected');if(!firstDone){firstFailed=true;if(!booted){$('empty').hidden=false;$('empty-t').textContent='The map is not answering yet';$('empty-s').textContent='Keep the page open; it fills in when the connection comes back.'}}}
     }
     /* an older copy of the page (a restored tab, a cached app) reloads itself once the server has a newer build */
     function newVersion(b){

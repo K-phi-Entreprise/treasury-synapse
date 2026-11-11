@@ -123,7 +123,10 @@ async function enrichOne(pool, wd, c) {
   const employees = employeesOf(hit.claims);
   const preferred = p => { const l = ((hit.claims && hit.claims[p]) || []).filter(x => x.mainsnak && x.mainsnak.datavalue); const b = l.find(x => x.rank === 'preferred') || l[0]; return b ? b.mainsnak.datavalue.value.id : ''; };
   const hq = preferred('P159');
-  const cq = (hq && wd.countryOfPlace ? await wd.countryOfPlace(hq) : '') || preferred('P17') || preferred('P495') || '';
+  /* the headquarters' country, unless it is a former state (not on the list) while the company's own country is */
+  const hqc = hq && wd.countryOfPlace ? await wd.countryOfPlace(hq) : '';
+  const own = preferred('P17') || preferred('P495') || '';
+  const cq = (hqc && (COUNTRY[hqc] || !COUNTRY[own]) ? hqc : own) || hqc;
   const country = COUNTRY[cq] ? COUNTRY[cq][0] : (cq ? (await wd.labelsFor([cq]))[0] : '');
   const region = COUNTRY[cq] ? COUNTRY[cq][1] : (cq ? 'Other' : '');
   await pool.query(`update companies set wikidata = $2, vertical = case when vertical = '' then $3 else vertical end,
@@ -136,7 +139,7 @@ async function enrichOne(pool, wd, c) {
 
 /* companies never looked up first, those with the most facts first; misses are retried after 60 days */
 async function enrichBatch(pool, { limit = 8, wd = client() } = {}) {
-  const rows = (await pool.query(`select c.id, c.name, c.industry, c.wikidata from companies c where not c.hidden and (c.enriched_at is null or c.enrich_v < $2 or (c.wikidata = '' and c.enriched_at < now() - interval '60 days'))
+  const rows = (await pool.query(`select c.id, c.name, c.industry, c.wikidata from companies c where not c.hidden and (c.enriched_at is null or c.enrich_v < $2 or (c.wikidata = '' and c.enrich_v < 99 and c.enriched_at < now() - interval '60 days'))
     order by c.enriched_at nulls first, (select count(*) from installs i where i.company_id = c.id) desc, c.added_at limit $1`, [limit, VERSION])).rows;
   const out = { looked: 0, matched: 0, slow: false };
   for (const c of rows) {
