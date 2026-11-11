@@ -157,7 +157,8 @@ async function enrichBatch(pool, { limit = 8, wd = client() } = {}) {
 }
 
 /* the web process runs it in the background: a batch a minute, slower after a "slow down" */
-function start(pool, { everyMs = 60000, limit = 8, onChange } = {}) {
+/* requests stay 1.1 s apart; batches of 20 with a short pause, about 12 organisations a minute */
+function start(pool, { everyMs = 10000, limit = 20, onChange } = {}) {
   let wait = everyMs, timer = null;
   const wd = client();
   const tick = async () => {
