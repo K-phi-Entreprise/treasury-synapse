@@ -1,0 +1,2178 @@
+{
+ "people": [
+  {
+   "id": "gavin-o-donoghue",
+   "name": "Gavin O'Donoghue",
+   "headline": "Partner, AtlasFX",
+   "org": "AtlasFX",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#managing-corporate-fx-risk-with-automation-and-ai"
+  },
+  {
+   "id": "torgeir-hoff",
+   "name": "Torgeir Hoff",
+   "headline": "Group treasurer, Airswift",
+   "org": "Airswift",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#tokenised-mmf-and-intercompany-pooling"
+  },
+  {
+   "id": "dominic-lynch",
+   "name": "Dominic Lynch",
+   "headline": "Co-Founder, Your Treasury",
+   "org": "Your Treasury",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#tokenised-mmf-and-intercompany-pooling"
+  },
+  {
+   "id": "nathalia-pires-de-sousa",
+   "name": "Nathalia Pires de Sousa",
+   "headline": "Global treasury operations director, Aleph Group",
+   "org": "Aleph Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#ai-how-agentic-ai-will-supercharge-treasury"
+  },
+  {
+   "id": "felix-meyer",
+   "name": "Felix Meyer",
+   "headline": "Treasury technology and IS head, ABB",
+   "org": "ABB",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#ai-how-agentic-ai-will-supercharge-treasury"
+  },
+  {
+   "id": "parv-gill",
+   "name": "Parv Gill",
+   "headline": "VP, global cash management and treasury finance, UPS",
+   "org": "UPS",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#liquidity-without-borders-mobilising-global-cash-optimising-capital-unlocking-value"
+  },
+  {
+   "id": "duang-wollring",
+   "name": "Duang Wollring",
+   "headline": "Assistant treasurer, head of global treasury operations, Equinix",
+   "org": "Equinix",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#treasury-teams-and-talent-in-the-ai-era"
+  },
+  {
+   "id": "mack-makode",
+   "name": "Mack Makode",
+   "headline": "VP and treasurer, Under Armour",
+   "org": "Under Armour",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#treasury-teams-and-talent-in-the-ai-era"
+  },
+  {
+   "id": "debbie-kaya",
+   "name": "Debbie Kaya",
+   "headline": "Independent treasury consultant",
+   "org": "",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#treasury-teams-and-talent-in-the-ai-era"
+  },
+  {
+   "id": "vincenzo-sibio",
+   "name": "Vincenzo Sibio",
+   "headline": "Head of treasury & digital payments, ITA Airways",
+   "org": "ITA Airways",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#fx-automation-the-all-currencies-all-markets-challenge"
+  },
+  {
+   "id": "harald-abel",
+   "name": "Harald Abel",
+   "headline": "Co-head RMS workflow solutions EMEA, Deutsche Bank",
+   "org": "Deutsche Bank",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#fx-automation-the-all-currencies-all-markets-challenge"
+  },
+  {
+   "id": "adrian-rodgers",
+   "name": "Adrian Rodgers",
+   "headline": "Senior EuroFinance tutor and director, Arc Solutions",
+   "org": "Arc Solutions",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#fx-automation-the-all-currencies-all-markets-challenge"
+  },
+  {
+   "id": "muhammad-s-akbar",
+   "name": "Muhammad S. Akbar",
+   "headline": "Group capital management, general manager, Saudi Telecom Company",
+   "org": "Saudi Telecom Company",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#bonds-issuance-and-yields-in-global-corporate-bond-markets"
+  },
+  {
+   "id": "jessika-emard",
+   "name": "Jessika Emard",
+   "headline": "Treasury senior manager, Linxon",
+   "org": "Linxon",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#forecasting-cash-for-strategic-insight"
+  },
+  {
+   "id": "neal-cooper",
+   "name": "Neal Cooper",
+   "headline": "Regional director cash forecasting, EMEA and APAC, Ripple Treasury",
+   "org": "Ripple Treasury",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#forecasting-cash-for-strategic-insight"
+  },
+  {
+   "id": "robert-novaria",
+   "name": "Robert Novaria",
+   "headline": "Partner, Treasury Alliance Group",
+   "org": "Treasury Alliance Group",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#forecasting-cash-for-strategic-insight"
+  },
+  {
+   "id": "hikaru-kozuki",
+   "name": "Hikaru Kozuki",
+   "headline": "Senior treasury specialist, head of treasury unit, UNHCR",
+   "org": "UNHCR",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#unhcr-treasury-unlocked-from-programmable-finance-to-ai-powered-treasury"
+  },
+  {
+   "id": "alouis-ngoshi",
+   "name": "Alouis Ngoshi",
+   "headline": "Group treasurer, Weir Group",
+   "org": "Weir Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#transforming-payments-operations-to-deliver-optimal-liquidity"
+  },
+  {
+   "id": "dilan-patel",
+   "name": "Dilan Patel",
+   "headline": "Treasury specialist, Moody's",
+   "org": "Moody's",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#ai-in-action-real-world-treasury-transformation"
+  },
+  {
+   "id": "viola-hechl-schmied",
+   "name": "Viola Hechl-Schmied",
+   "headline": "Product owner machine learning, ION Treasury",
+   "org": "ION Treasury",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#ai-in-action-real-world-treasury-transformation"
+  },
+  {
+   "id": "antti-kyyro",
+   "name": "Antti Kyyrö",
+   "headline": "Director, international treasury, Bio-Rad",
+   "org": "Bio-Rad",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#tax-the-treasurer-s-twin"
+  },
+  {
+   "id": "mo-malhotra",
+   "name": "Mo Malhotra",
+   "headline": "Partner, tax and legal, Deloitte",
+   "org": "Deloitte",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#tax-the-treasurer-s-twin"
+  },
+  {
+   "id": "geert-wouters",
+   "name": "Geert Wouters",
+   "headline": "Finance director, head of structured finance & treasury, DEME Group",
+   "org": "DEME Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#cross-border-connectivity-in-a-fragmented-global-environment"
+  },
+  {
+   "id": "omar-hafeez",
+   "name": "Omar Hafeez",
+   "headline": "Group head of international banking group, First Abu Dhabi Bank",
+   "org": "First Abu Dhabi Bank",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#cross-border-connectivity-in-a-fragmented-global-environment"
+  },
+  {
+   "id": "frank-waechter",
+   "name": "Frank Waechter",
+   "headline": "VP treasury and insurance, PUMA",
+   "org": "PUMA",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#loans-analysing-cost-of-capital-in-syndicated-loan-markets"
+  },
+  {
+   "id": "stephan-albers",
+   "name": "Stephan Albers",
+   "headline": "Global head of treasury, HRS Group",
+   "org": "HRS Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#loans-analysing-cost-of-capital-in-syndicated-loan-markets"
+  },
+  {
+   "id": "joe-fonseca",
+   "name": "Joe Fonseca",
+   "headline": "VP, global treasurer, Crocs",
+   "org": "Crocs",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#loans-analysing-cost-of-capital-in-syndicated-loan-markets"
+  },
+  {
+   "id": "thomas-balish",
+   "name": "Thomas Balish",
+   "headline": "Global treasurer and executive director, BCG",
+   "org": "BCG",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#designing-the-right-liquidity-structure-three-companies-three-different-answers"
+  },
+  {
+   "id": "thomas-boehm",
+   "name": "Thomas Boehm",
+   "headline": "Head, global finance process excellence, BASF",
+   "org": "BASF",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#from-carve-out-to-confidence-basf-catalysts-metals-journey-to-reliable-high-value-payments"
+  },
+  {
+   "id": "raji-mathew",
+   "name": "Raji Mathew",
+   "headline": "Global process owner, BASF",
+   "org": "BASF",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#from-carve-out-to-confidence-basf-catalysts-metals-journey-to-reliable-high-value-payments"
+  },
+  {
+   "id": "jyoti-jiwani",
+   "name": "Jyoti Jiwani",
+   "headline": "Treasury transformation consultant",
+   "org": "",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#from-carve-out-to-confidence-basf-catalysts-metals-journey-to-reliable-high-value-payments"
+  },
+  {
+   "id": "alicia-torices-alvarez",
+   "name": "Alicia Torices Alvarez",
+   "headline": "Global treasury director, EDP Group",
+   "org": "EDP Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#real-time-cash-management-delivering-strategic-value"
+  },
+  {
+   "id": "juergen-drebes",
+   "name": "Juergen Drebes",
+   "headline": "VP, corporate treasury, Adidas",
+   "org": "Adidas",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#in-house-bank-structuring-managing-internal-loans-for-capital-efficiency"
+  },
+  {
+   "id": "waqas-syed",
+   "name": "Waqas Syed",
+   "headline": "Director, head EMEA and APAC, corporate treasury, Thermo Fisher",
+   "org": "Thermo Fisher",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#in-house-bank-structuring-managing-internal-loans-for-capital-efficiency"
+  },
+  {
+   "id": "asha-kumari",
+   "name": "Asha Kumari",
+   "headline": "Deputy treasurer, Save the Children International",
+   "org": "Save the Children International",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#managing-compliance-and-counterparty-risks"
+  },
+  {
+   "id": "saira-maniar",
+   "name": "Saira Maniar",
+   "headline": "Senior treasury compliance and crisis funding manager, Save the Children",
+   "org": "Save the Children",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#managing-compliance-and-counterparty-risks"
+  },
+  {
+   "id": "daria-severina",
+   "name": "Daria Severina",
+   "headline": "Director treasury, ASML",
+   "org": "ASML",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#managing-compliance-and-counterparty-risks"
+  },
+  {
+   "id": "abhishek-abhishek",
+   "name": "Abhishek Abhishek",
+   "headline": "Global head B2B acceptance, Visa",
+   "org": "Visa",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#accelerating-cash-conversion-to-boost-working-capital"
+  },
+  {
+   "id": "darsh-johal",
+   "name": "Darsh Johal",
+   "headline": "Chair, Tokenised Cash Management Advisory Group",
+   "org": "Tokenised Cash Management Advisory Group",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#tokenisation-and-the-future-of-cash-management"
+  },
+  {
+   "id": "susana-aristizabal",
+   "name": "Susana Aristizabal",
+   "headline": "Head of international treasury, eBay",
+   "org": "eBay",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#the-rising-cost-of-doing-nothing-lessons-from-real-erp-tms-transformation"
+  },
+  {
+   "id": "stefano-di-silvio",
+   "name": "Stefano Di Silvio",
+   "headline": "Director, global process owner, global cash management, GSK",
+   "org": "GSK",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#the-rising-cost-of-doing-nothing-lessons-from-real-erp-tms-transformation"
+  },
+  {
+   "id": "olivia-hall",
+   "name": "Olivia Hall",
+   "headline": "Treasury manager, Weir Group",
+   "org": "Weir Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#the-rising-cost-of-doing-nothing-lessons-from-real-erp-tms-transformation"
+  },
+  {
+   "id": "jerome-brun",
+   "name": "Jerome Brun",
+   "headline": "Executive director, global advisory, payments, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#the-rising-cost-of-doing-nothing-lessons-from-real-erp-tms-transformation"
+  },
+  {
+   "id": "julian-cafolla",
+   "name": "Julian Cafolla",
+   "headline": "Treasurer, UNOPS",
+   "org": "UNOPS",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#cross-border-realities-payment-challenges-and-solutions"
+  },
+  {
+   "id": "mark-mcnulty",
+   "name": "Mark McNulty",
+   "headline": "UK & Europe head of payments & operations transformation, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#cross-border-realities-payment-challenges-and-solutions"
+  },
+  {
+   "id": "medha-gupta",
+   "name": "Medha Gupta",
+   "headline": "Senior financial officer, treasury operations, World Bank",
+   "org": "World Bank",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#unleashing-ai-and-portfolio-analytics-for-cash-visibility-and-forecasting"
+  },
+  {
+   "id": "aramis-buscemi",
+   "name": "Aramis Buscemi",
+   "headline": "Asset and liability manager, Roche",
+   "org": "Roche",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#dynamic-treasury-at-roche"
+  },
+  {
+   "id": "miguel-trapero",
+   "name": "Miguel Trapero",
+   "headline": "Treasury, Roche",
+   "org": "Roche",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#dynamic-treasury-at-roche"
+  },
+  {
+   "id": "viktoriya-cosquer",
+   "name": "Viktoriya Cosquer",
+   "headline": "International institutional & corporate coverage, Exclusive Partners",
+   "org": "Exclusive Partners",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#rethinking-corporate-liquidity-the-evolving-treasury-investment-toolkit"
+  },
+  {
+   "id": "austin-matthews",
+   "name": "Austin Matthews",
+   "headline": "Assistant treasurer, Sky",
+   "org": "Sky",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#in-house-banking-streamlining-pobo-cobo-for-cash-efficiency"
+  },
+  {
+   "id": "floor-meeuwis",
+   "name": "Floor Meeuwis",
+   "headline": "Liquidity products advisory, Société Générale",
+   "org": "Société Générale",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#in-house-banking-streamlining-pobo-cobo-for-cash-efficiency"
+  },
+  {
+   "id": "christoph-karges",
+   "name": "Christoph Karges",
+   "headline": "Head of corporate finance, TK Elevator",
+   "org": "TK Elevator",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#responsive-transaction-services-managing-through-volatility"
+  },
+  {
+   "id": "andrew-ferrao",
+   "name": "Andrew Ferrao",
+   "headline": "Group treasurer, Sonnedix",
+   "org": "Sonnedix",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#responsive-transaction-services-managing-through-volatility"
+  },
+  {
+   "id": "eugenio-cavenaghi",
+   "name": "Eugenio Cavenaghi",
+   "headline": "Managing director, head of GTB origination EMEA new markets, Santander",
+   "org": "Santander",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#responsive-transaction-services-managing-through-volatility"
+  },
+  {
+   "id": "karen-van-den-driessche",
+   "name": "Karen Van Den Driessche",
+   "headline": "Former head of treasury and tax, Lipton",
+   "org": "Lipton",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#investor-relations-and-treasury-give-and-take"
+  },
+  {
+   "id": "martijn-nijs",
+   "name": "Martijn Nijs",
+   "headline": "Group treasurer, De Heus",
+   "org": "De Heus",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#investor-relations-and-treasury-give-and-take"
+  },
+  {
+   "id": "maaike-vermeulen",
+   "name": "Maaike Vermeulen",
+   "headline": "Group treasurer, Allseas",
+   "org": "Allseas",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#fp-a-parallel-forecasts-and-analysis-for-strategic-insights"
+  },
+  {
+   "id": "ariane-van-der-eecken",
+   "name": "Ariane Van der Eecken",
+   "headline": "Assistant treasurer, Avnet",
+   "org": "Avnet",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#fp-a-parallel-forecasts-and-analysis-for-strategic-insights"
+  },
+  {
+   "id": "simon-randall",
+   "name": "Simon Randall",
+   "headline": "Director of planning and performance, Save the Children International",
+   "org": "Save the Children International",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#fp-a-parallel-forecasts-and-analysis-for-strategic-insights"
+  },
+  {
+   "id": "jeremy-reedus",
+   "name": "Jeremy Reedus",
+   "headline": "Independent treasury expert",
+   "org": "",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#fp-a-parallel-forecasts-and-analysis-for-strategic-insights"
+  },
+  {
+   "id": "joan-schutte",
+   "name": "Joan Schutte",
+   "headline": "VP and corporate treasurer, ASML",
+   "org": "ASML",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#strategic-treasury"
+  },
+  {
+   "id": "wolfgang-ratheiser",
+   "name": "Wolfgang Ratheiser",
+   "headline": "CFO, Porsche UK",
+   "org": "Porsche UK",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#strategic-treasury"
+  },
+  {
+   "id": "mandana-sadigh",
+   "name": "Mandana Sadigh",
+   "headline": "SVP and treasurer, Mattel",
+   "org": "Mattel",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#strategic-treasury"
+  },
+  {
+   "id": "takachida-kuhudzai",
+   "name": "Takachida Kuhudzai",
+   "headline": "Head of treasury, Avon",
+   "org": "Avon",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#strategic-treasury"
+  },
+  {
+   "id": "johnny-grimes",
+   "name": "Johnny Grimes",
+   "headline": "Head of corporate cash product, Ireland, Deutsche Bank",
+   "org": "Deutsche Bank",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#agentic-ai-applications-in-transaction-banking-and-treasury-services"
+  },
+  {
+   "id": "olivier-anceau",
+   "name": "Olivier Anceau",
+   "headline": "Head of GPS specialized product sales APAC, Bank of America",
+   "org": "Bank of America",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#agentic-ai-applications-in-transaction-banking-and-treasury-services"
+  },
+  {
+   "id": "katie-dilaj",
+   "name": "Katie Dilaj",
+   "headline": "UK and Europe product head, platform and data services, Citi",
+   "org": "Citi",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#agentic-ai-applications-in-transaction-banking-and-treasury-services"
+  },
+  {
+   "id": "mohamed-kortam",
+   "name": "Mohamed Kortam",
+   "headline": "Founder and podcast host, MEA Treasurers",
+   "org": "MEA Treasurers",
+   "region": "Unknown",
+   "segment": "Media",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#agentic-ai-applications-in-transaction-banking-and-treasury-services"
+  },
+  {
+   "id": "bojan-belejkovski",
+   "name": "Bojan Belejkovski",
+   "headline": "VP finance and treasurer, Voltava",
+   "org": "Voltava",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#fantastic-four-ai-automation-use-cases-in-treasury"
+  },
+  {
+   "id": "peter-quarre",
+   "name": "Peter Quarré",
+   "headline": "Treasury technology consultant, TMSOptimizer",
+   "org": "TMSOptimizer",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#fantastic-four-ai-automation-use-cases-in-treasury"
+  },
+  {
+   "id": "bernardo-monclus-lopez",
+   "name": "Bernardo Monclús López",
+   "headline": "CFO, Idilia Foods",
+   "org": "Idilia Foods",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#midcap-treasury-challenges"
+  },
+  {
+   "id": "lars-falkenberg",
+   "name": "Lars Falkenberg",
+   "headline": "Senior treasury manager, Carlsberg Group",
+   "org": "Carlsberg Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#driving-treasury-transformation-with-data"
+  },
+  {
+   "id": "scott-barlow",
+   "name": "Scott Barlow",
+   "headline": "Treasury, payments and working capital sales, FIS",
+   "org": "FIS",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#driving-treasury-transformation-with-data"
+  },
+  {
+   "id": "doug-tropp",
+   "name": "Doug Tropp",
+   "headline": "SVP and treasurer, Booking Holdings",
+   "org": "Booking Holdings",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#driving-treasury-transformation-with-data"
+  },
+  {
+   "id": "patricia-lizarraga-rodriguez",
+   "name": "Patricia Lizarraga Rodriguez",
+   "headline": "Treasury management, Iberdrola",
+   "org": "Iberdrola",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#developing-optimal-liquidity-advantage-for-growth"
+  },
+  {
+   "id": "paula-tirhado",
+   "name": "Paula Tirhado",
+   "headline": "Treasury director, Nippon Sanso",
+   "org": "Nippon Sanso",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#developing-optimal-liquidity-advantage-for-growth"
+  },
+  {
+   "id": "rebecca-pilendiram-king",
+   "name": "Rebecca Pilendiram-King",
+   "headline": "Director, global liquidity solutions specialist, Bank of America",
+   "org": "Bank of America",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#developing-optimal-liquidity-advantage-for-growth"
+  },
+  {
+   "id": "paul-misere",
+   "name": "Paul Misere",
+   "headline": "Senior director treasury, Medtronic",
+   "org": "Medtronic",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#developing-optimal-liquidity-advantage-for-growth"
+  },
+  {
+   "id": "alex-ashby",
+   "name": "Alex Ashby",
+   "headline": "Group treasurer, WPP",
+   "org": "WPP",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#developing-optimal-liquidity-advantage-for-growth"
+  },
+  {
+   "id": "enrique-tur-tur",
+   "name": "Enrique Tur Tur",
+   "headline": "Regional treasurer, Americas, Diageo",
+   "org": "Diageo",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#trapped-cash-foreign-controls-and-stablecoins-explored"
+  },
+  {
+   "id": "egija-svilane",
+   "name": "Egija Svilane",
+   "headline": "EMEA treasurer, JLL",
+   "org": "JLL",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#trapped-cash-foreign-controls-and-stablecoins-explored"
+  },
+  {
+   "id": "clement-richard",
+   "name": "Clément Richard",
+   "headline": "Global business process treasury, bank and cash management, Louis Dreyfus Company",
+   "org": "Louis Dreyfus Company",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#building-next-generation-interoperability-in-payment-ecosystems"
+  },
+  {
+   "id": "guillaume-reboussin",
+   "name": "Guillaume Reboussin",
+   "headline": "Product business lead, Swift",
+   "org": "Swift",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#building-next-generation-interoperability-in-payment-ecosystems"
+  },
+  {
+   "id": "gherri-d-innocenzo",
+   "name": "Gherri D'Innocenzo",
+   "headline": "Head of cash management & payments standards, Siemens Treasury",
+   "org": "Siemens Treasury",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#building-next-generation-interoperability-in-payment-ecosystems"
+  },
+  {
+   "id": "joanna-bonnett",
+   "name": "Joanna Bonnett",
+   "headline": "Group treasurer, Straumann Group",
+   "org": "Straumann Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#sustainability-and-esg-in-treasury-investments"
+  },
+  {
+   "id": "christian-schmahl",
+   "name": "Christian Schmahl",
+   "headline": "Senior director, treasury, Delivery Hero",
+   "org": "Delivery Hero",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#the-rise-of-execution-ready-ai-agents-in-treasury"
+  },
+  {
+   "id": "can-akcal",
+   "name": "Can Akcal",
+   "headline": "Senior manager, group treasury, Delivery Hero",
+   "org": "Delivery Hero",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#the-rise-of-execution-ready-ai-agents-in-treasury"
+  },
+  {
+   "id": "nicolas-timbour",
+   "name": "Nicolas Timbour",
+   "headline": "Head of fraud prevention & CDO, BNP Paribas",
+   "org": "BNP Paribas",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#combatting-fraud-and-cybercrime-with-ai-systems"
+  },
+  {
+   "id": "wagner-birochi",
+   "name": "Wagner Birochi",
+   "headline": "Treasury director, Puig",
+   "org": "Puig",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#education-and-training-for-new-treasury-professionals"
+  },
+  {
+   "id": "nuria-pascual-lapena",
+   "name": "Nuria Pascual Lapeña",
+   "headline": "CVP corporate treasury and risk management, Grifols",
+   "org": "Grifols",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#education-and-training-for-new-treasury-professionals"
+  },
+  {
+   "id": "blanca-goni",
+   "name": "Blanca Goni",
+   "headline": "Head for southern, central and eastern Europe, global payments, HSBC",
+   "org": "HSBC",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#education-and-training-for-new-treasury-professionals"
+  },
+  {
+   "id": "daniel-jefferies",
+   "name": "Daniel Jefferies",
+   "headline": "VP, treasurer, The Boots Group",
+   "org": "The Boots Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#change-management-enabling-strategic-alignment"
+  },
+  {
+   "id": "winny-li",
+   "name": "Winny Li",
+   "headline": "Group treasurer, PPD",
+   "org": "PPD",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#change-management-enabling-strategic-alignment"
+  },
+  {
+   "id": "sunnie-ho",
+   "name": "Sunnie Ho",
+   "headline": "Head of global cash operations, Atlassian",
+   "org": "Atlassian",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#change-management-enabling-strategic-alignment"
+  },
+  {
+   "id": "bas-van-maren",
+   "name": "Bas van Maren",
+   "headline": "Former CFO, Superunie",
+   "org": "Superunie",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#scf-aligning-suppliers-and-optimising-programmes"
+  },
+  {
+   "id": "mark-douglas",
+   "name": "Mark Douglas",
+   "headline": "Managing director, funding, EMEA, PrimeRevenue",
+   "org": "PrimeRevenue",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#scf-aligning-suppliers-and-optimising-programmes"
+  },
+  {
+   "id": "stefan-windisch",
+   "name": "Stefan Windisch",
+   "headline": "Global head in-house bank, Roche",
+   "org": "Roche",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#cash-repatriation-solutions-for-complex-countries"
+  },
+  {
+   "id": "david-zerbib",
+   "name": "David Zerbib",
+   "headline": "Investor relations, Fintis",
+   "org": "Fintis",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#cash-equivalent-strategies-for-higher-rates-of-return"
+  },
+  {
+   "id": "tariq-hoodbhoy",
+   "name": "Tariq Hoodbhoy",
+   "headline": "Head of treasury advisory services, First Abu Dhabi Bank",
+   "org": "First Abu Dhabi Bank",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#how-will-ai-technologies-change-treasury-in-2030"
+  },
+  {
+   "id": "razvan-coarca",
+   "name": "Razvan Coarca",
+   "headline": "VP, specialty finance, Liberty Global",
+   "org": "Liberty Global",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#unlocking-hidden-liquidity-through-working-capital-solutions"
+  },
+  {
+   "id": "alan-chitty",
+   "name": "Alan Chitty",
+   "headline": "Group treasurer, Pepco",
+   "org": "Pepco",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#unlocking-hidden-liquidity-through-working-capital-solutions"
+  },
+  {
+   "id": "cesar-severino",
+   "name": "Cesar Severino",
+   "headline": "Senior director, treasury, Sunrise Communications",
+   "org": "Sunrise Communications",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#unlocking-hidden-liquidity-through-working-capital-solutions"
+  },
+  {
+   "id": "ramon-tolk",
+   "name": "Ramón Tolk",
+   "headline": "Treasury consultant",
+   "org": "",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#unlocking-hidden-liquidity-through-working-capital-solutions"
+  },
+  {
+   "id": "ankur-kanwar",
+   "name": "Ankur Kanwar",
+   "headline": "Global head, payment and treasury solutions, Standard Chartered",
+   "org": "Standard Chartered",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#developing-treasury-and-transaction-banking-with-digital-assets"
+  },
+  {
+   "id": "mehtaj-syed",
+   "name": "Mehtaj Syed",
+   "headline": "Head of Europe, product sales & solutions, Kinexys by J.P. Morgan",
+   "org": "Kinexys by J.P. Morgan",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#developing-treasury-and-transaction-banking-with-digital-assets"
+  },
+  {
+   "id": "wim-grosemans",
+   "name": "Wim Grosemans",
+   "headline": "Global head of product management, payments and receivables, BNP Paribas",
+   "org": "BNP Paribas",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#developing-treasury-and-transaction-banking-with-digital-assets"
+  },
+  {
+   "id": "ouannessa-aissaoui",
+   "name": "Ouannessa Aissaoui",
+   "headline": "Head of global payments solutions, Continental Europe, HSBC",
+   "org": "HSBC",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#developing-treasury-and-transaction-banking-with-digital-assets"
+  },
+  {
+   "id": "vanessa-edesa-verde",
+   "name": "Vanessa Edesa Verde",
+   "headline": "Global head of organisation, processes & digitalisation, financing & treasury, Iberdrola",
+   "org": "Iberdrola",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#from-digital-treasury-to-ai-enabled-treasury-iberdrola-s-data-transformation-journey"
+  },
+  {
+   "id": "matthieu-meunier",
+   "name": "Matthieu Meunier",
+   "headline": "SVP financing and group treasurer, Schneider Electric",
+   "org": "Schneider Electric",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#the-evolution-of-people-and-operations-in-treasury-automation"
+  },
+  {
+   "id": "garima-thakur",
+   "name": "Garima Thakur",
+   "headline": "Treasurer, Creative Artists Agency",
+   "org": "Creative Artists Agency",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#the-evolution-of-people-and-operations-in-treasury-automation"
+  },
+  {
+   "id": "can-balcioglu",
+   "name": "Can Balcioglu",
+   "headline": "VP, treasurer, PayPal",
+   "org": "PayPal",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#the-evolution-of-people-and-operations-in-treasury-automation"
+  },
+  {
+   "id": "sofo-limniotis",
+   "name": "Sofo Limniotis",
+   "headline": "Fintech strategy and solutions director, HBX Group",
+   "org": "HBX Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#creating-integrated-payment-ecosystems-for-working-capital-management"
+  },
+  {
+   "id": "lorena-sandroni",
+   "name": "Lorena Sandroni",
+   "headline": "Group treasurer, TMF Group",
+   "org": "TMF Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#creating-integrated-payment-ecosystems-for-working-capital-management"
+  },
+  {
+   "id": "jamie-evans",
+   "name": "Jamie Evans",
+   "headline": "Head of corporate issuing, ICB UK specialist sales, Barclays",
+   "org": "Barclays",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#creating-integrated-payment-ecosystems-for-working-capital-management"
+  },
+  {
+   "id": "borja-garcia-alarcon-altamirano",
+   "name": "Borja García-Alarcón Altamirano",
+   "headline": "Group CFO, CELSA",
+   "org": "CELSA",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#from-data-to-decision-turning-credit-and-geopolitical-risk-into-competitive-advantage"
+  },
+  {
+   "id": "arshi-ahmed",
+   "name": "Arshi Ahmed",
+   "headline": "Global head of financial and specialty risk analytics, Aon",
+   "org": "Aon",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#from-data-to-decision-turning-credit-and-geopolitical-risk-into-competitive-advantage"
+  },
+  {
+   "id": "stuart-lawson",
+   "name": "Stuart Lawson",
+   "headline": "Global practice leader, Aon Credit Solutions",
+   "org": "Aon Credit Solutions",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#from-data-to-decision-turning-credit-and-geopolitical-risk-into-competitive-advantage"
+  },
+  {
+   "id": "stefan-eckart",
+   "name": "Stefan Eckart",
+   "headline": "Head of GBS process management treasury, Boehringer Ingelheim",
+   "org": "Boehringer Ingelheim",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#bank-account-rationalisation-creating-cash-360"
+  },
+  {
+   "id": "oscar-vickerman",
+   "name": "Oscar Vickerman",
+   "headline": "Head of strategic distribution, LMAX Group",
+   "org": "LMAX Group",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#tokenised-payments-for-treasury"
+  },
+  {
+   "id": "juli-tecles",
+   "name": "Juli Tecles",
+   "headline": "Financial manager, Borges International Group",
+   "org": "Borges International Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#leveraging-receivables-for-working-capital-gains"
+  },
+  {
+   "id": "maria-paula-bruni",
+   "name": "Maria Paula Bruni",
+   "headline": "Global SVP treasury and fintech, Aleph Group",
+   "org": "Aleph Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#leveraging-receivables-for-working-capital-gains"
+  },
+  {
+   "id": "matthias-cork",
+   "name": "Matthias Cork",
+   "headline": "Managing director, REWE Group",
+   "org": "REWE Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#predictive-treasury-optimising-liquidity-and-cash-management-in-an-ai-era"
+  },
+  {
+   "id": "konstantin-kleemann",
+   "name": "Konstantin Kleemann",
+   "headline": "Senior customer success manager, SAP Taulia",
+   "org": "SAP Taulia",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#predictive-treasury-optimising-liquidity-and-cash-management-in-an-ai-era"
+  },
+  {
+   "id": "natalia-olaru-kourris",
+   "name": "Natalia Olaru-Kourris",
+   "headline": "Assistant treasurer, NCR Atleos",
+   "org": "NCR Atleos",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#from-no-roadmap-to-ai-driven-success"
+  },
+  {
+   "id": "youssef-el-manadily",
+   "name": "Youssef El-Manadily",
+   "headline": "Global treasurer, ECU Worldwide",
+   "org": "ECU Worldwide",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#data-analytics-alignment-and-accessibility-for-treasury-systems"
+  },
+  {
+   "id": "giuseppe-gavotti",
+   "name": "Giuseppe Gavotti",
+   "headline": "Treasury director, CBRE",
+   "org": "CBRE",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#data-analytics-alignment-and-accessibility-for-treasury-systems"
+  },
+  {
+   "id": "neil-bailey",
+   "name": "Neil Bailey",
+   "headline": "Group treasurer, LKQ",
+   "org": "LKQ",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#commercial-cards-enhancing-payment-rail-interoperability"
+  },
+  {
+   "id": "anthony-douglas",
+   "name": "Anthony Douglas",
+   "headline": "Procurement director, LKQ",
+   "org": "LKQ",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#commercial-cards-enhancing-payment-rail-interoperability"
+  },
+  {
+   "id": "marc-pettican",
+   "name": "Marc Pettican",
+   "headline": "EVP, global corporate solutions, Mastercard",
+   "org": "Mastercard",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#commercial-cards-enhancing-payment-rail-interoperability"
+  },
+  {
+   "id": "neiciriany-mata",
+   "name": "Neiciriany Mata",
+   "headline": "CFO advisor, TAAG Angola Airlines",
+   "org": "TAAG Angola Airlines",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#commercial-cards-enhancing-payment-rail-interoperability"
+  },
+  {
+   "id": "ian-griffith",
+   "name": "Ian Griffith",
+   "headline": "Group treasury director, Ahold Delhaize",
+   "org": "Ahold Delhaize",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#financing-and-hedging-in-energy-markets"
+  },
+  {
+   "id": "jozef-polak",
+   "name": "Jozef Polak",
+   "headline": "Senior treasury manager, European Energy",
+   "org": "European Energy",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#financing-and-hedging-in-energy-markets"
+  },
+  {
+   "id": "veli-ahmed-yumuk",
+   "name": "Veli Ahmed Yumuk",
+   "headline": "Head of treasury and corporate finance, Enerjisa Üretim",
+   "org": "Enerjisa Üretim",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#financing-and-hedging-in-energy-markets"
+  },
+  {
+   "id": "paul-nicholson",
+   "name": "Paul Nicholson",
+   "headline": "Senior conference producer, EuroFinance",
+   "org": "EuroFinance",
+   "region": "Unknown",
+   "segment": "Media",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#financing-and-hedging-in-energy-markets"
+  },
+  {
+   "id": "piyali-williams",
+   "name": "Piyali Williams",
+   "headline": "MD, global head of liquidity, Goldman Sachs",
+   "org": "Goldman Sachs",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#virtual-accounts-accelerating-visibility-with-apis"
+  },
+  {
+   "id": "ivan-troufanov",
+   "name": "Ivan Troufanov",
+   "headline": "VP, treasury, Celonis",
+   "org": "Celonis",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#virtual-accounts-accelerating-visibility-with-apis"
+  },
+  {
+   "id": "simon-barnby",
+   "name": "Simon Barnby",
+   "headline": "CMO, Archax",
+   "org": "Archax",
+   "region": "Unknown",
+   "segment": "TMS & fintech",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#24-7-treasury-auto-rolling-t-bills-faster-mmf-access-stablecoins"
+  },
+  {
+   "id": "tim-husnik",
+   "name": "Tim Husnik",
+   "headline": "Senior treasury director, Medtronic",
+   "org": "Medtronic",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#ai-assisted-commercial-paper-execution-in-action"
+  },
+  {
+   "id": "sandeep-chalke",
+   "name": "Sandeep Chalke",
+   "headline": "General manager, corporate treasury, Tata Communications",
+   "org": "Tata Communications",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#next-level-api-implementation-for-interconnectivity"
+  },
+  {
+   "id": "kashaf-jaffer",
+   "name": "Kashaf Jaffer",
+   "headline": "Head of treasury, Puma Energy",
+   "org": "Puma Energy",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#centralisation-vs-regionalisation-balancing-local-ops"
+  },
+  {
+   "id": "zeynep-barutcu",
+   "name": "Zeynep Barutcu",
+   "headline": "Director group treasury & risk management, KLM",
+   "org": "KLM",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#centralisation-vs-regionalisation-balancing-local-ops"
+  },
+  {
+   "id": "pinar-erol",
+   "name": "Pinar Erol",
+   "headline": "Treasury expert, KWS Group",
+   "org": "KWS Group",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#centralisation-vs-regionalisation-balancing-local-ops"
+  },
+  {
+   "id": "paola-jimenez",
+   "name": "Paola Jimenez",
+   "headline": "Head of capital structure and funding, Zalando",
+   "org": "Zalando",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#designing-an-optimal-capital-structure-and-capital-allocation-framework"
+  },
+  {
+   "id": "sayan-mukherjee",
+   "name": "Sayan Mukherjee",
+   "headline": "VP, group treasurer, Nexperia",
+   "org": "Nexperia",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#designing-an-optimal-capital-structure-and-capital-allocation-framework"
+  },
+  {
+   "id": "gabor-szucs",
+   "name": "Gábor Szűcs",
+   "headline": "Treasurer, Richter Gedeon",
+   "org": "Richter Gedeon",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#designing-an-optimal-capital-structure-and-capital-allocation-framework"
+  },
+  {
+   "id": "han-hoestra",
+   "name": "Han Hoestra",
+   "headline": "VP, treasury, Prologis",
+   "org": "Prologis",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#investments-optimising-cash-in-an-uncertain-rate-environment"
+  },
+  {
+   "id": "agne-masiulyte",
+   "name": "Agnė Masiulytė",
+   "headline": "Senior director of finance control and treasury, Vinted",
+   "org": "Vinted",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#investments-optimising-cash-in-an-uncertain-rate-environment"
+  },
+  {
+   "id": "alessandro-montinaro",
+   "name": "Alessandro Montinaro",
+   "headline": "Assistant treasurer and transformation manager, STMicroelectronics",
+   "org": "STMicroelectronics",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#pooling-partnerships-creating-optimal-cash-operations"
+  },
+  {
+   "id": "evaldas-balkys",
+   "name": "Evaldas Balkys",
+   "headline": "International treasurer, Bio-Rad",
+   "org": "Bio-Rad",
+   "region": "Unknown",
+   "segment": "Corporate treasury",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#pooling-partnerships-creating-optimal-cash-operations"
+  },
+  {
+   "id": "bertrand-huet",
+   "name": "Bertrand Huet",
+   "headline": "Partner, Fleishman-Hillard",
+   "org": "Fleishman-Hillard",
+   "region": "Unknown",
+   "segment": "Advisors",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#financial-regulation"
+  },
+  {
+   "id": "morten-bech",
+   "name": "Morten Bech",
+   "headline": "Centre head, Switzerland, BIS Innovation Hub",
+   "org": "BIS Innovation Hub",
+   "region": "Unknown",
+   "segment": "Banks",
+   "source": "https://www.eurofinance.com/international-treasury-event/agenda#project-agor-tokenisation-in-practice"
+  }
+ ],
+ "stages": [
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#managing-corporate-fx-risk-with-automation-and-ai",
+   "label": "EuroFinance International 2026, Barcelona: Managing corporate FX risk with automation and AI",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "gavin-o-donoghue"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#tokenised-mmf-and-intercompany-pooling",
+   "label": "EuroFinance International 2026, Barcelona: Tokenised MMF and intercompany pooling",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "torgeir-hoff",
+    "dominic-lynch"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#ai-how-agentic-ai-will-supercharge-treasury",
+   "label": "EuroFinance International 2026, Barcelona: AI: how agentic AI will supercharge treasury",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "nathalia-pires-de-sousa",
+    "felix-meyer",
+    "felix-grevy",
+    "james-kelly"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#liquidity-without-borders-mobilising-global-cash-optimising-capital-unlocking-value",
+   "label": "EuroFinance International 2026, Barcelona: Liquidity without borders: mobilising global cash, optimising capital, unlocking value",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "parv-gill",
+    "simon-jones"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#treasury-teams-and-talent-in-the-ai-era",
+   "label": "EuroFinance International 2026, Barcelona: Treasury teams and talent in the AI era",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "marianna-polykrati",
+    "duang-wollring",
+    "mack-makode",
+    "debbie-kaya"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#fx-automation-the-all-currencies-all-markets-challenge",
+   "label": "EuroFinance International 2026, Barcelona: FX automation: the all currencies, all markets challenge",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "vincenzo-sibio",
+    "harald-abel",
+    "marc-andre-mohn",
+    "adrian-rodgers"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#bonds-issuance-and-yields-in-global-corporate-bond-markets",
+   "label": "EuroFinance International 2026, Barcelona: Bonds: issuance and yields in global corporate bond markets",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "baris-gokalp",
+    "muhammad-s-akbar",
+    "caroline-stockmann"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#forecasting-cash-for-strategic-insight",
+   "label": "EuroFinance International 2026, Barcelona: Forecasting cash for strategic insight",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "jessika-emard",
+    "neal-cooper",
+    "robert-novaria"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#unhcr-treasury-unlocked-from-programmable-finance-to-ai-powered-treasury",
+   "label": "EuroFinance International 2026, Barcelona: UNHCR treasury unlocked: from programmable finance to AI-powered treasury",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "hikaru-kozuki",
+    "dominic-lynch"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#transforming-payments-operations-to-deliver-optimal-liquidity",
+   "label": "EuroFinance International 2026, Barcelona: Transforming payments operations to deliver optimal liquidity",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "alouis-ngoshi",
+    "simon-jones"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#ai-in-action-real-world-treasury-transformation",
+   "label": "EuroFinance International 2026, Barcelona: AI in action: real-world treasury transformation",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "dilan-patel",
+    "viola-hechl-schmied",
+    "james-kelly"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#tax-the-treasurer-s-twin",
+   "label": "EuroFinance International 2026, Barcelona: Tax: the treasurer's twin",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "antti-kyyro",
+    "mo-malhotra",
+    "debbie-kaya"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#cross-border-connectivity-in-a-fragmented-global-environment",
+   "label": "EuroFinance International 2026, Barcelona: Cross border connectivity in a fragmented global environment",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "kemi-bolarin",
+    "geert-wouters",
+    "omar-hafeez",
+    "adrian-rodgers"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#loans-analysing-cost-of-capital-in-syndicated-loan-markets",
+   "label": "EuroFinance International 2026, Barcelona: Loans: analysing cost of capital in syndicated loan markets",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "frank-waechter",
+    "stephan-albers",
+    "joe-fonseca",
+    "caroline-stockmann"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#designing-the-right-liquidity-structure-three-companies-three-different-answers",
+   "label": "EuroFinance International 2026, Barcelona: Designing the right liquidity structure: three companies, three different answers",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "thomas-balish",
+    "robert-novaria"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#beyond-the-chatbot-ai-agents-as-treasury-team-members",
+   "label": "EuroFinance International 2026, Barcelona: Beyond the chatbot: AI agents as treasury team members",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "carlos-serrano-garcia-lison"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#from-carve-out-to-confidence-basf-catalysts-metals-journey-to-reliable-high-value-payments",
+   "label": "EuroFinance International 2026, Barcelona: From carve-out to confidence: BASF catalysts metals' journey to reliable high-value payments",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "thomas-boehm",
+    "raji-mathew",
+    "mayank-randev",
+    "jyoti-jiwani"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#real-time-cash-management-delivering-strategic-value",
+   "label": "EuroFinance International 2026, Barcelona: Real-time cash management: delivering strategic value",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "alicia-torices-alvarez",
+    "robert-novaria"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#in-house-bank-structuring-managing-internal-loans-for-capital-efficiency",
+   "label": "EuroFinance International 2026, Barcelona: In-house bank structuring: managing internal loans for capital efficiency",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "juergen-drebes",
+    "waqas-syed",
+    "caroline-stockmann"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#managing-compliance-and-counterparty-risks",
+   "label": "EuroFinance International 2026, Barcelona: Managing compliance and counterparty risks",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "asha-kumari",
+    "saira-maniar",
+    "daria-severina",
+    "adrian-rodgers"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#accelerating-cash-conversion-to-boost-working-capital",
+   "label": "EuroFinance International 2026, Barcelona: Accelerating cash conversion to boost working capital",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "abhishek-abhishek"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#tokenisation-and-the-future-of-cash-management",
+   "label": "EuroFinance International 2026, Barcelona: Tokenisation and the future of cash management",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "darsh-johal",
+    "dominic-lynch"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#the-rising-cost-of-doing-nothing-lessons-from-real-erp-tms-transformation",
+   "label": "EuroFinance International 2026, Barcelona: The rising cost of doing nothing: lessons from real ERP/TMS transformation",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "susana-aristizabal",
+    "stefano-di-silvio",
+    "olivia-hall",
+    "jerome-brun",
+    "james-kelly"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#payments-automation-real-time-systems-for-treasury",
+   "label": "EuroFinance International 2026, Barcelona: Payments automation: real time systems for treasury",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "ben-scales",
+    "vibhor-narang",
+    "ana-de-sousa",
+    "simon-jones"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#cross-border-realities-payment-challenges-and-solutions",
+   "label": "EuroFinance International 2026, Barcelona: Cross border realities: payment challenges and solutions",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "julian-cafolla",
+    "mark-mcnulty",
+    "simon-jones"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#unleashing-ai-and-portfolio-analytics-for-cash-visibility-and-forecasting",
+   "label": "EuroFinance International 2026, Barcelona: Unleashing AI and portfolio analytics for cash visibility and forecasting",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "medha-gupta",
+    "dominic-lynch"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#dynamic-treasury-at-roche",
+   "label": "EuroFinance International 2026, Barcelona: Dynamic treasury at Roche",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "aramis-buscemi",
+    "miguel-trapero",
+    "james-kelly"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#rethinking-corporate-liquidity-the-evolving-treasury-investment-toolkit",
+   "label": "EuroFinance International 2026, Barcelona: Rethinking corporate liquidity: the evolving treasury investment toolkit",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "viktoriya-cosquer"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#in-house-banking-streamlining-pobo-cobo-for-cash-efficiency",
+   "label": "EuroFinance International 2026, Barcelona: In-house banking: streamlining POBO, COBO for cash efficiency",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "austin-matthews",
+    "floor-meeuwis",
+    "robert-novaria"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#responsive-transaction-services-managing-through-volatility",
+   "label": "EuroFinance International 2026, Barcelona: Responsive transaction services: managing through volatility",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "christoph-karges",
+    "andrew-ferrao",
+    "eugenio-cavenaghi",
+    "adrian-rodgers"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#investor-relations-and-treasury-give-and-take",
+   "label": "EuroFinance International 2026, Barcelona: Investor relations and treasury: give and take",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "karen-van-den-driessche",
+    "martijn-nijs",
+    "caroline-stockmann"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#fp-a-parallel-forecasts-and-analysis-for-strategic-insights",
+   "label": "EuroFinance International 2026, Barcelona: FP&A: parallel forecasts and analysis for strategic insights",
+   "kind": "panel",
+   "date": "2026-09-16",
+   "people": [
+    "maaike-vermeulen",
+    "ariane-van-der-eecken",
+    "simon-randall",
+    "jeremy-reedus"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#strategic-treasury",
+   "label": "EuroFinance International 2026, Barcelona: Strategic treasury",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "joan-schutte",
+    "wolfgang-ratheiser",
+    "mandana-sadigh",
+    "takachida-kuhudzai",
+    "caroline-stockmann"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#agentic-ai-applications-in-transaction-banking-and-treasury-services",
+   "label": "EuroFinance International 2026, Barcelona: Agentic AI applications in transaction banking and treasury services",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "johnny-grimes",
+    "olivier-anceau",
+    "katie-dilaj",
+    "mohamed-kortam"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#on-chain-treasury-new-ways-to-manage-instant-liquidity",
+   "label": "EuroFinance International 2026, Barcelona: On-chain treasury: new ways to manage instant liquidity",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "ed-lopez"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#fantastic-four-ai-automation-use-cases-in-treasury",
+   "label": "EuroFinance International 2026, Barcelona: Fantastic Four: AI automation use cases in treasury",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "bojan-belejkovski",
+    "peter-quarre"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#midcap-treasury-challenges",
+   "label": "EuroFinance International 2026, Barcelona: Midcap treasury challenges",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "bernardo-monclus-lopez",
+    "domenico-de-maio",
+    "jeremy-reedus"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#driving-treasury-transformation-with-data",
+   "label": "EuroFinance International 2026, Barcelona: Driving treasury transformation with data",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "lars-falkenberg",
+    "scott-barlow",
+    "doug-tropp",
+    "debbie-kaya"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#developing-optimal-liquidity-advantage-for-growth",
+   "label": "EuroFinance International 2026, Barcelona: Developing optimal liquidity advantage for growth",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "patricia-lizarraga-rodriguez",
+    "paula-tirhado",
+    "rebecca-pilendiram-king",
+    "paul-misere",
+    "alex-ashby"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#trapped-cash-foreign-controls-and-stablecoins-explored",
+   "label": "EuroFinance International 2026, Barcelona: Trapped cash, foreign controls and stablecoins explored",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "enrique-tur-tur",
+    "egija-svilane",
+    "patrick-kunz"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#building-next-generation-interoperability-in-payment-ecosystems",
+   "label": "EuroFinance International 2026, Barcelona: Building next generation interoperability in payment ecosystems",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "clement-richard",
+    "guillaume-reboussin",
+    "gherri-d-innocenzo",
+    "jyoti-jiwani"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#sustainability-and-esg-in-treasury-investments",
+   "label": "EuroFinance International 2026, Barcelona: Sustainability and ESG in treasury investments",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "alex-ashby",
+    "joanna-bonnett",
+    "takachida-kuhudzai"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#the-rise-of-execution-ready-ai-agents-in-treasury",
+   "label": "EuroFinance International 2026, Barcelona: The rise of execution-ready AI agents in treasury",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "christian-schmahl",
+    "can-akcal",
+    "peter-quarre"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#combatting-fraud-and-cybercrime-with-ai-systems",
+   "label": "EuroFinance International 2026, Barcelona: Combatting fraud and cybercrime with AI systems",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "antonios-reizopoulos",
+    "nicolas-timbour",
+    "tariq-kazi"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#education-and-training-for-new-treasury-professionals",
+   "label": "EuroFinance International 2026, Barcelona: Education and training for new treasury professionals",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "wagner-birochi",
+    "nuria-pascual-lapena",
+    "blanca-goni",
+    "jeremy-reedus"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#change-management-enabling-strategic-alignment",
+   "label": "EuroFinance International 2026, Barcelona: Change management: enabling strategic alignment",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "daniel-jefferies",
+    "winny-li",
+    "sunnie-ho",
+    "debbie-kaya"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#scf-aligning-suppliers-and-optimising-programmes",
+   "label": "EuroFinance International 2026, Barcelona: SCF: aligning suppliers and optimising programmes",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "bas-van-maren",
+    "mark-douglas",
+    "jyoti-jiwani"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#cash-repatriation-solutions-for-complex-countries",
+   "label": "EuroFinance International 2026, Barcelona: Cash repatriation solutions for complex countries",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "stefan-windisch",
+    "patrick-kunz"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#cash-equivalent-strategies-for-higher-rates-of-return",
+   "label": "EuroFinance International 2026, Barcelona: Cash-equivalent strategies for higher rates of return",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "david-zerbib"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#how-will-ai-technologies-change-treasury-in-2030",
+   "label": "EuroFinance International 2026, Barcelona: How will AI technologies change treasury in 2030?",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "tariq-hoodbhoy"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#unlocking-hidden-liquidity-through-working-capital-solutions",
+   "label": "EuroFinance International 2026, Barcelona: Unlocking hidden liquidity through working capital solutions",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "razvan-coarca",
+    "alan-chitty",
+    "cesar-severino",
+    "ramon-tolk"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#developing-treasury-and-transaction-banking-with-digital-assets",
+   "label": "EuroFinance International 2026, Barcelona: Developing treasury and transaction banking with digital assets",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "ankur-kanwar",
+    "mehtaj-syed",
+    "wim-grosemans",
+    "ouannessa-aissaoui",
+    "jeremy-reedus"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#from-digital-treasury-to-ai-enabled-treasury-iberdrola-s-data-transformation-journey",
+   "label": "EuroFinance International 2026, Barcelona: From digital treasury to AI-enabled treasury: Iberdrola's data transformation journey",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "vanessa-edesa-verde",
+    "james-kelly"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#the-evolution-of-people-and-operations-in-treasury-automation",
+   "label": "EuroFinance International 2026, Barcelona: The evolution of people and operations in treasury automation",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "matthieu-meunier",
+    "garima-thakur",
+    "can-balcioglu",
+    "mohamed-kortam"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#creating-integrated-payment-ecosystems-for-working-capital-management",
+   "label": "EuroFinance International 2026, Barcelona: Creating integrated payment ecosystems for working capital management",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "sofo-limniotis",
+    "lorena-sandroni",
+    "jamie-evans",
+    "takachida-kuhudzai"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#from-data-to-decision-turning-credit-and-geopolitical-risk-into-competitive-advantage",
+   "label": "EuroFinance International 2026, Barcelona: From data to decision: turning credit and geopolitical risk into competitive advantage",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "mandana-sadigh",
+    "borja-garcia-alarcon-altamirano",
+    "arshi-ahmed",
+    "stuart-lawson",
+    "debbie-kaya"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#bank-account-rationalisation-creating-cash-360",
+   "label": "EuroFinance International 2026, Barcelona: Bank account rationalisation: creating cash 360",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "stefan-eckart",
+    "patrick-kunz"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#tokenised-payments-for-treasury",
+   "label": "EuroFinance International 2026, Barcelona: Tokenised payments for treasury",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "oscar-vickerman"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#leveraging-receivables-for-working-capital-gains",
+   "label": "EuroFinance International 2026, Barcelona: Leveraging receivables for working capital gains",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "juli-tecles",
+    "maria-paula-bruni",
+    "abhishek-abhishek",
+    "takachida-kuhudzai"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#predictive-treasury-optimising-liquidity-and-cash-management-in-an-ai-era",
+   "label": "EuroFinance International 2026, Barcelona: Predictive treasury: optimising liquidity and cash management in an AI era",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "matthias-cork",
+    "konstantin-kleemann",
+    "ramon-tolk"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#from-no-roadmap-to-ai-driven-success",
+   "label": "EuroFinance International 2026, Barcelona: From no roadmap to AI driven success",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "natalia-olaru-kourris",
+    "peter-quarre"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#data-analytics-alignment-and-accessibility-for-treasury-systems",
+   "label": "EuroFinance International 2026, Barcelona: Data: analytics, alignment and accessibility for treasury systems",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "youssef-el-manadily",
+    "giuseppe-gavotti",
+    "mohamed-kortam"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#commercial-cards-enhancing-payment-rail-interoperability",
+   "label": "EuroFinance International 2026, Barcelona: Commercial cards: enhancing payment rail interoperability",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "neil-bailey",
+    "anthony-douglas",
+    "marc-pettican",
+    "neiciriany-mata"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#financing-and-hedging-in-energy-markets",
+   "label": "EuroFinance International 2026, Barcelona: Financing and hedging in energy markets",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "ian-griffith",
+    "jozef-polak",
+    "veli-ahmed-yumuk",
+    "paul-nicholson"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#virtual-accounts-accelerating-visibility-with-apis",
+   "label": "EuroFinance International 2026, Barcelona: Virtual accounts: accelerating visibility with APIs",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "piyali-williams",
+    "ivan-troufanov",
+    "patrick-kunz"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#24-7-treasury-auto-rolling-t-bills-faster-mmf-access-stablecoins",
+   "label": "EuroFinance International 2026, Barcelona: 24/7 treasury: auto-rolling T-bills, faster MMF access, stablecoins",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "simon-barnby"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#ai-assisted-commercial-paper-execution-in-action",
+   "label": "EuroFinance International 2026, Barcelona: AI-assisted commercial paper execution in action",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "tim-husnik",
+    "peter-quarre"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#next-level-api-implementation-for-interconnectivity",
+   "label": "EuroFinance International 2026, Barcelona: Next level API implementation for interconnectivity",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "sandeep-chalke",
+    "mario-del-natale",
+    "simon-jones"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#centralisation-vs-regionalisation-balancing-local-ops",
+   "label": "EuroFinance International 2026, Barcelona: Centralisation vs regionalisation: balancing local ops",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "kashaf-jaffer",
+    "zeynep-barutcu",
+    "pinar-erol",
+    "jeremy-reedus"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#designing-an-optimal-capital-structure-and-capital-allocation-framework",
+   "label": "EuroFinance International 2026, Barcelona: Designing an optimal capital structure and capital allocation framework",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "paola-jimenez",
+    "sayan-mukherjee",
+    "gabor-szucs",
+    "joanna-bonnett"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#investments-optimising-cash-in-an-uncertain-rate-environment",
+   "label": "EuroFinance International 2026, Barcelona: Investments: optimising cash in an uncertain rate environment",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "han-hoestra",
+    "agne-masiulyte",
+    "patrick-kunz"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#pooling-partnerships-creating-optimal-cash-operations",
+   "label": "EuroFinance International 2026, Barcelona: Pooling partnerships: creating optimal cash operations",
+   "kind": "panel",
+   "date": "2026-09-17",
+   "people": [
+    "alessandro-montinaro",
+    "evaldas-balkys",
+    "ramon-tolk"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#financial-regulation",
+   "label": "EuroFinance International 2026, Barcelona: Financial regulation",
+   "kind": "panel",
+   "date": "2026-09-18",
+   "people": [
+    "bertrand-huet",
+    "francois-masquelier"
+   ]
+  },
+  {
+   "url": "https://www.eurofinance.com/international-treasury-event/agenda#project-agor-tokenisation-in-practice",
+   "label": "EuroFinance International 2026, Barcelona: Project Agorá: tokenisation in practice",
+   "kind": "panel",
+   "date": "2026-09-18",
+   "people": [
+    "morten-bech",
+    "simon-jones"
+   ]
+  }
+ ]
+}

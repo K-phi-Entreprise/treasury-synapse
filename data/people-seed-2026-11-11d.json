@@ -1,0 +1,2534 @@
+{
+ "people": [
+  {
+   "id": "jennifer-botha",
+   "name": "Jennifer Botha",
+   "headline": "Treasurer, Snap",
+   "org": "Snap",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-ai-is-changing-the-investment-landscape-for-corporate-treasurers"
+  },
+  {
+   "id": "alexander-garcia",
+   "name": "Alexander Garcia",
+   "headline": "Senior Treasury Analyst, Okta",
+   "org": "Okta",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-ai-is-changing-the-investment-landscape-for-corporate-treasurers"
+  },
+  {
+   "id": "linda-kalocsay",
+   "name": "Linda Kalocsay",
+   "headline": "Director Treasury, Endeavor Group Holdings",
+   "org": "Endeavor Group Holdings",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-ai-is-changing-the-investment-landscape-for-corporate-treasurers"
+  },
+  {
+   "id": "donald-norris",
+   "name": "Donald Norris",
+   "headline": "Director, HSBC",
+   "org": "HSBC",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-ai-is-changing-the-investment-landscape-for-corporate-treasurers"
+  },
+  {
+   "id": "cameron-bowen",
+   "name": "Cameron Bowen",
+   "headline": "Director of Treasury, Salesforce",
+   "org": "Salesforce",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#getting-more-from-cash-optimizing-corporate-treasury-investment-strategies"
+  },
+  {
+   "id": "rayce-coyne",
+   "name": "Rayce Coyne",
+   "headline": "Founder and CEO, Hedgehog",
+   "org": "Hedgehog",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#getting-more-from-cash-optimizing-corporate-treasury-investment-strategies"
+  },
+  {
+   "id": "david-linton",
+   "name": "David Linton",
+   "headline": "Portfolio Manager, PayPal Investment Management",
+   "org": "PayPal Investment Management",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#getting-more-from-cash-optimizing-corporate-treasury-investment-strategies"
+  },
+  {
+   "id": "mark-pooley",
+   "name": "Mark Pooley",
+   "headline": "MD, Head of Corporate Cash Management, TD Securities",
+   "org": "TD Securities",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#getting-more-from-cash-optimizing-corporate-treasury-investment-strategies"
+  },
+  {
+   "id": "karina-inga-kamienski",
+   "name": "Karina Inga-Kamienski",
+   "headline": "Senior Director, Capital Markets, Gilead Sciences",
+   "org": "Gilead Sciences",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#corporate-bond-issuance-from-process-to-strategy"
+  },
+  {
+   "id": "matt-jones",
+   "name": "Matt Jones",
+   "headline": "Head of Institutional Liquidity, Western Asset Management",
+   "org": "Western Asset Management",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#onchain-liquidity-the-coming-wave-of-stablecoins-and-distributed-ledger-technology"
+  },
+  {
+   "id": "justin-skaria",
+   "name": "Justin Skaria",
+   "headline": "Treasury Director, Capital Markets, Edwards Lifesciences",
+   "org": "Edwards Lifesciences",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#onchain-liquidity-the-coming-wave-of-stablecoins-and-distributed-ledger-technology"
+  },
+  {
+   "id": "skip-stallings",
+   "name": "Skip Stallings",
+   "headline": "Assistant Treasurer, Franklin Templeton",
+   "org": "Franklin Templeton",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#onchain-liquidity-the-coming-wave-of-stablecoins-and-distributed-ledger-technology"
+  },
+  {
+   "id": "kimberly-macleod",
+   "name": "Kimberly MacLeod",
+   "headline": "Partner, Hunton Andrews Kurth",
+   "org": "Hunton Andrews Kurth",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#mastering-loan-commitment-letter-negotiations"
+  },
+  {
+   "id": "ernie-bretana",
+   "name": "Ernie Bretana",
+   "headline": "VP Treasury, Performance Food Group",
+   "org": "Performance Food Group",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#mastering-loan-commitment-letter-negotiations"
+  },
+  {
+   "id": "gail-ridgeway",
+   "name": "Gail Ridgeway",
+   "headline": "Treasurer, NewMarket Corporation",
+   "org": "NewMarket Corporation",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#mastering-loan-commitment-letter-negotiations"
+  },
+  {
+   "id": "emma-gram",
+   "name": "Emma Gram",
+   "headline": "Associate, Hunton Andrews Kurth",
+   "org": "Hunton Andrews Kurth",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#mastering-loan-commitment-letter-negotiations"
+  },
+  {
+   "id": "daniel-martinez",
+   "name": "Daniel Martinez",
+   "headline": "Corporate Treasury Specialist, Bloomberg",
+   "org": "Bloomberg",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#rethinking-capital-structure-equity-debt-and-cost-of-capital"
+  },
+  {
+   "id": "david-pellerin",
+   "name": "David Pellerin",
+   "headline": "Treasury Director, Circle K",
+   "org": "Circle K",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#rethinking-capital-structure-equity-debt-and-cost-of-capital"
+  },
+  {
+   "id": "allison-rossi",
+   "name": "Allison Rossi",
+   "headline": "Treasurer, Anthropic",
+   "org": "Anthropic",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#macro-market-impacts-for-liquidity-investors"
+  },
+  {
+   "id": "john-olivo",
+   "name": "John Olivo",
+   "headline": "MD, Global Head, Short Duration Strategies, Goldman Sachs Asset Management",
+   "org": "Goldman Sachs Asset Management",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#macro-market-impacts-for-liquidity-investors"
+  },
+  {
+   "id": "kyle-mcnealy",
+   "name": "Kyle McNealy",
+   "headline": "Director, Liquidity, Markets, Investments & Analytics, Meta",
+   "org": "Meta",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#macro-market-impacts-for-liquidity-investors"
+  },
+  {
+   "id": "marcel-santiz",
+   "name": "Marcel Santiz",
+   "headline": "Director, Treasury, Masco Corporation",
+   "org": "Masco Corporation",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-house-always-wins-unless-you-know-the-rules-a-credit-agreement-workshop"
+  },
+  {
+   "id": "audrey-lokker",
+   "name": "Audrey Lokker",
+   "headline": "Senior Director, Redbridge DTA",
+   "org": "Redbridge DTA",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-house-always-wins-unless-you-know-the-rules-a-credit-agreement-workshop"
+  },
+  {
+   "id": "sean-king",
+   "name": "Sean King",
+   "headline": "Legal, Tax and Business Advisor, Align Global Consulting",
+   "org": "Align Global Consulting",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#where-tax-and-treasury-meet"
+  },
+  {
+   "id": "shawn-casey",
+   "name": "Shawn Casey",
+   "headline": "Director International Treasury, McCormick & Company",
+   "org": "McCormick & Company",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#where-tax-and-treasury-meet"
+  },
+  {
+   "id": "sonia-hollies",
+   "name": "Sonia Hollies",
+   "headline": "SVP, Global Treasurer, Perrigo",
+   "org": "Perrigo",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#where-tax-and-treasury-meet"
+  },
+  {
+   "id": "jeff-weaver",
+   "name": "Jeff Weaver",
+   "headline": "Head of Global Liquidity Solutions, Allspring Global Investments",
+   "org": "Allspring Global Investments",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#cash-segmentation-it-s-not-a-gamble-it-s-a-framework"
+  },
+  {
+   "id": "tyler-cone",
+   "name": "Tyler Cone",
+   "headline": "Senior Treasury Manager, Investments, Palo Alto Networks",
+   "org": "Palo Alto Networks",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#cash-segmentation-it-s-not-a-gamble-it-s-a-framework"
+  },
+  {
+   "id": "vanessa-mcmichael",
+   "name": "Vanessa McMichael",
+   "headline": "Managing Director, Wells Fargo Securities",
+   "org": "Wells Fargo Securities",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#cash-segmentation-it-s-not-a-gamble-it-s-a-framework"
+  },
+  {
+   "id": "brandon-hillstead",
+   "name": "Brandon Hillstead",
+   "headline": "Assistant Treasurer, Autodesk",
+   "org": "Autodesk",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#cash-segmentation-it-s-not-a-gamble-it-s-a-framework"
+  },
+  {
+   "id": "steve-beussink",
+   "name": "Steve Beussink",
+   "headline": "Director of Treasury, Advance Auto Parts",
+   "org": "Advance Auto Parts",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-working-capital-through-treasury-procurement-collaboration"
+  },
+  {
+   "id": "greg-hurst",
+   "name": "Greg Hurst",
+   "headline": "Managing Director, MUFG",
+   "org": "MUFG",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-working-capital-through-treasury-procurement-collaboration"
+  },
+  {
+   "id": "brian-mills",
+   "name": "Brian Mills",
+   "headline": "Director, Data Insights and Analytics, Phillips 66",
+   "org": "Phillips 66",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-working-capital-through-treasury-procurement-collaboration"
+  },
+  {
+   "id": "jie-yuan",
+   "name": "Jie Yuan",
+   "headline": "Assistant Treasurer, Tenneco",
+   "org": "Tenneco",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-working-capital-through-treasury-procurement-collaboration"
+  },
+  {
+   "id": "sanjay-gupta",
+   "name": "Sanjay Gupta",
+   "headline": "President and Chief Customer Officer, C2FO",
+   "org": "C2FO",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#supplier-finance-optimizing-working-capital-for-all-sides"
+  },
+  {
+   "id": "deborah-belyea",
+   "name": "Deborah Belyea",
+   "headline": "SVP, Strategic Finance, Centric Brands",
+   "org": "Centric Brands",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#supplier-finance-optimizing-working-capital-for-all-sides"
+  },
+  {
+   "id": "brandy-newhof",
+   "name": "Brandy Newhof",
+   "headline": "Senior Director, Walmart",
+   "org": "Walmart",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#supplier-finance-optimizing-working-capital-for-all-sides"
+  },
+  {
+   "id": "alejandro-saenger",
+   "name": "Alejandro Saenger",
+   "headline": "Senior Director Treasury, Walmart Chile",
+   "org": "Walmart Chile",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#supplier-finance-optimizing-working-capital-for-all-sides"
+  },
+  {
+   "id": "rosemary-linden",
+   "name": "Rosemary Linden",
+   "headline": "President, Momentum CFO",
+   "org": "Momentum CFO",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#turning-conference-networking-into-career-momentum"
+  },
+  {
+   "id": "ilana-esterrich",
+   "name": "Ilana Esterrich",
+   "headline": "President, Esterrich & Associates",
+   "org": "Esterrich & Associates",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#turning-conference-networking-into-career-momentum"
+  },
+  {
+   "id": "trisha-fisher",
+   "name": "Trisha Fisher",
+   "headline": "Treasurer, WAFRA",
+   "org": "WAFRA",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#elevating-your-voice-from-technical-expert-to-trusted-partner"
+  },
+  {
+   "id": "kimberly-kelly-lippert",
+   "name": "Kimberly Kelly-Lippert",
+   "headline": "Treasury Manager, American Honda Motor Company",
+   "org": "American Honda Motor Company",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#elevating-your-voice-from-technical-expert-to-trusted-partner"
+  },
+  {
+   "id": "jessica-lupovici",
+   "name": "Jessica Lupovici",
+   "headline": "Head of Sales, Global Payments Liquidity, Wells Fargo",
+   "org": "Wells Fargo",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-execution-building-credibility-as-a-people-leader"
+  },
+  {
+   "id": "andrew-rush",
+   "name": "Andrew Rush",
+   "headline": "Director, Treasury, Darden Restaurants",
+   "org": "Darden Restaurants",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-execution-building-credibility-as-a-people-leader"
+  },
+  {
+   "id": "maritza-montenegro",
+   "name": "Maritza Montenegro",
+   "headline": "Senior Director, Finance Operations and Treasury, fairlife",
+   "org": "fairlife",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-execution-building-credibility-as-a-people-leader"
+  },
+  {
+   "id": "sena-mitchell",
+   "name": "Sena Mitchell",
+   "headline": "Treasury Manager, Florida Municipal Power Agency",
+   "org": "Florida Municipal Power Agency",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#breaking-the-glass-ceiling-strategies-for-advancing-underrepresented-talent"
+  },
+  {
+   "id": "melissa-cain",
+   "name": "Melissa Cain",
+   "headline": "Treasury Manager, Travel + Leisure",
+   "org": "Travel + Leisure",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#breaking-the-glass-ceiling-strategies-for-advancing-underrepresented-talent"
+  },
+  {
+   "id": "daniel-fleming",
+   "name": "Daniel Fleming",
+   "headline": "VP, Treasurer, Starbucks",
+   "org": "Starbucks",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-evolving-career-path-to-treasurer"
+  },
+  {
+   "id": "michael-iracondo",
+   "name": "Michael Iracondo",
+   "headline": "VP, Treasury, The Clorox Company",
+   "org": "The Clorox Company",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-evolving-career-path-to-treasurer"
+  },
+  {
+   "id": "mandana-sadigh",
+   "name": "Mandana Sadigh",
+   "headline": "SVP and treasurer, Mattel",
+   "org": "Mattel",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-evolving-career-path-to-treasurer"
+  },
+  {
+   "id": "todd-kennedy",
+   "name": "Todd Kennedy",
+   "headline": "Managing Director, Scotiabank",
+   "org": "Scotiabank",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-evolving-career-path-to-treasurer"
+  },
+  {
+   "id": "nicole-meyer",
+   "name": "Nicole Meyer",
+   "headline": "Founder & Managing Partner, The Meyer Partnership",
+   "org": "The Meyer Partnership",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#staying-relevant-in-a-career-that-won-t-sit-still"
+  },
+  {
+   "id": "raquel-alvarez-mateos",
+   "name": "Raquel Alvarez Mateos",
+   "headline": "Director of Finance, Treasurer, Kearney",
+   "org": "Kearney",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#staying-relevant-in-a-career-that-won-t-sit-still"
+  },
+  {
+   "id": "lindsey-tsang",
+   "name": "Lindsey Tsang",
+   "headline": "Treasury Sales Officer, Bank of America",
+   "org": "Bank of America",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#nextgen-treasury-leadership-building-the-talent-pipeline"
+  },
+  {
+   "id": "jennifer-kelley",
+   "name": "Jennifer Kelley",
+   "headline": "Head of Treasury, IDEXX Laboratories",
+   "org": "IDEXX Laboratories",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#nextgen-treasury-leadership-building-the-talent-pipeline"
+  },
+  {
+   "id": "flavia-salvaterra",
+   "name": "Flavia Salvaterra",
+   "headline": "Treasury Director, Kroll",
+   "org": "Kroll",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#nextgen-treasury-leadership-building-the-talent-pipeline"
+  },
+  {
+   "id": "abigail-herling-blais",
+   "name": "Abigail Herling Blais",
+   "headline": "Senior Treasury Analyst, BWEX",
+   "org": "BWEX",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#nextgen-treasury-leadership-building-the-talent-pipeline"
+  },
+  {
+   "id": "yannick-timmer",
+   "name": "Yannick Timmer",
+   "headline": "Principal Economist, Federal Reserve Board",
+   "org": "Federal Reserve Board",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-hidden-tax-in-fx-what-dealers-know-and-treasurers-often-don-t"
+  },
+  {
+   "id": "john-min",
+   "name": "John Min",
+   "headline": "Chief Economist, Monex USA",
+   "org": "Monex USA",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-hidden-tax-in-fx-what-dealers-know-and-treasurers-often-don-t"
+  },
+  {
+   "id": "tamir-shafer",
+   "name": "Tamir Shafer",
+   "headline": "Head of Sales & Marketing, North America, Redbridge",
+   "org": "Redbridge",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-hidden-tax-in-fx-what-dealers-know-and-treasurers-often-don-t"
+  },
+  {
+   "id": "sudhakar-chandramohan",
+   "name": "Sudhakar Chandramohan",
+   "headline": "Head of Finance Transformation, Harman International",
+   "org": "Harman International",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#building-a-future-ready-fp-a-operating-system-harman-s-planning-forecasting-blueprint"
+  },
+  {
+   "id": "anders-liu-lindberg",
+   "name": "Anders Liu-Lindberg",
+   "headline": "Partner, Implement Consulting Group",
+   "org": "Implement Consulting Group",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#building-a-future-ready-fp-a-operating-system-harman-s-planning-forecasting-blueprint"
+  },
+  {
+   "id": "philip-peck",
+   "name": "Philip Peck",
+   "headline": "VP, Finance Transformation & Advisory Services, Peloton Group",
+   "org": "Peloton Group",
+   "region": "United States",
+   "segment": "EPM & FP&A software",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-decisions-that-make-or-break-epm-a-playbook-for-lasting-value"
+  },
+  {
+   "id": "cassie-wang",
+   "name": "Cassie Wang",
+   "headline": "CFO, Head of Finance, Lightship Security",
+   "org": "Lightship Security",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#deliver-on-board-expectations-with-unit-economics-and-exit-readiness"
+  },
+  {
+   "id": "jeffrey-zielinski",
+   "name": "Jeffrey Zielinski",
+   "headline": "CFO, Buyandship",
+   "org": "Buyandship",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#deliver-on-board-expectations-with-unit-economics-and-exit-readiness"
+  },
+  {
+   "id": "jesse-todd",
+   "name": "Jesse Todd",
+   "headline": "Director, Finance Transformation Consulting, Microsoft",
+   "org": "Microsoft",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#where-finance-tech-and-finance-work-are-heading"
+  },
+  {
+   "id": "mariya-guttoh",
+   "name": "Mariya Guttoh",
+   "headline": "Director of FP&A and Treasury, PayJoy",
+   "org": "PayJoy",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#two-clocks-one-company-synchronizing-treasury-and-fp-a-in-real-time"
+  },
+  {
+   "id": "austin-spackman",
+   "name": "Austin Spackman",
+   "headline": "Senior Treasury Specialist, Qualtrics",
+   "org": "Qualtrics",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#two-clocks-one-company-synchronizing-treasury-and-fp-a-in-real-time"
+  },
+  {
+   "id": "gabriel-vasquez",
+   "name": "Gabriel Vasquez",
+   "headline": "Senior Treasury Analyst, Qualtrics",
+   "org": "Qualtrics",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#two-clocks-one-company-synchronizing-treasury-and-fp-a-in-real-time"
+  },
+  {
+   "id": "ben-bolton",
+   "name": "Ben Bolton",
+   "headline": "VP FP&A, HireRight",
+   "org": "HireRight",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#clearing-the-background-check-on-modern-finance-hireright-s-fp-a-transformation-journey"
+  },
+  {
+   "id": "alina-traistaru",
+   "name": "Alina Traistaru",
+   "headline": "Fractional CFO & FP&A Consultant, Sunrise Consulting",
+   "org": "Sunrise Consulting",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#financial-literacy-vs-financial-intelligence"
+  },
+  {
+   "id": "andrew-cain",
+   "name": "Andrew Cain",
+   "headline": "Director of Payment Operations, U-Haul",
+   "org": "U-Haul",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#when-minutes-matter-real-time-emergency-payments-at-u-haul"
+  },
+  {
+   "id": "lilly-dodd",
+   "name": "Lilly Dodd",
+   "headline": "VP, Immediate Payments Product Manager, PNC Bank",
+   "org": "PNC Bank",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#when-minutes-matter-real-time-emergency-payments-at-u-haul"
+  },
+  {
+   "id": "olu-adebiyi",
+   "name": "Olu Adebiyi",
+   "headline": "Product Executive, Wells Fargo",
+   "org": "Wells Fargo",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#modernizing-refunds-and-one-time-payments"
+  },
+  {
+   "id": "james-green",
+   "name": "James Green",
+   "headline": "SVP, Treasury and Capital Markets, Kaufman Hall",
+   "org": "Kaufman Hall",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#modernizing-refunds-and-one-time-payments"
+  },
+  {
+   "id": "donny-hoye",
+   "name": "Donny Hoye",
+   "headline": "CEO, TailFin Payments",
+   "org": "TailFin Payments",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#modernizing-refunds-and-one-time-payments"
+  },
+  {
+   "id": "verina-kennedy",
+   "name": "Verina Kennedy",
+   "headline": "AVP, Finance & Accounting, Service Corporation International",
+   "org": "Service Corporation International",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#modernizing-refunds-and-one-time-payments"
+  },
+  {
+   "id": "edabeth-brown",
+   "name": "EdaBeth Brown",
+   "headline": "Head of Order to Cash, DIRECTV",
+   "org": "DIRECTV",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#driving-results-with-ach-payments-in-a-dynamic-landscape"
+  },
+  {
+   "id": "joe-hussey",
+   "name": "Joe Hussey",
+   "headline": "SVP, Global Treasury Management, Wells Fargo",
+   "org": "Wells Fargo",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#driving-results-with-ach-payments-in-a-dynamic-landscape"
+  },
+  {
+   "id": "jane-larimer",
+   "name": "Jane Larimer",
+   "headline": "President and CEO, Nacha",
+   "org": "Nacha",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#driving-results-with-ach-payments-in-a-dynamic-landscape"
+  },
+  {
+   "id": "diane-a-holbert",
+   "name": "Diane A. Holbert",
+   "headline": "Partnership Relationships Director, Early Warning Services",
+   "org": "Early Warning Services",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#collaborating-through-standards-validation-and-best-practices-to-prevent-fraud"
+  },
+  {
+   "id": "jeff-crews",
+   "name": "Jeff Crews",
+   "headline": "Senior Manager, Treasury Cash & Banking, Allstate",
+   "org": "Allstate",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#collaborating-through-standards-validation-and-best-practices-to-prevent-fraud"
+  },
+  {
+   "id": "vincent-j-meluzio",
+   "name": "Vincent J. Meluzio",
+   "headline": "Payments Product Solutions Director, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#collaborating-through-standards-validation-and-best-practices-to-prevent-fraud"
+  },
+  {
+   "id": "stacy-rosenthal",
+   "name": "Stacy Rosenthal",
+   "headline": "Head of Payments, PayPal",
+   "org": "PayPal",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-iso-20022-compliance-to-competitive-advantage"
+  },
+  {
+   "id": "rusiru-gunasena",
+   "name": "Rusiru Gunasena",
+   "headline": "SVP, RTP Product Management and Strategy, The Clearing House",
+   "org": "The Clearing House",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-iso-20022-compliance-to-competitive-advantage"
+  },
+  {
+   "id": "najeem-dayisi",
+   "name": "Najeem Dayisi",
+   "headline": "Director, Payments Strategy, Delta Air Lines",
+   "org": "Delta Air Lines",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-iso-20022-compliance-to-competitive-advantage"
+  },
+  {
+   "id": "nasreen-quibria",
+   "name": "Nasreen Quibria",
+   "headline": "SVP, International Advisory, PNC Bank",
+   "org": "PNC Bank",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-iso-20022-compliance-to-competitive-advantage"
+  },
+  {
+   "id": "ryan-soto",
+   "name": "Ryan Soto",
+   "headline": "SVP, Head of Merchant Sales, PNC Bank",
+   "org": "PNC Bank",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-surcharge-playbook-insights-from-teams-who-ve-done-it"
+  },
+  {
+   "id": "brenda-crowder",
+   "name": "Brenda Crowder",
+   "headline": "Assistant Treasurer, Ferguson Enterprises",
+   "org": "Ferguson Enterprises",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-surcharge-playbook-insights-from-teams-who-ve-done-it"
+  },
+  {
+   "id": "cheryl-gurz",
+   "name": "Cheryl Gurz",
+   "headline": "VP, RTP Product Strategy, The Clearing House",
+   "org": "The Clearing House",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#instant-advantage-using-microdeposits-to-verify-accounts"
+  },
+  {
+   "id": "zach-jacob",
+   "name": "Zach Jacob",
+   "headline": "VP of Partnerships, Payload",
+   "org": "Payload",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#instant-advantage-using-microdeposits-to-verify-accounts"
+  },
+  {
+   "id": "alan-cummings",
+   "name": "Alan Cummings",
+   "headline": "Director, Treasury Operations, McKesson",
+   "org": "McKesson",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#virtual-card-acceptance-breaking-barriers-and-unlocking-b2b-efficiency"
+  },
+  {
+   "id": "paul-uher",
+   "name": "Paul Uher",
+   "headline": "SVP, Wells Fargo",
+   "org": "Wells Fargo",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#virtual-card-acceptance-breaking-barriers-and-unlocking-b2b-efficiency"
+  },
+  {
+   "id": "mary-beth-livengood",
+   "name": "Mary Beth Livengood",
+   "headline": "Head of Corporate Solutions, North America, Mastercard",
+   "org": "Mastercard",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#virtual-card-acceptance-breaking-barriers-and-unlocking-b2b-efficiency"
+  },
+  {
+   "id": "bernadette-ksepka",
+   "name": "Bernadette Ksepka",
+   "headline": "SVP & Deputy Head of Product Management, FedNow, Federal Reserve Bank of Boston",
+   "org": "Federal Reserve Bank of Boston",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#why-treasury-can-t-wait-the-business-case-for-instant-payment-send"
+  },
+  {
+   "id": "josh-karoly",
+   "name": "Josh Karoly",
+   "headline": "Director, Payments Product, Netflix",
+   "org": "Netflix",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#why-treasury-can-t-wait-the-business-case-for-instant-payment-send"
+  },
+  {
+   "id": "michael-thomas",
+   "name": "Michael Thomas",
+   "headline": "SVP, Head of Instant Payments, U.S. Bank",
+   "org": "U.S. Bank",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#b2b-instant-payments-coming-of-age"
+  },
+  {
+   "id": "dean-nolan",
+   "name": "Dean Nolan",
+   "headline": "Head of Payment Strategy, Finzly",
+   "org": "Finzly",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#b2b-instant-payments-coming-of-age"
+  },
+  {
+   "id": "tisha-dey",
+   "name": "Tisha Dey",
+   "headline": "Director, Global Transaction Banking, Technology, BMO",
+   "org": "BMO",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-portals-to-real-time-modernizing-treasury-with-banking-apis"
+  },
+  {
+   "id": "akiko-braun",
+   "name": "Akiko Braun",
+   "headline": "Director, Banking Development, Ria Money Transfer",
+   "org": "Ria Money Transfer",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-portals-to-real-time-modernizing-treasury-with-banking-apis"
+  },
+  {
+   "id": "marlys-green",
+   "name": "Marlys Green",
+   "headline": "Director, Treasury Controller, PDS Health",
+   "org": "PDS Health",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-portals-to-real-time-modernizing-treasury-with-banking-apis"
+  },
+  {
+   "id": "ana-tanaka",
+   "name": "Ana Tanaka",
+   "headline": "Associate Director, Global Treasury, Eli Lilly",
+   "org": "Eli Lilly",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#securing-the-future-of-ach-cutting-edge-fraud-prevention"
+  },
+  {
+   "id": "miki-mladenovic",
+   "name": "Miki Mladenovic",
+   "headline": "Director, Corporate Treasury, Johnson & Johnson",
+   "org": "Johnson & Johnson",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#securing-the-future-of-ach-cutting-edge-fraud-prevention"
+  },
+  {
+   "id": "sanchit-puri",
+   "name": "Sanchit Puri",
+   "headline": "Managing Director, Global TS Payments, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#securing-the-future-of-ach-cutting-edge-fraud-prevention"
+  },
+  {
+   "id": "claudio-chiorazzi",
+   "name": "Claudio Chiorazzi",
+   "headline": "VP, Treasury Operations & Assistant Treasurer, McKesson",
+   "org": "McKesson",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#securing-the-future-of-ach-cutting-edge-fraud-prevention"
+  },
+  {
+   "id": "khelan-bhatt",
+   "name": "Khelan Bhatt",
+   "headline": "CEO, Aptosi",
+   "org": "Aptosi",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#defeating-deepfakes-and-vendor-compromise-in-global-payments"
+  },
+  {
+   "id": "moses-djibinian",
+   "name": "Moses Djibinian",
+   "headline": "VP of FP&A, Hilco",
+   "org": "Hilco",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#defeating-deepfakes-and-vendor-compromise-in-global-payments"
+  },
+  {
+   "id": "spencer-weed",
+   "name": "Spencer Weed",
+   "headline": "CFO, Kruse Asset Management",
+   "org": "Kruse Asset Management",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#defeating-deepfakes-and-vendor-compromise-in-global-payments"
+  },
+  {
+   "id": "jeff-ferguson",
+   "name": "Jeff Ferguson",
+   "headline": "Director, Business Development, Axletree Solutions",
+   "org": "Axletree Solutions",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-sent-to-settled-using-iso-20022-and-gpi-to-end-payment-uncertainty"
+  },
+  {
+   "id": "vikas-dixit",
+   "name": "Vikas Dixit",
+   "headline": "Director, Treasury Technology, Fidelity Investments",
+   "org": "Fidelity Investments",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-sent-to-settled-using-iso-20022-and-gpi-to-end-payment-uncertainty"
+  },
+  {
+   "id": "william-vigliotta",
+   "name": "William Vigliotta",
+   "headline": "Operations Director, Monex USA",
+   "org": "Monex USA",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-sent-to-settled-using-iso-20022-and-gpi-to-end-payment-uncertainty"
+  },
+  {
+   "id": "kent-markham",
+   "name": "Kent Markham",
+   "headline": "Assistant Treasurer & Director of Risk Management, Owens Corning",
+   "org": "Owens Corning",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-sent-to-settled-using-iso-20022-and-gpi-to-end-payment-uncertainty"
+  },
+  {
+   "id": "isabel-baransky",
+   "name": "Isabel Baransky",
+   "headline": "Head of FX Payments, Goldman Sachs",
+   "org": "Goldman Sachs",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-value-modernizing-cross-currency-payments-for-growth"
+  },
+  {
+   "id": "tofique-elder",
+   "name": "Tofique Elder",
+   "headline": "Controller, Masterworks",
+   "org": "Masterworks",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-value-modernizing-cross-currency-payments-for-growth"
+  },
+  {
+   "id": "tom-garcia",
+   "name": "Tom Garcia",
+   "headline": "Senior Treasury Manager, Peloton",
+   "org": "Peloton",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-value-modernizing-cross-currency-payments-for-growth"
+  },
+  {
+   "id": "kijae-chung",
+   "name": "Kijae Chung",
+   "headline": "Treasurer, Tradeweb",
+   "org": "Tradeweb",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-value-modernizing-cross-currency-payments-for-growth"
+  },
+  {
+   "id": "cathy-mcgarry",
+   "name": "Cathy McGarry",
+   "headline": "Director of Finance, Treasury Operations, Northwestern Medicine",
+   "org": "Northwestern Medicine",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-avoid-gotchas-hidden-fees-bad-contract-language-and-incompatible-stacks"
+  },
+  {
+   "id": "hugh-paterson",
+   "name": "Hugh Paterson",
+   "headline": "Managing Director of Payments Advisory, Redbridge",
+   "org": "Redbridge",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-avoid-gotchas-hidden-fees-bad-contract-language-and-incompatible-stacks"
+  },
+  {
+   "id": "joshua-moehle",
+   "name": "Joshua Moehle",
+   "headline": "Treasury Manager, Waste Connections",
+   "org": "Waste Connections",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-avoid-gotchas-hidden-fees-bad-contract-language-and-incompatible-stacks"
+  },
+  {
+   "id": "eric-hobbs",
+   "name": "Eric Hobbs",
+   "headline": "Senior Treasury Manager, JBS USA",
+   "org": "JBS USA",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#fraud-in-the-ai-era-when-m-a-deals-become-targets"
+  },
+  {
+   "id": "angelyn-pennington",
+   "name": "Angelyn Pennington",
+   "headline": "Treasurer, Guggenheim Partners",
+   "org": "Guggenheim Partners",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#fraud-in-the-ai-era-when-m-a-deals-become-targets"
+  },
+  {
+   "id": "larry-zelvin",
+   "name": "Larry Zelvin",
+   "headline": "Head, Security Advisory, BMO",
+   "org": "BMO",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#fraud-in-the-ai-era-when-m-a-deals-become-targets"
+  },
+  {
+   "id": "marc-evans",
+   "name": "Marc Evans",
+   "headline": "Founder, Financial & Cybercrime Detective, Fraud Hero",
+   "org": "Fraud Hero",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#a-detective-s-view-the-decisions-behind-payment-fraud"
+  },
+  {
+   "id": "matt-mcdonald",
+   "name": "Matt McDonald",
+   "headline": "Finance Manager and Deputy Treasurer, City of Vista",
+   "org": "City of Vista",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#a-detective-s-view-the-decisions-behind-payment-fraud"
+  },
+  {
+   "id": "angela-sarno",
+   "name": "Angela Sarno",
+   "headline": "VP, Marketing, PaymentWorks",
+   "org": "PaymentWorks",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#a-detective-s-view-the-decisions-behind-payment-fraud"
+  },
+  {
+   "id": "tai-lynn-carr-fraser",
+   "name": "Tai Lynn Carr-Fraser",
+   "headline": "VP, Global Treasury, Treasurer, Capri Holdings",
+   "org": "Capri Holdings",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#done-deal-now-to-rebuild-treasury-post-m-as"
+  },
+  {
+   "id": "wacef-chowdhury",
+   "name": "Wacef Chowdhury",
+   "headline": "Director, Cash Management Sales, Standard Chartered",
+   "org": "Standard Chartered",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#done-deal-now-to-rebuild-treasury-post-m-as"
+  },
+  {
+   "id": "peter-claus-landi",
+   "name": "Peter Claus-Landi",
+   "headline": "Assistant Treasurer, GE HealthCare",
+   "org": "GE HealthCare",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#done-deal-now-to-rebuild-treasury-post-m-as"
+  },
+  {
+   "id": "erik-smolders",
+   "name": "Erik Smolders",
+   "headline": "Managing Director, Deloitte",
+   "org": "Deloitte",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#fx-lifecycle-technology-integration-inside-technipfmc-s-transformation"
+  },
+  {
+   "id": "caleb-salankey",
+   "name": "Caleb Salankey",
+   "headline": "Assistant Treasurer, TechnipFMC",
+   "org": "TechnipFMC",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#fx-lifecycle-technology-integration-inside-technipfmc-s-transformation"
+  },
+  {
+   "id": "vincent-joseph",
+   "name": "Vincent Joseph",
+   "headline": "Assistant Treasurer, TechnipFMC",
+   "org": "TechnipFMC",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#fx-lifecycle-technology-integration-inside-technipfmc-s-transformation"
+  },
+  {
+   "id": "heather-coyle",
+   "name": "Heather Coyle",
+   "headline": "Associate Director, FX and Cash Flow Forecasting, Becton Dickinson",
+   "org": "Becton Dickinson",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#data-transparency-in-balance-sheet-fx-hedging"
+  },
+  {
+   "id": "katya-spolidoro",
+   "name": "Katya Spolidoro",
+   "headline": "Chief Solutions Officer, AtlasFX",
+   "org": "AtlasFX",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#data-transparency-in-balance-sheet-fx-hedging"
+  },
+  {
+   "id": "will-grace",
+   "name": "Will Grace",
+   "headline": "Founder and CEO, DeNovo Treasury",
+   "org": "DeNovo Treasury",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#ai-in-treasury-forecasting-revolution-or-risk"
+  },
+  {
+   "id": "zoya-lieberman",
+   "name": "Zoya Lieberman",
+   "headline": "Managing Director, Lieberman Financial Group",
+   "org": "Lieberman Financial Group",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#ai-in-treasury-forecasting-revolution-or-risk"
+  },
+  {
+   "id": "kevin-olsen",
+   "name": "Kevin Olsen",
+   "headline": "SVP Innovation, Pidgin",
+   "org": "Pidgin",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#ai-in-treasury-forecasting-revolution-or-risk"
+  },
+  {
+   "id": "oliver-pryke",
+   "name": "Oliver Pryke",
+   "headline": "VP, FX Sales Origination, Barclays",
+   "org": "Barclays",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#invisible-fx-managing-the-hidden-cost-in-cross-border-payments"
+  },
+  {
+   "id": "ronan-clifford",
+   "name": "Rónán Clifford",
+   "headline": "Treasury Manager, Honeywell",
+   "org": "Honeywell",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#invisible-fx-managing-the-hidden-cost-in-cross-border-payments"
+  },
+  {
+   "id": "brian-frey",
+   "name": "Brian Frey",
+   "headline": "VP, Treasurer, Brunswick Corporation",
+   "org": "Brunswick Corporation",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-true-cost-of-hedging-pricing-process-and-bank-economics"
+  },
+  {
+   "id": "jackie-bowie",
+   "name": "Jackie Bowie",
+   "headline": "Managing Partner, Head of EMEA, Chatham Financial",
+   "org": "Chatham Financial",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-true-cost-of-hedging-pricing-process-and-bank-economics"
+  },
+  {
+   "id": "meena-dafesh",
+   "name": "Meena Dafesh",
+   "headline": "Treasury, Sysco",
+   "org": "Sysco",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-true-cost-of-hedging-pricing-process-and-bank-economics"
+  },
+  {
+   "id": "matt-o-neill",
+   "name": "Matt O'Neill",
+   "headline": "Founder and Partner, 5OH Consulting",
+   "org": "5OH Consulting",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#intra-company-fraud-how-it-happens-and-how-to-stop-it"
+  },
+  {
+   "id": "jerrod-gray",
+   "name": "Jerrod Gray",
+   "headline": "Director, Treasury Services, Jack Henry",
+   "org": "Jack Henry",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#intra-company-fraud-how-it-happens-and-how-to-stop-it"
+  },
+  {
+   "id": "roderick-brown",
+   "name": "Roderick Brown",
+   "headline": "Senior Product Manager, Truist",
+   "org": "Truist",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#intra-company-fraud-how-it-happens-and-how-to-stop-it"
+  },
+  {
+   "id": "stephanie-xu",
+   "name": "Stephanie Xu",
+   "headline": "Advisor, Redbridge",
+   "org": "Redbridge",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-play-your-cards-right-winning-rfps-bank-fees-fair-deals"
+  },
+  {
+   "id": "bibitayo-abikoye",
+   "name": "Bibitayo Abikoye",
+   "headline": "Treasury Manager, Amazon",
+   "org": "Amazon",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-play-your-cards-right-winning-rfps-bank-fees-fair-deals"
+  },
+  {
+   "id": "audrey-dewolf-attrill",
+   "name": "Audrey DeWolf Attrill",
+   "headline": "Treasury Director, Nationwide",
+   "org": "Nationwide",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-play-your-cards-right-winning-rfps-bank-fees-fair-deals"
+  },
+  {
+   "id": "bridget-meyer",
+   "name": "Bridget Meyer",
+   "headline": "Senior Director, Redbridge",
+   "org": "Redbridge",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-play-your-cards-right-winning-rfps-bank-fees-fair-deals"
+  },
+  {
+   "id": "daniel-gill",
+   "name": "Daniel Gill",
+   "headline": "Head of Industry Advisory, Zafin",
+   "org": "Zafin",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-play-your-cards-right-winning-rfps-bank-fees-fair-deals"
+  },
+  {
+   "id": "roy-ben-hur",
+   "name": "Roy Ben-Hur",
+   "headline": "Managing Director, Blockchain and Digital Assets, Deloitte",
+   "org": "Deloitte",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#digital-assets-from-fringe-to-the-forefront"
+  },
+  {
+   "id": "juliette-simmons",
+   "name": "Juliette Simmons",
+   "headline": "Senior Manager, Global Cash Management, PayPal",
+   "org": "PayPal",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#digital-assets-from-fringe-to-the-forefront"
+  },
+  {
+   "id": "christine-jensen",
+   "name": "Christine Jensen",
+   "headline": "Head of Treasury, Cloudflare",
+   "org": "Cloudflare",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#rethink-rebuild-reinvent-inside-the-treasury-modernization-journey"
+  },
+  {
+   "id": "raquel-grady",
+   "name": "Raquel Grady",
+   "headline": "Advisory Manager, Deloitte",
+   "org": "Deloitte",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#rethink-rebuild-reinvent-inside-the-treasury-modernization-journey"
+  },
+  {
+   "id": "katie-chew",
+   "name": "Katie Chew",
+   "headline": "Managing Director, Treasury Operations, United Airlines",
+   "org": "United Airlines",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#rethink-rebuild-reinvent-inside-the-treasury-modernization-journey"
+  },
+  {
+   "id": "sarah-watson",
+   "name": "Sarah Watson",
+   "headline": "VP, BMO",
+   "org": "BMO",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#inside-a-tms-implementation-what-really-goes-right-and-wrong"
+  },
+  {
+   "id": "thelma-oke-ifidon",
+   "name": "Thelma Oke-Ifidon",
+   "headline": "Treasury Manager, Samuel, Son & Co.",
+   "org": "Samuel, Son & Co.",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#inside-a-tms-implementation-what-really-goes-right-and-wrong"
+  },
+  {
+   "id": "ken-markowitz",
+   "name": "Ken Markowitz",
+   "headline": "Senior Director, Corporate Treasury, Colgate-Palmolive",
+   "org": "Colgate-Palmolive",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#bank-relationship-management-successful-partnerships-and-fatal-flaws"
+  },
+  {
+   "id": "dennis-morais",
+   "name": "Dennis Morais",
+   "headline": "Director Finance & Assistant Treasurer, Valvoline",
+   "org": "Valvoline",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#bank-relationship-management-successful-partnerships-and-fatal-flaws"
+  },
+  {
+   "id": "jackie-nutt",
+   "name": "Jackie Nutt",
+   "headline": "Senior Director, Capital Markets, Walmart",
+   "org": "Walmart",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#bank-relationship-management-successful-partnerships-and-fatal-flaws"
+  },
+  {
+   "id": "yon-valtchev",
+   "name": "Yon Valtchev",
+   "headline": "Treasury Markets Specialist, Bloomberg",
+   "org": "Bloomberg",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#implementing-in-house-banks-as-relevant-as-ever-in-today-s-world"
+  },
+  {
+   "id": "kelvin-ang",
+   "name": "Kelvin Ang",
+   "headline": "Principal, Client Advisory, Citi",
+   "org": "Citi",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#implementing-in-house-banks-as-relevant-as-ever-in-today-s-world"
+  },
+  {
+   "id": "gregg-murphey",
+   "name": "Gregg Murphey",
+   "headline": "Assistant Treasurer, Novelis",
+   "org": "Novelis",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#implementing-in-house-banks-as-relevant-as-ever-in-today-s-world"
+  },
+  {
+   "id": "nilufar-salama",
+   "name": "Nilufar Salama",
+   "headline": "Head of Treasury, Nebraska Furniture Mart",
+   "org": "Nebraska Furniture Mart",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#cash-forecasting-as-a-strategic-weapon"
+  },
+  {
+   "id": "scott-taylor",
+   "name": "Scott Taylor",
+   "headline": "Senior Program Director, Treasury, HighRadius",
+   "org": "HighRadius",
+   "region": "United States",
+   "segment": "TMS & fintech",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-treasury-systems-to-cfo-insight-turning-tms-and-fintech-data-into-enterprise-value"
+  },
+  {
+   "id": "glisson-inguito",
+   "name": "Glisson Inguito",
+   "headline": "Treasurer & Director, Treasury, Konica Minolta",
+   "org": "Konica Minolta",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-treasury-systems-to-cfo-insight-turning-tms-and-fintech-data-into-enterprise-value"
+  },
+  {
+   "id": "netra-kumar",
+   "name": "Netra Kumar",
+   "headline": "Managing Director, Bank of America",
+   "org": "Bank of America",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-the-close-how-treasurers-are-value-creators-with-m-a-deals"
+  },
+  {
+   "id": "mahaveer-jain",
+   "name": "Mahaveer Jain",
+   "headline": "VP and Corporate Treasurer, Cencora",
+   "org": "Cencora",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-the-close-how-treasurers-are-value-creators-with-m-a-deals"
+  },
+  {
+   "id": "ben-wood",
+   "name": "Ben Wood",
+   "headline": "Senior Treasury Director, Medtronic",
+   "org": "Medtronic",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-the-close-how-treasurers-are-value-creators-with-m-a-deals"
+  },
+  {
+   "id": "germania-pena-spaulding",
+   "name": "Germania Pena-Spaulding",
+   "headline": "Trade Finance Treasury Manager, Honeywell",
+   "org": "Honeywell",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#modern-trade-finance-minus-the-hype"
+  },
+  {
+   "id": "lydia-lopiparo",
+   "name": "Lydia Lopiparo",
+   "headline": "MD, Global Head Core Trade Finance, TD Securities",
+   "org": "TD Securities",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#modern-trade-finance-minus-the-hype"
+  },
+  {
+   "id": "garima-thakur",
+   "name": "Garima Thakur",
+   "headline": "Global Treasurer, Creative Artists Agency",
+   "org": "Creative Artists Agency",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-the-buzz-what-stablecoins-mean-for-corporate-treasury"
+  },
+  {
+   "id": "nick-zarras",
+   "name": "Nick Zarras",
+   "headline": "Treasury Manager, MarketAxess",
+   "org": "MarketAxess",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-the-buzz-what-stablecoins-mean-for-corporate-treasury"
+  },
+  {
+   "id": "tony-masone",
+   "name": "Tony Masone",
+   "headline": "VP and Treasurer, Amazon",
+   "org": "Amazon",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-automation-to-autonomy-how-ai-will-redefine-the-treasury-function"
+  },
+  {
+   "id": "zack-anderson",
+   "name": "Zack Anderson",
+   "headline": "Chief Data & Analytics Officer, Payments, J.P. Morgan",
+   "org": "J.P. Morgan",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-automation-to-autonomy-how-ai-will-redefine-the-treasury-function"
+  },
+  {
+   "id": "naman-kuwadia",
+   "name": "Naman Kuwadia",
+   "headline": "Partner, PwC",
+   "org": "PwC",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-automation-to-autonomy-how-ai-will-redefine-the-treasury-function"
+  },
+  {
+   "id": "patricia-lau",
+   "name": "Patricia Lau",
+   "headline": "Head of Treasury Americas, Asia & Oceania, Hunter Douglas",
+   "org": "Hunter Douglas",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-legacy-to-leadership-how-upgrading-a-basic-tms-turned-treasury-into-a-strategic-power"
+  },
+  {
+   "id": "ruediger-stubben",
+   "name": "Ruediger Stubben",
+   "headline": "Head of International Treasury, Hunter Douglas",
+   "org": "Hunter Douglas",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-legacy-to-leadership-how-upgrading-a-basic-tms-turned-treasury-into-a-strategic-power"
+  },
+  {
+   "id": "david-hall",
+   "name": "David Hall",
+   "headline": "Assistant Treasurer, Frontier Communications",
+   "org": "Frontier Communications",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#get-your-ducks-in-a-row-demystifying-virtual-accounts"
+  },
+  {
+   "id": "ani-majumder",
+   "name": "Ani Majumder",
+   "headline": "Head of Strategic Liquidity Solutions, Goldman Sachs",
+   "org": "Goldman Sachs",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#get-your-ducks-in-a-row-demystifying-virtual-accounts"
+  },
+  {
+   "id": "marc-blass",
+   "name": "Marc Blass",
+   "headline": "VP & Treasurer, Sodexo",
+   "org": "Sodexo",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#get-your-ducks-in-a-row-demystifying-virtual-accounts"
+  },
+  {
+   "id": "david-tao",
+   "name": "David Tao",
+   "headline": "Director, Client Advisory, Citi",
+   "org": "Citi",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#ai-in-action-real-world-treasury-automation"
+  },
+  {
+   "id": "jason-palomino",
+   "name": "Jason Palomino",
+   "headline": "Senior Director, Treasury, ServiceNow",
+   "org": "ServiceNow",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#ai-in-action-real-world-treasury-automation"
+  },
+  {
+   "id": "elmer-dispo",
+   "name": "Elmer Dispo",
+   "headline": "Senior Treasury Manager, Workday",
+   "org": "Workday",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#ai-in-action-real-world-treasury-automation"
+  },
+  {
+   "id": "brian-king",
+   "name": "Brian King",
+   "headline": "VP and Head of Finance, Capstan Medical",
+   "org": "Capstan Medical",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-optimized-treasury-how-leaders-scale-insight-and-control"
+  },
+  {
+   "id": "anthony-matusich",
+   "name": "Anthony Matusich",
+   "headline": "CFO, Founders Circle Capital",
+   "org": "Founders Circle Capital",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#the-optimized-treasury-how-leaders-scale-insight-and-control"
+  },
+  {
+   "id": "joseph-neu",
+   "name": "Joseph Neu",
+   "headline": "Founder and CEO, NeuGroup",
+   "org": "NeuGroup",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#stablecoins-in-treasury-practical-use-cases-risks-and-readiness"
+  },
+  {
+   "id": "leland-rodger",
+   "name": "Leland Rodger",
+   "headline": "Treasurer, Stripe",
+   "org": "Stripe",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#stablecoins-in-treasury-practical-use-cases-risks-and-readiness"
+  },
+  {
+   "id": "kammy-tsang",
+   "name": "Kammy Tsang",
+   "headline": "Senior Director, Head of Global Cash Management, PayPal",
+   "org": "PayPal",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#stablecoins-in-treasury-practical-use-cases-risks-and-readiness"
+  },
+  {
+   "id": "moz-chhagan",
+   "name": "Moz Chhagan",
+   "headline": "Director, Corporate Finance and Treasury, PwC",
+   "org": "PwC",
+   "region": "United States",
+   "segment": "Advisors",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-separation-to-success-treasury-essentials-during-spin-off"
+  },
+  {
+   "id": "laura-howley",
+   "name": "Laura Howley",
+   "headline": "Assistant Treasurer, Boeing",
+   "org": "Boeing",
+   "region": "United States",
+   "segment": "Corporate treasury",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-separation-to-success-treasury-essentials-during-spin-off"
+  },
+  {
+   "id": "hyesi-jun",
+   "name": "Hyesi Jun",
+   "headline": "Head of Liquidity Solutions, US, Deutsche Bank",
+   "org": "Deutsche Bank",
+   "region": "United States",
+   "segment": "Banks",
+   "source": "https://conference.financialprofessionals.org/program/sessions/sessions#from-separation-to-success-treasury-essentials-during-spin-off"
+  }
+ ],
+ "stages": [
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#how-ai-is-changing-the-investment-landscape-for-corporate-treasurers",
+   "label": "AFP 2026 conference: How AI is Changing the Investment Landscape for Corporate Treasurers",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "jennifer-botha",
+    "alexander-garcia",
+    "linda-kalocsay",
+    "donald-norris"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#getting-more-from-cash-optimizing-corporate-treasury-investment-strategies",
+   "label": "AFP 2026 conference: Getting More from Cash: Optimizing Corporate & Treasury Investment Strategies",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "cameron-bowen",
+    "rayce-coyne",
+    "david-linton",
+    "mark-pooley"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#corporate-bond-issuance-from-process-to-strategy",
+   "label": "AFP 2026 conference: Corporate Bond Issuance: From Process to Strategy",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "karina-inga-kamienski"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#onchain-liquidity-the-coming-wave-of-stablecoins-and-distributed-ledger-technology",
+   "label": "AFP 2026 conference: Onchain Liquidity: The Coming Wave of Stablecoins and Distributed Ledger Technology",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "matt-jones",
+    "justin-skaria",
+    "skip-stallings",
+    "bob-stark"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#mastering-loan-commitment-letter-negotiations",
+   "label": "AFP 2026 conference: Mastering Loan Commitment Letter Negotiations",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "kimberly-macleod",
+    "ernie-bretana",
+    "gail-ridgeway",
+    "emma-gram"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#rethinking-capital-structure-equity-debt-and-cost-of-capital",
+   "label": "AFP 2026 conference: Rethinking Capital Structure: Equity, Debt and Cost of Capital",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "daniel-martinez",
+    "david-pellerin"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#macro-market-impacts-for-liquidity-investors",
+   "label": "AFP 2026 conference: Macro Market Impacts for Liquidity Investors",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "allison-rossi",
+    "patrick-o-callaghan",
+    "john-olivo",
+    "kyle-mcnealy"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#the-house-always-wins-unless-you-know-the-rules-a-credit-agreement-workshop",
+   "label": "AFP 2026 conference: The House Always Wins (Unless You Know the Rules): A Credit Agreement Workshop",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "marcel-santiz",
+    "audrey-lokker"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#where-tax-and-treasury-meet",
+   "label": "AFP 2026 conference: Where Tax and Treasury Meet",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "sean-king",
+    "shawn-casey",
+    "sonia-hollies",
+    "jeannot-jonas"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#cash-segmentation-it-s-not-a-gamble-it-s-a-framework",
+   "label": "AFP 2026 conference: Cash Segmentation: It's Not a Gamble, It's a Framework",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "jeff-weaver",
+    "tyler-cone",
+    "vanessa-mcmichael",
+    "brandon-hillstead"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-working-capital-through-treasury-procurement-collaboration",
+   "label": "AFP 2026 conference: Unlocking Working Capital through Treasury-Procurement Collaboration",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "steve-beussink",
+    "greg-hurst",
+    "brian-mills",
+    "jie-yuan"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#supplier-finance-optimizing-working-capital-for-all-sides",
+   "label": "AFP 2026 conference: Supplier Finance: Optimizing Working Capital for All Sides",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "sanjay-gupta",
+    "deborah-belyea",
+    "brandy-newhof",
+    "alejandro-saenger"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#turning-conference-networking-into-career-momentum",
+   "label": "AFP 2026 conference: Turning Conference Networking into Career Momentum",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "rosemary-linden",
+    "ilana-esterrich"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#elevating-your-voice-from-technical-expert-to-trusted-partner",
+   "label": "AFP 2026 conference: Elevating Your Voice: From Technical Expert to Trusted Partner",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "mike-richards",
+    "trisha-fisher",
+    "jessica-siu",
+    "kimberly-kelly-lippert"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-execution-building-credibility-as-a-people-leader",
+   "label": "AFP 2026 conference: Beyond Execution: Building Credibility as a People Leader",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "jessica-lupovici",
+    "andrew-rush",
+    "maritza-montenegro"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#breaking-the-glass-ceiling-strategies-for-advancing-underrepresented-talent",
+   "label": "AFP 2026 conference: Breaking the Glass Ceiling: Strategies for Advancing Underrepresented Talent",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "lee-ann-perkins",
+    "sena-mitchell",
+    "melissa-cain"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#the-evolving-career-path-to-treasurer",
+   "label": "AFP 2026 conference: The Evolving Career Path to Treasurer",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "daniel-fleming",
+    "michael-iracondo",
+    "mandana-sadigh",
+    "todd-kennedy"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#staying-relevant-in-a-career-that-won-t-sit-still",
+   "label": "AFP 2026 conference: Staying Relevant in a Career That Won't Sit Still",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "nicole-meyer",
+    "raquel-alvarez-mateos"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#nextgen-treasury-leadership-building-the-talent-pipeline",
+   "label": "AFP 2026 conference: NextGen Treasury Leadership: Building the Talent Pipeline",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "jessica-siu",
+    "lindsey-tsang",
+    "jennifer-kelley",
+    "flavia-salvaterra",
+    "abigail-herling-blais"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#the-hidden-tax-in-fx-what-dealers-know-and-treasurers-often-don-t",
+   "label": "AFP 2026 conference: The Hidden Tax in FX: What Dealers Know and Treasurers Often Don't",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "yannick-timmer",
+    "john-min",
+    "tamir-shafer"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#next-generation-ai-powered-financial-modeling",
+   "label": "AFP 2026 conference: Next Generation AI-Powered Financial Modeling",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "carl-seidman"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#building-a-future-ready-fp-a-operating-system-harman-s-planning-forecasting-blueprint",
+   "label": "AFP 2026 conference: Building a Future-Ready FP&A Operating System: Harman's Planning & Forecasting Blueprint",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "sudhakar-chandramohan",
+    "anders-liu-lindberg"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#the-decisions-that-make-or-break-epm-a-playbook-for-lasting-value",
+   "label": "AFP 2026 conference: The Decisions That Make-or-Break EPM: A Playbook for Lasting Value",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "paul-barnhurst",
+    "rosemary-linden",
+    "philip-peck"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#deliver-on-board-expectations-with-unit-economics-and-exit-readiness",
+   "label": "AFP 2026 conference: Deliver On Board Expectations with Unit Economics and Exit Readiness",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "cassie-wang",
+    "jeffrey-zielinski"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#where-finance-tech-and-finance-work-are-heading",
+   "label": "AFP 2026 conference: Where Finance Tech and Finance Work are Heading",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "jay-peir",
+    "jesse-todd",
+    "carolina-lago"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#two-clocks-one-company-synchronizing-treasury-and-fp-a-in-real-time",
+   "label": "AFP 2026 conference: Two Clocks, One Company: Synchronizing Treasury and FP&A in Real Time",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "mariya-guttoh",
+    "austin-spackman",
+    "gabriel-vasquez"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#clearing-the-background-check-on-modern-finance-hireright-s-fp-a-transformation-journey",
+   "label": "AFP 2026 conference: Clearing the Background Check on Modern Finance: HireRight's FP&A Transformation Journey",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "philip-peck",
+    "ben-bolton"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#financial-literacy-vs-financial-intelligence",
+   "label": "AFP 2026 conference: Financial Literacy vs. Financial Intelligence",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "alina-traistaru",
+    "oana-labes"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#when-minutes-matter-real-time-emergency-payments-at-u-haul",
+   "label": "AFP 2026 conference: When Minutes Matter: Real-Time Emergency Payments at U-Haul",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "andrew-cain",
+    "lilly-dodd"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#modernizing-refunds-and-one-time-payments",
+   "label": "AFP 2026 conference: Modernizing Refunds and One-Time Payments",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "olu-adebiyi",
+    "james-green",
+    "donny-hoye",
+    "verina-kennedy"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#driving-results-with-ach-payments-in-a-dynamic-landscape",
+   "label": "AFP 2026 conference: Driving Results with ACH Payments in a Dynamic Landscape",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "edabeth-brown",
+    "joe-hussey",
+    "jane-larimer"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#collaborating-through-standards-validation-and-best-practices-to-prevent-fraud",
+   "label": "AFP 2026 conference: Collaborating Through Standards, Validation, and Best Practices to Prevent Fraud",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "diane-a-holbert",
+    "jeff-crews",
+    "vincent-j-meluzio"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#from-iso-20022-compliance-to-competitive-advantage",
+   "label": "AFP 2026 conference: From ISO 20022 Compliance to Competitive Advantage",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "stacy-rosenthal",
+    "rusiru-gunasena",
+    "najeem-dayisi",
+    "nasreen-quibria"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#the-surcharge-playbook-insights-from-teams-who-ve-done-it",
+   "label": "AFP 2026 conference: The Surcharge Playbook: Insights from Teams Who've Done It",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "ryan-soto",
+    "brenda-crowder"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#instant-advantage-using-microdeposits-to-verify-accounts",
+   "label": "AFP 2026 conference: Instant Advantage: Using Microdeposits to Verify Accounts",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "cheryl-gurz",
+    "stacy-rosenthal",
+    "zach-jacob"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#virtual-card-acceptance-breaking-barriers-and-unlocking-b2b-efficiency",
+   "label": "AFP 2026 conference: Virtual Card Acceptance: Breaking Barriers and Unlocking B2B Efficiency",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "alan-cummings",
+    "paul-uher",
+    "mary-beth-livengood"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#why-treasury-can-t-wait-the-business-case-for-instant-payment-send",
+   "label": "AFP 2026 conference: Why Treasury Can't Wait: The Business Case for Instant Payment Send",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "reed-luhtanen",
+    "bernadette-ksepka",
+    "josh-karoly",
+    "julie-offen"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#b2b-instant-payments-coming-of-age",
+   "label": "AFP 2026 conference: B2B Instant Payments Coming of Age",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "michael-thomas",
+    "cheryl-gurz",
+    "dean-nolan",
+    "josh-karoly"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#reducing-payment-risk-without-slowing-the-business-what-actually-works",
+   "label": "AFP 2026 conference: Reducing Payment Risk Without Slowing the Business: What Actually Works",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "holly-olson",
+    "kim-shalewitz",
+    "craig-jeffery"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#from-portals-to-real-time-modernizing-treasury-with-banking-apis",
+   "label": "AFP 2026 conference: From Portals to Real Time: Modernizing Treasury with Banking APIs",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "tisha-dey",
+    "akiko-braun",
+    "marlys-green"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#securing-the-future-of-ach-cutting-edge-fraud-prevention",
+   "label": "AFP 2026 conference: Securing the Future of ACH: Cutting-Edge Fraud Prevention",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "ana-tanaka",
+    "miki-mladenovic",
+    "sanchit-puri",
+    "claudio-chiorazzi"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#defeating-deepfakes-and-vendor-compromise-in-global-payments",
+   "label": "AFP 2026 conference: Defeating Deepfakes and Vendor Compromise in Global Payments",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "khelan-bhatt",
+    "moses-djibinian",
+    "spencer-weed"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#from-sent-to-settled-using-iso-20022-and-gpi-to-end-payment-uncertainty",
+   "label": "AFP 2026 conference: From Sent to Settled: Using ISO 20022 and GPI to End Payment Uncertainty",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "jeff-ferguson",
+    "vikas-dixit",
+    "william-vigliotta",
+    "kent-markham"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#unlocking-value-modernizing-cross-currency-payments-for-growth",
+   "label": "AFP 2026 conference: Unlocking Value: Modernizing Cross-Currency Payments for Growth",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "isabel-baransky",
+    "tofique-elder",
+    "tom-garcia",
+    "kijae-chung"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-avoid-gotchas-hidden-fees-bad-contract-language-and-incompatible-stacks",
+   "label": "AFP 2026 conference: How to Avoid Gotchas, Hidden Fees, Bad Contract Language, and Incompatible Stacks",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "cathy-mcgarry",
+    "hugh-paterson",
+    "joshua-moehle"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#fraud-in-the-ai-era-when-m-a-deals-become-targets",
+   "label": "AFP 2026 conference: Fraud in the AI Era: When M&A Deals Become Targets",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "eric-hobbs",
+    "angelyn-pennington",
+    "larry-zelvin"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#a-detective-s-view-the-decisions-behind-payment-fraud",
+   "label": "AFP 2026 conference: A Detective's View: The Decisions Behind Payment Fraud",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "marc-evans",
+    "matt-mcdonald",
+    "angela-sarno"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#done-deal-now-to-rebuild-treasury-post-m-as",
+   "label": "AFP 2026 conference: Done Deal... Now to Rebuild Treasury Post M&As",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "tai-lynn-carr-fraser",
+    "wacef-chowdhury",
+    "peter-claus-landi"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#fx-lifecycle-technology-integration-inside-technipfmc-s-transformation",
+   "label": "AFP 2026 conference: FX Lifecycle & Technology Integration: Inside TechnipFMC's Transformation",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "erik-smolders",
+    "caleb-salankey",
+    "vincent-joseph"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#data-transparency-in-balance-sheet-fx-hedging",
+   "label": "AFP 2026 conference: Data Transparency in Balance Sheet FX Hedging",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "heather-coyle",
+    "katya-spolidoro"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#ai-in-treasury-forecasting-revolution-or-risk",
+   "label": "AFP 2026 conference: AI in Treasury Forecasting: Revolution or Risk?",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "will-grace",
+    "zoya-lieberman",
+    "kevin-olsen"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#invisible-fx-managing-the-hidden-cost-in-cross-border-payments",
+   "label": "AFP 2026 conference: Invisible FX: Managing the Hidden Cost in Cross-Border Payments",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "oliver-pryke",
+    "ronan-clifford"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#the-true-cost-of-hedging-pricing-process-and-bank-economics",
+   "label": "AFP 2026 conference: The True Cost of Hedging: Pricing, Process, and Bank Economics",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "brian-frey",
+    "jackie-bowie",
+    "meena-dafesh"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#bank-accounts-signers-and-controls-the-risk-nobody-owns",
+   "label": "AFP 2026 conference: Bank Accounts, Signers, and Controls: The Risk Nobody Owns",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "holly-olson",
+    "emil-ashford"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#intra-company-fraud-how-it-happens-and-how-to-stop-it",
+   "label": "AFP 2026 conference: Intra-Company Fraud: How It Happens and How to Stop It",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "matt-o-neill",
+    "jerrod-gray",
+    "roderick-brown"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#how-to-play-your-cards-right-winning-rfps-bank-fees-fair-deals",
+   "label": "AFP 2026 conference: How to Play Your Cards Right: Winning RFPs, Bank Fees & Fair Deals",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "stephanie-xu",
+    "bibitayo-abikoye",
+    "audrey-dewolf-attrill",
+    "bridget-meyer",
+    "daniel-gill"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#digital-assets-from-fringe-to-the-forefront",
+   "label": "AFP 2026 conference: Digital Assets: From Fringe to the Forefront",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "ritu-kothari",
+    "roy-ben-hur",
+    "juliette-simmons",
+    "renaat-ver-eecke"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#rethink-rebuild-reinvent-inside-the-treasury-modernization-journey",
+   "label": "AFP 2026 conference: Rethink, Rebuild, Reinvent: Inside the Treasury Modernization Journey",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "christine-jensen",
+    "raquel-grady",
+    "katie-chew"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#inside-a-tms-implementation-what-really-goes-right-and-wrong",
+   "label": "AFP 2026 conference: Inside a TMS Implementation: What Really Goes Right and Wrong",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "sarah-watson",
+    "eric-hobbs",
+    "tracey-knight",
+    "thelma-oke-ifidon"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#bank-relationship-management-successful-partnerships-and-fatal-flaws",
+   "label": "AFP 2026 conference: Bank Relationship Management: Successful Partnerships and Fatal Flaws",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "ken-markowitz",
+    "todd-kennedy",
+    "dennis-morais",
+    "jackie-nutt"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#implementing-in-house-banks-as-relevant-as-ever-in-today-s-world",
+   "label": "AFP 2026 conference: Implementing In-House Banks: As Relevant as Ever in Today's World",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "yon-valtchev",
+    "kelvin-ang",
+    "gregg-murphey"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#cash-forecasting-as-a-strategic-weapon",
+   "label": "AFP 2026 conference: Cash Forecasting as a Strategic Weapon",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "nilufar-salama"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#from-treasury-systems-to-cfo-insight-turning-tms-and-fintech-data-into-enterprise-value",
+   "label": "AFP 2026 conference: From Treasury Systems to CFO Insight: Turning TMS and Fintech Data into Enterprise Value",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "scott-taylor",
+    "glisson-inguito",
+    "bob-stark"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-the-close-how-treasurers-are-value-creators-with-m-a-deals",
+   "label": "AFP 2026 conference: Beyond the Close: How Treasurers are Value Creators with M&A Deals",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "netra-kumar",
+    "mahaveer-jain",
+    "ben-wood"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#modern-trade-finance-minus-the-hype",
+   "label": "AFP 2026 conference: Modern Trade Finance, Minus the Hype",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "germania-pena-spaulding",
+    "lydia-lopiparo"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#beyond-the-buzz-what-stablecoins-mean-for-corporate-treasury",
+   "label": "AFP 2026 conference: Beyond the Buzz: What Stablecoins Mean for Corporate Treasury",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "garima-thakur",
+    "nick-zarras",
+    "brett-turner"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#from-automation-to-autonomy-how-ai-will-redefine-the-treasury-function",
+   "label": "AFP 2026 conference: From Automation to Autonomy: How AI Will Redefine the Treasury Function",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "tony-masone",
+    "zack-anderson",
+    "naman-kuwadia",
+    "mike-richards"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#from-legacy-to-leadership-how-upgrading-a-basic-tms-turned-treasury-into-a-strategic-power",
+   "label": "AFP 2026 conference: From Legacy to Leadership: How Upgrading a Basic TMS Turned Treasury into a Strategic Powerhouse",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "patricia-lau",
+    "ruediger-stubben"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#get-your-ducks-in-a-row-demystifying-virtual-accounts",
+   "label": "AFP 2026 conference: Get Your Ducks in a Row: Demystifying Virtual Accounts",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "david-hall",
+    "ani-majumder",
+    "marc-blass"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#ai-in-action-real-world-treasury-automation",
+   "label": "AFP 2026 conference: AI in Action: Real-World Treasury Automation",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "david-tao",
+    "jason-palomino",
+    "elmer-dispo"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#the-optimized-treasury-how-leaders-scale-insight-and-control",
+   "label": "AFP 2026 conference: The Optimized Treasury: How Leaders Scale Insight and Control",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "mark-brousseau",
+    "brian-king",
+    "anthony-matusich"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#stablecoins-in-treasury-practical-use-cases-risks-and-readiness",
+   "label": "AFP 2026 conference: Stablecoins in Treasury: Practical Use Cases, Risks, and Readiness",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "christine-jensen",
+    "joseph-neu",
+    "leland-rodger",
+    "kammy-tsang"
+   ]
+  },
+  {
+   "url": "https://conference.financialprofessionals.org/program/sessions/sessions#from-separation-to-success-treasury-essentials-during-spin-off",
+   "label": "AFP 2026 conference: From Separation to Success: Treasury Essentials During Spin-Off",
+   "kind": "panel",
+   "date": "2026-11",
+   "people": [
+    "moz-chhagan",
+    "laura-howley",
+    "hyesi-jun"
+   ]
+  }
+ ]
+}
