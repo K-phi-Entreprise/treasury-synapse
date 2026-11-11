@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="0bbde8b461";</script>
+<script>window.SYNAPSE_BUILD="f81b07c14c";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -320,7 +320,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .detail .links{max-height:none;flex:1 1 auto;min-height:0}
   .answer{max-height:60%;overflow:hidden}
   .app{grid-template-columns:360px minmax(0,1fr);grid-template-rows:minmax(0,1fr);overflow:hidden;grid-template-areas:"side stage"}
-  .side{grid-area:side;display:flex;flex-direction:column;min-height:0;overflow-y:auto;scrollbar-width:thin}
+  .side{grid-area:side;display:flex;flex-direction:column;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
   .side>.regions{flex:none;overflow:visible}
   .top{padding-top:22px;align-items:flex-start;flex-wrap:wrap}
   .sub{display:block}
@@ -791,13 +791,15 @@ $('mkf-reset').addEventListener('click',()=>{FACETS.forEach(f=>mkOff[f.id].clear
 $('method-btn').addEventListener('click',()=>{if(window.synapseMethod)window.synapseMethod()});
 function renderMarketLists(){
   const box=$('region-list');box.textContent='';
-  const sys=[];for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='system')sys.push(i);
-  sys.sort((a,b)=>G.adj[b].length-G.adj[a].length);
-  const mx=sys.length?G.adj[sys[0]].length:1;
+  /* counts follow the filters: only organisations still shown */
+  const uses={};for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='system')uses[i]=G.adj[i].filter(j=>vis[j]&&G.nodes[j].hub==='company').length;
+  const sys=Object.keys(uses).map(Number).filter(i=>uses[i]>0);
+  sys.sort((a,b)=>uses[b]-uses[a]);
+  const mx=sys.length?uses[sys[0]]:1;
   sys.slice(0,8).forEach(i=>{
     const b=el('button','rrow');b.type='button';b.dataset.i=i;
-    const bar=el('span','bar'),f=el('b');f.style.width=(G.adj[i].length/mx*100)+'%';bar.appendChild(f);
-    b.append(el('span','rn',G.nodes[i].name),bar,el('span','rc',String(G.adj[i].length)));box.appendChild(b);
+    const bar=el('span','bar'),f=el('b');f.style.width=(uses[i]/mx*100)+'%';bar.appendChild(f);
+    b.append(el('span','rn',G.nodes[i].name),bar,el('span','rc',String(uses[i])));box.appendChild(b);
   });
   const hb=$('hub-list');hb.textContent='';
   const cos=[];for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='company')cos.push(i);
