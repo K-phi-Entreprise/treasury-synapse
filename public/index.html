@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://synapse.k-phi.com/">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="11b65c9061";</script>
+<script>window.SYNAPSE_BUILD="b651d3dc2e";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -667,6 +667,8 @@ window.synapsePeople=()=>{const o=[];for(let i=0;i<G.n;i++){const n=G.nodes[i];i
 const ANGLES=['market','social','topics','connections'];
 let angle='market';try{const a=localStorage.getItem('synapse.view');if(ANGLES.indexOf(a)>=0)angle=a}catch(e){}
 const E={market:[],social:[],topics:[],connections:[]},EK={market:new Map(),social:new Map(),topics:new Map(),connections:new Map()};
+window.synapseRaw=()=>({E:E,G:G});
+window.synapseRoute=ids=>{if(angle==='market')setAngle('social');resetView();const ix=ids.map(id=>G.idx.get(id)).filter(i=>i!=null);const t=performance.now();ix.forEach(i=>{if(G.born[i]>t)G.born[i]=t-1000});setHL(ix);const i=ix[ix.length-1];if(i!=null)focusLocal(G.pos[i*3],G.pos[i*3+1],G.pos[i*3+2])};
 const socAdj=[];
 let dbRef=null,viewerId='';
 const ANGLE_NOTE={market:'Which organisation runs which system, each line with the public page that says so: a case study, a press release, a job post, a person\'s card. Orange: selecting a system now. A bubble counts public evidence, not customers: it is not market share. Open an organisation to see who on the map works or worked there.',
@@ -2375,8 +2377,8 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
         if(c.languages.length||c.note){const l=el('div','ln');l.textContent=[c.languages.length?'Languages: '+c.languages.join(', '):'',c.note].filter(Boolean).join(' · ');it.appendChild(l)}
         if(path){const l=el('div','ln net');l.append(el('small','','your network'),document.createTextNode(path.direct?'You know them directly':'Through '+path.via.map(v=>v.name).join(', ')));it.appendChild(l)}
         const row=el('div','row');
-        const ask=el('button','pri','Ask for an introduction');ask.type='button';
-        ask.addEventListener('click',()=>{close();window.synapseHelp&&window.synapseHelp({kind:'implementation',system:$('cs-system').value.trim(),details:'I would like an introduction to '+c.name+(c.org?' ('+c.org+')':'')+'.'+(path?(path.direct?' We already know each other.':' We are connected through '+path.via.map(v=>v.name).join(', ')+'.'):''),targetId:c.id,viaIds:path&&!path.direct?path.via.map(v=>v.id):[]})});
+        const ask=el('button','pri','How to reach them');ask.type='button';
+        ask.addEventListener('click',()=>{close();window.synapseReach&&window.synapseReach(c.id)});
         const show=el('button','','Show on the map');show.type='button';show.addEventListener('click',()=>{close();window.synapseFocus&&window.synapseFocus(c.id)});
         row.append(ask,show);it.appendChild(row);list.appendChild(it);
       });
@@ -2402,6 +2404,128 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
   document.addEventListener('synapse:hub',e=>{const d=e.detail||{};hb.hidden=d.kind!=='system';hubName=d.name||'';hb.textContent='Consultants who implement '+hubName});
   document.addEventListener('synapse:detail',()=>{hb.hidden=true});
   hb.addEventListener('click',()=>open({system:hubName}));
+})();
+</script>
+
+<style>
+.rc-sub{margin:-4px 0 12px;font-size:12.5px;color:var(--fg-dim)}
+.rc-h{margin:14px 0 6px;font:500 10.5px/1.3 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-faint)}
+.rc-route{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.rc-route li{position:relative;padding:0 0 12px 20px}
+.rc-route li::before{content:"";position:absolute;left:5px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.rc-route li:not(:last-child)::after{content:"";position:absolute;left:8.5px;top:16px;bottom:0;width:1px;background:var(--line)}
+.rc-route b{font:600 13.5px/1.3 var(--font-body);color:var(--fg)}
+.rc-route .how{display:block;font-size:12px;line-height:1.45;color:var(--fg-dim)}
+.rc-route .how a,.rc-near .how a{color:var(--link)}
+.rc-near{display:flex;flex-direction:column;gap:8px}
+.rc-near .it{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:10px}
+.rc-near .it>div{flex:1;min-width:0}
+.rc-near b{font:600 13px/1.3 var(--font-body);color:var(--fg)}
+.rc-near .meta{display:block;font-size:11.5px;color:var(--fg-faint)}
+.rc-near .how{display:block;font-size:12px;line-height:1.45;color:var(--fg-dim);overflow-wrap:anywhere}
+.rc-btn{flex:none;padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);font:500 12px var(--font-body);cursor:pointer}
+.rc-btn.pri{border-color:color-mix(in srgb,var(--accent) 50%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.rc-note{margin:12px 0 0;font-size:11.5px;line-height:1.45;color:var(--fg-faint)}
+.d-reach{display:block;margin:10px 0 0;padding:7px 12px;border-radius:9px;border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--fg);font:500 12.5px/1.2 var(--font-body);cursor:pointer}
+</style>
+<div class="sbm-wrap" id="rc-wrap" hidden>
+  <div class="sbm" role="dialog" aria-labelledby="rc-name">
+    <h3 id="rc-name">How to reach them</h3>
+    <button class="close x" id="rc-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="rc-sub" id="rc-sub"></p>
+    <div id="rc-body"></div>
+    <p class="rc-note">A declared connection is someone saying they know the person. Appearing on the same public page (a panel, a podcast, a case study) is not the same as knowing each other. The map holds no contact details: you make the approach yourself.</p>
+  </div>
+</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+  const NO_ORG=/^(independent|self[- ]?employed|freelance|freelancer|consultant|retired|stealth|confidential|n\/?a|none|-)$/i;
+  const orgKey=o=>String(o||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+  const safeUrl=u=>/^https?:\/\//i.test(String(u||''))?String(u):'';
+  /* people-only graph from what the map already holds: declared connections, co-appearances, shared employers */
+  function graph(){
+    const raw=window.synapseRaw&&window.synapseRaw();if(!raw)return null;
+    const G=raw.G,E=raw.E,adj=new Map(),people=new Map(),orgs=new Map();
+    for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub)continue;people.set(n.id,n);const k=orgKey(n.org);if(k&&!NO_ORG.test(k)){(orgs.get(k)||orgs.set(k,[]).get(k)).push(n.id)}}
+    const add=(a,b,e)=>{if(!people.has(a)||!people.has(b)||a===b)return;(adj.get(a)||adj.set(a,[]).get(a)).push(Object.assign({to:b},e));(adj.get(b)||adj.set(b,[]).get(b)).push(Object.assign({to:a},e))};
+    E.connections.forEach(r=>{if(r.status==='rejected')return;const ok=r.status==='confirmed';add(r.a,r.b,{kind:ok?'confirmed':'declared',w:ok?1:1.5})});
+    E.social.forEach(r=>add(r.a,r.b,{kind:'appeared',w:2,label:r.label||'',url:safeUrl(r.url)}));
+    orgs.forEach((ids,k)=>{if(ids.length<2||ids.length>40)return;const org=people.get(ids[0]).org;for(let x=0;x<ids.length;x++)for(let y=x+1;y<ids.length;y++)add(ids[x],ids[y],{kind:'colleague',w:2.5,org:org})});
+    return {people,adj};
+  }
+  /* cheapest route, at most four steps */
+  function route(g,from,to){
+    const dist=new Map([[from,0]]),prev=new Map(),hops=new Map([[from,0]]),done=new Set();
+    const open=[from];
+    while(open.length){
+      let bi=0;for(let i=1;i<open.length;i++)if(dist.get(open[i])<dist.get(open[bi]))bi=i;
+      const u=open.splice(bi,1)[0];if(done.has(u))continue;done.add(u);if(u===to)break;
+      if(hops.get(u)>=4)continue;
+      (g.adj.get(u)||[]).forEach(e=>{const d=dist.get(u)+e.w;if(!dist.has(e.to)||d<dist.get(e.to)){dist.set(e.to,d);prev.set(e.to,{from:u,e:e});hops.set(e.to,hops.get(u)+1);open.push(e.to)}});
+    }
+    if(!prev.has(to))return null;
+    const steps=[];for(let v=to;v!==from;v=prev.get(v).from)steps.unshift({id:v,e:prev.get(v).e});
+    return steps;
+  }
+  function how(e,parent){
+    const s=el('span','how');
+    if(e.kind==='confirmed')s.textContent='Confirmed connection';
+    else if(e.kind==='declared')s.textContent='Declared connection, awaiting validation';
+    else if(e.kind==='colleague')s.textContent='Both at '+e.org+' (now or before)';
+    else{s.append('Appeared together'+(e.label?': ':''));if(e.url){const a=el('a','',e.label||'source');a.href=e.url;a.target='_blank';a.rel='noopener';s.appendChild(a)}else if(e.label)s.append(e.label)}
+    parent.appendChild(s);
+  }
+  const RANK={confirmed:0,declared:1,appeared:2,colleague:3};
+  function nearest(g,id){
+    const best=new Map();(g.adj.get(id)||[]).forEach(e=>{const b=best.get(e.to);if(!b||RANK[e.kind]<RANK[b.kind])best.set(e.to,e)});
+    return [...best.values()].sort((a,b)=>RANK[a.kind]-RANK[b.kind]).slice(0,8);
+  }
+  function show(id){close();window.synapseGoPerson&&window.synapseGoPerson(id)}
+  function open(id){
+    const g=graph();if(!g)return;const t=g.people.get(id);if(!t)return;
+    $('rc-name').textContent='How to reach '+t.name;
+    $('rc-sub').textContent=[t.headline,t.org&&!(t.headline||'').includes(t.org)?t.org:''].filter(Boolean).join(' · ');
+    const body=$('rc-body');body.textContent='';
+    const me=window.synapseMe&&window.synapseMe();
+    if(me&&me===id){body.appendChild(el('p','rc-sub','This is you.'))}
+    else if(me&&g.people.has(me)){
+      const steps=route(g,me,id);
+      if(steps){
+        body.appendChild(el('h4','rc-h',steps.length===1?'You are one step away':'Your route, '+steps.length+' steps'));
+        const ol=el('ol','rc-route');const you=el('li');you.appendChild(el('b','','You'));ol.appendChild(you);
+        steps.forEach(s=>{const li=el('li');li.appendChild(el('b','',g.people.get(s.id).name));how(s.e,li);ol.appendChild(li)});
+        body.appendChild(ol);
+        const b=el('button','rc-btn pri','Show the route on the map');b.type='button';
+        b.addEventListener('click',()=>{close();window.synapseRoute&&window.synapseRoute([me].concat(steps.map(s=>s.id)))});
+        body.appendChild(b);
+      }else body.appendChild(el('p','rc-sub','No route from you on the map yet. Adding your connections in the Connections view opens more.'));
+    }else{
+      const p=el('p','rc-sub');p.append('Find yourself on the map (type your name, then "this is me") to see your own route to '+t.name+'.');body.appendChild(p);
+    }
+    const near=nearest(g,id);
+    body.appendChild(el('h4','rc-h',near.length?'Closest to them on the map':'Nobody on the map is linked to them yet'));
+    if(near.length){
+      const box=el('div','rc-near');
+      near.forEach(e=>{const n=g.people.get(e.to);const it=el('div','it'),d=el('div');d.appendChild(el('b','',n.name));if(n.headline||n.org)d.appendChild(el('span','meta',n.headline||n.org));how(e,d);it.appendChild(d);
+        const b=el('button','rc-btn','Show');b.type='button';b.addEventListener('click',()=>show(n.id));it.appendChild(b);box.appendChild(it)});
+      body.appendChild(box);
+    }
+    $('rc-wrap').hidden=false;
+  }
+  function close(){$('rc-wrap').hidden=true}
+  window.synapseReach=open;
+  $('rc-close').addEventListener('click',close);
+  $('rc-wrap').addEventListener('click',e=>{if(e.target===$('rc-wrap'))close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('rc-wrap').hidden)close()});
+  /* on every person card */
+  const card=$('detail'),edit=$('d-edit');let cur='';
+  const btn=el('button','d-reach','How to reach them');btn.type='button';btn.id='d-reach';btn.hidden=true;
+  if(edit&&edit.parentNode)edit.parentNode.insertBefore(btn,edit);else if(card)card.appendChild(btn);
+  btn.addEventListener('click',()=>{if(cur)open(cur)});
+  document.addEventListener('synapse:detail',e=>{cur=e.detail;const me=window.synapseMe&&window.synapseMe();btn.hidden=!cur||cur===me});
+  document.addEventListener('synapse:hub',()=>{cur='';btn.hidden=true});
 })();
 </script>
 

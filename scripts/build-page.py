@@ -79,6 +79,8 @@ rep("  async function ask(q){",
     return {text:'That search needed too many steps. Try a narrower question.'};
   }
   async function ask(q){""")
+# hooks for "How to reach them": the raw links the map holds, and a highlighted route
+rep('\nconst socAdj=[];','\nwindow.synapseRaw=()=>({E:E,G:G});\nwindow.synapseRoute=ids=>{if(angle===\'market\')setAngle(\'social\');resetView();const ix=ids.map(id=>G.idx.get(id)).filter(i=>i!=null);const t=performance.now();ix.forEach(i=>{if(G.born[i]>t)G.born[i]=t-1000});setHL(ix);const i=ix[ix.length-1];if(i!=null)focusLocal(G.pos[i*3],G.pos[i*3+1],G.pos[i*3+2])};\nconst socAdj=[];')
 # three.js served from this app, not a CDN
 rep('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js','/vendor/three.min.js')
 # read-only hook so the submission form knows who is selected
@@ -91,7 +93,7 @@ rep('        <div class="d-src" id="d-src"></div>\n        <button class="d-more
     '        <div class="d-src" id="d-src"></div>\n        <button class="d-import" id="d-import" type="button" hidden>Add my LinkedIn connections (CSV)</button>\n        <button class="d-edit" id="d-edit" type="button">Suggest a correction, add a link, or ask for removal</button>\n        <button class="d-more" id="d-more" type="button" aria-expanded="false"></button>')
 rep("  if(n.hub){renderHubDetail(n);return}","  $('d-edit').hidden=!!n.hub;$('d-import').hidden=true;\n  if(n.hub){renderHubDetail(n);document.dispatchEvent(new CustomEvent('synapse:hub',{detail:{kind:n.hub,name:n.name}}));return}")
 import os
-extra=open(os.path.join(os.path.dirname(__file__),'page-extra.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-import.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-claim.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-card.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-help.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-consult.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-method.html'),encoding='utf-8').read()
+extra=open(os.path.join(os.path.dirname(__file__),'page-extra.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-import.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-claim.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-card.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-help.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-consult.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-reach.html'),encoding='utf-8').read()+'\n'+open(os.path.join(os.path.dirname(__file__),'page-method.html'),encoding='utf-8').read()
 # standalone document: the artifact tool used to add the skeleton
 head='''<!doctype html>
 <html lang="en">

@@ -70,8 +70,8 @@
         if(c.languages.length||c.note){const l=el('div','ln');l.textContent=[c.languages.length?'Languages: '+c.languages.join(', '):'',c.note].filter(Boolean).join(' · ');it.appendChild(l)}
         if(path){const l=el('div','ln net');l.append(el('small','','your network'),document.createTextNode(path.direct?'You know them directly':'Through '+path.via.map(v=>v.name).join(', ')));it.appendChild(l)}
         const row=el('div','row');
-        const ask=el('button','pri','Ask for an introduction');ask.type='button';
-        ask.addEventListener('click',()=>{close();window.synapseHelp&&window.synapseHelp({kind:'implementation',system:$('cs-system').value.trim(),details:'I would like an introduction to '+c.name+(c.org?' ('+c.org+')':'')+'.'+(path?(path.direct?' We already know each other.':' We are connected through '+path.via.map(v=>v.name).join(', ')+'.'):''),targetId:c.id,viaIds:path&&!path.direct?path.via.map(v=>v.id):[]})});
+        const ask=el('button','pri','How to reach them');ask.type='button';
+        ask.addEventListener('click',()=>{close();window.synapseReach&&window.synapseReach(c.id)});
         const show=el('button','','Show on the map');show.type='button';show.addEventListener('click',()=>{close();window.synapseFocus&&window.synapseFocus(c.id)});
         row.append(ask,show);it.appendChild(row);list.appendChild(it);
       });
