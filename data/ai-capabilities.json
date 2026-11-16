@@ -4,7 +4,7 @@
   "answer": "An assistant from the vendor answers plain-language questions about the customer's own data (in the product or through the vendor's own connector). Product-help chatbots do not count.",
   "act": "The AI writes into the system: records, scenarios, rules, forecasts or payments, with or without a human approval. Recommendations that a person then carries out do not count.",
   "mcp": "An official MCP server from the vendor, or an official listing in an AI assistant's connector directory. Third-party connectors do not count.",
-  "build": "Users or an AI can create new logic, models, apps or reusable skills inside the product."
+  "build": "Users or an AI can create new models, planning logic, apps, pages or functions inside the product. Saved prompts or instruction sets for an assistant, reports and dashboards do not count."
  },
  "statuses": {
   "available": "Live per the vendor's public page",
@@ -167,10 +167,8 @@
     "src": "https://www.prophix.com/launch/"
    },
    "build": {
-    "s": "available",
-    "date": "2026-09",
-    "note": "Custom multi-step skills run through Copilot",
-    "src": "https://www.prophix.com/launch/"
+    "s": "none",
+    "note": "Custom multi-step skills run through Copilot are saved instruction sets, not new logic"
    }
   },
   {
@@ -190,9 +188,8 @@
     "s": "none"
    },
    "build": {
-    "s": "available",
-    "note": "Insight Designer agent builds dashboards",
-    "src": "https://www.wolterskluwer.com/en-in/solutions/cch-tagetik/ai-powers-cch-tagetik/agentic-ai"
+    "s": "none",
+    "note": "The Insight Designer agent builds dashboards; dashboards do not count"
    }
   },
   {
@@ -319,10 +316,8 @@
     "s": "none"
    },
    "build": {
-    "s": "available",
-    "date": "2026-10-15",
-    "note": "Shareable TAI Skills written as plain-English instructions",
-    "src": "https://sapinsider.org/map/kyriba-adds-shareable-tai-skills-and-document-uploads-for-treasury-teams/"
+    "s": "none",
+    "note": "TAI Skills (Oct 2026) are saved plain-English instructions for TAI; saved instructions do not count as building"
    }
   },
   {
