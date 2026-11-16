@@ -398,8 +398,9 @@
    },
    "mcp": {
     "s": "announced",
-    "note": "MCP server announced for 'summer 2026'; not shown as live",
-    "src": "https://www.nomentia.com/smart-treasury-suite/ai-and-ai-agents"
+    "date": "2026-09-09",
+    "note": "9 Sep 2026 release cites 'our MCP tools' with ChatGPT, Claude and Microsoft Copilot as preferred AI platforms; the AI page still says the MCP server comes 'by summer 2026'; no live listing found",
+    "src": "https://www.nomentia.com/news/nomentia-launches-new-modules-for-the-foundation-of-modern-treasury"
    },
    "build": {
     "s": "none"
