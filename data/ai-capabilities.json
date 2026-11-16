@@ -1,0 +1,764 @@
+{
+ "checked": "2026-11-16",
+ "rungs": {
+  "answer": "An assistant from the vendor answers plain-language questions about the customer's own data (in the product or through the vendor's own connector). Product-help chatbots do not count.",
+  "act": "The AI writes into the system: records, scenarios, rules, forecasts or payments, with or without a human approval. Recommendations that a person then carries out do not count.",
+  "mcp": "An official MCP server from the vendor, or an official listing in an AI assistant's connector directory. Third-party connectors do not count.",
+  "build": "Users or an AI can create new logic, models, apps or reusable skills inside the product."
+ },
+ "statuses": {
+  "available": "Live per the vendor's public page",
+  "limited": "Limited availability, preview or beta",
+  "announced": "Announced or planned, not shown as live",
+  "none": "Not found in the public record we checked"
+ },
+ "vendors": [
+  {
+   "system": "Workday Adaptive Planning",
+   "segment": "EPM",
+   "answer": {
+    "s": "limited",
+    "note": "Through its MCP server",
+    "src": "https://doc.workday.com/adaptive-planning/en-us/what-s-new/releases/2026r2-release-notes/2026r2-planning-for-hcm-and-financials/adaptive-planning-mcp-server.html"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "limited",
+    "date": "2026-10",
+    "note": "Adaptive Planning MCP server, 2026R2 release, limited availability",
+    "src": "https://doc.workday.com/adaptive-planning/en-us/what-s-new/releases/2026r2-release-notes/2026r2-planning-for-hcm-and-financials/adaptive-planning-mcp-server.html"
+   },
+   "build": {
+    "s": "none"
+   },
+   "other": "The 'Sana from Workday' Claude connector covers Workday agents in general, not Adaptive Planning specifically."
+  },
+  {
+   "system": "Pigment",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "note": "Pigment Agents",
+    "src": "https://pigment.com/ai/mcp-server"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026-01",
+    "note": "Official MCP server, listed in the Claude directory; ChatGPT, Claude and Mistral clients",
+    "src": "https://kb.pigment.com/docs/mcp-server"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Planful",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "note": "Analyst and Planner assistants in the product",
+    "src": "https://planful.com/platform/mcp/"
+   },
+   "act": {
+    "s": "none",
+    "note": "The MCP server is read-only by design"
+   },
+   "mcp": {
+    "s": "available",
+    "note": "MCP server marked new; Claude today, ChatGPT, Copilot and Gemini next",
+    "src": "https://planful.com/platform/mcp/"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Jedox",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "note": "JedoxAI agents",
+    "src": "https://www.jedox.com/en/platform/mcp/"
+   },
+   "act": {
+    "s": "available",
+    "note": "MCP writeback, kept within approval processes",
+    "src": "https://www.jedox.com/en/platform/mcp/"
+   },
+   "mcp": {
+    "s": "available",
+    "note": "MCP add-on to the Full Suite licence, with a Claude plugin",
+    "src": "https://www.jedox.com/en/platform/mcp/"
+   },
+   "build": {
+    "s": "available",
+    "note": "Modelers can create dimensions and planning logic through the MCP add-on",
+    "src": "https://www.jedox.com/en/platform/mcp/"
+   }
+  },
+  {
+   "system": "Vena",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "note": "Through its MCP server",
+    "src": "https://developers.venasolutions.com/changelog/mcp-general-availability-release"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026",
+    "note": "MCP general availability release; Claude, ChatGPT, Microsoft Copilot",
+    "src": "https://developers.venasolutions.com/changelog/mcp-general-availability-release"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "OneStream",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "date": "2026-05-19",
+    "note": "SensibleAI Agents generally available",
+    "src": "https://onestream.com/blog/sensibleai-agents-are-now-generally-available/"
+   },
+   "act": {
+    "s": "none",
+    "note": "Acting is not stated"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026-05-19",
+    "note": "Finance Agentic Layer with MCP, announced as generally available",
+    "src": "https://www.onestream.com/news/onestream-unlocks-agentic-ai-for-the-office-of-the-cfo-with-finance-agentic-layer-announces-general-availability-of-sensible-ai-agents/"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Prophix",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "date": "2026-09",
+    "note": "Copilot for Microsoft Office queries live Prophix data",
+    "src": "https://www.prophix.com/launch/"
+   },
+   "act": {
+    "s": "available",
+    "date": "2026-09",
+    "note": "Autonomous Planning Agent runs planning cycles with review checkpoints, submissions and approvals",
+    "src": "https://www.prophix.com/launch/"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026-09",
+    "note": "Prophix One MCP Server; only the Reporting Agent is exposed so far",
+    "src": "https://www.prophix.com/launch/"
+   },
+   "build": {
+    "s": "available",
+    "date": "2026-09",
+    "note": "Custom multi-step skills run through Copilot",
+    "src": "https://www.prophix.com/launch/"
+   }
+  },
+  {
+   "system": "CCH Tagetik",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "note": "Expert AI agents",
+    "src": "https://www.wolterskluwer.com/en-in/solutions/cch-tagetik/ai-powers-cch-tagetik/agentic-ai"
+   },
+   "act": {
+    "s": "available",
+    "note": "Agents run multi-step workflows; people can review, override or approve; no dates given",
+    "src": "https://www.wolterskluwer.com/en-in/solutions/cch-tagetik/ai-powers-cch-tagetik/agentic-ai"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "available",
+    "note": "Insight Designer agent builds dashboards",
+    "src": "https://www.wolterskluwer.com/en-in/solutions/cch-tagetik/ai-powers-cch-tagetik/agentic-ai"
+   }
+  },
+  {
+   "system": "Board",
+   "segment": "EPM",
+   "answer": {
+    "s": "none"
+   },
+   "act": {
+    "s": "none",
+    "note": "Agents propose changes; a person reviews and approves"
+   },
+   "mcp": {
+    "s": "announced",
+    "note": "Board MCP is listed as a platform product; status and clients not stated",
+    "src": "https://www.board.com/?p=137986"
+   },
+   "build": {
+    "s": "limited",
+    "date": "2026-09-01",
+    "note": "Architect Agent proposes cubes, hierarchies, reports and workflows; in preview",
+    "src": "https://www.board.com/?p=137986"
+   }
+  },
+  {
+   "system": "Anaplan",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "note": "CoPlanner",
+    "src": "https://www.anaplan.com/platform/anaplan-coplanner/"
+   },
+   "act": {
+    "s": "available",
+    "note": "Analyst agent writes approved updates back",
+    "src": "https://www.anaplan.com/platform/anaplan-coplanner/"
+   },
+   "mcp": {
+    "s": "announced",
+    "note": "AI Gateway uses MCP; no status stated",
+    "src": "https://www.anaplan.com/platform/anaplan-ai-gateway/"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Cube",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "note": "Through its MCP server",
+    "src": "https://claude.com/marketplace/connectors/cube-software"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026-10-22",
+    "note": "Official MCP server, listed in the Claude directory",
+    "src": "https://claude.com/marketplace/connectors/cube-software"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Abacum",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "note": "Through its MCP server",
+    "src": "https://pypi.org/project/abacum-mcp-server/"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2025-11-14",
+    "note": "abacum-mcp-server package published by Abacum engineering",
+    "src": "https://pypi.org/project/abacum-mcp-server/"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Oracle EPM",
+   "segment": "EPM",
+   "answer": {
+    "s": "available",
+    "date": "2026-04",
+    "note": "Fusion AI Agents integration for Cloud EPM; scope not detailed",
+    "src": "https://docs.oracle.com/en/cloud/saas/readiness/epm/2026/epm-apr26/26apr-epm-wn-f44078.htm"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none",
+    "note": "Third-party connectors only"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Kyriba",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "date": "2026-04-28",
+    "note": "TAI announced as available at KyribaLive 2026",
+    "src": "https://www.kyriba.com/news/kyribalive-2026-ai-orchestrated-treasury/"
+   },
+   "act": {
+    "s": "announced",
+    "note": "TAI recommends actions that users execute; Canvas, shown at KyribaLive 2026, has the treasurer approve each action",
+    "src": "https://sapinsider.org/map/kyriba-adds-shareable-tai-skills-and-document-uploads-for-treasury-teams/"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "available",
+    "date": "2026-10-15",
+    "note": "Shareable TAI Skills written as plain-English instructions",
+    "src": "https://sapinsider.org/map/kyriba-adds-shareable-tai-skills-and-document-uploads-for-treasury-teams/"
+   }
+  },
+  {
+   "system": "GTreasury",
+   "segment": "TMS",
+   "alias": "Ripple Treasury",
+   "answer": {
+    "s": "available",
+    "date": "2026-09-10",
+    "note": "Ask GSmart answers treasury data questions",
+    "src": "https://crypto.news/ripple-treasury-expands-governed-ai-tools-for-finance/"
+   },
+   "act": {
+    "s": "none",
+    "note": "Agents flag and recommend; a person approves any transaction"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Bottomline",
+   "segment": "TMS",
+   "answer": {
+    "s": "announced",
+    "date": "2025-10-27",
+    "note": "Embedded AI agent for treasury, rollout planned early 2026",
+    "src": "https://www.bottomline.com/newsroom/press-releases/bottomline-announces-embedded-ai-agent-transform-treasury-and-cash-management"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "HighRadius",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "date": "2023-09",
+    "note": "FreedaGPT assistant for the office of the CFO",
+    "src": "https://www.crowdfundinsider.com/2023/09/213098-fintech-highradius-introduces-freedagpt-generative-ai-for-the-office-of-the-cfo/"
+   },
+   "act": {
+    "s": "available",
+    "date": "2025-07",
+    "note": "Forecasting agents generate and update cash forecasts",
+    "src": "https://www.highradius.com/software/treasury-management/"
+   },
+   "mcp": {
+    "s": "none",
+    "note": "Third-party connectors only"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Nomentia",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "note": "Embedded assistant answers and retrieves live data within the user's rights",
+    "src": "https://www.nomentia.com/smart-treasury-suite/ai-and-ai-agents"
+   },
+   "act": {
+    "s": "available",
+    "note": "Admin tasks only: role assignments, user activation",
+    "src": "https://www.nomentia.com/smart-treasury-suite/ai-and-ai-agents"
+   },
+   "mcp": {
+    "s": "announced",
+    "note": "MCP server announced for 'summer 2026'; not shown as live",
+    "src": "https://www.nomentia.com/smart-treasury-suite/ai-and-ai-agents"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Serrala",
+   "segment": "TMS",
+   "answer": {
+    "s": "none"
+   },
+   "act": {
+    "s": "announced",
+    "date": "2026",
+    "note": "Governed AI agents for AP and AR matching; no availability date",
+    "src": "https://ffnews.com/newsarticle/serrala-launches-governed-ai-agents-to-accelerate-the-shift-to-autonomous-finance/"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "TIS",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "note": "AI assistant answers on transactions, payments and cash",
+    "src": "https://tispayments.com/solutions/intelligence-ai/"
+   },
+   "act": {
+    "s": "none",
+    "note": "Self-correcting payments marked coming soon"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Agicap",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "note": "Through its MCP",
+    "src": "https://agicap.com/en-us/article/agicap-mcp-claude/"
+   },
+   "act": {
+    "s": "available",
+    "date": "2026-06-18",
+    "note": "Admin chooses read-only or read-and-write; writes need human confirmation",
+    "src": "https://agicap.com/en-us/article/agicap-mcp-claude/"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026-06-18",
+    "note": "Official MCP server; Claude named",
+    "src": "https://agicap.com/en/features/mcp-server/"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Atlar",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "date": "2025-10-08",
+    "note": "Ask Atlar in the dashboard",
+    "src": "https://www.atlar.com/blog/meet-your-new-treasury-ai"
+   },
+   "act": {
+    "s": "none",
+    "note": "Taking actions described as coming"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026-08",
+    "note": "Listed in the Claude directory",
+    "src": "https://claude.com/marketplace/connectors/atlar"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Embat",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "note": "Through its connector: cash, debt, payments, accounting",
+    "src": "https://claude.com/marketplace/connectors/embat"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026-06",
+    "note": "Listed in the Claude directory",
+    "src": "https://claude.com/marketplace/connectors/embat"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Trovata",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "note": "Through its MCP connector",
+    "src": "https://help-center.trovata.io/en/articles/16046913-trovata-mcp-connector-guide"
+   },
+   "act": {
+    "s": "none",
+    "note": "Read-only; cannot modify data or initiate payments"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026-09-11",
+    "note": "Official MCP connector; Claude, ChatGPT, Gemini, GitHub Copilot; free during the AI 2.0 trial, then premium",
+    "src": "https://help-center.trovata.io/en/articles/16046913-trovata-mcp-connector-guide"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Modern Treasury",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "note": "Through its MCP server",
+    "src": "https://www.moderntreasury.com/journal/introducing-the-modern-treasury-mcp-server"
+   },
+   "act": {
+    "s": "available",
+    "date": "2025-04-11",
+    "note": "Can create payment orders",
+    "src": "https://www.moderntreasury.com/journal/introducing-the-modern-treasury-mcp-server"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2025-04-11",
+    "note": "Official MCP server (npm modern-treasury-mcp)",
+    "src": "https://www.moderntreasury.com/journal/introducing-the-modern-treasury-mcp-server"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Tesorio",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "note": "Through its MCP server",
+    "src": "https://registry.modelcontextprotocol.io/v0/servers?search=tesorio"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "available",
+    "date": "2026-09-22",
+    "note": "com.tesorio/mcp in the official MCP registry: order-to-cash tools",
+    "src": "https://registry.modelcontextprotocol.io/v0/servers?search=tesorio"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Nilus",
+   "segment": "TMS",
+   "answer": {
+    "s": "available",
+    "date": "2025-12-11",
+    "note": "Analyst Agent builds pivots, charts and summaries",
+    "src": "https://nilus-website.pages.dev/blog/your-treasury-data-can-finally-talk-meet-the-analyst-agent"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "FIS",
+   "segment": "TMS",
+   "answer": {
+    "s": "none",
+    "note": "Treasury GPT (Mar 2025) is a product-support tool, not on customer data"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "SAP Treasury",
+   "segment": "TMS",
+   "answer": {
+    "s": "none",
+    "note": "Joule is general; no treasury-specific assistant found"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none",
+    "note": "MCP support is platform-wide (HANA Cloud, Integration Suite), not treasury-specific"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Coupa Treasury",
+   "segment": "TMS",
+   "answer": {
+    "s": "none"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none",
+    "note": "Navi Connect MCP is procurement-focused"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "ION Treasury",
+   "segment": "TMS",
+   "answer": {
+    "s": "none"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "AccessPay",
+   "segment": "TMS",
+   "answer": {
+    "s": "none"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Kantox",
+   "segment": "TMS",
+   "answer": {
+    "s": "none"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "Cashbook",
+   "segment": "TMS",
+   "answer": {
+    "s": "none"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "ZenTreasury",
+   "segment": "TMS",
+   "answer": {
+    "s": "none"
+   },
+   "act": {
+    "s": "none"
+   },
+   "mcp": {
+    "s": "none"
+   },
+   "build": {
+    "s": "none"
+   }
+  },
+  {
+   "system": "K-φ",
+   "segment": "Both",
+   "self": true,
+   "answer": {
+    "s": "available",
+    "note": "Copilot in the app and through its MCP",
+    "src": "https://k-phi.com/fpa.html"
+   },
+   "act": {
+    "s": "available",
+    "note": "Write tools create budget scenarios and customize templates, scoped per tenant with an audit trail",
+    "src": "https://k-phi.com/fpa.html"
+   },
+   "mcp": {
+    "s": "available",
+    "note": "Listed in the Claude directory and the official MCP registry (com.k-phi/kphi)",
+    "src": "https://claude.ai/directory/k-phi"
+   },
+   "build": {
+    "s": "available",
+    "date": "2026-10-29",
+    "note": "Builder pass: an assistant builds pages and functions on K-φ data, write-back only if an admin allows it",
+    "src": "https://k-phi.com/blog/builder-pass.html"
+   }
+  }
+ ]
+}

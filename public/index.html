@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="4db73a8e39";</script>
+<script>window.SYNAPSE_BUILD="0663a12c4b";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -243,12 +243,26 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 .regions{grid-area:regions;display:none;min-height:0;overflow-y:auto;padding-block:4px 20px;border-top:1px solid var(--line)}
 .h{margin:16px 0 6px;font:500 10px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-faint)}
-.rrow{display:grid;grid-template-columns:104px minmax(0,1fr) 30px;align-items:center;gap:10px;width:100%;padding:5px 0;border:0;background:none;text-align:left;color:var(--fg-dim);font-size:12.5px;cursor:pointer}
+.rrow{display:grid;grid-template-columns:104px minmax(0,1fr) 30px 30px;align-items:center;gap:10px;width:100%;padding:5px 0;border:0;background:none;text-align:left;color:var(--fg-dim);font-size:12.5px;cursor:pointer}
 .rrow:hover{color:var(--fg)}
 .rn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar{display:block;height:5px;border-radius:3px;background:var(--tint-2);position:relative;overflow:hidden}
 .bar b{position:absolute;left:0;top:0;bottom:0;background:var(--bar);border-radius:3px}
 .sysfam{display:flex;gap:6px;margin:0 0 8px}
+/* AI ladder: four dots per system (answers, acts, MCP, builds), from the vendor's own public pages */
+.ai4{display:inline-flex;gap:3px;justify-content:flex-end}
+.ai4 i{width:5px;height:5px;border-radius:50%;background:var(--tint-3)}
+.ai4 i.available{background:var(--pos)}.ai4 i.limited{background:var(--link)}.ai4 i.announced{background:transparent;box-shadow:inset 0 0 0 1px var(--warn)}
+.ai-key{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 6px;font:400 10.5px/1.3 var(--font-mono);color:var(--fg-faint)}
+.ai-key a{color:var(--link);text-decoration:none}
+.ai-lad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:8px 0 2px}
+.ai-lad span{border:1px solid var(--line);border-radius:7px;padding:5px 6px;font:500 10.5px/1.25 var(--font-mono);color:var(--fg-faint);text-align:center}
+.ai-lad span b{display:block;font-weight:600;color:var(--fg-dim);letter-spacing:.04em}
+.ai-lad .available{border-color:var(--pos)}.ai-lad .available b{color:var(--pos)}
+.ai-lad .limited{border-color:var(--link)}.ai-lad .limited b{color:var(--link)}
+.ai-lad .announced{border-style:dashed;border-color:var(--warn)}.ai-lad .announced b{color:var(--warn)}
+.ai-src{font:400 10.5px/1.4 var(--font-mono);color:var(--fg-faint);margin:2px 0 8px}
+.ai-src a{color:var(--link);text-decoration:none}
 .sf{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-faint);font:600 11.5px/1.3 var(--font-mono);letter-spacing:.06em;cursor:pointer}
 .sf i{width:8px;height:8px;border-radius:50%;opacity:.35}
 .sf[aria-pressed=true]{color:var(--fg);border-color:var(--fg-dim)}
@@ -821,6 +835,11 @@ $('mkf-reset').addEventListener('click',()=>{FACETS.forEach(f=>mkOff[f.id].clear
 $('method-btn').addEventListener('click',()=>{if(window.synapseMethod)window.synapseMethod()});
 /* the TMS and EPM tiles are the Systems filter itself: switching one off takes those systems, and the organisations that only run them, off the map too */
 const famOn=id=>!mkOff.family.has(id);
+const AI_RUNGS=[['answer','Answers'],['act','Acts'],['mcp','MCP'],['build','Builds']],AI_WORD={available:'live',limited:'limited',announced:'announced',none:'not found'};
+function aiOf(name){const a=window.SYN_AI;return a&&a.systems?a.systems[name]||null:null}
+function aiLadder(name,ins){const a=aiOf(name);if(!a)return;const lad=el('div','ai-lad');AI_RUNGS.forEach(([k,l])=>{const s2=el('span',a[k]);s2.append(el('b','',l),AI_WORD[a[k]]);lad.appendChild(s2)});ins.appendChild(lad);
+  const src=el('p','ai-src','AI on the public record, checked '+window.SYN_AI.checked+'. ');const lk=el('a','','Sources');lk.href='/ai#src-'+a.slug;src.appendChild(lk);ins.appendChild(src)}
+function aiDots(name){const a=aiOf(name),s=el('span','ai4');if(!a)return s;s.title='AI on the public record: '+AI_RUNGS.map(([k,l])=>l+' '+AI_WORD[a[k]]).join(', ');AI_RUNGS.forEach(([k])=>s.appendChild(el('i',a[k])));return s}
 let famAnim=null;
 function topSys(uses,fam){return Object.keys(uses).map(Number).filter(i=>uses[i]>0&&fam(familyOf(G.nodes[i].name))).sort((a,b)=>uses[b]-uses[a]).slice(0,8)}
 function countUp(c,a,b,ms,delay){if(a===b)return;c.textContent=String(a);const t0=performance.now()+(delay||0);const step=t=>{const k=Math.min(1,Math.max(0,(t-t0)/ms)),e=1-Math.pow(1-k,3);c.textContent=String(Math.round(a+(b-a)*e));if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
@@ -836,13 +855,14 @@ function renderMarketLists(){
       box.querySelectorAll('.rrow').forEach((r,k)=>{prev.set(r.dataset.i,{top:r.getBoundingClientRect().top,w:parseFloat(r.querySelector('.bar b').style.width)||0,c:Number(r.querySelector('.rc').textContent)||0});
         if(!keep.has(r.dataset.i)&&!calm)r.animate([{opacity:1,transform:'none',filter:'blur(0)'},{opacity:0,transform:'translateX(18px) scale(.96)',filter:'blur(2px)'}],{duration:200,delay:k*18,easing:'ease-in',fill:'forwards'})});
       setTimeout(()=>{if(famOn(id))mkOff.family.add(id);else mkOff.family.delete(id);famAnim=calm?null:prev;refreshAll()},calm?0:220)});tl.appendChild(t)});box.appendChild(tl);
+  if(window.SYN_AI){const k=el('div','ai-key');k.appendChild(el('span','','Dots: AI answers · acts · MCP · builds'));const a=el('a','','AI ladder →');a.href='/ai';k.appendChild(a);box.appendChild(k)}
   const sys=topSys(uses,famOn);
   const mx=sys.length?uses[sys[0]]:1;
   sys.slice(0,8).forEach(i=>{
     const b=el('button','rrow');b.type='button';b.dataset.i=i;
     const fm=FAMILIES.find(x=>x.id===familyOf(G.nodes[i].name));
     const bar=el('span','bar'),f=el('b');f.style.width=(uses[i]/mx*100)+'%';if(fm)f.style.background=document.documentElement.dataset.theme==='light'?fm.light:fm.dark;bar.appendChild(f);
-    b.append(el('span','rn',G.nodes[i].name),bar,el('span','rc',String(uses[i])));box.appendChild(b);
+    b.append(el('span','rn',G.nodes[i].name),bar,el('span','rc',String(uses[i])),aiDots(G.nodes[i].name));box.appendChild(b);
   });
   if(famAnim){const prev=famAnim;famAnim=null;let fresh=0;
     box.querySelectorAll('.rrow').forEach(r=>{const p=prev.get(r.dataset.i),f=r.querySelector('.bar b'),c=r.querySelector('.rc'),w=parseFloat(f.style.width),n=Number(c.textContent);
@@ -997,6 +1017,7 @@ function renderMarketSystem(n){
   const pros=[];for(let i=0;i<G.n;i++){const p=G.nodes[i];if(p.hub)continue;const x=p.systems.find(y=>y.name&&y.name.toLowerCase()===n.name.toLowerCase()&&(y.role==='implements'||y.role==='integrates'));if(x)pros.push(i)}
   const d=$('detail'),open=d.classList.contains('open');$('d-more').textContent=open?'Hide':'Show '+cos.length+' organisations'+(pros.length?' and '+pros.length+' who implement it':'');$('d-more').setAttribute('aria-expanded',String(open));
   const ins=$('d-insight');ins.textContent='';
+  if(n.hub==='system')aiLadder(n.name,ins);
   const t=el('div','tags');Object.keys(cnt).forEach(k=>{if(!cnt[k])return;const g=el('span','tag sys',cnt[k]+' ');g.appendChild(el('b','',STATUS_TXT[k]));t.appendChild(g)});if(moves){const g=el('span','tag sys',moves+' ');g.appendChild(el('b','','came from spreadsheets'));t.appendChild(g)}
   if(t.children.length)ins.appendChild(t);
   const withStaff=cos.filter(j=>G.nodes[j].staff.length).length;
@@ -1027,6 +1048,7 @@ function renderHubDetail(n){
   const ins=$('d-insight');ins.textContent='';
   const topR=Object.keys(regs).sort((a,b)=>regs[b]-regs[a]).slice(0,4);
   if(topR.length){const t=el('div','tags');topR.forEach(r=>t.appendChild(el('span','tag',r+' '+regs[r])));ins.appendChild(t)}
+  if(n.hub==='system')aiLadder(n.name,ins);
   if(n.hub==='system'){const t=el('div','tags');Object.keys(roles).sort((a,b)=>roles[b]-roles[a]).forEach(r=>{const s2=el('span','tag sys',roles[r]+' ');s2.appendChild(el('b','',r));t.appendChild(s2)});ins.appendChild(t)}
   const list=$('d-list');list.textContent='';
   people.map((i,k)=>[i,es[k]]).sort((x,y)=>footprint(G.nodes[y[0]])-footprint(G.nodes[x[0]])).forEach(([i,x])=>{
@@ -1656,7 +1678,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
         const g=await r.json();
         (g.people||[]).forEach(d=>pendingP.push(d));(g.edges||[]).forEach(d=>pendingE.push(d));
         (g.connections||[]).forEach(d=>{if(d.status!=='rejected')pendingC.push(d)});
-        (g.companies||[]).forEach(d=>pendingCo.push(d));(g.installs||[]).forEach(d=>pendingI.push(d));if(g.companyPeople)staffIn=g.companyPeople;
+        (g.companies||[]).forEach(d=>pendingCo.push(d));(g.installs||[]).forEach(d=>pendingI.push(d));if(g.companyPeople)staffIn=g.companyPeople;if(g.ai)window.SYN_AI=g.ai;
         since=g.now||since;gotP=true;gotE=true;firstDone=true;setStatus('live','Live');queueIngest();
         if(g.build&&g.build!==window.SYNAPSE_BUILD)newVersion(g.build);
       }catch(e){setStatus('','Disconnected');if(!firstDone){firstFailed=true;if(!booted){$('empty').hidden=false;$('empty-t').textContent='The map is not answering yet';$('empty-s').textContent='Keep the page open; it fills in when the connection comes back.'}}}

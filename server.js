@@ -4,6 +4,7 @@
 const path = require('path');
 const fs = require('fs');
 const { recentEdge } = require('./scripts/recency');
+const ai = require('./scripts/ai');
 const crypto = require('crypto');
 const express = require('express');
 const compression = require('compression');
@@ -72,7 +73,8 @@ async function loadGraph(since) {
     })),
     hidden: people.rows.filter(p => p.hidden).map(p => p.id),
     edges: edges.rows.map(recentEdge).filter(Boolean).map(e => ({ id: e.a + '__' + e.b, a: e.a, b: e.b, kind: e.kind, label: e.label, url: e.url, confidence: e.confidence, evidence: e.evidence, addedAt: iso(e.added_at) })),
-    connections: conns.rows.map(c => ({ id: c.from_id + '__' + c.to_id, from: c.from_id, to: c.to_id, status: c.status, addedAt: iso(c.added_at) }))
+    connections: conns.rows.map(c => ({ id: c.from_id + '__' + c.to_id, from: c.from_id, to: c.to_id, status: c.status, addedAt: iso(c.added_at) })),
+    ai: ai.aiMap()
   };
 }
 app.get('/api/graph', async (req, res, next) => {
@@ -455,6 +457,8 @@ app.get('/p/:id.png', async (req, res, next) => {
     res.set('Cache-Control', 'public, max-age=3600').type('png').send(png);
   } catch (e) { next(e); }
 });
+app.get('/ai', (req, res) => { res.set('Cache-Control', 'public, max-age=300'); res.type('html').send(ai.aiPage(SITE)); });
+app.get('/api/ai', (req, res) => { res.set('Cache-Control', 'public, max-age=300'); res.json(ai.load()); });
 app.get('/p/:id', async (req, res, next) => {
   try {
     const s = await share.personShare(pool, req.params.id);

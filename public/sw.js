@@ -1,7 +1,7 @@
 /* Treasury & FP&A Synapses service worker: makes the map installable and opens it offline on the last copy.
  * The page and the graph are always fetched fresh when the network is there (network first);
  * three.js and the icons come from the cache. The review page and every other API call are never cached. */
-const CACHE = 'synapse-4db73a8e39';
+const CACHE = 'synapse-0663a12c4b';
 const SHELL = ['/', '/vendor/three.min.js', '/manifest.webmanifest', '/icons/icon-192.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
@@ -13,7 +13,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
   const p = url.pathname;
-  if (p.startsWith('/p/')) return;                         /* a person's link: always the server's own page */
+  if (p.startsWith('/p/') || p === '/ai') return;         /* a person's link or the AI page: always the server's own page */
   if (p.startsWith('/review') || p.startsWith('/api/admin') || (p.startsWith('/api/') && p !== '/api/graph')) return;
   if (p === '/api/graph' && url.search) return;            /* incremental polls: live only */
   if (p.startsWith('/vendor/') || p.startsWith('/icons/')) {
