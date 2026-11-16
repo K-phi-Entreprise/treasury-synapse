@@ -473,19 +473,21 @@
    "segment": "TMS",
    "answer": {
     "s": "available",
-    "date": "2025-10-08",
-    "note": "Ask Atlar in the dashboard",
-    "src": "https://www.atlar.com/blog/meet-your-new-treasury-ai"
+    "date": "2025-10-16",
+    "note": "Atlar Intelligence: natural-language answers on live data, built into the platform",
+    "src": "https://www.atlar.com/blog/announcing-atlar-intelligence"
    },
    "act": {
-    "s": "none",
-    "note": "Taking actions described as coming"
+    "s": "available",
+    "date": "2026-09-03",
+    "note": "Through Claude, with the right permissions: drafts payments, all within Atlar approvals. Reconciliation agents (rolling out Oct 2026) post matches to NetSuite and Dynamics 365 once a person confirms",
+    "src": "https://www.atlar.com/blog/atlar-is-now-official-in-claude"
    },
    "mcp": {
     "s": "available",
-    "date": "2026-08",
-    "note": "Listed in the Claude directory",
-    "src": "https://claude.com/marketplace/connectors/atlar"
+    "date": "2026-09-03",
+    "note": "Official connector in the Claude directory, approved by Anthropic; first brought into Claude earlier in 2026",
+    "src": "https://www.atlar.com/blog/atlar-is-now-official-in-claude"
    },
    "build": {
     "s": "none"
