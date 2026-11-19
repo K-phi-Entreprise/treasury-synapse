@@ -17,6 +17,11 @@ test.before(async () => {
     let b = ''; req.on('data', c => { b += c; });
     req.on('end', () => {
       const u = new URL(req.url, 'http://x'), json = v => { res.setHeader('content-type', 'application/json'); res.end(JSON.stringify(v)); };
+      if (u.pathname === '/search/companies') {
+        if (req.headers.authorization !== 'Basic ' + Buffer.from('ch-key:').toString('base64')) { res.statusCode = 401; return res.end('{}'); }
+        return json({ items: [{ company_number: '00000099', title: 'OLD BRITISH TEST PLC', company_status: 'dissolved' }, { company_number: '01234567', title: 'BRITISH TEST PLC', company_status: 'active', company_type: 'plc' }] });
+      }
+      if (u.pathname === '/company/01234567') return json({ type: 'plc', sic_codes: ['70100'], accounts: { last_accounts: { type: 'group', made_up_to: '2025-12-31' } } });
       if (u.pathname === '/search') {
         const q = u.searchParams.get('q');
         if (/^Fromagerie/.test(q)) return json({ results: [{ siren: '123456789', nom_complet: 'FROMAGERIE TEST SA', categorie_entreprise: 'ETI', tranche_effectif_salarie: '41', annee_tranche_effectif_salarie: '2024', activite_principale: '10.51C', finances: { 2024: { ca: 412000000 } } }] });
@@ -43,17 +48,22 @@ test.before(async () => {
   base = 'http://127.0.0.1:' + mock.address().port;
 });
 test.after(async () => { mock.close(); await pool.end(); });
-const cfg = () => ({ frBase: base, secFiles: base, secData: base, secSearch: base, registryPauseMs: 0, baseUrl: base, apiKey: 'k', model: 'm', priceIn: 3, priceOut: 15, pricePerSearch: 0, filingsPerRun: 5, registryBatch: 50 });
+const cfg = () => ({ ukBase: base, companiesHouseKey: 'ch-key', frBase: base, secFiles: base, secData: base, secSearch: base, registryPauseMs: 0, baseUrl: base, apiKey: 'k', model: 'm', priceIn: 3, priceOut: 15, pricePerSearch: 0, filingsPerRun: 5, registryBatch: 50 });
 
 test('companies on the map get their registry identity on an exact name match, flagged with its source', async () => {
   await upsertInstall(pool, { company: 'Fromagerie Test', system: 'Agicap', status: 'live', url: 'https://agicap.com/fr/clients/fromagerie-test', region: 'France' });
   await pool.query("update companies set country = 'France' where id = 'fromagerie-test'");
   await upsertInstall(pool, { company: 'Widget Corp', system: 'Anaplan', status: 'live', url: 'https://www.anaplan.com/customers/widget' });
+  await upsertInstall(pool, { company: 'British Test plc', system: 'Kyriba', status: 'live', url: 'https://www.kyriba.com/customers/british-test', region: 'United Kingdom' });
   await upsertInstall(pool, { company: 'Nobody Matches Ltd', system: 'Kyriba', status: 'live', url: 'https://www.kyriba.com/customers/nobody' });
   /* the seeded map is large; only the three test companies are due */
-  await pool.query("update companies set reg_tried_at = now() where id not in ('fromagerie-test', 'widget', 'nobody-matches')");
+  await pool.query("update companies set reg_tried_at = now() where id not in ('fromagerie-test', 'widget', 'nobody-matches', 'british-test')");
   const out = await reg.profiles(pool, cfg(), {});
-  assert.ok(out.matched >= 2, JSON.stringify(out));
+  assert.ok(out.matched >= 3, JSON.stringify(out));
+  const uk = (await pool.query("select * from companies where id = 'british-test'")).rows[0];
+  assert.strictEqual(uk.registry, 'UK:01234567', 'the active company, not the dissolved one of the same name');
+  assert.deepStrictEqual([uk.reg_attrs.source, uk.reg_attrs.accounts, uk.reg_attrs.sic], ['Companies House', 'Group accounts', '70100']);
+  assert.match(uk.registry_url, /find-and-update\.company-information/); assert.strictEqual(uk.size, '', 'no size from the UK register');
   const fr = (await pool.query("select * from companies where id = 'fromagerie-test'")).rows[0];
   assert.strictEqual(fr.registry, 'FR:123456789'); assert.match(fr.registry_url, /annuaire-entreprises/);
   assert.strictEqual(fr.reg_attrs.category, 'ETI'); assert.strictEqual(fr.reg_attrs.revenue, 412000000); assert.match(fr.reg_attrs.source, /INSEE/);
@@ -90,4 +100,8 @@ test('an extract the passages do not contain is never written', async () => {
   const n = (await pool.query("select count(*)::int n from market_sources where kind = 'sec_search'")).rows[0].n;
   assert.ok(n >= reg.SEC_TERMS.length, 'seeded: ' + n);
   assert.ok(!reg.SEC_TERMS.some(([t]) => /^(Board|Cube|Bound|FIS|SAP|Pigment|Statement)$/.test(t)), 'no ordinary-word search');
+});
+
+test('without a Companies House key, UK companies are left alone', async () => {
+  assert.strictEqual(await reg.profileUK(pool, { id: 'british-test', name: 'British Test plc' }, { uk: base, ukKey: '', wait: 0 }), null);
 });

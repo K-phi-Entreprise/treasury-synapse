@@ -1,6 +1,7 @@
 'use strict';
 /* Public companies (Synapse metadata design, Nov 2026): a deepening of the market map, every value flagged as coming from a registry or a filing.
  * - profiles: companies already on the map get their registry identity and attributes, on an exact name match only
+ *     United Kingdom: Companies House (company number, type, industry codes, last accounts category), with COMPANIES_HOUSE_KEY
  *     France: recherche-entreprises.api.gouv.fr (SIREN, category GE/ETI/PME, headcount band, revenue, activity code)
  *     United States: SEC EDGAR (CIK, ticker, exchange, industry code, state)
  *   A registry value never overwrites what a person corrected by hand; it fills empty fields and is shown with its own link.
@@ -19,12 +20,17 @@ function bases(cfg = {}) {
     fr: (cfg.frBase || process.env.REGISTRY_FR_BASE || 'https://recherche-entreprises.api.gouv.fr').replace(/\/$/, ''),
     secFiles: (cfg.secFiles || process.env.REGISTRY_SEC_FILES || 'https://www.sec.gov').replace(/\/$/, ''),
     secData: (cfg.secData || process.env.REGISTRY_SEC_DATA || 'https://data.sec.gov').replace(/\/$/, ''),
+    uk: (cfg.ukBase || process.env.REGISTRY_UK_BASE || 'https://api.company-information.service.gov.uk').replace(/\/$/, ''),
+    ukKey: cfg.companiesHouseKey != null ? cfg.companiesHouseKey : (process.env.COMPANIES_HOUSE_KEY || ''),
     secSearch: (cfg.secSearch || process.env.REGISTRY_SEC_SEARCH || 'https://efts.sec.gov').replace(/\/$/, ''),
     wait: cfg.registryPauseMs != null ? cfg.registryPauseMs : 400
   };
 }
-async function getJson(url) {
-  const r = await fetch(url, { headers: { 'user-agent': UA, accept: 'application/json' } });
+async function getJson(url, auth) {
+  const headers = { 'user-agent': UA, accept: 'application/json' };
+  /* Companies House: the key is the Basic user name, with an empty password */
+  if (auth) headers.authorization = 'Basic ' + Buffer.from(auth + ':').toString('base64');
+  const r = await fetch(url, { headers });
   if (!r.ok) throw Object.assign(new Error('registry ' + r.status + ' ' + url), { status: r.status });
   return r.json();
 }
@@ -51,6 +57,26 @@ async function profileFrance(pool, c, B) {
     attrs: { source: 'INSEE Sirene, via recherche-entreprises.api.gouv.fr', siren: hit.siren, category: hit.categorie_entreprise || '', headcount: frBandText(band),
       headcountYear: hit.annee_tranche_effectif_salarie || '', activity: hit.activite_principale || '',
       revenue: year && fin[year] && fin[year].ca != null ? Number(fin[year].ca) : null, revenueYear: year || '', currency: 'EUR' }
+  };
+}
+/* United Kingdom: Companies House (company number, status, type, industry codes, the category of the last accounts filed).
+ * The register holds no headcount or revenue, so no size band is set from it; the accounts category is shown as filed. */
+const UK_ACCOUNTS = { full: 'Full accounts', group: 'Group accounts', medium: 'Medium-sized company accounts', small: 'Small company accounts',
+  'micro-entity': 'Micro-entity accounts', 'total-exemption-full': 'Total exemption accounts', 'total-exemption-small': 'Total exemption accounts',
+  'audit-exemption-subsidiary': 'Audit-exempt subsidiary accounts', dormant: 'Dormant company accounts', 'unaudited-abridged': 'Abridged accounts', 'audited-abridged': 'Abridged accounts' };
+async function profileUK(pool, c, B) {
+  if (!B.ukKey) return null;
+  const j = await getJson(B.uk + '/search/companies?q=' + encodeURIComponent(c.name) + '&items_per_page=20', B.ukKey);
+  const hit = (j.items || []).find(r => r.company_number && r.company_status === 'active' && compKey(r.title) === c.id);
+  if (!hit) return null;
+  await pause(B.wait);
+  const p = await getJson(B.uk + '/company/' + encodeURIComponent(hit.company_number), B.ukKey);
+  const acc = (p.accounts && p.accounts.last_accounts) || {};
+  return {
+    registry: 'UK:' + hit.company_number, url: 'https://find-and-update.company-information.service.gov.uk/company/' + hit.company_number,
+    country: 'United Kingdom', region: 'United Kingdom', size: '',
+    attrs: { source: 'Companies House', number: hit.company_number, type: p.type || hit.company_type || '', sic: (p.sic_codes || []).join(', '),
+      accounts: UK_ACCOUNTS[acc.type] || acc.type || '', accountsMadeUpTo: acc.made_up_to || '' }
   };
 }
 let TICKERS = null;
@@ -87,6 +113,7 @@ async function profiles(pool, cfg = {}, stats = {}) {
     let p = null;
     try {
       if (c.country === 'France' || c.region === 'France') { p = await profileFrance(pool, c, B); await pause(B.wait); }
+      if (!p && (c.country === 'United Kingdom' || c.region === 'United Kingdom')) { p = await profileUK(pool, c, B); await pause(B.wait); }
       if (!p && (c.country === '' || c.country === 'United States' || c.region === 'United States' || c.region === 'Unknown')) p = await profileUS(pool, c, B);
     } catch (e) {
       out.errors.push(c.id + ': ' + s(e.message, 200));
@@ -205,4 +232,4 @@ async function filings(pool, cfg, stats = {}, budgetLeft = Infinity) {
 }
 const SEC_SOURCES = SEC_TERMS.map(([t, sys]) => ({ url: 'sec:' + t, label: 'SEC filings (10-K, 20-F, 40-F) that name ' + t + ' (' + sys + ')', kind: 'sec_search' }));
 
-module.exports = { profiles, filings, passages, strip, filerName, frSize, SEC_TERMS, SEC_SOURCES, UA };
+module.exports = { profiles, profileUK, filings, passages, strip, filerName, frSize, SEC_TERMS, SEC_SOURCES, UA };

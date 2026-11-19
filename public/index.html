@@ -1007,8 +1007,9 @@ function renderCompanyDetail(n){
     a.append(tx,el('span','cf','person'));list.appendChild(a)});
   const src=$('d-src');src.textContent='';
   if(co.wikidata){src.append('Profile: ');const a=el('a','','Wikidata '+co.wikidata);a.href='https://www.wikidata.org/wiki/'+co.wikidata;a.target='_blank';a.rel='noopener noreferrer';src.appendChild(a)}
-  if(co.registry){const g=co.reg||{},fr=co.registry.slice(0,3)==='FR:';src.append((co.wikidata?' · ':'')+'Registry: ');const a=el('a','',fr?'SIREN '+co.registry.slice(3):'SEC CIK '+co.registry.slice(3).replace(/^0+/,''));a.href=co.registryUrl;a.target='_blank';a.rel='noopener noreferrer';src.appendChild(a);
-    const bits=fr?[g.category,g.headcount?g.headcount+' employees'+(g.headcountYear?' ('+g.headcountYear+')':''):'',g.revenue?'revenue '+(g.revenue/1e6).toLocaleString('en',{maximumFractionDigits:0})+'m EUR'+(g.revenueYear?' ('+g.revenueYear+')':''):'']:[g.ticker?(g.exchange?g.exchange+': ':'')+g.ticker:'',g.industry];
+  if(co.registry){const g=co.reg||{},rk=co.registry.slice(0,3),fr=rk==='FR:',uk=rk==='UK:';src.append((co.wikidata?' · ':'')+'Registry: ');const a=el('a','',fr?'SIREN '+co.registry.slice(3):uk?'Company number '+co.registry.slice(3):'SEC CIK '+co.registry.slice(3).replace(/^0+/,''));a.href=co.registryUrl;a.target='_blank';a.rel='noopener noreferrer';src.appendChild(a);
+    const bits=fr?[g.category,g.headcount?g.headcount+' employees'+(g.headcountYear?' ('+g.headcountYear+')':''):'',g.revenue?'revenue '+(g.revenue/1e6).toLocaleString('en',{maximumFractionDigits:0})+'m EUR'+(g.revenueYear?' ('+g.revenueYear+')':''):'']
+      :uk?[g.accounts?g.accounts+(g.accountsMadeUpTo?' to '+g.accountsMadeUpTo:''):'',g.sic?'SIC '+g.sic:'']:[g.ticker?(g.exchange?g.exchange+': ':'')+g.ticker:'',g.industry];
     const txt=bits.filter(Boolean).join(' · ');if(txt)src.append(' · '+txt+' (from '+(g.source||'the registry')+')')}
   updateSugg();
 }
@@ -2902,7 +2903,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       <li><b>Selecting now:</b> a job post or an announcement of the last nine months, unless a later page shows the system running.</li>
       <li><b>Industry, size and country:</b> from Wikidata when an organisation of the same name is found, otherwise Unknown. Each organisation's card links to its item.</li>
       <li><b>Found at X of N:</b> the denominator is every active large and mid-size company in the French registry (INSEE categories GE and ETI) and every listed company in SEC EDGAR, by filer category. France counts legal units, so a group's French subsidiaries count separately; the US counts listed companies only. A company on the map is matched to the registry by its registry number or its exact name.</li>
-      <li><b>Public companies:</b> organisations on the map are looked up in the French company registry (INSEE Sirene) and in SEC EDGAR, on an exact name match only. What the registry says (category, headcount, revenue, ticker, industry) is shown with its link and never replaces a correction. Annual reports filed with the SEC (10-K, 20-F, 40-F) are searched for each vendor's distinctive name; a filing counts only when its own words say the filer runs the system, and that line is declared. Vendor names that are ordinary words (Board, Cube, Bound, FIS) are not searched, the same rule for every vendor.</li>
+      <li><b>Public companies:</b> organisations on the map are looked up in the French company registry (INSEE Sirene), the UK register (Companies House) and SEC EDGAR, on an exact name match only. What the registry says (category, headcount, revenue, ticker, industry) is shown with its link and never replaces a correction. Annual reports filed with the SEC (10-K, 20-F, 40-F) are searched for each vendor's distinctive name; a filing counts only when its own words say the filer runs the system, and that line is declared. Vendor names that are ordinary words (Board, Cube, Bound, FIS) are not searched, the same rule for every vendor.</li>
     </ul>
   </div>
 </div>
