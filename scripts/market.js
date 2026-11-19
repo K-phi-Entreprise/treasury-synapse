@@ -37,6 +37,18 @@ function canonSystem(raw) {
 
 const STATUS = ['live', 'implementing', 'selecting', 'previous'];
 const KINDS = ['case_study', 'press', 'job_post', 'talk', 'article', 'filing'];
+/* Evidence level (Synapse metadata design, Nov 2026): declared when the company, the vendor, a tender or a filing states it;
+ * assumed when a source implies it without stating it (a job post, a person's card). The two are never merged into a single yes. */
+const ASSUMED_KINDS = new Set(['job_post', 'person']);
+const levelOf = kind => (ASSUMED_KINDS.has(kind) ? 'assumed' : 'declared');
+const SAID_BY = { case_study: 'vendor', press: 'company', filing: 'company', talk: 'company', article: 'third party', job_post: 'company', person: 'person' };
+/* counts per level for one line, from its evidence; evidence written before levels existed takes its level from its kind */
+function levels(evidence, kind) {
+  const ev = Array.isArray(evidence) && evidence.length ? evidence : [{ kind }];
+  let declared = 0, assumed = 0, weak = 0;
+  for (const e of ev) { if (!e) continue; if ((e.level || levelOf(e.kind || kind)) === 'assumed') { assumed++; if (e.strength === 'weak') weak++; } else declared++; }
+  return { level: declared ? 'declared' : 'assumed', declared, assumed, weak };
+}
 const REGIONS = ['United States', 'United Kingdom', 'France', 'DACH', 'Benelux', 'Nordics', 'Southern Europe', 'Asia-Pacific', 'Other', 'Unknown'];
 /* advisers and vendors show up in job posts and case studies; they are not users of the systems they implement */
 const NOT_A_USER = /^(ey|ernst-and-young|pwc|pricewaterhousecoopers|deloitte|kpmg|accenture|zanders|clearsulting|bearingpoint|capgemini|rsm|grant-thornton|bdo|mazars|forvis-mazars|protiviti|talan|absys-cyborg|cognizant|infosys|wipro|tata-consultancy-services|genpact|redbridge|strategic-treasurer|actualize-consulting|treasury-alliance|real-treasury)$/;
@@ -78,7 +90,10 @@ async function upsertInstall(db, r, source = 'harvest') {
       updated_at = case when (companies.region = 'Unknown' and excluded.region <> 'Unknown') or (companies.industry = '' and excluded.industry <> '')
         or (companies.vertical = '' and excluded.vertical <> '') or (companies.employees is null and excluded.employees is not null) then now() else companies.updated_at end`,
   [key, name, region, s(r.industry, 80), verticalOf([r.industry]), emp, sizeOf(emp)]);
-  const ev = { url, kind, date: dateish(r.date), note: s(r.note, 300) };
+  const ev = { url, kind, date: dateish(r.date), note: s(r.note, 300), level: levelOf(kind), saidBy: SAID_BY[kind] || '',
+    extract: s(r.extract, 200), seen: new Date().toISOString().slice(0, 10), method: source };
+  /* job posts: strong when the post says the employer runs the system ("our Kyriba platform"), weak when it only asks for the skill */
+  if (kind === 'job_post') ev.strength = r.strength === 'weak' ? 'weak' : 'strong';
   const row = [key, c.system, status, s(r.product, 120) || c.product, dateish(r.since) || s(r.since, 10).replace(/[^0-9]/g, '').slice(0, 4), dateish(r.date),
     s(r.partner, 120), s(r.replaced, 120), s(r.person, 120), s(r.personTitle || r.person_title, 120), url, kind, s(r.note, 300), JSON.stringify([ev]), source];
   const old = (await db.query('select evidence, url from installs where company_id = $1 and system = $2 and status = $3', [key, c.system, status])).rows[0];
@@ -129,7 +144,9 @@ const INDUSTRIES = ['Commodities & trading', 'Energy & utilities', 'Pharma & hea
 const SOURCES = [].concat(
   ...VENDORS.map(([name, slugs, pages]) => slugs.map(v => ({ url: CS + v, label: 'Customer stories: ' + name, kind: 'index' }))
     .concat((pages || []).map(u => ({ url: u, label: 'Customer references: ' + name, kind: 'index' })))
-    .concat([{ url: 'search:' + name + ' customer case study', label: 'Named customers of ' + name + ': its own reference pages, press releases, conference talks', kind: 'search' }])),
+    .concat([{ url: 'search:' + name + ' customer case study', label: 'Named customers of ' + name + ': its own reference pages, press releases, conference talks', kind: 'search' },
+      /* job offers, one search per vendor like the case studies: assumed evidence of who runs what */
+      { url: 'search:' + name + ' job post', label: 'Job posts naming ' + name + ': employers that run it, are moving to it, or ask for it as a skill', kind: 'search' }])),
   [{ url: 'search:treasury management system implementation job post', label: 'Job posts asking someone to select or implement a TMS', kind: 'search' },
     { url: 'search:company selects treasury management system press release', label: 'Press releases: a company selects or goes live with a TMS', kind: 'search' },
     { url: 'search:treasury management system replaced spreadsheets case study', label: 'Case studies of moves from spreadsheets to a TMS', kind: 'search' }],
@@ -153,7 +170,7 @@ async function seed(pool, dir = path.join(__dirname, '..', 'data')) {
     await pool.query('insert into market_seed_files (file, rows) values ($1,$2) on conflict do nothing', [f, k]);
     n += k;
   }
-  for (const x of SOURCES) await pool.query('insert into market_sources (url, label, kind) values ($1,$2,$3) on conflict (url) do nothing', [x.url, x.label, x.kind]);
+  for (const x of SOURCES.concat(require('./registry').SEC_SOURCES)) await pool.query('insert into market_sources (url, label, kind) values ($1,$2,$3) on conflict (url) do nothing', [x.url, x.label, x.kind]);
   /* searches outside the method (an earlier, uneven list) are dropped */
   await pool.query("delete from market_sources where kind = 'search' and not (url = any($1))", [SOURCES.filter(x => x.kind === 'search').map(x => x.url)]);
   /* corrections by hand (data/company-fixes.json): applied on every deploy, and the profile is no longer redone from Wikidata */
@@ -193,11 +210,18 @@ async function loadMarket(pool, since) {
   const companies = (await pool.query(`select * from companies where not hidden${since ? ' and updated_at > $1' : ''} order by added_at`, p)).rows;
   const installs = (await pool.query(`select i.* from installs i join companies c on c.id = i.company_id and not c.hidden${since ? ' where i.updated_at > $1' : ''} order by i.added_at`, p)).rows;
   const out = {
+    weak: {},
     companies: companies.map(c => ({ id: c.id, name: c.name, region: c.region, industry: c.industry, vertical: c.vertical, size: c.size, employees: c.employees, country: c.country,
-      wikidata: c.wikidata, addedAt: c.added_at && c.added_at.toISOString() })),
+      wikidata: c.wikidata, registry: c.registry || '', registryUrl: c.registry_url || '', reg: c.reg_attrs || {}, addedAt: c.added_at && c.added_at.toISOString() })),
     installs: installs.map(i => ({ company: i.company_id, system: i.system, status: i.status, product: i.product, since: i.since, date: i.date, partner: i.partner,
-      replaced: i.replaced, person: i.person, personTitle: i.person_title, url: i.url, kind: i.kind, note: i.note, sources: (i.evidence || []).length, addedAt: i.added_at && i.added_at.toISOString() }))
+      replaced: i.replaced, person: i.person, personTitle: i.person_title, url: i.url, kind: i.kind, note: i.note, sources: (i.evidence || []).length, ...levels(i.evidence, i.kind), addedAt: i.added_at && i.added_at.toISOString() }))
   };
+  /* a line held up only by weak job posts (the system asked as a skill) draws nothing; it is counted per system instead */
+  out.installs = out.installs.filter(i => {
+    if (!(i.declared === 0 && i.assumed > 0 && i.weak === i.assumed)) return true;
+    if (i.system) out.weak[i.system] = (out.weak[i.system] || 0) + 1;
+    return false;
+  });
   if (since) return out;
   /* person cards: "uses X" at their organisation is a pair too; people at a company (now or before) are who to ask */
   const ppl = (await pool.query(`select p.id, p.org, p.region, p.segment, s.system, s.url, s.date from people p join person_systems s on s.person_id = p.id
@@ -207,9 +231,11 @@ async function loadMarket(pool, since) {
     const key = compKey(r.org), c = canonSystem(r.system);
     if (!key || !c.system || NOT_A_USER.test(key) || compKey(c.system) === key) continue;
     if (!byKey.has(key)) { const co = { id: key, name: r.org, region: r.region || 'Unknown', industry: r.segment === 'Banks' ? 'Financial services' : '', vertical: r.segment === 'Banks' ? 'Financial services' : '', size: '', employees: null, country: '', wikidata: '', addedAt: null }; byKey.set(key, co); out.companies.push(co); }
-    if (!out.installs.some(i => i.company === key && i.system === c.system && i.status === 'live'))
-      out.installs.push({ company: key, system: c.system, status: 'live', product: c.product, since: '', date: r.date || '', partner: '', replaced: '', person: '', personTitle: '',
-        url: r.url || '', kind: 'person', note: 'From the card of someone who works there', sources: 1, personId: r.id, addedAt: null });
+    const had = out.installs.find(i => i.company === key && i.system === c.system && i.status === 'live');
+    /* a person's card is assumed evidence: it adds to a line that exists, or draws an assumed line of its own */
+    if (had) had.assumed++;
+    else out.installs.push({ company: key, system: c.system, status: 'live', product: c.product, since: '', date: r.date || '', partner: '', replaced: '', person: '', personTitle: '',
+        url: r.url || '', kind: 'person', note: 'From the card of someone who works there', sources: 1, level: 'assumed', declared: 0, assumed: 1, personId: r.id, addedAt: null });
   }
   const staff = (await pool.query(`select p.id, p.org, null::text as past from people p where not p.hidden and p.org <> ''
     union all select r.person_id, r.org, coalesce(nullif(r.to_year, ''), 'before') from person_roles r join people p on p.id = r.person_id and not p.hidden where r.org <> ''`)).rows;
@@ -244,6 +270,8 @@ const SUBMIT = {
         region: { type: 'string', enum: REGIONS, description: 'Where the organisation is based.' }, industry: { type: 'string', description: 'Its industry in a few words (food retail, pharmaceuticals, commodity trading).' },
         employees: { type: 'number', description: 'Number of employees, only if the page states it.' },
         kind: { type: 'string', enum: KINDS }, note: { type: 'string', description: 'One factual sentence, no praise words.' },
+        extract: { type: 'string', description: 'The words on the page that state the fact, copied exactly, under 25 words.' },
+        strength: { type: 'string', enum: ['strong', 'weak'], description: 'Job posts only. strong: the post says the employer runs the system ("our Kyriba platform", "administer Kyriba"); weak: it only lists the system as a skill ("Kyriba or similar a plus").' },
         url: { type: 'string' } }, required: ['company', 'status', 'url'] } },
       next_pages: { type: 'array', description: 'Single case studies, press releases or job posts worth reading next for detail (year, partner, what was replaced, person).', items: { type: 'object', properties: { url: { type: 'string' }, label: { type: 'string' } }, required: ['url'] } }
     },
@@ -253,7 +281,7 @@ const SUBMIT = {
 function systemPrompt(cfg) {
   return 'You collect facts for the Market view of "Treasury & FP&A Synapses": which organisation runs which treasury, cash, payments or FP&A system, from public pages only. ' +
     'Report an organisation only for its own use of the system. A vendor, a consultancy or an integrator is never the user; a bank is a user only when it runs the system for its own treasury. ' +
-    'A job post shows the system the employer runs ("our Kyriba platform") or a selection in progress ("select and implement a new TMS"); a post that only asks for experience with a product says nothing about the employer, skip it. ' +
+    'A job post shows the system the employer runs ("our Kyriba platform"): report it as live, kind job_post, strength strong. A post that only asks for experience with a product is reported as live with strength weak; it is counted, never drawn. A selection in progress ("select and implement a new TMS") is selecting. A recruitment agency\'s post that hides the employer is skipped. ' +
     'Also report the ERP, the planning (EPM, FP&A) and the bank or payment platforms the page names for the same organisation, each as its own live line (SAP S/4HANA, Oracle NetSuite, Microsoft Dynamics 365, Anaplan, OneStream). ' +
     'When a case study says what was used before (Excel, spreadsheets, a legacy system, a named product), report it as replaced on the same line, and as its own previous line when a product or Excel is named. Never guess. ' +
     'Never use LinkedIn or profile-scraping sites. Write every field in English. You have at most ' + cfg.marketSearches + ' searches and ' + cfg.marketFetches + ' fetches. When done, call submit_market once with everything the fetched pages support, then stop.';
@@ -265,7 +293,8 @@ function briefFor(src) {
 }
 
 async function pickSources(pool, n) {
-  return (await pool.query(`select * from market_sources where status = 'queued' or (status = 'done' and kind <> 'page' and read_at < now() - interval '30 days')
+  /* SEC searches and filings are read by scripts/registry.js, not by the web harvester */
+  return (await pool.query(`select * from market_sources where kind in ('index', 'page', 'search') and (status = 'queued' or (status = 'done' and kind <> 'page' and read_at < now() - interval '30 days'))
     order by case kind when 'index' then 0 when 'page' then 1 else 2 end, read_at nulls first, attempts, added_at limit $1`, [n])).rows;
 }
 
@@ -334,4 +363,4 @@ if (require.main === module && process.argv.includes('--seed')) {
   const pool = makePool();
   seed(pool).then(async n => { console.log('market seed: ' + n + ' facts'); await pool.end(); }).catch(async e => { console.error(e); await pool.end(); process.exit(1); });
 }
-module.exports = { compKey, canonSystem, upsertInstall, seed, loadMarket, harvest, SOURCES, VENDORS, INDUSTRIES, NOT_A_USER };
+module.exports = { compKey, canonSystem, levelOf, levels, upsertInstall, seed, loadMarket, harvest, SOURCES, VENDORS, INDUSTRIES, NOT_A_USER };

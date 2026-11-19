@@ -96,6 +96,9 @@ services:
         value: "3"
       - key: CRAWL_PRICE_OUT
         value: "15"
+      # UK register lookups (Companies House Public Data API, REST key); set by hand in the dashboard
+      - key: COMPANIES_HOUSE_KEY
+        sync: false
 
 databases:
   - name: synapse-db

@@ -63,7 +63,7 @@ async function loadGraph(since) {
   const market = await loadMarket(pool, since);
   return {
     build: BUILD,
-    companies: market.companies, installs: market.installs, companyPeople: market.companyPeople || null,
+    companies: market.companies, installs: market.installs, companyPeople: market.companyPeople || null, weak: since ? null : market.weak,
     now: new Date().toISOString(),
     people: people.rows.filter(p => !p.hidden).map(p => ({
       id: p.id, name: p.name, headline: p.headline, org: p.org, city: p.city, region: p.region, segment: p.segment, seed: p.seed,
@@ -84,6 +84,16 @@ app.get('/api/graph', async (req, res, next) => {
     if (!cache.body || Date.now() - cache.at > 60000) cache = { at: Date.now(), body: await loadGraph(null) };
     res.set('Cache-Control', 'public, max-age=60');
     res.json(cache.body);
+  } catch (e) { next(e); }
+});
+
+/* the company universe: what share of large and mid-size companies each system is found at, per country */
+let covCache = { at: 0, body: null };
+app.get('/api/coverage', async (req, res, next) => {
+  try {
+    if (!covCache.body || Date.now() - covCache.at > 300000) covCache = { at: Date.now(), body: await require('./scripts/universe').coverage(pool) };
+    res.set('Cache-Control', 'public, max-age=300');
+    res.json(covCache.body);
   } catch (e) { next(e); }
 });
 

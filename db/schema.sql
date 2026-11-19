@@ -365,3 +365,53 @@ create table if not exists people_seed_files (
 alter table people add column if not exists headline_date text not null default '';
 alter table people add column if not exists headline_source text not null default '';
 alter table people add column if not exists headline_locked boolean not null default false;
+
+-- Evidence levels (metadata design, Nov 2026): every evidence item says whether it was declared or assumed, and who said it.
+-- Items written before carry their level from their kind: job posts are assumed, everything else declared. Idempotent.
+update installs i set evidence = (
+  select jsonb_agg(case when e ? 'level' then e else e || jsonb_build_object(
+    'level', case when e->>'kind' = 'job_post' then 'assumed' else 'declared' end,
+    'saidBy', case e->>'kind' when 'case_study' then 'vendor' when 'article' then 'third party' else 'company' end) end)
+  from jsonb_array_elements(i.evidence) e)
+where jsonb_typeof(i.evidence) = 'array' and jsonb_array_length(i.evidence) > 0
+  and exists (select 1 from jsonb_array_elements(i.evidence) e where not e ? 'level');
+
+-- Public companies (metadata design, Nov 2026): registry identity and attributes, each flagged with its registry and link.
+alter table companies add column if not exists registry text not null default '';      -- 'FR:552032534' (SIREN), 'US:0000320193' (SEC CIK)
+alter table companies add column if not exists registry_url text not null default '';
+alter table companies add column if not exists reg_attrs jsonb not null default '{}';
+alter table companies add column if not exists reg_at timestamptz;
+alter table companies add column if not exists reg_tried_at timestamptz;
+-- SEC full-text searches (one per vendor name) and the filings they return, read by scripts/registry.js
+alter table market_sources drop constraint if exists market_sources_kind_check;
+alter table market_sources add constraint market_sources_kind_check check (kind in ('index', 'page', 'search', 'sec_search', 'sec_filing'));
+
+-- The company universe (metadata design, Nov 2026): the denominator. France: active GE and ETI legal units (INSEE Sirene);
+-- United States: companies with a ticker (SEC EDGAR) and their filer category. Linked to the map by registry id or name key.
+create table if not exists universe (
+  id text primary key,                          -- 'FR:<SIREN>' or 'US:<CIK>'
+  name text not null,
+  country text not null,
+  band text not null default '',                -- Large, Mid-size, Small
+  category text not null default '',            -- GE / ETI, or the SEC filer category
+  headcount text not null default '',
+  revenue bigint,
+  revenue_year text not null default '',
+  activity text not null default '',            -- NAF or SIC code
+  industry text not null default '',
+  ticker text not null default '',
+  exchange text not null default '',
+  url text not null default '',
+  source text not null default '',
+  skipped boolean not null default false,       -- funds and blank-check companies
+  company_id text,
+  fetched_at timestamptz not null default now()
+);
+create index if not exists universe_company on universe (company_id) where company_id is not null;
+create index if not exists universe_country_band on universe (country, band);
+create table if not exists universe_cursors (
+  key text primary key,
+  page integer not null default 0,
+  done boolean not null default false,
+  at timestamptz
+);
