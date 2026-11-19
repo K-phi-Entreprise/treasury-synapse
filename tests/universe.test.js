@@ -77,3 +77,10 @@ test('the universe meets the map by registry id or exact name, and coverage read
   const html = require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'index.html'), 'utf8');
   assert.match(html, /Found at X of N/); assert.match(html, /among large and mid-size companies in the registries/);
 });
+
+test('the registry and universe steps run even when the daily cap is reached, since they make no model call', () => {
+  const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'scripts', 'crawl.js'), 'utf8');
+  const cap = src.indexOf("else if (spent >= cfg.dailyUsd)");
+  assert.ok(src.indexOf("require('./universe').grow") < cap && src.indexOf("require('./registry').profiles") < cap);
+  assert.ok(src.indexOf("require('./registry').filings") > cap, 'filings stay inside the cap');
+});
