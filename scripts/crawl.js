@@ -466,6 +466,10 @@ async function crawl(pool, cfg = config(), opts = {}) {
   if (cfg.universePages > 0 || cfg.universeUS > 0) {
     try { await require('./universe').grow(pool, cfg, stats); } catch (e) { stats.errors.push('universe: ' + str(e.message, 300)); }
   }
+  /* one-off test of licensed LinkedIn company posts; runs once, only when AUTOBOUND_API_KEY is set */
+  if (process.env.AUTOBOUND_API_KEY && !opts.dryRun) {
+    try { await require('./signaltest').run(pool); } catch (e) { stats.errors.push('signal test: ' + str(e.message, 300)); }
+  }
   if (!cfg.apiKey) stats.notes = 'ANTHROPIC_API_KEY is not set; nothing done.';
   else if (spent >= cfg.dailyUsd) stats.notes = 'Daily spend cap reached (' + spent.toFixed(2) + ' of ' + cfg.dailyUsd + ' USD); nothing done.';
   else {

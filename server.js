@@ -97,6 +97,15 @@ app.get('/api/coverage', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+/* one-off data-source tests: the stored summary (counts, dates, and the sentence that flagged a post) */
+app.get('/api/signal-test', async (req, res, next) => {
+  try {
+    const r = await pool.query('select name, data, at from signal_tests order by at desc');
+    res.set('Cache-Control', 'no-store'); res.set('X-Robots-Tag', 'noindex');
+    res.json({ tests: r.rows });
+  } catch (e) { next(e); }
+});
+
 app.get('/api/health', async (req, res) => {
   try {
     const r = await pool.query('select (select count(*) from people where not hidden)::int as people, (select count(*) from co_appearances)::int as edges');
