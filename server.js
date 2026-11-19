@@ -87,6 +87,16 @@ app.get('/api/graph', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+/* the company universe: what share of large and mid-size companies each system is found at, per country */
+let covCache = { at: 0, body: null };
+app.get('/api/coverage', async (req, res, next) => {
+  try {
+    if (!covCache.body || Date.now() - covCache.at > 300000) covCache = { at: Date.now(), body: await require('./scripts/universe').coverage(pool) };
+    res.set('Cache-Control', 'public, max-age=300');
+    res.json(covCache.body);
+  } catch (e) { next(e); }
+});
+
 app.get('/api/health', async (req, res) => {
   try {
     const r = await pool.query('select (select count(*) from people where not hidden)::int as people, (select count(*) from co_appearances)::int as edges');

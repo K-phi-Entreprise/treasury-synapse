@@ -1012,6 +1012,16 @@ function renderCompanyDetail(n){
     const txt=bits.filter(Boolean).join(' · ');if(txt)src.append(' · '+txt+' (from '+(g.source||'the registry')+')')}
   updateSugg();
 }
+/* the denominator: of the large and mid-size companies in the French and US registries, how many the map shows on this system */
+let covLoading=false;
+function covLine(n,ins){
+  const cv=window.SYN_COV;
+  if(!cv){if(!covLoading){covLoading=true;fetch('/api/coverage').then(r=>r.ok?r.json():null).then(j=>{if(!j)return;window.SYN_COV=j;const k=sel;if(k!=null&&G.nodes[k]===n)renderMarketSystem(n)}).catch(()=>{})}return}
+  const parts=[];['France','United States'].forEach(c=>{const base=cv.base.filter(b=>b.country===c);const N=base.reduce((a,b)=>a+b.n,0);if(!N)return;
+    const x=cv.bySystem.filter(b=>b.country===c&&b.system===n.name).reduce((a,b)=>a+b.n,0);parts.push(c+': '+x.toLocaleString('en')+' of '+N.toLocaleString('en'))});
+  if(!parts.length)return;
+  const d=el('div','kf','Found at, among large and mid-size companies in the registries: '+parts.join(' · ')+'.');d.title=cv.note;ins.appendChild(d);
+}
 function renderMarketSystem(n){
   $('d-seg').textContent=n.hub==='signal'?'Signal':'System';$('d-name').textContent=n.name;
   const cos=G.adj[sel].filter(j=>vis[j]);
@@ -1027,6 +1037,7 @@ function renderMarketSystem(n){
   const t=el('div','tags');Object.keys(cnt).forEach(k=>{if(!cnt[k])return;const g=el('span','tag sys',cnt[k]+' ');g.appendChild(el('b','',STATUS_TXT[k]));t.appendChild(g)});if(moves){const g=el('span','tag sys',moves+' ');g.appendChild(el('b','','came from spreadsheets'));t.appendChild(g)}
   const wk=(window.SYN_WEAK||{})[n.name];if(wk){const g=el('span','tag sys asm',wk+' ');g.appendChild(el('b','',wk===1?'job post asks for it as a skill':'job posts ask for it as a skill'));g.title='Counted, not drawn: a post that only asks for the skill does not show the employer runs it';t.appendChild(g)}
   if(t.children.length)ins.appendChild(t);
+  covLine(n,ins);
   const withStaff=cos.filter(j=>G.nodes[j].staff.length).length;
   if(withStaff)ins.appendChild(el('div','kf',withStaff+(withStaff===1?' of these organisations has':' have')+' someone on the map who works or worked there: open one to see whom to ask.'));
   const list=$('d-list');list.textContent='';
@@ -2890,6 +2901,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       <li><b>Read the sizes with care:</b> a bubble counts public evidence, not customers. Vendors that publish many customer stories look bigger; systems with a large base and few published stories look smaller. Nothing is weighted or corrected to compensate. This is not market share.</li>
       <li><b>Selecting now:</b> a job post or an announcement of the last nine months, unless a later page shows the system running.</li>
       <li><b>Industry, size and country:</b> from Wikidata when an organisation of the same name is found, otherwise Unknown. Each organisation's card links to its item.</li>
+      <li><b>Found at X of N:</b> the denominator is every active large and mid-size company in the French registry (INSEE categories GE and ETI) and every listed company in SEC EDGAR, by filer category. France counts legal units, so a group's French subsidiaries count separately; the US counts listed companies only. A company on the map is matched to the registry by its registry number or its exact name.</li>
       <li><b>Public companies:</b> organisations on the map are looked up in the French company registry (INSEE Sirene) and in SEC EDGAR, on an exact name match only. What the registry says (category, headcount, revenue, ticker, industry) is shown with its link and never replaces a correction. Annual reports filed with the SEC (10-K, 20-F, 40-F) are searched for each vendor's distinctive name; a filing counts only when its own words say the filer runs the system, and that line is declared. Vendor names that are ordinary words (Board, Cube, Bound, FIS) are not searched, the same rule for every vendor.</li>
     </ul>
   </div>

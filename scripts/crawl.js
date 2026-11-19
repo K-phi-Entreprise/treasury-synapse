@@ -53,6 +53,8 @@ function config(env = process.env) {
     marketSearches: n('CRAWL_MARKET_SEARCHES', 3),
     filingsPerRun: n('CRAWL_FILINGS', 3),        // SEC filings read per run (one model call each), plus one EDGAR search
     registryBatch: n('CRAWL_REGISTRY', 20),      // companies looked up in the French and US registries per run (no model call)
+    universePages: n('CRAWL_UNIVERSE_PAGES', 8), // pages of the French registry's large and mid-size companies per run (no model call)
+    universeUS: n('CRAWL_UNIVERSE_US', 60),      // US listed companies whose filer category is read per run (no model call)
     owner: env.OWNER_ID || 'vincent-donnat'
   };
 }
@@ -468,6 +470,9 @@ async function crawl(pool, cfg = config(), opts = {}) {
     /* public companies: registry profiles (free) and SEC filings that name a system (one short model call each) */
     if (cfg.registryBatch > 0) {
       try { await require('./registry').profiles(pool, cfg, stats); } catch (e) { stats.errors.push('registry: ' + str(e.message, 300)); }
+    }
+    if (cfg.universePages > 0 || cfg.universeUS > 0) {
+      try { await require('./universe').grow(pool, cfg, stats); } catch (e) { stats.errors.push('universe: ' + str(e.message, 300)); }
     }
     if (cfg.filingsPerRun > 0) {
       try { await require('./registry').filings(pool, cfg, stats, cfg.dailyUsd - spent); } catch (e) { stats.errors.push('filings: ' + str(e.message, 300)); }

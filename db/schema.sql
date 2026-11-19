@@ -385,3 +385,33 @@ alter table companies add column if not exists reg_tried_at timestamptz;
 -- SEC full-text searches (one per vendor name) and the filings they return, read by scripts/registry.js
 alter table market_sources drop constraint if exists market_sources_kind_check;
 alter table market_sources add constraint market_sources_kind_check check (kind in ('index', 'page', 'search', 'sec_search', 'sec_filing'));
+
+-- The company universe (metadata design, Nov 2026): the denominator. France: active GE and ETI legal units (INSEE Sirene);
+-- United States: companies with a ticker (SEC EDGAR) and their filer category. Linked to the map by registry id or name key.
+create table if not exists universe (
+  id text primary key,                          -- 'FR:<SIREN>' or 'US:<CIK>'
+  name text not null,
+  country text not null,
+  band text not null default '',                -- Large, Mid-size, Small
+  category text not null default '',            -- GE / ETI, or the SEC filer category
+  headcount text not null default '',
+  revenue bigint,
+  revenue_year text not null default '',
+  activity text not null default '',            -- NAF or SIC code
+  industry text not null default '',
+  ticker text not null default '',
+  exchange text not null default '',
+  url text not null default '',
+  source text not null default '',
+  skipped boolean not null default false,       -- funds and blank-check companies
+  company_id text,
+  fetched_at timestamptz not null default now()
+);
+create index if not exists universe_company on universe (company_id) where company_id is not null;
+create index if not exists universe_country_band on universe (country, band);
+create table if not exists universe_cursors (
+  key text primary key,
+  page integer not null default 0,
+  done boolean not null default false,
+  at timestamptz
+);
