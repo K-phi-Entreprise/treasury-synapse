@@ -63,7 +63,7 @@ async function loadGraph(since) {
   const market = await loadMarket(pool, since);
   return {
     build: BUILD,
-    companies: market.companies, installs: market.installs, companyPeople: market.companyPeople || null,
+    companies: market.companies, installs: market.installs, companyPeople: market.companyPeople || null, weak: since ? null : market.weak,
     now: new Date().toISOString(),
     people: people.rows.filter(p => !p.hidden).map(p => ({
       id: p.id, name: p.name, headline: p.headline, org: p.org, city: p.city, region: p.region, segment: p.segment, seed: p.seed,

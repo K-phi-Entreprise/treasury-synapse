@@ -130,11 +130,14 @@ test('the page carries the K-phi palettes, dark by default with a remembered lig
   assert.ok(!/#6ee7f0|#0e1328/.test(html), 'no literal colours left from the old palette');
 });
 
-test('one method for every vendor: one named-customer search each, nothing extra, and the method is on the page', async () => {
+test('one method for every vendor: one named-customer search and one job-post search each, nothing extra, and the method is on the page', async () => {
   const { SOURCES, VENDORS, seed } = require('../scripts/market');
-  for (const [name] of VENDORS) assert.strictEqual(SOURCES.filter(x => x.kind === 'search' && x.url === 'search:' + name + ' customer case study').length, 1, name);
+  for (const [name] of VENDORS) {
+    assert.strictEqual(SOURCES.filter(x => x.kind === 'search' && x.url === 'search:' + name + ' customer case study').length, 1, name);
+    assert.strictEqual(SOURCES.filter(x => x.kind === 'search' && x.url === 'search:' + name + ' job post').length, 1, name);
+  }
   const named = SOURCES.filter(x => x.kind === 'search' && VENDORS.some(([n]) => x.url.includes(n)));
-  assert.strictEqual(named.length, VENDORS.length, 'no vendor has a second search');
+  assert.strictEqual(named.length, 2 * VENDORS.length, 'no vendor has a third search');
   await pool.query("insert into market_sources (url, label, kind) values ('search:FIS Quantum job post', 'extra', 'search') on conflict do nothing");
   await seed(pool);
   assert.strictEqual((await pool.query("select count(*)::int n from market_sources where url = 'search:FIS Quantum job post'")).rows[0].n, 0, 'a search outside the method is dropped');
@@ -203,7 +206,7 @@ test('every fact says whether it was declared or assumed, and the line takes the
   await require('../scripts/migrate').migrate(pool);
   row = (await pool.query("select evidence from installs where company_id = 'evidence-test'")).rows[0];
   assert.deepStrictEqual(row.evidence.map(e => e.level), ['assumed', 'declared']);
-  assert.deepStrictEqual(levels([], 'job_post'), { level: 'assumed', declared: 0, assumed: 1 });
+  assert.deepStrictEqual(levels([], 'job_post'), { level: 'assumed', declared: 0, assumed: 1, weak: 0 });
   /* nothing left without a level after migrate */
   assert.strictEqual((await pool.query("select count(*)::int n from installs i, jsonb_array_elements(i.evidence) e where not e ? 'level'")).rows[0].n, 0);
 });
@@ -212,4 +215,23 @@ test('the company card says declared or assumed on every source', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
   assert.ok(html.includes("' · '+evTxt(r)"), 'source rows carry the level');
   assert.ok(html.includes("(assumed)"), 'assumed lines are labelled');
+});
+
+test('job posts: strong ones draw an assumed line, weak ones are counted per system and never drawn', async () => {
+  const { loadMarket, SOURCES, VENDORS } = require('../scripts/market');
+  await upsertInstall(pool, { company: 'Weak Post Co', system: 'Trovata', status: 'live', kind: 'job_post', strength: 'weak', url: 'https://jobs.example.com/weak-1', extract: 'Trovata or similar a plus' });
+  await upsertInstall(pool, { company: 'Strong Post Co', system: 'Trovata', status: 'live', kind: 'job_post', url: 'https://jobs.example.com/strong-1', extract: 'own our Trovata set-up' });
+  const ev = (await pool.query("select evidence from installs where company_id = 'weak-post'")).rows[0].evidence[0];
+  assert.strictEqual(ev.strength, 'weak');
+  const m = await loadMarket(pool);
+  assert.ok(!m.installs.some(i => i.company === 'weak-post'), 'a weak-only line is not drawn');
+  assert.ok(m.weak.Trovata >= 1, 'it is counted for its system');
+  const s = m.installs.find(i => i.company === 'strong-post');
+  assert.deepStrictEqual([s.level, s.assumed, s.weak], ['assumed', 1, 0]);
+  /* one job search per vendor, the same for each */
+  const jobs = SOURCES.filter(x => / job post$/.test(x.url) && x.url !== 'search:treasury management system implementation job post');
+  assert.strictEqual(jobs.length, VENDORS.length);
+  const r = await fetch(base + '/api/graph'); const g = await r.json();
+  /* the graph payload is cached for a minute, so only its shape is checked here */
+  assert.ok(g.weak && typeof g.weak === 'object', 'the page gets the weak counts');
 });

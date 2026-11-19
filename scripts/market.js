@@ -45,9 +45,9 @@ const SAID_BY = { case_study: 'vendor', press: 'company', filing: 'company', tal
 /* counts per level for one line, from its evidence; evidence written before levels existed takes its level from its kind */
 function levels(evidence, kind) {
   const ev = Array.isArray(evidence) && evidence.length ? evidence : [{ kind }];
-  let declared = 0, assumed = 0;
-  for (const e of ev) { if (!e) continue; if ((e.level || levelOf(e.kind || kind)) === 'assumed') assumed++; else declared++; }
-  return { level: declared ? 'declared' : 'assumed', declared, assumed };
+  let declared = 0, assumed = 0, weak = 0;
+  for (const e of ev) { if (!e) continue; if ((e.level || levelOf(e.kind || kind)) === 'assumed') { assumed++; if (e.strength === 'weak') weak++; } else declared++; }
+  return { level: declared ? 'declared' : 'assumed', declared, assumed, weak };
 }
 const REGIONS = ['United States', 'United Kingdom', 'France', 'DACH', 'Benelux', 'Nordics', 'Southern Europe', 'Asia-Pacific', 'Other', 'Unknown'];
 /* advisers and vendors show up in job posts and case studies; they are not users of the systems they implement */
@@ -92,6 +92,8 @@ async function upsertInstall(db, r, source = 'harvest') {
   [key, name, region, s(r.industry, 80), verticalOf([r.industry]), emp, sizeOf(emp)]);
   const ev = { url, kind, date: dateish(r.date), note: s(r.note, 300), level: levelOf(kind), saidBy: SAID_BY[kind] || '',
     extract: s(r.extract, 200), seen: new Date().toISOString().slice(0, 10), method: source };
+  /* job posts: strong when the post says the employer runs the system ("our Kyriba platform"), weak when it only asks for the skill */
+  if (kind === 'job_post') ev.strength = r.strength === 'weak' ? 'weak' : 'strong';
   const row = [key, c.system, status, s(r.product, 120) || c.product, dateish(r.since) || s(r.since, 10).replace(/[^0-9]/g, '').slice(0, 4), dateish(r.date),
     s(r.partner, 120), s(r.replaced, 120), s(r.person, 120), s(r.personTitle || r.person_title, 120), url, kind, s(r.note, 300), JSON.stringify([ev]), source];
   const old = (await db.query('select evidence, url from installs where company_id = $1 and system = $2 and status = $3', [key, c.system, status])).rows[0];
@@ -142,7 +144,9 @@ const INDUSTRIES = ['Commodities & trading', 'Energy & utilities', 'Pharma & hea
 const SOURCES = [].concat(
   ...VENDORS.map(([name, slugs, pages]) => slugs.map(v => ({ url: CS + v, label: 'Customer stories: ' + name, kind: 'index' }))
     .concat((pages || []).map(u => ({ url: u, label: 'Customer references: ' + name, kind: 'index' })))
-    .concat([{ url: 'search:' + name + ' customer case study', label: 'Named customers of ' + name + ': its own reference pages, press releases, conference talks', kind: 'search' }])),
+    .concat([{ url: 'search:' + name + ' customer case study', label: 'Named customers of ' + name + ': its own reference pages, press releases, conference talks', kind: 'search' },
+      /* job offers, one search per vendor like the case studies: assumed evidence of who runs what */
+      { url: 'search:' + name + ' job post', label: 'Job posts naming ' + name + ': employers that run it, are moving to it, or ask for it as a skill', kind: 'search' }])),
   [{ url: 'search:treasury management system implementation job post', label: 'Job posts asking someone to select or implement a TMS', kind: 'search' },
     { url: 'search:company selects treasury management system press release', label: 'Press releases: a company selects or goes live with a TMS', kind: 'search' },
     { url: 'search:treasury management system replaced spreadsheets case study', label: 'Case studies of moves from spreadsheets to a TMS', kind: 'search' }],
@@ -206,11 +210,18 @@ async function loadMarket(pool, since) {
   const companies = (await pool.query(`select * from companies where not hidden${since ? ' and updated_at > $1' : ''} order by added_at`, p)).rows;
   const installs = (await pool.query(`select i.* from installs i join companies c on c.id = i.company_id and not c.hidden${since ? ' where i.updated_at > $1' : ''} order by i.added_at`, p)).rows;
   const out = {
+    weak: {},
     companies: companies.map(c => ({ id: c.id, name: c.name, region: c.region, industry: c.industry, vertical: c.vertical, size: c.size, employees: c.employees, country: c.country,
       wikidata: c.wikidata, addedAt: c.added_at && c.added_at.toISOString() })),
     installs: installs.map(i => ({ company: i.company_id, system: i.system, status: i.status, product: i.product, since: i.since, date: i.date, partner: i.partner,
       replaced: i.replaced, person: i.person, personTitle: i.person_title, url: i.url, kind: i.kind, note: i.note, sources: (i.evidence || []).length, ...levels(i.evidence, i.kind), addedAt: i.added_at && i.added_at.toISOString() }))
   };
+  /* a line held up only by weak job posts (the system asked as a skill) draws nothing; it is counted per system instead */
+  out.installs = out.installs.filter(i => {
+    if (!(i.declared === 0 && i.assumed > 0 && i.weak === i.assumed)) return true;
+    if (i.system) out.weak[i.system] = (out.weak[i.system] || 0) + 1;
+    return false;
+  });
   if (since) return out;
   /* person cards: "uses X" at their organisation is a pair too; people at a company (now or before) are who to ask */
   const ppl = (await pool.query(`select p.id, p.org, p.region, p.segment, s.system, s.url, s.date from people p join person_systems s on s.person_id = p.id
@@ -260,6 +271,7 @@ const SUBMIT = {
         employees: { type: 'number', description: 'Number of employees, only if the page states it.' },
         kind: { type: 'string', enum: KINDS }, note: { type: 'string', description: 'One factual sentence, no praise words.' },
         extract: { type: 'string', description: 'The words on the page that state the fact, copied exactly, under 25 words.' },
+        strength: { type: 'string', enum: ['strong', 'weak'], description: 'Job posts only. strong: the post says the employer runs the system ("our Kyriba platform", "administer Kyriba"); weak: it only lists the system as a skill ("Kyriba or similar a plus").' },
         url: { type: 'string' } }, required: ['company', 'status', 'url'] } },
       next_pages: { type: 'array', description: 'Single case studies, press releases or job posts worth reading next for detail (year, partner, what was replaced, person).', items: { type: 'object', properties: { url: { type: 'string' }, label: { type: 'string' } }, required: ['url'] } }
     },
@@ -269,7 +281,7 @@ const SUBMIT = {
 function systemPrompt(cfg) {
   return 'You collect facts for the Market view of "Treasury & FP&A Synapses": which organisation runs which treasury, cash, payments or FP&A system, from public pages only. ' +
     'Report an organisation only for its own use of the system. A vendor, a consultancy or an integrator is never the user; a bank is a user only when it runs the system for its own treasury. ' +
-    'A job post shows the system the employer runs ("our Kyriba platform") or a selection in progress ("select and implement a new TMS"); a post that only asks for experience with a product says nothing about the employer, skip it. ' +
+    'A job post shows the system the employer runs ("our Kyriba platform"): report it as live, kind job_post, strength strong. A post that only asks for experience with a product is reported as live with strength weak; it is counted, never drawn. A selection in progress ("select and implement a new TMS") is selecting. A recruitment agency\'s post that hides the employer is skipped. ' +
     'Also report the ERP, the planning (EPM, FP&A) and the bank or payment platforms the page names for the same organisation, each as its own live line (SAP S/4HANA, Oracle NetSuite, Microsoft Dynamics 365, Anaplan, OneStream). ' +
     'When a case study says what was used before (Excel, spreadsheets, a legacy system, a named product), report it as replaced on the same line, and as its own previous line when a product or Excel is named. Never guess. ' +
     'Never use LinkedIn or profile-scraping sites. Write every field in English. You have at most ' + cfg.marketSearches + ' searches and ' + cfg.marketFetches + ' fetches. When done, call submit_market once with everything the fetched pages support, then stop.';
