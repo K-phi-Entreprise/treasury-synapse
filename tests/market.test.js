@@ -95,7 +95,7 @@ test('the harvester keeps facts only from pages it fetched, queues single storie
         { company: 'Unfetched SA', system: 'Agicap', status: 'live', url: 'https://elsewhere.example.org/x' },
         { company: 'Deloitte', system: 'Agicap', status: 'live', url: src }],
       next_pages: [{ url: 'https://www.casestudies.com/company/agicap/case-study/petit-bateau', label: 'Petit Bateau story' }, { url: 'https://www.linkedin.com/posts/x' }] } }] };
-  const run = await crawl(pool, Object.assign(config({ ANTHROPIC_API_KEY: 'k', ANTHROPIC_BASE_URL: 'http://127.0.0.1:' + mock.address().port, CRAWL_TARGETS: '0' })));
+  const run = await crawl(pool, Object.assign(config({ ANTHROPIC_API_KEY: 'k', ANTHROPIC_BASE_URL: 'http://127.0.0.1:' + mock.address().port, CRAWL_TARGETS: '0', CRAWL_FILINGS: '0', CRAWL_REGISTRY: '0' })));
   assert.deepStrictEqual(run.errors, []);
   assert.strictEqual(run.market.added, 2, JSON.stringify(run.market));
   assert.strictEqual(run.market.rejected, 2);

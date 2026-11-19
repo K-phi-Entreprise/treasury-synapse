@@ -51,6 +51,8 @@ function config(env = process.env) {
     marketPages: n('CRAWL_MARKET_PAGES', 2),   // market sources (vendor case-study lists, single stories, job searches) per run
     marketFetches: n('CRAWL_MARKET_FETCHES', 4),
     marketSearches: n('CRAWL_MARKET_SEARCHES', 3),
+    filingsPerRun: n('CRAWL_FILINGS', 3),        // SEC filings read per run (one model call each), plus one EDGAR search
+    registryBatch: n('CRAWL_REGISTRY', 20),      // companies looked up in the French and US registries per run (no model call)
     owner: env.OWNER_ID || 'vincent-donnat'
   };
 }
@@ -452,7 +454,7 @@ async function crawl(pool, cfg = config(), opts = {}) {
   const spent = await spentToday(pool);
   const targets = await pickTargets(pool, cfg);
   if (opts.dryRun) {
-    const ms = cfg.marketPages > 0 ? (await pool.query("select url from market_sources where status = 'queued' order by case kind when 'index' then 0 when 'page' then 1 else 2 end, read_at nulls first limit $1", [cfg.marketPages])).rows.map(r => 'market:' + r.url) : [];
+    const ms = cfg.marketPages > 0 ? (await pool.query("select url from market_sources where status = 'queued' and kind in ('index', 'page', 'search') order by case kind when 'index' then 0 when 'page' then 1 else 2 end, read_at nulls first limit $1", [cfg.marketPages])).rows.map(r => 'market:' + r.url) : [];
     return { dryRun: true, spentToday: spent, targets: targets.map(t => t.type + ':' + (t.type === 'lead' ? t.lead.url : t.personId)).concat(ms) };
   }
   if (!cfg.apiKey) stats.notes = 'ANTHROPIC_API_KEY is not set; nothing done.';
@@ -462,6 +464,13 @@ async function crawl(pool, cfg = config(), opts = {}) {
     if (cfg.marketPages > 0) {
       try { await require('./market').harvest(pool, cfg, stats, cfg.dailyUsd - spent); }
       catch (e) { stats.errors.push('market: ' + str(e.message, 300)); }
+    }
+    /* public companies: registry profiles (free) and SEC filings that name a system (one short model call each) */
+    if (cfg.registryBatch > 0) {
+      try { await require('./registry').profiles(pool, cfg, stats); } catch (e) { stats.errors.push('registry: ' + str(e.message, 300)); }
+    }
+    if (cfg.filingsPerRun > 0) {
+      try { await require('./registry').filings(pool, cfg, stats, cfg.dailyUsd - spent); } catch (e) { stats.errors.push('filings: ' + str(e.message, 300)); }
     }
     for (const t of targets) {
       if (stats.errors.some(x => / 40[13]:| 429:| 529:/.test(x))) break;

@@ -541,7 +541,7 @@ function upsertHub(G,kind,name,at,rnd){
 /* an organisation of the Market view: a node of its own, not a hub (hubs push each other apart hard) */
 function upsertCompany(G,c,at,rnd){
   const id='co:'+c.id;let i=G.idx.get(id);
-  const meta={id:id,key:String(c.id),name:String(c.name||c.id),hub:'company',headline:String(c.industry||''),org:String(c.name||''),city:'',region:String(c.region||'Unknown'),segment:'',seg:0,seed:false,foundVia:null,source:'',topics:[],systems:[],roles:[],knownFor:'',publishers:0,followers:null,addedAt:String(c.addedAt||''),vertical:String(c.vertical||''),size:String(c.size||''),employees:c.employees==null?null:Number(c.employees),country:String(c.country||''),wikidata:String(c.wikidata||''),installs:[],staff:[],selecting:null};
+  const meta={id:id,key:String(c.id),name:String(c.name||c.id),hub:'company',headline:String(c.industry||''),org:String(c.name||''),city:'',region:String(c.region||'Unknown'),segment:'',seg:0,seed:false,foundVia:null,source:'',topics:[],systems:[],roles:[],knownFor:'',publishers:0,followers:null,addedAt:String(c.addedAt||''),vertical:String(c.vertical||''),size:String(c.size||''),employees:c.employees==null?null:Number(c.employees),country:String(c.country||''),wikidata:String(c.wikidata||''),registry:String(c.registry||''),registryUrl:String(c.registryUrl||''),reg:c.reg||{},installs:[],staff:[],selecting:null};
   if(i!=null){const o=G.nodes[i];meta.installs=o.installs;meta.staff=o.staff;meta.selecting=o.selecting;G.nodes[i]=meta;return i}
   if(G.n>=MAX_N)return -1;
   i=G.n++;G.idx.set(id,i);G.nodes[i]=meta;G.adj[i]=[];
@@ -1007,6 +1007,9 @@ function renderCompanyDetail(n){
     a.append(tx,el('span','cf','person'));list.appendChild(a)});
   const src=$('d-src');src.textContent='';
   if(co.wikidata){src.append('Profile: ');const a=el('a','','Wikidata '+co.wikidata);a.href='https://www.wikidata.org/wiki/'+co.wikidata;a.target='_blank';a.rel='noopener noreferrer';src.appendChild(a)}
+  if(co.registry){const g=co.reg||{},fr=co.registry.slice(0,3)==='FR:';src.append((co.wikidata?' · ':'')+'Registry: ');const a=el('a','',fr?'SIREN '+co.registry.slice(3):'SEC CIK '+co.registry.slice(3).replace(/^0+/,''));a.href=co.registryUrl;a.target='_blank';a.rel='noopener noreferrer';src.appendChild(a);
+    const bits=fr?[g.category,g.headcount?g.headcount+' employees'+(g.headcountYear?' ('+g.headcountYear+')':''):'',g.revenue?'revenue '+(g.revenue/1e6).toLocaleString('en',{maximumFractionDigits:0})+'m EUR'+(g.revenueYear?' ('+g.revenueYear+')':''):'']:[g.ticker?(g.exchange?g.exchange+': ':'')+g.ticker:'',g.industry];
+    const txt=bits.filter(Boolean).join(' · ');if(txt)src.append(' · '+txt+' (from '+(g.source||'the registry')+')')}
   updateSugg();
 }
 function renderMarketSystem(n){
@@ -2887,6 +2890,7 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
       <li><b>Read the sizes with care:</b> a bubble counts public evidence, not customers. Vendors that publish many customer stories look bigger; systems with a large base and few published stories look smaller. Nothing is weighted or corrected to compensate. This is not market share.</li>
       <li><b>Selecting now:</b> a job post or an announcement of the last nine months, unless a later page shows the system running.</li>
       <li><b>Industry, size and country:</b> from Wikidata when an organisation of the same name is found, otherwise Unknown. Each organisation's card links to its item.</li>
+      <li><b>Public companies:</b> organisations on the map are looked up in the French company registry (INSEE Sirene) and in SEC EDGAR, on an exact name match only. What the registry says (category, headcount, revenue, ticker, industry) is shown with its link and never replaces a correction. Annual reports filed with the SEC (10-K, 20-F, 40-F) are searched for each vendor's distinctive name; a filing counts only when its own words say the filer runs the system, and that line is declared. Vendor names that are ordinary words (Board, Cube, Bound, FIS) are not searched, the same rule for every vendor.</li>
     </ul>
   </div>
 </div>

@@ -170,7 +170,7 @@ async function seed(pool, dir = path.join(__dirname, '..', 'data')) {
     await pool.query('insert into market_seed_files (file, rows) values ($1,$2) on conflict do nothing', [f, k]);
     n += k;
   }
-  for (const x of SOURCES) await pool.query('insert into market_sources (url, label, kind) values ($1,$2,$3) on conflict (url) do nothing', [x.url, x.label, x.kind]);
+  for (const x of SOURCES.concat(require('./registry').SEC_SOURCES)) await pool.query('insert into market_sources (url, label, kind) values ($1,$2,$3) on conflict (url) do nothing', [x.url, x.label, x.kind]);
   /* searches outside the method (an earlier, uneven list) are dropped */
   await pool.query("delete from market_sources where kind = 'search' and not (url = any($1))", [SOURCES.filter(x => x.kind === 'search').map(x => x.url)]);
   /* corrections by hand (data/company-fixes.json): applied on every deploy, and the profile is no longer redone from Wikidata */
@@ -212,7 +212,7 @@ async function loadMarket(pool, since) {
   const out = {
     weak: {},
     companies: companies.map(c => ({ id: c.id, name: c.name, region: c.region, industry: c.industry, vertical: c.vertical, size: c.size, employees: c.employees, country: c.country,
-      wikidata: c.wikidata, addedAt: c.added_at && c.added_at.toISOString() })),
+      wikidata: c.wikidata, registry: c.registry || '', registryUrl: c.registry_url || '', reg: c.reg_attrs || {}, addedAt: c.added_at && c.added_at.toISOString() })),
     installs: installs.map(i => ({ company: i.company_id, system: i.system, status: i.status, product: i.product, since: i.since, date: i.date, partner: i.partner,
       replaced: i.replaced, person: i.person, personTitle: i.person_title, url: i.url, kind: i.kind, note: i.note, sources: (i.evidence || []).length, ...levels(i.evidence, i.kind), addedAt: i.added_at && i.added_at.toISOString() }))
   };
@@ -293,7 +293,8 @@ function briefFor(src) {
 }
 
 async function pickSources(pool, n) {
-  return (await pool.query(`select * from market_sources where status = 'queued' or (status = 'done' and kind <> 'page' and read_at < now() - interval '30 days')
+  /* SEC searches and filings are read by scripts/registry.js, not by the web harvester */
+  return (await pool.query(`select * from market_sources where kind in ('index', 'page', 'search') and (status = 'queued' or (status = 'done' and kind <> 'page' and read_at < now() - interval '30 days'))
     order by case kind when 'index' then 0 when 'page' then 1 else 2 end, read_at nulls first, attempts, added_at limit $1`, [n])).rows;
 }
 

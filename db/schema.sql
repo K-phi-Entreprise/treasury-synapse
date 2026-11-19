@@ -375,3 +375,13 @@ update installs i set evidence = (
   from jsonb_array_elements(i.evidence) e)
 where jsonb_typeof(i.evidence) = 'array' and jsonb_array_length(i.evidence) > 0
   and exists (select 1 from jsonb_array_elements(i.evidence) e where not e ? 'level');
+
+-- Public companies (metadata design, Nov 2026): registry identity and attributes, each flagged with its registry and link.
+alter table companies add column if not exists registry text not null default '';      -- 'FR:552032534' (SIREN), 'US:0000320193' (SEC CIK)
+alter table companies add column if not exists registry_url text not null default '';
+alter table companies add column if not exists reg_attrs jsonb not null default '{}';
+alter table companies add column if not exists reg_at timestamptz;
+alter table companies add column if not exists reg_tried_at timestamptz;
+-- SEC full-text searches (one per vendor name) and the filings they return, read by scripts/registry.js
+alter table market_sources drop constraint if exists market_sources_kind_check;
+alter table market_sources add constraint market_sources_kind_check check (kind in ('index', 'page', 'search', 'sec_search', 'sec_filing'));
