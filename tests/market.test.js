@@ -182,3 +182,34 @@ test('a line removed by hand stays removed: the crawler cannot write it again', 
   assert.deepStrictEqual(r, { ok: false, reason: 'removed by hand' });
   assert.strictEqual((await pool.query("select count(*)::int as n from installs where company_id = 'sovos' and status = 'selecting'")).rows[0].n, 0);
 });
+
+test('every fact says whether it was declared or assumed, and the line takes the strongest', async () => {
+  const { levelOf, levels, loadMarket } = require('../scripts/market');
+  assert.strictEqual(levelOf('case_study'), 'declared'); assert.strictEqual(levelOf('filing'), 'declared');
+  assert.strictEqual(levelOf('job_post'), 'assumed'); assert.strictEqual(levelOf('person'), 'assumed');
+  const post = 'https://jobs.example.com/acme-treasury-analyst';
+  await upsertInstall(pool, { company: 'Evidence Test Ltd', system: 'Kyriba', status: 'live', kind: 'job_post', url: post, extract: 'administer our Kyriba platform' });
+  let row = (await pool.query("select evidence from installs where company_id = 'evidence-test' and system = 'Kyriba'")).rows[0];
+  assert.strictEqual(row.evidence[0].level, 'assumed'); assert.strictEqual(row.evidence[0].saidBy, 'company');
+  assert.strictEqual(row.evidence[0].extract, 'administer our Kyriba platform'); assert.ok(/^\d{4}-\d\d-\d\d$/.test(row.evidence[0].seen));
+  let m = (await loadMarket(pool)).installs.find(i => i.company === 'evidence-test');
+  assert.deepStrictEqual([m.level, m.declared, m.assumed], ['assumed', 0, 1]);
+  /* a case study on the same line makes it declared, the job post still counts */
+  await upsertInstall(pool, { company: 'Evidence Test', system: 'Kyriba', status: 'live', kind: 'case_study', url: 'https://www.kyriba.com/customers/evidence-test' });
+  m = (await loadMarket(pool)).installs.find(i => i.company === 'evidence-test');
+  assert.deepStrictEqual([m.level, m.declared, m.assumed], ['declared', 1, 1]);
+  /* evidence written before levels existed gets one on migrate, from its kind */
+  await pool.query(`update installs set evidence = '[{"url":"https://a.example","kind":"job_post"},{"url":"https://b.example","kind":"case_study"}]' where company_id = 'evidence-test'`);
+  await require('../scripts/migrate').migrate(pool);
+  row = (await pool.query("select evidence from installs where company_id = 'evidence-test'")).rows[0];
+  assert.deepStrictEqual(row.evidence.map(e => e.level), ['assumed', 'declared']);
+  assert.deepStrictEqual(levels([], 'job_post'), { level: 'assumed', declared: 0, assumed: 1 });
+  /* nothing left without a level after migrate */
+  assert.strictEqual((await pool.query("select count(*)::int n from installs i, jsonb_array_elements(i.evidence) e where not e ? 'level'")).rows[0].n, 0);
+});
+
+test('the company card says declared or assumed on every source', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  assert.ok(html.includes("' · '+evTxt(r)"), 'source rows carry the level');
+  assert.ok(html.includes("(assumed)"), 'assumed lines are labelled');
+});

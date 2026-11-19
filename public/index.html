@@ -197,6 +197,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .know{display:block;width:100%;margin:0 0 10px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer}
 .know[disabled]{color:var(--fg-faint);cursor:default}
 .lk.pend{opacity:.6}
+.tag.asm{border-style:dashed}
 .insight{display:flex;flex-direction:column;gap:7px;margin:0 0 10px}
 .insight:empty{display:none}
 .kf{font-size:12.5px;line-height:1.45;color:var(--fg)}
@@ -964,6 +965,8 @@ function renderDetail(){
 }
 const STATUS_TXT={live:'runs it',implementing:'implementing',selecting:'selecting',previous:'replaced it'};
 const KIND_TXT={case_study:'case study',press:'press release',job_post:'job post',talk:'talk',article:'article',filing:'filing',person:'person card'};
+/* declared: the company, the vendor, a tender or a filing states it; assumed: a job post or a person's card implies it */
+function evTxt(r){const d=r.declared||0,a=r.assumed||0;if(!d&&!a)return r.level||'declared';return d&&a?d+' declared, '+a+' assumed':d?'declared':'assumed'}
 function installLine(r){
   const bits=[STATUS_TXT[r.status]||r.status];
   if(r.since)bits.push('since '+r.since);if(r.partner)bits.push('with '+r.partner);
@@ -987,7 +990,7 @@ function renderCompanyDetail(n){
   const order={live:0,implementing:1,selecting:2,previous:3};
   const rows=co.installs.slice().sort((a,b)=>order[a.status]-order[b.status]);
   const t=el('div','tags');
-  rows.forEach(r=>{const g=el('span','tag sys',(r.system||'A new system')+(r.product&&r.product!==r.system?' '+r.product:'')+' ');g.appendChild(el('b','',STATUS_TXT[r.status]));t.appendChild(g)});
+  rows.forEach(r=>{const g=el('span','tag sys'+(r.level==='assumed'?' asm':''),(r.system||'A new system')+(r.product&&r.product!==r.system?' '+r.product:'')+' ');g.appendChild(el('b','',STATUS_TXT[r.status]+(r.level==='assumed'?' (assumed)':'')));if(r.level==='assumed')g.title='Assumed: implied by a job post or a person\'s card, not stated by the company or the vendor';t.appendChild(g)});
   if(rows.length)ins.appendChild(t);
   const lead=rows.find(r=>r.note&&r.kind!=='person');if(lead)ins.appendChild(el('div','kf',lead.note));
   if(co.selecting)ins.appendChild(el('div','kf','Selection in progress'+(co.selecting.date?' ('+co.selecting.kind.replace('_',' ')+' of '+co.selecting.date+')':'')+'.'));
@@ -997,7 +1000,7 @@ function renderCompanyDetail(n){
     const a=el('a','lk'+(r.status==='previous'?' pend':''));
     if(r.url){a.href=r.url;a.target='_blank';a.rel='noopener noreferrer'}else a.href='#';
     const tx=el('div');tx.append(el('b','',(r.system||'A new system')+(r.product&&r.product!==r.system?' · '+r.product:'')),el('small','',installLine(r)+(r.person?' · '+r.person+(r.personTitle?', '+r.personTitle:''):'')));
-    a.append(tx,el('span','cf',KIND_TXT[r.kind]||r.kind));list.appendChild(a);
+    a.append(tx,el('span','cf',(KIND_TXT[r.kind]||r.kind)+' · '+evTxt(r)));list.appendChild(a);
   });
   co.staff.forEach(x=>{const p=G.nodes[x.i];if(!p)return;const a=el('a','lk');a.href='#';a.dataset.pid=p.id;
     const tx=el('div');tx.append(el('b','',p.name),el('small','',(x.past?'Worked here'+(x.past!=='before'?' until '+x.past:'')+' · ':'')+(p.headline||p.org)));
@@ -1009,9 +1012,9 @@ function renderCompanyDetail(n){
 function renderMarketSystem(n){
   $('d-seg').textContent=n.hub==='signal'?'Signal':'System';$('d-name').textContent=n.name;
   const cos=G.adj[sel].filter(j=>vis[j]);
-  const cnt={live:0,implementing:0,selecting:0,previous:0};let moves=0;
-  cos.forEach(j=>{const c=G.nodes[j];c.installs.forEach(r=>{if(r.system===n.name&&cnt[r.status]!=null)cnt[r.status]++});if(movedOffSheets(c)&&c.installs.some(r=>r.system===n.name&&r.status==='live'))moves++});
-  $('d-meta').textContent=n.hub==='signal'?cos.length+' organisations selecting a system, from job posts and press releases of the last nine months':cnt.live+' organisations publicly run it'+(cnt.selecting?' · '+cnt.selecting+' have it on a shortlist':'')+(cnt.previous?' · '+cnt.previous+' replaced it':'');
+  const cnt={live:0,implementing:0,selecting:0,previous:0};let moves=0,asm=0;
+  cos.forEach(j=>{const c=G.nodes[j];c.installs.forEach(r=>{if(r.system===n.name&&cnt[r.status]!=null){cnt[r.status]++;if(r.status==='live'&&r.level==='assumed')asm++}});if(movedOffSheets(c)&&c.installs.some(r=>r.system===n.name&&r.status==='live'))moves++});
+  $('d-meta').textContent=n.hub==='signal'?cos.length+' organisations selecting a system, from job posts and press releases of the last nine months':cnt.live+' organisations publicly run it'+(asm?' ('+(cnt.live-asm)+' declared, '+asm+' assumed)':'')+(cnt.selecting?' · '+cnt.selecting+' have it on a shortlist':'')+(cnt.previous?' · '+cnt.previous+' replaced it':'');
   $('d-links').textContent=cos.length;$('d-regs').textContent=new Set(cos.map(j=>G.nodes[j].region).filter(r=>r!=='Unknown')).size;$('d-via').textContent='Public pages';
   $('d-centred').hidden=G.center!==sel;$('d-know').hidden=true;
   const pros=[];for(let i=0;i<G.n;i++){const p=G.nodes[i];if(p.hub)continue;const x=p.systems.find(y=>y.name&&y.name.toLowerCase()===n.name.toLowerCase()&&(y.role==='implements'||y.role==='integrates'));if(x)pros.push(i)}

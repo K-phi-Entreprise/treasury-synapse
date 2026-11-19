@@ -365,3 +365,13 @@ create table if not exists people_seed_files (
 alter table people add column if not exists headline_date text not null default '';
 alter table people add column if not exists headline_source text not null default '';
 alter table people add column if not exists headline_locked boolean not null default false;
+
+-- Evidence levels (metadata design, Nov 2026): every evidence item says whether it was declared or assumed, and who said it.
+-- Items written before carry their level from their kind: job posts are assumed, everything else declared. Idempotent.
+update installs i set evidence = (
+  select jsonb_agg(case when e ? 'level' then e else e || jsonb_build_object(
+    'level', case when e->>'kind' = 'job_post' then 'assumed' else 'declared' end,
+    'saidBy', case e->>'kind' when 'case_study' then 'vendor' when 'article' then 'third party' else 'company' end) end)
+  from jsonb_array_elements(i.evidence) e)
+where jsonb_typeof(i.evidence) = 'array' and jsonb_array_length(i.evidence) > 0
+  and exists (select 1 from jsonb_array_elements(i.evidence) e where not e ? 'level');

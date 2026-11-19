@@ -37,6 +37,18 @@ function canonSystem(raw) {
 
 const STATUS = ['live', 'implementing', 'selecting', 'previous'];
 const KINDS = ['case_study', 'press', 'job_post', 'talk', 'article', 'filing'];
+/* Evidence level (Synapse metadata design, Nov 2026): declared when the company, the vendor, a tender or a filing states it;
+ * assumed when a source implies it without stating it (a job post, a person's card). The two are never merged into a single yes. */
+const ASSUMED_KINDS = new Set(['job_post', 'person']);
+const levelOf = kind => (ASSUMED_KINDS.has(kind) ? 'assumed' : 'declared');
+const SAID_BY = { case_study: 'vendor', press: 'company', filing: 'company', talk: 'company', article: 'third party', job_post: 'company', person: 'person' };
+/* counts per level for one line, from its evidence; evidence written before levels existed takes its level from its kind */
+function levels(evidence, kind) {
+  const ev = Array.isArray(evidence) && evidence.length ? evidence : [{ kind }];
+  let declared = 0, assumed = 0;
+  for (const e of ev) { if (!e) continue; if ((e.level || levelOf(e.kind || kind)) === 'assumed') assumed++; else declared++; }
+  return { level: declared ? 'declared' : 'assumed', declared, assumed };
+}
 const REGIONS = ['United States', 'United Kingdom', 'France', 'DACH', 'Benelux', 'Nordics', 'Southern Europe', 'Asia-Pacific', 'Other', 'Unknown'];
 /* advisers and vendors show up in job posts and case studies; they are not users of the systems they implement */
 const NOT_A_USER = /^(ey|ernst-and-young|pwc|pricewaterhousecoopers|deloitte|kpmg|accenture|zanders|clearsulting|bearingpoint|capgemini|rsm|grant-thornton|bdo|mazars|forvis-mazars|protiviti|talan|absys-cyborg|cognizant|infosys|wipro|tata-consultancy-services|genpact|redbridge|strategic-treasurer|actualize-consulting|treasury-alliance|real-treasury)$/;
@@ -78,7 +90,8 @@ async function upsertInstall(db, r, source = 'harvest') {
       updated_at = case when (companies.region = 'Unknown' and excluded.region <> 'Unknown') or (companies.industry = '' and excluded.industry <> '')
         or (companies.vertical = '' and excluded.vertical <> '') or (companies.employees is null and excluded.employees is not null) then now() else companies.updated_at end`,
   [key, name, region, s(r.industry, 80), verticalOf([r.industry]), emp, sizeOf(emp)]);
-  const ev = { url, kind, date: dateish(r.date), note: s(r.note, 300) };
+  const ev = { url, kind, date: dateish(r.date), note: s(r.note, 300), level: levelOf(kind), saidBy: SAID_BY[kind] || '',
+    extract: s(r.extract, 200), seen: new Date().toISOString().slice(0, 10), method: source };
   const row = [key, c.system, status, s(r.product, 120) || c.product, dateish(r.since) || s(r.since, 10).replace(/[^0-9]/g, '').slice(0, 4), dateish(r.date),
     s(r.partner, 120), s(r.replaced, 120), s(r.person, 120), s(r.personTitle || r.person_title, 120), url, kind, s(r.note, 300), JSON.stringify([ev]), source];
   const old = (await db.query('select evidence, url from installs where company_id = $1 and system = $2 and status = $3', [key, c.system, status])).rows[0];
@@ -196,7 +209,7 @@ async function loadMarket(pool, since) {
     companies: companies.map(c => ({ id: c.id, name: c.name, region: c.region, industry: c.industry, vertical: c.vertical, size: c.size, employees: c.employees, country: c.country,
       wikidata: c.wikidata, addedAt: c.added_at && c.added_at.toISOString() })),
     installs: installs.map(i => ({ company: i.company_id, system: i.system, status: i.status, product: i.product, since: i.since, date: i.date, partner: i.partner,
-      replaced: i.replaced, person: i.person, personTitle: i.person_title, url: i.url, kind: i.kind, note: i.note, sources: (i.evidence || []).length, addedAt: i.added_at && i.added_at.toISOString() }))
+      replaced: i.replaced, person: i.person, personTitle: i.person_title, url: i.url, kind: i.kind, note: i.note, sources: (i.evidence || []).length, ...levels(i.evidence, i.kind), addedAt: i.added_at && i.added_at.toISOString() }))
   };
   if (since) return out;
   /* person cards: "uses X" at their organisation is a pair too; people at a company (now or before) are who to ask */
@@ -207,9 +220,11 @@ async function loadMarket(pool, since) {
     const key = compKey(r.org), c = canonSystem(r.system);
     if (!key || !c.system || NOT_A_USER.test(key) || compKey(c.system) === key) continue;
     if (!byKey.has(key)) { const co = { id: key, name: r.org, region: r.region || 'Unknown', industry: r.segment === 'Banks' ? 'Financial services' : '', vertical: r.segment === 'Banks' ? 'Financial services' : '', size: '', employees: null, country: '', wikidata: '', addedAt: null }; byKey.set(key, co); out.companies.push(co); }
-    if (!out.installs.some(i => i.company === key && i.system === c.system && i.status === 'live'))
-      out.installs.push({ company: key, system: c.system, status: 'live', product: c.product, since: '', date: r.date || '', partner: '', replaced: '', person: '', personTitle: '',
-        url: r.url || '', kind: 'person', note: 'From the card of someone who works there', sources: 1, personId: r.id, addedAt: null });
+    const had = out.installs.find(i => i.company === key && i.system === c.system && i.status === 'live');
+    /* a person's card is assumed evidence: it adds to a line that exists, or draws an assumed line of its own */
+    if (had) had.assumed++;
+    else out.installs.push({ company: key, system: c.system, status: 'live', product: c.product, since: '', date: r.date || '', partner: '', replaced: '', person: '', personTitle: '',
+        url: r.url || '', kind: 'person', note: 'From the card of someone who works there', sources: 1, level: 'assumed', declared: 0, assumed: 1, personId: r.id, addedAt: null });
   }
   const staff = (await pool.query(`select p.id, p.org, null::text as past from people p where not p.hidden and p.org <> ''
     union all select r.person_id, r.org, coalesce(nullif(r.to_year, ''), 'before') from person_roles r join people p on p.id = r.person_id and not p.hidden where r.org <> ''`)).rows;
@@ -244,6 +259,7 @@ const SUBMIT = {
         region: { type: 'string', enum: REGIONS, description: 'Where the organisation is based.' }, industry: { type: 'string', description: 'Its industry in a few words (food retail, pharmaceuticals, commodity trading).' },
         employees: { type: 'number', description: 'Number of employees, only if the page states it.' },
         kind: { type: 'string', enum: KINDS }, note: { type: 'string', description: 'One factual sentence, no praise words.' },
+        extract: { type: 'string', description: 'The words on the page that state the fact, copied exactly, under 25 words.' },
         url: { type: 'string' } }, required: ['company', 'status', 'url'] } },
       next_pages: { type: 'array', description: 'Single case studies, press releases or job posts worth reading next for detail (year, partner, what was replaced, person).', items: { type: 'object', properties: { url: { type: 'string' }, label: { type: 'string' } }, required: ['url'] } }
     },
@@ -334,4 +350,4 @@ if (require.main === module && process.argv.includes('--seed')) {
   const pool = makePool();
   seed(pool).then(async n => { console.log('market seed: ' + n + ' facts'); await pool.end(); }).catch(async e => { console.error(e); await pool.end(); process.exit(1); });
 }
-module.exports = { compKey, canonSystem, upsertInstall, seed, loadMarket, harvest, SOURCES, VENDORS, INDUSTRIES, NOT_A_USER };
+module.exports = { compKey, canonSystem, levelOf, levels, upsertInstall, seed, loadMarket, harvest, SOURCES, VENDORS, INDUSTRIES, NOT_A_USER };
