@@ -1,10 +1,11 @@
 'use strict';
 /* One-off test (Nov 2026): do licensed LinkedIn company posts carry dated customer decisions?
- * Reads the company-page posts of ten vendors and consultancies from the Autobound Signal API (AUTOBOUND_API_KEY), once,
+ * Reads the company-page posts of ten vendors from the Autobound Signal API (AUTOBOUND_API_KEY), once,
  * and keeps a summary: how many posts, how many dated, how many read like a customer selection, go-live or replacement.
  * Capped at 450 posts (900 of the 1,000 free credits). Company pages only, no personal posts. Temporary: remove after reading. */
 const NAME = 'autobound-company-posts-v1';
-const DOMAINS = ['kyriba.com', 'onestream.com', 'anaplan.com', 'agicap.com', 'jedox.com', 'trovata.io', 'planful.com', 'nomentia.com', 'zandersgroup.com', 'actualizeconsulting.com'];
+/* vendors only. An entry may list fallbacks: Ripple Treasury is tried under its former GTreasury domain first (a domain not found costs nothing) */
+const DOMAINS = ['kyriba.com', 'onestream.com', 'anaplan.com', 'agicap.com', 'jedox.com', 'trovata.io', 'planful.com', 'nomentia.com', ['gtreasury.com', 'ripple.com'], 'fisglobal.com'];
 const PER = 45;
 const DECISION = /\b(go(?:es|ne)?[- ]live|went live|now live (?:on|with)|is live (?:on|with)|selects?|selected|chooses?|chose|has chosen|replac(?:es|ed|ing)|migrat(?:es|ed|ing)|switch(?:es|ed) (?:to|from)|welcome(?:s)? .{0,60}(?:as a (?:new )?customer|to the .{0,30}(?:family|community))|implement(?:s|ed|ation) (?:of|at|with)|partner(?:s|ed) with .{0,60} to (?:implement|deploy|roll))\b/i;
 const CUSTOMER = /\b(customer|client|case study|success story)\b/i;
@@ -25,8 +26,9 @@ async function run(pool, opts = {}) {
   if ((await pool.query('select 1 from signal_tests where name = $1', [NAME])).rows.length) return null;
   const base = (opts.base || 'https://signals.autobound.ai').replace(/\/$/, '');
   const out = { at: new Date().toISOString(), companies: [], posts: 0, dated: 0, decisions: 0, decisionsWithCustomerWord: 0, earliest: '', latest: '', creditsRemaining: null, errors: [], flagged: [] };
-  for (const domain of DOMAINS) {
+  for (const entry of DOMAINS) for (const domain of [].concat(entry)) {
     if (out.posts >= 450) break;
+    if (entry !== domain && out.companies.some(c => c.status === 200 && c.posts && [].concat(entry).includes(c.domain))) break;
     try {
       const r = await fetch(base + '/v1/companies/enrich', { method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': key },
         body: JSON.stringify({ domain, signal_types: ['linkedin-post-company'], limit: Math.min(PER, 450 - out.posts) }) });

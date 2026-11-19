@@ -35,7 +35,8 @@ test('a refused key stores nothing, so the test can run again', async () => {
 test('the test reads company posts once, counts dated posts and flags the ones that read like a decision', async () => {
   calls = [];
   const out = await st.run(pool, { key: 'good', base });
-  assert.strictEqual(calls.length, st.DOMAINS.length);
+  assert.strictEqual(calls.length, st.DOMAINS.flat().length, 'a fallback domain is tried when the first is not found');
+  assert.ok(!st.DOMAINS.flat().some(d => /zanders|actualize/.test(d)), 'vendors only');
   assert.deepStrictEqual(calls[0].body.signal_types, ['linkedin-post-company']);
   assert.deepStrictEqual([out.posts, out.dated, out.decisions, out.decisionsWithCustomerWord, out.creditsRemaining], [3, 2, 1, 1, 990]);
   assert.strictEqual(out.flagged[0].phrase, 'Acme Corp selects Kyriba to replace its spreadsheets.');
