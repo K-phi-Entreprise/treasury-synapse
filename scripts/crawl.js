@@ -459,6 +459,13 @@ async function crawl(pool, cfg = config(), opts = {}) {
     const ms = cfg.marketPages > 0 ? (await pool.query("select url from market_sources where status = 'queued' and kind in ('index', 'page', 'search') order by case kind when 'index' then 0 when 'page' then 1 else 2 end, read_at nulls first limit $1", [cfg.marketPages])).rows.map(r => 'market:' + r.url) : [];
     return { dryRun: true, spentToday: spent, targets: targets.map(t => t.type + ':' + (t.type === 'lead' ? t.lead.url : t.personId)).concat(ms) };
   }
+  /* registry profiles and the company universe make no model call, so they run even when the daily spend cap is reached */
+  if (cfg.registryBatch > 0) {
+    try { await require('./registry').profiles(pool, cfg, stats); } catch (e) { stats.errors.push('registry: ' + str(e.message, 300)); }
+  }
+  if (cfg.universePages > 0 || cfg.universeUS > 0) {
+    try { await require('./universe').grow(pool, cfg, stats); } catch (e) { stats.errors.push('universe: ' + str(e.message, 300)); }
+  }
   if (!cfg.apiKey) stats.notes = 'ANTHROPIC_API_KEY is not set; nothing done.';
   else if (spent >= cfg.dailyUsd) stats.notes = 'Daily spend cap reached (' + spent.toFixed(2) + ' of ' + cfg.dailyUsd + ' USD); nothing done.';
   else {
@@ -467,13 +474,7 @@ async function crawl(pool, cfg = config(), opts = {}) {
       try { await require('./market').harvest(pool, cfg, stats, cfg.dailyUsd - spent); }
       catch (e) { stats.errors.push('market: ' + str(e.message, 300)); }
     }
-    /* public companies: registry profiles (free) and SEC filings that name a system (one short model call each) */
-    if (cfg.registryBatch > 0) {
-      try { await require('./registry').profiles(pool, cfg, stats); } catch (e) { stats.errors.push('registry: ' + str(e.message, 300)); }
-    }
-    if (cfg.universePages > 0 || cfg.universeUS > 0) {
-      try { await require('./universe').grow(pool, cfg, stats); } catch (e) { stats.errors.push('universe: ' + str(e.message, 300)); }
-    }
+    /* SEC filings that name a system (one short model call each), inside the cap */
     if (cfg.filingsPerRun > 0) {
       try { await require('./registry').filings(pool, cfg, stats, cfg.dailyUsd - spent); } catch (e) { stats.errors.push('filings: ' + str(e.message, 300)); }
     }
