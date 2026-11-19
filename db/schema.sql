@@ -415,3 +415,10 @@ create table if not exists universe_cursors (
   done boolean not null default false,
   at timestamptz
 );
+
+-- One-off data-source tests (scripts/signaltest.js): one row per test, read through /api/signal-test
+create table if not exists signal_tests (
+  name text primary key,
+  data jsonb not null,
+  at timestamptz not null default now()
+);
