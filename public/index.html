@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="101ac04180";</script>
+<script>window.SYNAPSE_BUILD="15f413d36d";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1122,7 +1122,7 @@ function renderHubDetail(n){
   const regs={},roles={};people.forEach(i=>{const r=G.nodes[i].region;if(r!=='Unknown')regs[r]=(regs[r]||0)+1});
   es.forEach(x=>{const w=x.label.split(' ')[0];roles[w]=(roles[w]||0)+1});
   $('d-meta').textContent=people.length+(n.hub==='topic'?' people publicly speak or write about it':' people publicly use, sell, implement or evaluated it');
-  $('d-links').textContent=people.length;$('d-regs').textContent=Object.keys(regs).length;$('d-via').textContent=n.hub==='topic'?'Cards, stages':'Person cards';
+  $('d-links').textContent=people.length;$('d-regs').textContent=Object.keys(regs).length;$('d-via').textContent=n.hub==='topic'?'Stages':'Person cards';
   $('d-centred').hidden=G.center!==sel;$('d-know').hidden=true;
   const d=$('detail'),open=d.classList.contains('open');$('d-more').textContent=open?'Hide people':'Show '+people.length+' people';$('d-more').setAttribute('aria-expanded',String(open));
   const ins=$('d-insight');ins.textContent='';
