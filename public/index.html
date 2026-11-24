@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="3be2eb6e26";</script>
+<script>window.SYNAPSE_BUILD="1cc612552f";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1764,10 +1764,9 @@ try{initGL()}catch(err){const f=el('div','empty');const d=el('div');d.append(el(
     if(!booted){booted=true;if(timer){clearTimeout(timer);timer=null}}
     refreshAll();
     if(firstBoot){
-      const mi=meId?G.idx.get(meId):undefined;
+      /* no jump on load: the map opens on the whole network, even for someone who marked a card as theirs */
       let skip=false;try{skip=!!localStorage.getItem('synapse.skipWelcome')}catch(e){}
-      if(angle!=='market'){if(mi!=null)setTimeout(()=>{if(sel<0)select(mi,true)},reduce?0:Math.min(2500,stepMs*k+400));
-      else if(!skip&&!welcomeDone)showWelcome(true)}
+      if(angle!=='market'&&!meId&&!skip&&!welcomeDone)showWelcome(true)
     }
     if(angle==='market'&&coIn.length&&!firstBoot){}
     else if(angle==='market'&&coIn.length){
