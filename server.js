@@ -3,7 +3,8 @@
  * visitor declarations and submissions (never instant: the owner validates), and an admin review API. */
 const path = require('path');
 const fs = require('fs');
-const { recentEdge } = require('./scripts/recency');
+const { recentEdge, recent } = require('./scripts/recency');
+const { topicsOf } = require('./scripts/topics');
 const ai = require('./scripts/ai');
 const crypto = require('crypto');
 const express = require('express');
@@ -61,6 +62,16 @@ async function loadGraph(since) {
   const edges = await pool.query(`select * from v_social${sinceSql} order by added_at nulls last`, params);
   const conns = await pool.query(`select * from v_connections${sinceSql} order by added_at`, params);
   const market = await loadMarket(pool, since);
+  /* topics read from the titles of each person's stages since 2025 (scripts/topics.js), added to the topics on their card */
+  const stageTopics = new Map();
+  const occ = await pool.query(`select o.kind, o.label, o.date, array_agg(a.person_id) ids from occasions o join appearances a on a.occasion_id = o.id group by o.id`);
+  for (const o of occ.rows) {
+    if (!recent(o)) continue;
+    const ts = topicsOf(o.label);
+    if (!ts.length) continue;
+    for (const id of o.ids) { const set = stageTopics.get(id) || new Set(); ts.forEach(t => set.add(t)); stageTopics.set(id, set); }
+  }
+  const withStage = (id, card) => { const st = stageTopics.get(id); if (!st) return card; const all = new Set(card); st.forEach(t => all.add(t)); return [...all].sort(); };
   return {
     build: BUILD,
     companies: market.companies, installs: market.installs, companyPeople: market.companyPeople || null, weak: since ? null : market.weak,
@@ -68,7 +79,7 @@ async function loadGraph(since) {
     people: people.rows.filter(p => !p.hidden).map(p => ({
       id: p.id, name: p.name, headline: p.headline, org: p.org, city: p.city, region: p.region, segment: p.segment, seed: p.seed,
       foundVia: p.found_via, source: p.source, knownFor: p.known_for, publishers: p.publishers, followers: p.followers,
-      addedAt: iso(p.added_at), topics: p.topics, systems: sellsNow(p.systems, p.org), roles: p.roles,
+      addedAt: iso(p.added_at), topics: withStage(p.id, p.topics), stageTopics: stageTopics.has(p.id) ? [...stageTopics.get(p.id)].sort() : [], systems: sellsNow(p.systems, p.org), roles: p.roles,
       headlineDate: p.headline_date || '', headlineSource: p.headline_source || ''
     })),
     hidden: people.rows.filter(p => p.hidden).map(p => p.id),
@@ -476,6 +487,7 @@ app.get('/p/:id.png', async (req, res, next) => {
     res.set('Cache-Control', 'public, max-age=3600').type('png').send(png);
   } catch (e) { next(e); }
 });
+app.get('/api/topic-rules', (req, res) => { res.set('Cache-Control', 'public, max-age=3600'); res.json({ note: 'A stage title is tagged with a topic when its subject (after the series name, without brackets) matches one of these patterns. Award and press-release pages are not counted.', rules: require('./scripts/topics').RULES_TEXT }); });
 app.get('/ai', (req, res) => { res.set('Cache-Control', 'public, max-age=300'); res.type('html').send(ai.aiPage(SITE)); });
 app.get('/api/ai', (req, res) => { res.set('Cache-Control', 'public, max-age=300'); res.json(ai.load()); });
 app.get('/p/:id', async (req, res, next) => {

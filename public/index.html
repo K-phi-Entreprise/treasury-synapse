@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="e817b798b7";</script>
+<script>window.SYNAPSE_BUILD="19eafaee62";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -516,7 +516,7 @@ function upsertNode(G,d,at,rnd){
   const meta={id:d.id,name:String(d.name||d.id),headline:String(d.headline||''),headlineDate:String(d.headlineDate||''),org:String(d.org||''),city:String(d.city||''),
     hub:null,region:String(d.region||'Unknown'),segment:String(d.segment||'Corporate treasury'),seg:segOf(d),seed:!!d.seed,
     foundVia:d.foundVia||null,source:d.source||'',
-    topics:Array.isArray(d.topics)?d.topics.map(String):[],systems:Array.isArray(d.systems)?d.systems.filter(x=>x&&x.name).map(x=>sellsNow(x,d)):[],roles:Array.isArray(d.roles)?d.roles.filter(x=>x&&(x.title||x.org)):[],knownFor:String(d.knownFor||''),publishers:Number(d.publishers)||0,followers:d.followers==null?null:Number(d.followers),addedAt:String(d.addedAt||'')};
+    topics:Array.isArray(d.topics)?d.topics.map(String):[],stageTopics:Array.isArray(d.stageTopics)?d.stageTopics.map(String):[],systems:Array.isArray(d.systems)?d.systems.filter(x=>x&&x.name).map(x=>sellsNow(x,d)):[],roles:Array.isArray(d.roles)?d.roles.filter(x=>x&&(x.title||x.org)):[],knownFor:String(d.knownFor||''),publishers:Number(d.publishers)||0,followers:d.followers==null?null:Number(d.followers),addedAt:String(d.addedAt||'')};
   if(i!=null){G.nodes[i]=meta;return i}
   if(G.n>=MAX_N)return -1;
   i=G.n++;G.idx.set(d.id,i);G.nodes[i]=meta;G.adj[i]=[];
@@ -716,7 +716,7 @@ const socAdj=[];
 let dbRef=null,viewerId='';
 const ANGLE_NOTE={market:'Which organisation runs which system, each line with the public page that says so: a case study, a press release, a job post, a person\'s card. Orange: selecting a system now. A bubble counts public evidence, not customers: it is not market share. Open an organisation to see who on the map works or worked there.',
   social:'A line means the two people appeared in the same public setting: episode, panel, webinar, talk. It is co-appearance, not acquaintance. Stages from 2025 on; a page with no date is kept. Working at the same company does not draw a line.',
-  topics:'Each topic has its own place; people sit between the topics they publicly speak or write about. Only people with a known topic are shown. Bubble size is public footprint: independent publishers, topics, systems.',
+  topics:'Each topic has its own place; people sit between the topics they publicly speak or write about, from their card and from the titles of their stages since 2025, read with one fixed keyword list (/api/topic-rules). Only people with a topic are shown. Bubble size is public footprint: independent publishers, topics, systems.',
   connections:'Lines people declared themselves, faint until reviewed. Nobody\'s network is here until they add it: bring your LinkedIn connections, or say "I know this person" on a card.'};
 const K2_SUB={market:'each with a source',social:'public co-appearances',topics:'person to topic',connections:'declared by people'};
 const HUB_H={market:'Selecting now',social:'Most connected',topics:'Largest footprint',connections:'Most declared'};
@@ -730,7 +730,7 @@ function addRaw(which,r){
 }
 function deriveTopicEdges(i,at){
   const p=G.nodes[i];if(!p||p.hub)return;
-  p.topics.forEach(t=>{const h=upsertHub(G,'topic',t,at,rnd);if(h<0)return;addRaw('topics',{a:p.id,b:G.nodes[h].id,kind:'topic',label:'Speaks about '+t,url:'',confidence:.9,addedAt:p.addedAt,at:at})});
+  p.topics.forEach(t=>{const h=upsertHub(G,'topic',t,at,rnd);if(h<0)return;addRaw('topics',{a:p.id,b:G.nodes[h].id,kind:'topic',label:((p.stageTopics||[]).indexOf(t)>=0?'On a public stage about ':'Speaks about ')+t,url:'',confidence:.9,addedAt:p.addedAt,at:at})});
   p.systems.forEach(x=>{const h=upsertHub(G,'system',x.name,at,rnd);if(h<0)return;addRaw('topics',{a:p.id,b:G.nodes[h].id,kind:'system',label:(x.role||'uses')+' '+x.name,url:x.url||'',confidence:x.role==='sells'?.9:.8,addedAt:p.addedAt,at:at})});
 }
 function setAngle(a,first){
