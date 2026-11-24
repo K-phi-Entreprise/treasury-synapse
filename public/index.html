@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="2331d2b778";</script>
+<script>window.SYNAPSE_BUILD="2eb317dc56";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -197,6 +197,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .tl-note{font:400 11px/1.4 var(--font-mono);color:var(--fg-faint);margin:8px 0 0}
 #region-list .tr{font-size:9px;width:12px;text-align:center}
 .t-up{color:var(--pos)}.t-down{color:var(--warn)}.t-flat,.t-na{color:var(--fg-faint)}
+#region-list .tr.t-weak{opacity:.45}
 .trend{border:1px solid var(--line);border-radius:10px;padding:8px 10px 6px;margin:0 0 10px}
 .t-head{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:12.5px}
 .t-head span{font:400 11px/1.3 var(--font-mono);color:var(--fg-faint)}
@@ -905,8 +906,11 @@ function renderMarketLists(){
 const TREND_TXT={up:'Rising',down:'Falling',flat:'Steady'},TREND_MARK={up:'▲',down:'▼',flat:'▬'};
 function trendOf(name){const T=window.SYN_TRENDS;return T&&T.topics?T.topics[name]||null:null}
 const pct=x=>(x*100).toFixed(x<.1?1:0)+'%';
-function trendTitle(o){const T=window.SYN_TRENDS;if(!o||!o.trend)return 'Too few dated stages to read a trend';
-  return TREND_TXT[o.trend]+': '+pct(o.priorShare)+' of stages in '+T.window.prior.join('–')+', '+pct(o.recentShare)+' in '+T.window.recent.join('–')+' (big conferences set apart)'}
+/* "12 → 19 stages · 6% → 9% of all": the count and the share, last six months against the six before */
+function trendLine(o){return o.prior+' → '+o.recent+' stages · '+pct(o.priorShare)+' → '+pct(o.recentShare)+' of all'}
+const sure=o=>o.trend==='flat'?'':o.confirmed?' · beyond chance':' · early signal';
+function trendTitle(o){if(!o)return '';if(!o.trend)return 'Too few dated stages to read a trend ('+(o.prior+o.recent)+' in the last 12 months)';
+  return TREND_TXT[o.trend]+sure(o)+': '+trendLine(o)+'. Last six months against the six before, big conferences set apart.'}
 function trendChart(name){
   const T=window.SYN_TRENDS,o=trendOf(name);if(!T||!o)return null;
   const W=300,H=74,pad=4,n=T.quarters.length;
@@ -922,10 +926,10 @@ function trendChart(name){
   core.forEach((v,i)=>{if(v!=null)mk('circle',{cx:X(i),cy:Y(v),r:2,class:'t-dot'})});
   T.quarters.forEach((q,i)=>{if(i%2===(n-1)%2){const tx=mk('text',{x:X(i),y:H-2,class:'t-q','text-anchor':i===0?'start':i===n-1?'end':'middle'});tx.textContent=q.slice(2).replace('Q',' Q')}});
   const box=el('div','trend');
-  const head=el('div','t-head');head.append(el('b','t-'+(o.trend||'na'),o.trend?TREND_MARK[o.trend]+' '+TREND_TXT[o.trend]:'No trend yet'),el('span','',o.trend?pct(o.priorShare)+' → '+pct(o.recentShare)+' of stages':'too few dated stages'));
+  const head=el('div','t-head');head.append(el('b','t-'+(o.trend||'na'),o.trend?TREND_MARK[o.trend]+' '+TREND_TXT[o.trend]+sure(o):'No trend yet'),el('span','',o.trend?trendLine(o):'too few dated stages'));head.title=trendTitle(o);
   box.append(head,svg);
   const ev=(T.events||[]).map(e=>(e.name||e.series)+' ('+e.month+')');
-  box.appendChild(el('p','t-note','Share of the dated public stages of each quarter that are about it. Solid: without big conferences'+(ev.length?' ('+[...new Set(ev.map(x=>x.replace(/ \(.*/,'')))].join(', ')+')':'')+'. Faint: with them. Last quarter is partial.'));
+  box.appendChild(el('p','t-note','Rising needs more stages (+3 and +25%) and a share that did not fall; falling the reverse; last six months against the six before. Chart: share of the dated public stages of each quarter that are about it. Solid: without big conferences'+(ev.length?' ('+[...new Set(ev.map(x=>x.replace(/ \(.*/,'')))].join(', ')+')':'')+'. Faint: with them. Last quarter is partial.'));
   return box;
 }
 function renderTopicList(){
@@ -936,7 +940,7 @@ function renderTopicList(){
   const box=$('region-list');box.textContent='';
   T.forEach(i=>{const b=el('button','rrow');b.type='button';b.dataset.i=i;b.title='Open '+G.nodes[i].name;
     const bar=el('span','bar'),f=el('b');f.style.width=(cnt(i)/mx*100)+'%';bar.appendChild(f);
-    const o=trendOf(G.nodes[i].name),ar=el('span','tr t-'+(o&&o.trend||'na'),o&&o.trend?TREND_MARK[o.trend]:'');ar.title=trendTitle(o);
+    const o=trendOf(G.nodes[i].name),ar=el('span','tr t-'+(o&&o.trend||'na')+(o&&o.trend&&o.trend!=='flat'&&!o.confirmed?' t-weak':''),o&&o.trend?TREND_MARK[o.trend]:'');ar.title=trendTitle(o);
     b.append(el('span','rn',G.nodes[i].name),bar,el('span','rc',String(cnt(i))),ar);box.appendChild(b)});
   let all=0,withT=0;for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub||!segOn[n.seg])continue;all++;if(n.topics.length)withT++}
   box.appendChild(el('p','tl-note',withT.toLocaleString('en')+' of '+all.toLocaleString('en')+' people have a public topic so far. People with none are in the People view.'));

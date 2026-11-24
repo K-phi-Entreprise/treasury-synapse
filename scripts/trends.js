@@ -1,14 +1,19 @@
 'use strict';
-/* Topic trends: each topic's share of the dated public stages per quarter, since 2025.
- * Counts would measure what the crawler read, not what the market says (one conference loaded = a spike), so a topic is
- * measured as a share of all dated stages of the quarter. Big conferences are kept apart too: a series with
- * EVENT_MIN or more stages in one month (Sibos, AFP...) is an event, and the trend arrow is read on the stages
- * without events. Arrow: last two quarters against the two before, only when a z-test says the move is not chance. */
+/* Topic trends: what public stages are about, since 2025.
+ * Big conferences are set apart: a series with EVENT_MIN or more stages in one month (Sibos, AFP...) is an event,
+ * and the trend is read on the other stages. The chart shows each topic's share of the dated stages per quarter.
+ * Rising, falling or steady compares the last six months with the six before (same length, the current month
+ * included) and needs the count AND the share to agree:
+ *   rising  : at least MIN_MOVE more stages, at least 25% more, and its share of all stages did not fall;
+ *   falling : at least MIN_MOVE fewer stages, at least 20% fewer, and its share did not rise;
+ *   steady  : anything else, once there are MIN_DATA stages on it across the two periods.
+ * A count alone would follow what the crawler read; a share alone would make 2 stages out of 10 look like a wave.
+ * Each move also says whether it is beyond chance (a two-proportion z-test at 95%) or an early signal. */
 const { topicsOf, TOPICS } = require('./topics');
 const { FROM_YEAR, NOT_A_STAGE } = require('./recency');
 
 const EVENT_MIN = 15;
-const Z95 = 1.96;
+const Z95 = 1.96, MIN_MOVE = 3, MIN_DATA = 5, MONTHS = 6;
 const MON = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
   janv: 1, fév: 2, fevr: 2, févr: 2, mars: 3, avr: 4, mai: 5, juin: 6, juil: 7, août: 8, sept: 9, déc: 12 };
 
@@ -62,24 +67,29 @@ function buildTrends(stages, today = new Date()) {
     total[i]++; if (!r.event) totalCore[i]++;
     r.topics.forEach(t => { topics[t].all[i]++; if (!r.event) topics[t].core[i]++; });
   });
-  /* arrow: the last two quarters (the current one may be partial) against the two before, on stages without events */
-  const n = quarters.length, sum = (a, from, to) => a.slice(Math.max(0, from), to).reduce((x, y) => x + y, 0);
-  const recentTot = sum(totalCore, n - 2, n), priorTot = sum(totalCore, n - 4, n - 2);
+  /* rising / falling / steady: last MONTHS months against the MONTHS before, stages without events */
+  const back = k => { const d = new Date(Date.UTC(Number(nowM.slice(0, 4)), Number(nowM.slice(5, 7)) - 1 - k, 1)); return d.toISOString().slice(0, 7); };
+  const recentFrom = back(MONTHS - 1), priorFrom = back(2 * MONTHS - 1);
+  const inRecent = r => r.m >= recentFrom, inPrior = r => r.m >= priorFrom && r.m < recentFrom;
+  const core = rows.filter(r => !r.event);
+  const recentTot = core.filter(inRecent).length, priorTot = core.filter(inPrior).length;
   for (const t of TOPICS) {
     const o = topics[t];
-    const rc = sum(o.core, n - 2, n), pc = sum(o.core, n - 4, n - 2);
+    const rc = core.filter(r => inRecent(r) && r.topics.includes(t)).length, pc = core.filter(r => inPrior(r) && r.topics.includes(t)).length;
+    o.recent = rc; o.prior = pc;
     o.recentShare = recentTot ? rc / recentTot : 0;
     o.priorShare = priorTot ? pc / priorTot : 0;
-    /* a two-proportion z-test: an arrow only when the move is unlikely to be chance (95%), the same bar both ways */
-    o.trend = null; o.z = 0;
-    if (recentTot >= 30 && priorTot >= 30 && rc + pc >= 6) {
-      const pool = (rc + pc) / (recentTot + priorTot), se = Math.sqrt(pool * (1 - pool) * (1 / recentTot + 1 / priorTot));
-      o.z = se ? (o.recentShare - o.priorShare) / se : 0;
-      o.trend = o.z >= Z95 ? 'up' : o.z <= -Z95 ? 'down' : 'flat';
-    }
+    o.trend = null; o.z = 0; o.confirmed = false;
+    if (rc + pc < MIN_DATA || !recentTot || !priorTot) continue;
+    const up = rc - pc >= MIN_MOVE && rc >= pc * 1.25 && o.recentShare >= o.priorShare;
+    const down = pc - rc >= MIN_MOVE && rc <= pc * 0.8 && o.recentShare <= o.priorShare;
+    o.trend = up ? 'up' : down ? 'down' : 'flat';
+    const pool = (rc + pc) / (recentTot + priorTot), se = Math.sqrt(pool * (1 - pool) * (1 / recentTot + 1 / priorTot));
+    o.z = se ? (o.recentShare - o.priorShare) / se : 0;
+    o.confirmed = o.trend !== 'flat' && Math.abs(o.z) >= Z95;
   }
   return { from: FROM_YEAR, quarters, total, totalCore, events, eventMin: EVENT_MIN, topics,
-    window: { recent: quarters.slice(Math.max(0, n - 2)), prior: quarters.slice(Math.max(0, n - 4), Math.max(0, n - 2)), recentStages: recentTot, priorStages: priorTot },
+    window: { recent: recentFrom + ' to ' + nowM, prior: priorFrom + ' to ' + back(MONTHS), recentStages: recentTot, priorStages: priorTot, minMove: MIN_MOVE, minData: MIN_DATA },
     counted: rows.length, leftOut: stages.length - rows.length };
 }
 

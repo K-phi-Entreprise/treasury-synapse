@@ -43,3 +43,15 @@ test('shares per quarter, events apart, old, future and non-stages left out', ()
   assert.strictEqual(T.topics.Payments.trend, 'flat', 'the conference burst does not make payments rise');
   assert.strictEqual(T.topics.Commodities.trend, null, 'no arrow without data');
 });
+
+test('count and share must agree: more stages in a busier period is not a rise; tiny moves stay steady', () => {
+  const out = [];
+  /* prior six months: 20 stages, 4 on liquidity (20%). Recent: 60 stages, 6 on liquidity (10%): more stages, smaller share */
+  for (let i = 0; i < 20; i++) out.push(stage('2026-02-0' + (1 + i % 9), 'Show p' + i + ': ' + (i < 4 ? 'Liquidity outlook' : 'Careers') + (i < 1 ? ' and fraud' : '')));
+  for (let i = 0; i < 60; i++) out.push(stage('2026-08-0' + (1 + i % 9), 'Show r' + i + ': ' + (i < 6 ? 'Liquidity outlook' : 'Careers') + (i < 3 ? ' and fraud' : '')));
+  const T = buildTrends(out, today);
+  assert.strictEqual(T.topics.Liquidity.recent, 6);
+  assert.strictEqual(T.topics.Liquidity.prior, 4);
+  assert.strictEqual(T.topics.Liquidity.trend, 'flat', '+2 stages while the share halves');
+  assert.strictEqual(T.topics.Fraud.trend, null, '1 then 3 stages: too few to read');
+});
