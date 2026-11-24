@@ -75,6 +75,9 @@ async function loadGraph(since) {
   /* topic trends from every stage page, whoever spoke (scripts/trends.js); full loads only */
   let topicTrends = null;
   if (!since) { const st = await pool.query('select kind, label, date from occasions'); topicTrends = buildTrends(st.rows); }
+  /* cards written before the risk split say 'Risk & compliance': re-read the card text with the new rules, keep only what it supports */
+  const RISK3 = new Set(['Market risk', 'Operational risk', 'Regulation & compliance']);
+  const splitCard = p => (p.topics || []).flatMap(t => t !== 'Risk & compliance' ? [t] : topicsOf(': ' + [p.headline, p.known_for].filter(Boolean).join('. ')).filter(x => RISK3.has(x)));
   const withStage = (id, card) => { const st = stageTopics.get(id); if (!st) return card; const all = new Set(card); st.forEach(t => all.add(t)); return [...all].sort(); };
   return {
     build: BUILD,
@@ -83,7 +86,7 @@ async function loadGraph(since) {
     people: people.rows.filter(p => !p.hidden).map(p => ({
       id: p.id, name: p.name, headline: p.headline, org: p.org, city: p.city, region: p.region, segment: p.segment, seed: p.seed,
       foundVia: p.found_via, source: p.source, knownFor: p.known_for, publishers: p.publishers, followers: p.followers,
-      addedAt: iso(p.added_at), topics: withStage(p.id, p.topics), stageTopics: stageTopics.has(p.id) ? [...stageTopics.get(p.id)].sort() : [], systems: sellsNow(p.systems, p.org), roles: p.roles,
+      addedAt: iso(p.added_at), topics: withStage(p.id, splitCard(p)), stageTopics: stageTopics.has(p.id) ? [...stageTopics.get(p.id)].sort() : [], systems: sellsNow(p.systems, p.org), roles: p.roles,
       headlineDate: p.headline_date || '', headlineSource: p.headline_source || ''
     })),
     hidden: people.rows.filter(p => p.hidden).map(p => p.id),

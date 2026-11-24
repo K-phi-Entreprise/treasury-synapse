@@ -3,7 +3,7 @@
  * topics they worked on or implemented, whether they are open to a reference call, whether they take projects.
  * Declarations are shown as "declared by them" and kept apart from the evidence: they never create links or change
  * bubble size. They go live at once; the owner can remove any of them from /review. */
-const TOPICS = ['AI in finance', 'Payments', 'Treasury technology', 'Cash forecasting', 'Liquidity', 'FP&A & planning', 'Risk & compliance', 'Fraud',
+const TOPICS = ['AI in finance', 'Payments', 'Treasury technology', 'Cash forecasting', 'Liquidity', 'FP&A & planning', 'Market risk', 'Operational risk', 'Regulation & compliance', 'Fraud',
   'Bank connectivity', 'Debt & funding', 'Working capital', 'ESG & sustainable finance', 'FX & hedging', 'Crypto & stablecoins', 'AR/AP',
   'In-house banking', 'TMS selection', 'Consolidation', 'Commodities'];
 const SYSTEM_ROLES = ['uses', 'implements', 'integrates', 'evaluated', 'sells'];

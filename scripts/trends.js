@@ -3,11 +3,12 @@
  * Counts would measure what the crawler read, not what the market says (one conference loaded = a spike), so a topic is
  * measured as a share of all dated stages of the quarter. Big conferences are kept apart too: a series with
  * EVENT_MIN or more stages in one month (Sibos, AFP...) is an event, and the trend arrow is read on the stages
- * without events. Arrow: last two quarters against the two before, only when there is enough to read. */
+ * without events. Arrow: last two quarters against the two before, only when a z-test says the move is not chance. */
 const { topicsOf, TOPICS } = require('./topics');
 const { FROM_YEAR, NOT_A_STAGE } = require('./recency');
 
 const EVENT_MIN = 15;
+const Z95 = 1.96;
 const MON = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
   janv: 1, fév: 2, fevr: 2, févr: 2, mars: 3, avr: 4, mai: 5, juin: 6, juil: 7, août: 8, sept: 9, déc: 12 };
 
@@ -69,10 +70,12 @@ function buildTrends(stages, today = new Date()) {
     const rc = sum(o.core, n - 2, n), pc = sum(o.core, n - 4, n - 2);
     o.recentShare = recentTot ? rc / recentTot : 0;
     o.priorShare = priorTot ? pc / priorTot : 0;
-    o.trend = null;
+    /* a two-proportion z-test: an arrow only when the move is unlikely to be chance (95%), the same bar both ways */
+    o.trend = null; o.z = 0;
     if (recentTot >= 30 && priorTot >= 30 && rc + pc >= 6) {
-      const r = o.recentShare, p = o.priorShare;
-      o.trend = r >= p * 1.25 && r - p >= 0.02 ? 'up' : r <= p * 0.8 && p - r >= 0.02 ? 'down' : 'flat';
+      const pool = (rc + pc) / (recentTot + priorTot), se = Math.sqrt(pool * (1 - pool) * (1 / recentTot + 1 / priorTot));
+      o.z = se ? (o.recentShare - o.priorShare) / se : 0;
+      o.trend = o.z >= Z95 ? 'up' : o.z <= -Z95 ? 'down' : 'flat';
     }
   }
   return { from: FROM_YEAR, quarters, total, totalCore, events, eventMin: EVENT_MIN, topics,

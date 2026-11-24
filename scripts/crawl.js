@@ -14,7 +14,7 @@
  *        node scripts/crawl.js --dry-run  (pick the targets and print them, no API calls) */
 const { makePool } = require('./db');
 
-const TOPICS = ['AI in finance', 'Payments', 'Treasury technology', 'Cash forecasting', 'Liquidity', 'FP&A & planning', 'Risk & compliance', 'Fraud',
+const TOPICS = ['AI in finance', 'Payments', 'Treasury technology', 'Cash forecasting', 'Liquidity', 'FP&A & planning', 'Market risk', 'Operational risk', 'Regulation & compliance', 'Fraud',
   'Bank connectivity', 'Debt & funding', 'Working capital', 'ESG & sustainable finance', 'FX & hedging', 'Crypto & stablecoins', 'AR/AP',
   'In-house banking', 'TMS selection', 'Consolidation', 'Commodities'];
 const MAX_TOPICS = 6;
