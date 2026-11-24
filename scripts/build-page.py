@@ -23,7 +23,7 @@ start_new='''  async function start(){
         const g=await r.json();
         (g.people||[]).forEach(d=>pendingP.push(d));(g.edges||[]).forEach(d=>pendingE.push(d));
         (g.connections||[]).forEach(d=>{if(d.status!=='rejected')pendingC.push(d)});
-        (g.companies||[]).forEach(d=>pendingCo.push(d));(g.installs||[]).forEach(d=>pendingI.push(d));if(g.companyPeople)staffIn=g.companyPeople;if(g.ai)window.SYN_AI=g.ai;if(g.weak)window.SYN_WEAK=g.weak;
+        (g.companies||[]).forEach(d=>pendingCo.push(d));(g.installs||[]).forEach(d=>pendingI.push(d));if(g.companyPeople)staffIn=g.companyPeople;if(g.ai)window.SYN_AI=g.ai;if(g.weak)window.SYN_WEAK=g.weak;if(g.topicTrends)window.SYN_TRENDS=g.topicTrends;
         since=g.now||since;gotP=true;gotE=true;firstDone=true;setStatus('live','Live');queueIngest();
         if(g.build&&g.build!==window.SYNAPSE_BUILD)newVersion(g.build);
       }catch(e){setStatus('','Disconnected');if(!firstDone){firstFailed=true;if(!booted){$('empty').hidden=false;$('empty-t').textContent='The map is not answering yet';$('empty-s').textContent='Keep the page open; it fills in when the connection comes back.'}}}

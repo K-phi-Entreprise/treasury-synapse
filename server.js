@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const { recentEdge, recent } = require('./scripts/recency');
 const { topicsOf } = require('./scripts/topics');
+const { buildTrends } = require('./scripts/trends');
 const ai = require('./scripts/ai');
 const crypto = require('crypto');
 const express = require('express');
@@ -71,6 +72,9 @@ async function loadGraph(since) {
     if (!ts.length) continue;
     for (const id of o.ids) { const set = stageTopics.get(id) || new Set(); ts.forEach(t => set.add(t)); stageTopics.set(id, set); }
   }
+  /* topic trends from every stage page, whoever spoke (scripts/trends.js); full loads only */
+  let topicTrends = null;
+  if (!since) { const st = await pool.query('select kind, label, date from occasions'); topicTrends = buildTrends(st.rows); }
   const withStage = (id, card) => { const st = stageTopics.get(id); if (!st) return card; const all = new Set(card); st.forEach(t => all.add(t)); return [...all].sort(); };
   return {
     build: BUILD,
@@ -85,7 +89,8 @@ async function loadGraph(since) {
     hidden: people.rows.filter(p => p.hidden).map(p => p.id),
     edges: edges.rows.map(recentEdge).filter(Boolean).map(e => ({ id: e.a + '__' + e.b, a: e.a, b: e.b, kind: e.kind, label: e.label, url: e.url, confidence: e.confidence, evidence: e.evidence, addedAt: iso(e.added_at) })),
     connections: conns.rows.map(c => ({ id: c.from_id + '__' + c.to_id, from: c.from_id, to: c.to_id, status: c.status, addedAt: iso(c.added_at) })),
-    ai: ai.aiMap()
+    ai: ai.aiMap(),
+    topicTrends
   };
 }
 app.get('/api/graph', async (req, res, next) => {
