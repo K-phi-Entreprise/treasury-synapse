@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="2eb317dc56";</script>
+<script>window.SYNAPSE_BUILD="8044393dc7";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -909,8 +909,16 @@ const pct=x=>(x*100).toFixed(x<.1?1:0)+'%';
 /* "12 → 19 stages · 6% → 9% of all": the count and the share, last six months against the six before */
 function trendLine(o){return o.prior+' → '+o.recent+' stages · '+pct(o.priorShare)+' → '+pct(o.recentShare)+' of all'}
 const sure=o=>o.trend==='flat'?'':o.confirmed?' · beyond chance':' · early signal';
-function trendTitle(o){if(!o)return '';if(!o.trend)return 'Too few dated stages to read a trend ('+(o.prior+o.recent)+' in the last 12 months)';
-  return TREND_TXT[o.trend]+sure(o)+': '+trendLine(o)+'. Last six months against the six before, big conferences set apart.'}
+/* tooltip: four short lines, numbers first */
+const MON3=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function spanTxt(w){const m=String(w||'').match(/(\d{4})-(\d{2}) to (\d{4})-(\d{2})/);if(!m)return w||'';return MON3[+m[2]-1]+(m[1]!==m[3]?' '+m[1].slice(2):'')+'–'+MON3[+m[4]-1]+' '+m[3].slice(2)}
+function trendTitle(o){const T=window.SYN_TRENDS;if(!o||!T)return '';
+  if(!o.trend)return 'Not enough data: '+(o.prior+o.recent)+' stages in 12 months (5 needed)';
+  const d=o.prior?Math.round((o.recent/o.prior-1)*100):0,sg=d>0?'+':d<0?'−':'±';
+  return TREND_MARK[o.trend]+' '+TREND_TXT[o.trend]+(o.trend==='flat'?'':o.confirmed?' (beyond chance)':' (early signal)')+'\n'+
+    'Stages  '+o.prior+' → '+o.recent+'  ('+sg+Math.abs(d)+'%)\n'+
+    'Share   '+pct(o.priorShare)+' → '+pct(o.recentShare)+'\n'+
+    spanTxt(T.window.prior)+' vs '+spanTxt(T.window.recent)+', big conferences excluded'}
 function trendChart(name){
   const T=window.SYN_TRENDS,o=trendOf(name);if(!T||!o)return null;
   const W=300,H=74,pad=4,n=T.quarters.length;
