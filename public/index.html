@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="19eafaee62";</script>
+<script>window.SYNAPSE_BUILD="edcfa660c0";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1128,7 +1128,9 @@ function topicAnchors(){
   T.sort((a,b)=>G.adj[b].length-G.adj[a].length||G.nodes[a].name.localeCompare(G.nodes[b].name));
   const order=[T.shift()];
   while(T.length){const last=order[order.length-1];let bi=0,bs=-1;T.forEach((j,k)=>{const s=share(last,j);if(s>bs){bs=s;bi=k}});order.push(T.splice(bi,1)[0])}
-  const n=order.length,R=Math.max(60,6*n),anc=new Map();
+  let np=0;for(let i=0;i<G.n;i++)if(vis[i]&&!G.nodes[i].hub)np++;
+  /* the ring has to sit around the crowd, which grows with the cube root of the people shown */
+  const n=order.length,R=Math.max(60,6*n,26*Math.cbrt(np)),anc=new Map();
   /* one ring facing the camera: labels never sit behind one another; people who speak on several topics settle inside */
   /* a phone held upright: two tall arcs, left and right, so no two labels share a line at the top or bottom */
   const tall=innerHeight>innerWidth;
