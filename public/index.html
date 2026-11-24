@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Treasury &amp; FP&amp;A Synapses">
 <meta name="twitter:image" content="https://synapse.k-phi.com/og.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>window.SYNAPSE_BUILD="0663a12c4b";</script>
+<script>window.SYNAPSE_BUILD="e817b798b7";</script>
 <meta name="theme-color" content="#07070f">
 <script>(function(){var t="dark";try{t=localStorage.getItem("synapse.theme")||"dark"}catch(e){}document.documentElement.dataset.theme=t==="light"?"light":"dark"})();</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -194,6 +194,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .angle{padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--fg-dim);font-family:inherit;font-size:12.5px;font-weight:500;line-height:1.2;cursor:pointer}
 .angle[aria-pressed=true]{color:var(--fg);border-color:var(--accent);background:var(--tint-2)}
 .angle-note{font:400 11.5px/1.4 var(--font-mono);color:var(--fg-faint);margin:0 0 12px}
+.tl-note{font:400 11px/1.4 var(--font-mono);color:var(--fg-faint);margin:8px 0 0}
 .know{display:block;width:100%;margin:0 0 10px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer}
 .know[disabled]{color:var(--fg-faint);cursor:default}
 .lk.pend{opacity:.6}
@@ -616,12 +617,15 @@ function step(G,dt){
     }
   }
   let maxv=0;
+  const pinned=G.anc&&G.center<0?G.anc:null;
   for(let u=0;u<N;u++)for(let c=0;c<3;c++){
-    const i=A?A[u]:u;F[i*3+c]-=P[i*3+c]*(G.center>=0?.004:.02);
+    const i=A?A[u]:u;if(pinned&&pinned.has(i))continue;F[i*3+c]-=P[i*3+c]*(G.center>=0?.004:.02);
     let v=(V[i*3+c]+F[i*3+c]*dt*14)*.82;
     if(v>4)v=4;else if(v<-4)v=-4;
     V[i*3+c]=v;P[i*3+c]+=v;if(Math.abs(v)>maxv)maxv=Math.abs(v);
   }
+  /* topics are pinned: they glide to their place and stay there, whatever their speakers pull */
+  if(G.anc&&G.center<0)G.anc.forEach((p,i)=>{if(on&&!on[i])return;for(let c=0;c<3;c++){const d=(p[c]-P[i*3+c])*.15;P[i*3+c]+=d;V[i*3+c]=0;if(Math.abs(d)>maxv)maxv=Math.abs(d)}});
   let r=0;for(let u=0;u<N;u++){const i=A?A[u]:u;const d=Math.hypot(P[i*3],P[i*3+1],P[i*3+2]);if(d>r)r=d}
   G.R+=(Math.max(40,r+12)-G.R)*.05;
   if(maxv<.02)G.hot=0;
@@ -712,9 +716,9 @@ const socAdj=[];
 let dbRef=null,viewerId='';
 const ANGLE_NOTE={market:'Which organisation runs which system, each line with the public page that says so: a case study, a press release, a job post, a person\'s card. Orange: selecting a system now. A bubble counts public evidence, not customers: it is not market share. Open an organisation to see who on the map works or worked there.',
   social:'A line means the two people appeared in the same public setting: episode, panel, webinar, talk. It is co-appearance, not acquaintance. Stages from 2025 on; a page with no date is kept. Working at the same company does not draw a line.',
-  topics:'People sit around what they publicly speak about and the systems they use, sell or implement. Bubble size is public footprint: independent publishers, topics, systems.',
+  topics:'Each topic has its own place; people sit between the topics they publicly speak or write about. Only people with a known topic are shown. Bubble size is public footprint: independent publishers, topics, systems.',
   connections:'Lines people declared themselves, faint until reviewed. Nobody\'s network is here until they add it: bring your LinkedIn connections, or say "I know this person" on a card.'};
-const K2_SUB={market:'each with a source',social:'public co-appearances',topics:'person to topic or system',connections:'declared by people'};
+const K2_SUB={market:'each with a source',social:'public co-appearances',topics:'person to topic',connections:'declared by people'};
 const HUB_H={market:'Selecting now',social:'Most connected',topics:'Largest footprint',connections:'Most declared'};
 function addRaw(which,r){
   const key=r.a<r.b?r.a+'|'+r.b:r.b+'|'+r.a;
@@ -733,11 +737,13 @@ function setAngle(a,first){
   if(ANGLES.indexOf(a)<0)return;
   angle=a;try{localStorage.setItem('synapse.view',a)}catch(e){}
   $('chips').hidden=a==='market';$('seg-lbl').textContent=a==='market'?'Filters':'Segments';
-  $('reg-h').textContent=a==='market'?'Most used systems':'Regions';
+  $('reg-h').textContent=a==='market'?'Most used systems':a==='topics'?'Topics, by people':'Regions';
   $('src-note').textContent=a==='market'?'Every line points to the public page that says so: a vendor\'s customer story, a press release, a job post. Vendors and consultancies are never counted as users.':'Every link points to the public page it was found on: a podcast episode, a panel, a filing. Nothing here comes from private profiles.';
   document.querySelectorAll('#angles .angle').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.a===a)));
   $('angle-note').textContent=ANGLE_NOTE[a];$('k2s').textContent=K2_SUB[a];$('hub-h').textContent=HUB_H[a];
   if(window.synapseOnAngle)window.synapseOnAngle(a);
+  /* Topics reads as a flat ring: face it head-on and stop the slow spin (dragging still turns it) */
+  if(a==='topics')focusTween={yaw:0,pitch:0};
   if(first)return;
   /* "find me" belongs to People and Topics; Connections has its own Find my name card; never Market */
   if(a==='market'||a==='connections'){if(welcoming)showWelcome(false)}
@@ -884,8 +890,21 @@ function renderMarketLists(){
     hb.appendChild(b);
   });
 }
+function renderTopicList(){
+  const T=[];for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='topic')T.push(i);
+  const cnt=i=>G.adj[i].filter(j=>vis[j]).length;
+  T.sort((a,b)=>cnt(b)-cnt(a)||G.nodes[a].name.localeCompare(G.nodes[b].name));
+  const mx=Math.max.apply(null,T.map(cnt).concat([1]));
+  const box=$('region-list');box.textContent='';
+  T.forEach(i=>{const b=el('button','rrow');b.type='button';b.dataset.i=i;b.title='Open '+G.nodes[i].name;
+    const bar=el('span','bar'),f=el('b');f.style.width=(cnt(i)/mx*100)+'%';bar.appendChild(f);
+    b.append(el('span','rn',G.nodes[i].name),bar,el('span','rc',String(cnt(i))));box.appendChild(b)});
+  let all=0,withT=0;for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub||!segOn[n.seg])continue;all++;if(n.topics.length)withT++}
+  box.appendChild(el('p','tl-note',withT.toLocaleString('en')+' of '+all.toLocaleString('en')+' people have a public topic so far. People with none are in the People view.'));
+}
 function renderLists(){
   if(angle==='market')return renderMarketLists();
+  if(angle==='topics'){renderTopicList();renderHubList();return}
   const cnt={};
   for(let i=0;i<G.n;i++)if(vis[i]&&!G.nodes[i].hub){const r=G.nodes[i].region||'Unknown';cnt[r]=(cnt[r]||0)+1}
   const names=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]||REGION_ORDER.indexOf(a)-REGION_ORDER.indexOf(b));
@@ -897,6 +916,9 @@ function renderLists(){
     b.append(el('span','rn',rn),bar,el('span','rc',String(cnt[rn])));
     box.appendChild(b);
   });
+  renderHubList();
+}
+function renderHubList(){
   const ids=[];for(let i=0;i<G.n;i++)if(vis[i]&&!G.nodes[i].hub)ids.push(i);
   const rank=i=>angle==='topics'?footprint(G.nodes[i]):G.adj[i].length;
   ids.sort((a,b)=>rank(b)-rank(a));
@@ -1097,10 +1119,31 @@ function setHL(ids){
   if(hl&&sel>=0){sel=-1;nbr=null;renderDetail()}
   refreshNodes();paintEdges();rebuildActive();
 }
+/* Topics view: each topic gets a fixed place on a ring so they never pile up in the centre.
+   Topics that share speakers are placed next to each other along the spiral; people settle between their topics. */
+function topicAnchors(){
+  const T=[];for(let i=0;i<G.n;i++)if(vis[i]&&G.nodes[i].hub==='topic')T.push(i);
+  if(!T.length)return null;
+  const share=(a,b)=>{const s=new Set(G.adj[a]);let k=0;G.adj[b].forEach(j=>{if(s.has(j))k++});return k};
+  T.sort((a,b)=>G.adj[b].length-G.adj[a].length||G.nodes[a].name.localeCompare(G.nodes[b].name));
+  const order=[T.shift()];
+  while(T.length){const last=order[order.length-1];let bi=0,bs=-1;T.forEach((j,k)=>{const s=share(last,j);if(s>bs){bs=s;bi=k}});order.push(T.splice(bi,1)[0])}
+  const n=order.length,R=Math.max(60,6*n),anc=new Map();
+  /* one ring facing the camera: labels never sit behind one another; people who speak on several topics settle inside */
+  /* a phone held upright: two tall arcs, left and right, so no two labels share a line at the top or bottom */
+  const tall=innerHeight>innerWidth;
+  order.forEach((i,k)=>{let th,x,y;
+    if(tall){const h=Math.ceil(n/2),side=k<h?0:1,m=side?n-h:h,q=side?k-h:k,f=m>1?q/(m-1):.5,a=(-1+2*f)*1.05;
+      th=side?Math.PI-a:a;x=Math.cos(th)*R*.75;y=Math.sin(th)*R*1.5}
+    else{th=k/n*6.2832-1.5708;x=Math.cos(th)*R;y=Math.sin(th)*R*.82}
+    anc.set(i,[x,y,0])});
+  return anc;
+}
 function refreshAll(){
   for(let i=0;i<G.n;i++){const n=G.nodes[i];
     if(angle==='market')vis[i]=0;
-    else vis[i]=n.hub?(angle==='topics'&&(n.hub==='topic'||n.hub==='system')&&G.adj[i].length?1:0):(segOn[n.seg]?1:0)}
+    else if(angle==='topics')vis[i]=n.hub?(n.hub==='topic'&&G.adj[i].length?1:0):(n.topics.length&&segOn[n.seg]?1:0);
+    else vis[i]=n.hub?0:(segOn[n.seg]?1:0)}
   if(angle==='market'){
     G.adjM=G.adj;
     const pass=new Uint8Array(G.n);
@@ -1108,6 +1151,7 @@ function refreshAll(){
     for(let i=0;i<G.n;i++){const n=G.nodes[i];if(n.hub!=='system'&&n.hub!=='signal')continue;if(n.hub==='system'&&mkOff.family.has(n.fam||(n.fam=familyOf(n.name))))continue;if(G.adj[i].some(j=>pass[j]))vis[i]=1}
     for(let i=0;i<G.n;i++)if(pass[i]&&G.adj[i].some(j=>vis[j]&&G.nodes[j].hub==='system'||vis[j]&&G.nodes[j].hub==='signal'))vis[i]=1;
   }
+  G.anc=angle==='topics'?topicAnchors():null;
   G.on=vis;G.act=[];for(let i=0;i<G.n;i++)if(vis[i])G.act.push(i);
   {let sg=G.act.length;for(const i of G.act)sg=(sg*31+i)|0;if(sg!==G.actSig){G.actSig=sg;G.hot=1}}
   if(sel>=0&&!vis[sel])sel=-1;
@@ -1471,7 +1515,7 @@ function initGL(){
   function updateLabels(now){
     const W=stage.clientWidth,H=stage.clientHeight;
     const acc={};
-    for(let i=0;i<G.n;i++){if(angle==='market')break;if(!vis[i]||now<G.born[i])continue;const r=G.nodes[i].region;if(r==='Unknown'||r==='Other')continue;const a=acc[r]||(acc[r]={x:0,y:0,z:0,c:0});a.x+=G.pos[i*3];a.y+=G.pos[i*3+1];a.z+=G.pos[i*3+2];a.c++}
+    for(let i=0;i<G.n;i++){if(angle==='market'||angle==='topics')break;if(!vis[i]||now<G.born[i])continue;const r=G.nodes[i].region;if(r==='Unknown'||r==='Other')continue;const a=acc[r]||(acc[r]={x:0,y:0,z:0,c:0});a.x+=G.pos[i*3];a.y+=G.pos[i*3+1];a.z+=G.pos[i*3+2];a.c++}
     regLbl.forEach((e,r)=>{if(!acc[r])e.style.opacity=0});
     Object.keys(acc).forEach(r=>{
       let e=regLbl.get(r);if(!e){e=el('div','lbl',r);lblBox.appendChild(e);regLbl.set(r,e)}
@@ -1598,7 +1642,7 @@ function initGL(){
     uni.uR.value=G.R;
     const dragging=ptrs.size>0;
     if(focusTween&&!dragging){const k=Math.min(1,dt*6);yaw+=angDiff(focusTween.yaw,yaw)*k;pitch+=(focusTween.pitch-pitch)*k;if(Math.abs(angDiff(focusTween.yaw,yaw))<.002&&Math.abs(focusTween.pitch-pitch)<.002)focusTween=null}
-    else if(!dragging){yaw+=velYaw;pitch=clamp(pitch+velPitch,-1.45,1.45);const k=Math.pow(.9,dt*60);velYaw*=k;velPitch*=k;if(auto&&now-lastInteract>2500&&Math.abs(velYaw)<.0004)yaw+=dt*(sel>=0?.06:.12)}
+    else if(!dragging){yaw+=velYaw;pitch=clamp(pitch+velPitch,-1.45,1.45);const k=Math.pow(.9,dt*60);velYaw*=k;velPitch*=k;if(auto&&angle!=='topics'&&now-lastInteract>2500&&Math.abs(velYaw)<.0004)yaw+=dt*(sel>=0?.06:.12)}
     freeArea(dt);
     world.rotation.set(pitch,yaw,0);
     curDist+=(targetDist-curDist)*Math.min(1,dt*8);
